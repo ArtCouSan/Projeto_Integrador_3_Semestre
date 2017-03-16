@@ -1,4 +1,4 @@
-# Loja-Agencia-De-Viagens
+# Loja: Agência De Viagens
 Projeto do 3° Semestre da Universidade Senac
 Integrantes:
 - Arthur Coutinho
