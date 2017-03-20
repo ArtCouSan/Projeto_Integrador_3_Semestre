@@ -4,6 +4,6 @@ Integrantes:
 - Arthur Coutinho
 - Antonio Grosse
 - Daniel de Morais
-- Rafael
-- Sergio Roberto
+- Rafael Ferreira
+- Sergio Roberto Gomes da Silva
 
