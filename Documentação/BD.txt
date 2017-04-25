@@ -40,7 +40,8 @@ CREATE TABLE Funcionario(
 id_func INT(3) NOT NULL AUTO_INCREMENT,
 id_pessoa INT(3) NOT NULL,
 cargo VARCHAR(100) NOT NULL,
-departamento VARCHAR(100) NOT NULL,    
+departamento VARCHAR(100) NOT NULL,
+filial VARCHAR(100) NOT NULL,
 ativo TINYINT(1) NOT NULL,
 PRIMARY KEY (id_func),
 FOREIGN KEY id_contato (id_contato) REFERENCES Contato(id_contato),
@@ -90,9 +91,13 @@ UNIQUE KEY id_produto (id_produto)
 CREATE TABLE Venda(
 id_venda INT(3) NOT NULL AUTO_INCREMENT,
 id_produto INT(3) NOT NULL,
+id_cliente INT(3) NOT NULL,
+id_funcionario INT(3) NOT NULL,
 ativo TINYINT(1) NOT NULL,
 preco FLOAT(3.2) NOT NULL,    
 PRIMARY KEY (id_venda),
+FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),
+FOREIGN KEY id_funcionario (id_funcionario) REFERENCES Funcionario(id_funcionario),
 FOREIGN KEY id_produto (id_produto) REFERENCES Produto(produto),
 UNIQUE KEY id_venda (id_venda)
 );
