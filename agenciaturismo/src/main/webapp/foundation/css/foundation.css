@@ -4536,3 +4536,7 @@ form .form-icons .fa {
   color: white;
   width: 1rem;
 }
+
+form{
+    float: right;
+}
