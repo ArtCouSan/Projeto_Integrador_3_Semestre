@@ -3,12 +3,12 @@ package br.senac.tads3.pi03b.gruposete.models;
 import java.util.Date;
 
 public class Hotel {
-    protected int id_hotel;
-    protected String nome_hotel;
-    protected Date data_entrada;
-    protected Date data_saida;
-    protected String quantidade_quartos;
-    protected String quantidade_hospedes;
+    private int id_hotel;
+    private String nome_hotel;
+    private Date data_entrada;
+    private Date data_saida;
+    private String quantidade_quartos;
+    private String quantidade_hospedes;
 
     public Hotel() {
         

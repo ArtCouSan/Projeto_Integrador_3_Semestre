@@ -3,12 +3,12 @@ package br.senac.tads3.pi03b.gruposete.models;
 import java.util.Date;
 
 public class Voo {
-    protected int id_voo;
-    protected Date data_ida;
-    protected Date data_volta;
-    protected String destino;
-    protected String origem;
-    protected int quantidade_passagens;
+    private int id_voo;
+    private Date data_ida;
+    private Date data_volta;
+    private String destino;
+    private String origem;
+    private int quantidade_passagens;
 
     public Voo() {
         

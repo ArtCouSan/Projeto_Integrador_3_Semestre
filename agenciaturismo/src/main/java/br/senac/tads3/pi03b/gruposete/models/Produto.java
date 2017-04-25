@@ -1,10 +1,10 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
 public class Produto {
-    protected int id_produto;
-    protected Voo voo;
-    protected Hotel hotel;
-    protected boolean ativo;
+    private int id_produto;
+    private Voo voo;
+    private Hotel hotel;
+    private boolean ativo;
 
     // Venda com voo e sem hotel
     public Produto(int id_produto, Voo voo, boolean ativo) {

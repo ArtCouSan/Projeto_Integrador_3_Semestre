@@ -87,9 +87,13 @@ UNIQUE KEY id_produto (id_produto)
 CREATE TABLE Venda(
 id_venda INT(3) NOT NULL AUTO_INCREMENT,
 id_produto INT(3) NOT NULL,
+id_cliente INT(3) NOT NULL,
+id_func INT(3) NOT NULL,
 ativo TINYINT(1) NOT NULL,
 preco FLOAT(3.2) NOT NULL,    
 PRIMARY KEY (id_venda),
 FOREIGN KEY id_produto (id_produto) REFERENCES Produto(produto),
+FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(cliente),
+FOREIGN KEY id_func (id_func) REFERENCES Funcionario(funcionario),
 UNIQUE KEY id_venda (id_venda)
 );

@@ -3,7 +3,6 @@ package br.senac.tads3.pi03b.gruposete.dao;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,29 +17,13 @@ public class ClienteDAO {
     public void inserir(Cliente cliente) throws SQLException, Exception {
         connection = DbUtil.getConnection();
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "INSERT INTO clientes (nome, cpf, sexo, data_dasc, numero, cep, rua, bairro, "
-                + "logradouro, complemento, celular, telefone, email, dd_telefone, dd_celular, ativo)"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes (pessoa, ativo) VALUES (?, ?)";
         //Cria um statement para execução de instruções SQL
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
             //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setString(2, cliente.getCpf());
-            preparedStatement.setString(3, Character.toString(cliente.getSexo()));
-            preparedStatement.setDate(4, (Date) cliente.getData_nasc());
-            preparedStatement.setInt(5, cliente.getNumero());
-            preparedStatement.setString(6, cliente.getCep());
-            preparedStatement.setString(7, cliente.getRua());
-            preparedStatement.setString(8, cliente.getBairro());
-            preparedStatement.setString(9, cliente.getLogradouro());
-            preparedStatement.setString(10, cliente.getComplemento());
-            preparedStatement.setString(11, cliente.getCelular());
-            preparedStatement.setString(12, cliente.getTelefone());
-            preparedStatement.setString(13, cliente.getEmail());
-            preparedStatement.setString(14, cliente.getDd_telefone());
-            preparedStatement.setString(15, cliente.getDd_celular());
-            preparedStatement.setBoolean(16, cliente.isAtivo());
+            preparedStatement.setObject(1, cliente.getPessoa());
+            preparedStatement.setBoolean(2, cliente.isAtivo());
             //Executa o comando no banco de dados
             preparedStatement.executeUpdate();
         } finally {
@@ -58,29 +41,14 @@ public class ClienteDAO {
     public void alterar(Cliente cliente) throws SQLException, Exception {
         connection = DbUtil.getConnection();
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "UPDATE clientes SET nome=?, cpf=?, sexo=?, data_nasc=?, numero=?, cep=?, rua=?"
-                + "WHERE id=?";
+        String sql = "UPDATE clientes SET pessoa=?, ativo=? WHERE id_cliente=?";
         //Cria um statement para execução de instruções SQL
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
             //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setString(2, cliente.getCpf());
-            preparedStatement.setString(3, Character.toString(cliente.getSexo()));
-            preparedStatement.setDate(4, (Date) cliente.getData_nasc());
-            preparedStatement.setInt(5, cliente.getNumero());
-            preparedStatement.setString(6, cliente.getCep());
-            preparedStatement.setString(7, cliente.getRua());
-            preparedStatement.setString(8, cliente.getBairro());
-            preparedStatement.setString(9, cliente.getLogradouro());
-            preparedStatement.setString(10, cliente.getComplemento());
-            preparedStatement.setString(11, cliente.getCelular());
-            preparedStatement.setString(12, cliente.getTelefone());
-            preparedStatement.setString(13, cliente.getEmail());
-            preparedStatement.setString(14, cliente.getDd_telefone());
-            preparedStatement.setString(15, cliente.getDd_celular());
-            preparedStatement.setBoolean(16, cliente.isAtivo());
-            preparedStatement.setInt(17, cliente.getId_cliente());
+            preparedStatement.setObject(1, cliente.getPessoa());
+            preparedStatement.setBoolean(2, cliente.isAtivo());
+            preparedStatement.setInt(3, cliente.getId_cliente());
             //Executa o comando no banco de dados
             preparedStatement.executeUpdate();
         } finally {
