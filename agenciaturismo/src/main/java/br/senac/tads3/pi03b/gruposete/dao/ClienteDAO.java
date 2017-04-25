@@ -96,13 +96,9 @@ public class ClienteDAO {
             ResultSet resultSet = st.executeQuery(query);
             while (resultSet.next()) {
                 Cliente cliente = new Cliente();
-                cliente.setId(resultSet.getInt("id"));
-                cliente.setNome(resultSet.getString("nome"));
-                cliente.setTipo(resultSet.getString("tipo"));
-                cliente.setCadastroNacional(resultSet.getString("cadastronacional"));
-                cliente.setEndereco(resultSet.getString("endereco"));
-                cliente.setEmail(resultSet.getString("email"));
-                cliente.setTelefone(resultSet.getString("telefone"));
+                cliente.setId_cliente(resultSet.getInt("id_cliente"));
+                cliente.setAtivo(resultSet.getBoolean("ativo"));
+                cliente.setPessoa(resultSet.getObject("pessoa"));
                 listaClientes.add(cliente);
             }
         } catch (SQLException e) {
@@ -120,13 +116,9 @@ public class ClienteDAO {
                 preparedStatement.setInt(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        cliente.setId(resultSet.getInt("id"));
-                        cliente.setNome(resultSet.getString("nome"));
-                        cliente.setTipo(resultSet.getString("tipo"));
-                        cliente.setCadastroNacional(resultSet.getString("cadastronacional"));
-                        cliente.setEndereco(resultSet.getString("endereco"));
-                        cliente.setEmail(resultSet.getString("email"));
-                        cliente.setTelefone(resultSet.getString("telefone"));
+                        cliente.setId_cliente(resultSet.getInt("id_cliente"));
+                        cliente.setAtivo(resultSet.getBoolean("ativo"));
+                        cliente.setPessoa(resultSet.getObject("pessoa"));
                     }
                 }
             }
