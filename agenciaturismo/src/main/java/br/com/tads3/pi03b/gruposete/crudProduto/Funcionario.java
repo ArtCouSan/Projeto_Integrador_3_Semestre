@@ -21,7 +21,12 @@ public class Funcionario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String nome = request.getParameter("nome");
+        String cpf = request.getParameter("cpf");
+        String sexo = request.getParameter("sexo");
+        String nascimento = request.getParameter("rua");
+        String rua = request.getParameter("rua");
         
+     
 
     }
 
