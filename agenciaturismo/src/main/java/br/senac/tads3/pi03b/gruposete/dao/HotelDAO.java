@@ -1,6 +1,8 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
+import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
+import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.sql.Connection;
 import java.sql.Date;

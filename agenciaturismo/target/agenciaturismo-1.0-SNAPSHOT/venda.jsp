@@ -35,7 +35,7 @@
                         </span>
                         <input class="input-group-field" type="text" placeholder="">
                     </div>
-                <button class="button expanded">Buscar</button>
+                    <button class="button expanded">Buscar</button>
             </form>
             <form>
                 <div class="form-icons">
@@ -46,7 +46,7 @@
                         </span>
                         <input class="input-group-field" type="text" placeholder="">
                     </div>
-                <button class="button expanded">Buscar</button>
+                    <button class="button expanded">Buscar</button>
             </form>
         </header>
 
