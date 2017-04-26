@@ -1,7 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
 public class Contato {
-
+    private int id_contato;
     private String celular;
     private String telefone;
     private String email;
@@ -17,6 +17,14 @@ public class Contato {
         this.email = email;
         this.dd_telefone = dd_telefone;
         this.dd_celular = dd_celular;
+    }
+
+    public int getId_contato() {
+        return id_contato;
+    }
+
+    public void setId_contato(int id_contato) {
+        this.id_contato = id_contato;
     }
 
     public String getCelular() {

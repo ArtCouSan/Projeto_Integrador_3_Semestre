@@ -1,10 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.cruds;
 
-import br.senac.tads3.pi03b.gruposete.models.Contato;
-import br.senac.tads3.pi03b.gruposete.models.Endereco;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.IOException;
-import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,11 +24,11 @@ public class VooCRUD extends HttpServlet {
 
         String origem = request.getParameter("origem");
         String destino = request.getParameter("destino");
-        String dataIda = request.getParameter("dataIda");
-        String dataVolta = request.getParameter("dataVolta");
-        int quantidadeP = Integer.parseInt(request.getParameter("quantidade"));
+        String data_ida = request.getParameter("dataIda");
+        String data_volta = request.getParameter("dataVolta");
+        int quantidade_passagens = Integer.parseInt(request.getParameter("quantidade"));
 
-        Voo v = new Voo(dataIda, dataVolta, destino, origem, quantidadeP);
+        Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens);
 
         HttpSession sessao = request.getSession();
         //sessao.setAttribute("", );

@@ -1,28 +1,26 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
 public class Produto {
+
     private int id_produto;
     private Voo voo;
     private Hotel hotel;
     private boolean ativo;
 
     // Venda com voo e sem hotel
-    public Produto(int id_produto, Voo voo, boolean ativo) {
-        this.id_produto = id_produto;
+    public Produto(Voo voo, boolean ativo) {
         this.voo = voo;
         this.ativo = ativo;
     }
 
     // Venda com hotel e sem voo
-    public Produto(int id_produto, Hotel hotel, boolean ativo) {
-        this.id_produto = id_produto;
+    public Produto(Hotel hotel, boolean ativo) {
         this.hotel = hotel;
         this.ativo = ativo;
     }
 
     // Venda com voo e com hotel
-    public Produto(int id_produto, Voo voo, Hotel hotel, boolean ativo) {
-        this.id_produto = id_produto;
+    public Produto(Voo voo, Hotel hotel, boolean ativo) {
         this.voo = voo;
         this.hotel = hotel;
         this.ativo = ativo;
@@ -59,5 +57,5 @@ public class Produto {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
+
 }

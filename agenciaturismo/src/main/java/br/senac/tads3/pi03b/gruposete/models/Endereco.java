@@ -1,23 +1,35 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
 public class Endereco {
+
+    private int id_endereco;
     private int numero;
     private String cep;
     private String rua;
     private String bairro;
+    private String cidade;
     private String logradouro;
     private String complemento;
 
     public Endereco() {
     }
 
-    public Endereco(int numero, String cep, String rua, String bairro, String logradouro, String complemento) {
+    public Endereco(int numero, String cep, String rua, String bairro, String cidade, String logradouro, String complemento) {
         this.numero = numero;
         this.cep = cep;
         this.rua = rua;
         this.bairro = bairro;
+        this.cidade = cidade;
         this.logradouro = logradouro;
         this.complemento = complemento;
+    }
+
+    public int getId_endereco() {
+        return id_endereco;
+    }
+
+    public void setId_endereco(int id_endereco) {
+        this.id_endereco = id_endereco;
     }
 
     public int getNumero() {
@@ -52,6 +64,14 @@ public class Endereco {
         this.bairro = bairro;
     }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
     public String getLogradouro() {
         return logradouro;
     }
@@ -67,5 +87,5 @@ public class Endereco {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-    
+
 }

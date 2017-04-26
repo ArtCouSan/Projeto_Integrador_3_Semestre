@@ -13,13 +13,11 @@ public class Venda {
 
     }
 
-    public Venda(int id_venda, Produto produto, Cliente cliente, Funcionario funcionario, boolean ativo, float preco) {
-        this.id_venda = id_venda;
+    public Venda(Produto produto, Cliente cliente, Funcionario funcionario, boolean ativo, float preco) {
         this.produto = produto;
         this.cliente = cliente;
         this.funcionario = funcionario;
         this.ativo = ativo;
-        this.preco = preco;
     }
 
     public int getId_venda() {

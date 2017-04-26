@@ -1,12 +1,10 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
-import java.util.Date;
-
 public class Hotel {
     private int id_hotel;
     private String nome_hotel;
-    private Date data_entrada;
-    private Date data_saida;
+    private String data_entrada;
+    private String data_saida;
     private String quantidade_quartos;
     private String quantidade_hospedes;
 
@@ -14,8 +12,7 @@ public class Hotel {
         
     }
 
-    public Hotel(int id_hotel, String nome_hotel, Date data_entrada, Date data_saida, String quantidade_quartos, String quantidade_hospedes) {
-        this.id_hotel = id_hotel;
+    public Hotel(String nome_hotel, String data_entrada, String data_saida, String quantidade_quartos, String quantidade_hospedes) {
         this.nome_hotel = nome_hotel;
         this.data_entrada = data_entrada;
         this.data_saida = data_saida;
@@ -39,19 +36,19 @@ public class Hotel {
         this.nome_hotel = nome_hotel;
     }
 
-    public Date getData_entrada() {
+    public String getData_entrada() {
         return data_entrada;
     }
 
-    public void setData_entrada(Date data_entrada) {
+    public void setData_entrada(String data_entrada) {
         this.data_entrada = data_entrada;
     }
 
-    public Date getData_saida() {
+    public String getData_saida() {
         return data_saida;
     }
 
-    public void setData_saida(Date data_saida) {
+    public void setData_saida(String data_saida) {
         this.data_saida = data_saida;
     }
 

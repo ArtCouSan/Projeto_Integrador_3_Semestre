@@ -14,7 +14,8 @@ numero INT(3),
 cep VARCHAR(3),
 rua VARCHAR(3), 
 bairro VARCHAR(3), 
-logradouro VARCHAR(3), 
+cidade VARCHAR(20),
+logradouro VARCHAR(3),
 complemento VARCHAR(5),
 PRIMARY KEY (id_endereco)
 );
@@ -26,7 +27,7 @@ id_endereco INT(3),
 nome VARCHAR(100) NOT NULL,
 cpf VARCHAR(11) NOT NULL,
 sexo CHAR(1),
-data_nasc DATE,
+data_nasc VARCHAR(10),
 PRIMARY KEY (id_pessoa),
 FOREIGN KEY id_contato (id_contato) REFERENCES Contato(id_contato),
 FOREIGN KEY id_endereco (id_endereco) REFERENCES Endereco(id_endereco) 
@@ -37,10 +38,11 @@ CREATE TABLE Funcionario(
 id_func INT(3) NOT NULL AUTO_INCREMENT,
 id_pessoa INT(3) NOT NULL,
 cargo VARCHAR(100) NOT NULL,
+filial VARCHAR(100) NOT NULL,
 departamento VARCHAR(100) NOT NULL,    
 ativo TINYINT(1) NOT NULL,
 PRIMARY KEY (id_func),
-FOREIGN KEY id_contato (id_contato) REFERENCES Contato(id_contato),
+FOREIGN KEY id_pessoa (id_pessoa) REFERENCES Pessoa(id_pessoa),
 UNIQUE KEY id_func (id_func)  
 );
 
@@ -66,8 +68,8 @@ PRIMARY KEY (id_voo)
 CREATE TABLE Hotel(
 id_hotel INT(3) NOT NULL AUTO_INCREMENT,
 nome_hotel VARCHAR(50),
-data_entrada DATE,
-data_saida DATE,
+data_entrada VARCHAR(10),
+data_saida VARCHAR(10),
 quantidade_quartos VARCHAR(50),
 quantidade_hospedes VARCHAR(50),
 PRIMARY KEY (id_hotel)
@@ -92,8 +94,17 @@ id_func INT(3) NOT NULL,
 ativo TINYINT(1) NOT NULL,
 preco FLOAT(3.2) NOT NULL,    
 PRIMARY KEY (id_venda),
-FOREIGN KEY id_produto (id_produto) REFERENCES Produto(produto),
-FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(cliente),
-FOREIGN KEY id_func (id_func) REFERENCES Funcionario(funcionario),
+FOREIGN KEY id_produto (id_produto) REFERENCES Produto(id_produto),
+FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),
+FOREIGN KEY id_func (id_func) REFERENCES Funcionario(id_funcionario),
 UNIQUE KEY id_venda (id_venda)
+);
+
+CREATE TABLE Usuario(
+id_usuario INT(3) NOT NULL AUTO_INCREMENT,
+nome VARCHAR(255) NOT NULL,
+login VARCHAR(20) NOT NULL,
+senha VARCHAR(20) NOT NULL,
+email VARCHAR(100) NOT NULL,
+PRIMARY KEY(id_usuario)
 );

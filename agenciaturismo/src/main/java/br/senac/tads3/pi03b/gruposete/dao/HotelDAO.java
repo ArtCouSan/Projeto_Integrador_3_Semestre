@@ -1,8 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
-import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
-import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.sql.Connection;
 import java.sql.Date;
@@ -27,8 +25,8 @@ public class HotelDAO {
         try {
             //Configura os parâmetros do "PreparedStatement"
             preparedStatement.setString(1, hotel.getNome_hotel());
-            preparedStatement.setDate(2, (Date) hotel.getData_entrada());
-            preparedStatement.setDate(3, (Date) hotel.getData_saida());
+            preparedStatement.setString(2, hotel.getData_entrada());
+            preparedStatement.setString(3, hotel.getData_saida());
             preparedStatement.setString(4, hotel.getQuantidade_quartos());
             preparedStatement.setString(5, hotel.getQuantidade_hospedes());
             //Executa o comando no banco de dados
@@ -55,8 +53,8 @@ public class HotelDAO {
         try {
             //Configura os parâmetros do "PreparedStatement"
             preparedStatement.setString(1, hotel.getNome_hotel());
-            preparedStatement.setDate(2, (Date) hotel.getData_entrada());
-            preparedStatement.setDate(3, (Date) hotel.getData_saida());
+            preparedStatement.setString(2, hotel.getData_entrada());
+            preparedStatement.setString(3, hotel.getData_saida());
             preparedStatement.setString(4, hotel.getQuantidade_quartos());
             preparedStatement.setString(5, hotel.getQuantidade_hospedes());
             //Executa o comando no banco de dados
@@ -107,8 +105,8 @@ public class HotelDAO {
             while (resultSet.next()) {
                 Hotel hotel = new Hotel();
                 hotel.setNome_hotel(resultSet.getString("nome_hotel"));
-                hotel.setData_entrada(resultSet.getDate("data_entrada"));
-                hotel.setData_saida(resultSet.getDate("data_saida"));
+                hotel.setData_entrada(resultSet.getString("data_entrada"));
+                hotel.setData_saida(resultSet.getString("data_saida"));
                 hotel.setQuantidade_quartos(resultSet.getString("quantidade_quartos"));
                 hotel.setQuantidade_hospedes(resultSet.getString("quantidade_hospedes"));
                 ListaHotel.add(hotel);
@@ -130,8 +128,8 @@ public class HotelDAO {
                     while (resultSet.next()) {
                         hotel.setId_hotel(resultSet.getInt("id_hotel"));
                         hotel.setNome_hotel(resultSet.getString("nome_hotel"));
-                        hotel.setData_entrada(resultSet.getDate("data_entrada"));
-                        hotel.setData_saida(resultSet.getDate("data_saida"));
+                        hotel.setData_entrada(resultSet.getString("data_entrada"));
+                        hotel.setData_saida(resultSet.getString("data_saida"));
                         hotel.setQuantidade_quartos(resultSet.getString("quantidade_quartos"));
                         hotel.setQuantidade_hospedes(resultSet.getString("quantidade_hospedes"));
                     }

@@ -1,6 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
 public class Voo {
+
     private int id_voo;
     private String data_ida;
     private String data_volta;
@@ -9,7 +10,7 @@ public class Voo {
     private int quantidade_passagens;
 
     public Voo() {
-        
+
     }
 
     public Voo(String data_ida, String data_volta, String destino, String origem, int quantidade_passagens) {
@@ -67,5 +68,5 @@ public class Voo {
     public void setQuantidade_passagens(int quantidade_passagens) {
         this.quantidade_passagens = quantidade_passagens;
     }
-    
+
 }

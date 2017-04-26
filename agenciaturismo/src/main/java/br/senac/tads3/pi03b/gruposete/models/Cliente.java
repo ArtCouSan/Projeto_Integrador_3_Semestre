@@ -1,6 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
 public class Cliente {
+
     private int id_cliente;
     private boolean ativo;
     private Pessoa pessoa;
@@ -8,8 +9,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int id_cliente, boolean ativo, Pessoa pessoa) {
-        this.id_cliente = id_cliente;
+    public Cliente(boolean ativo, Pessoa pessoa) {
         this.ativo = ativo;
         this.pessoa = pessoa;
     }
@@ -37,5 +37,5 @@ public class Cliente {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
+
 }
