@@ -1,7 +1,5 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
-import java.util.Date;
-
 public class Voo {
     private int id_voo;
     private String data_ida;

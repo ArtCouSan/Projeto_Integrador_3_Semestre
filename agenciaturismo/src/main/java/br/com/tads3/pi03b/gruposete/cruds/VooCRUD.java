@@ -37,7 +37,7 @@ public class VooCRUD extends HttpServlet {
         //sessao.setAttribute("", );
         // Colocar pag de resposta
         response.sendRedirect("index.html");
-
+        
     }
-
+    
 }
