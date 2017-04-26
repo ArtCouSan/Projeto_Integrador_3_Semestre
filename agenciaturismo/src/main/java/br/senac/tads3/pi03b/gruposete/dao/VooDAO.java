@@ -24,8 +24,8 @@ public class VooDAO {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
             //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setDate(1, (Date) voo.getData_volta());
-            preparedStatement.setDate(2, (Date) voo.getData_ida());
+            preparedStatement.setString(1, voo.getData_volta());
+            preparedStatement.setString(2, voo.getData_ida());
             preparedStatement.setString(3, voo.getDestino());
             preparedStatement.setString(4, voo.getOrigem());
             preparedStatement.setInt(5, voo.getQuantidade_passagens());
@@ -52,8 +52,8 @@ public class VooDAO {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
             //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setDate(1, (Date) voo.getData_volta());
-            preparedStatement.setDate(2, (Date) voo.getData_ida());
+            preparedStatement.setString(1, voo.getData_volta());
+            preparedStatement.setString(2, voo.getData_ida());
             preparedStatement.setString(3, voo.getDestino());
             preparedStatement.setString(4, voo.getOrigem());
             preparedStatement.setInt(5, voo.getQuantidade_passagens());
@@ -106,8 +106,8 @@ public class VooDAO {
             while (resultSet.next()) {
                 Voo voo = new Voo();
                 voo.setId_voo(resultSet.getInt("id_voo"));
-                voo.setData_ida(resultSet.getDate("data_ida"));
-                voo.setData_volta(resultSet.getDate("data_volta"));
+                voo.setData_ida(resultSet.getString("data_ida"));
+                voo.setData_volta(resultSet.getString("data_volta"));
                 voo.setDestino(resultSet.getString("destino"));
                 voo.setOrigem(resultSet.getString("origem"));
                 voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
@@ -129,8 +129,8 @@ public class VooDAO {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
                         voo.setId_voo(resultSet.getInt("id_voo"));
-                        voo.setData_ida(resultSet.getDate("data_ida"));
-                        voo.setData_volta(resultSet.getDate("data_volta"));
+                        voo.setData_ida(resultSet.getString("data_ida"));
+                        voo.setData_volta(resultSet.getString("data_volta"));
                         voo.setDestino(resultSet.getString("destino"));
                         voo.setOrigem(resultSet.getString("origem"));
                         voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));

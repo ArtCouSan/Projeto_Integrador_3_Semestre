@@ -29,17 +29,15 @@ public class VooCRUD extends HttpServlet {
         String destino = request.getParameter("destino");
         String dataIda = request.getParameter("dataIda");
         String dataVolta = request.getParameter("dataVolta");
-        String quantidadeP = request.getParameter("quantidade");
+        int quantidadeP = Integer.parseInt(request.getParameter("quantidade"));
 
-        Date data_ida = new Date
-        
-        Voo v = new Voo(null, data_ida, data_volta, destino, origem, 0);
-        
+        Voo v = new Voo(dataIda, dataVolta, destino, origem, quantidadeP);
+
         HttpSession sessao = request.getSession();
         //sessao.setAttribute("", );
         // Colocar pag de resposta
         response.sendRedirect("index.html");
-        
+
     }
 
 }

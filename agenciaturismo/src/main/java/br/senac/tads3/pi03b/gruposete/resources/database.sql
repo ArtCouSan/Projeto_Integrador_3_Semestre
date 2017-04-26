@@ -55,8 +55,8 @@ UNIQUE KEY id_cliente (id_cliente)
 
 CREATE TABLE Voo(
 id_voo INT(3) NOT NULL AUTO_INCREMENT,    
-data_volta DATE,
-data_ida DATE,
+data_volta VARCHAR(10),
+data_ida VARCHAR(10),
 destino VARCHAR(50),
 origem VARCHAR(50),
 quantidade_passagens INT(3) NOT NULL,

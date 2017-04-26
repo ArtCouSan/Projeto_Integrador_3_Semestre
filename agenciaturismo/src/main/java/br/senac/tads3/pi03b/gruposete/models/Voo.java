@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Voo {
     private int id_voo;
-    private Date data_ida;
-    private Date data_volta;
+    private String data_ida;
+    private String data_volta;
     private String destino;
     private String origem;
     private int quantidade_passagens;
@@ -14,8 +14,7 @@ public class Voo {
         
     }
 
-    public Voo(int id_voo, Date data_ida, Date data_volta, String destino, String origem, int quantidade_passagens) {
-        this.id_voo = id_voo;
+    public Voo(String data_ida, String data_volta, String destino, String origem, int quantidade_passagens) {
         this.data_ida = data_ida;
         this.data_volta = data_volta;
         this.destino = destino;
@@ -31,19 +30,19 @@ public class Voo {
         this.id_voo = id_voo;
     }
 
-    public Date getData_ida() {
+    public String getData_ida() {
         return data_ida;
     }
 
-    public void setData_ida(Date data_ida) {
+    public void setData_ida(String data_ida) {
         this.data_ida = data_ida;
     }
 
-    public Date getData_volta() {
+    public String getData_volta() {
         return data_volta;
     }
 
-    public void setData_volta(Date data_volta) {
+    public void setData_volta(String data_volta) {
         this.data_volta = data_volta;
     }
 
