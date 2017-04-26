@@ -18,7 +18,7 @@ public class ClienteDAO {
     public void inserir(Cliente cliente) throws SQLException, Exception {
         connection = DbUtil.getConnection();
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "INSERT INTO clientes (pessoa, ativo) VALUES (?, ?)";
+        String sql = "INSERT INTO Cliente (pessoa, ativo) VALUES (?, ?)";
         //Cria um statement para execução de instruções SQL
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
@@ -42,7 +42,7 @@ public class ClienteDAO {
     public void alterar(Cliente cliente) throws SQLException, Exception {
         connection = DbUtil.getConnection();
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "UPDATE clientes SET pessoa=?, ativo=? WHERE id_cliente=?";
+        String sql = "UPDATE Cliente SET pessoa=?, ativo=? WHERE id_cliente=?";
         //Cria um statement para execução de instruções SQL
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
@@ -67,7 +67,7 @@ public class ClienteDAO {
     public void excluir(int id) throws SQLException, Exception {
         connection = DbUtil.getConnection();
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "DELETE FROM clientes WHERE id=?";
+        String sql = "DELETE FROM Cliente WHERE id_cliente=?";
         //Cria um statement para execução de instruções SQL
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
@@ -90,7 +90,7 @@ public class ClienteDAO {
     public List<Cliente> getListaClientes() throws SQLException, ClassNotFoundException {
         List<Cliente> listaClientes = new ArrayList<>();
         connection = DbUtil.getConnection();
-        String query = "SELECT * FROM clientes ORDER BY nome";
+        String query = "SELECT * FROM Cliente ORDER BY nome";
 
         try {
             Statement st = connection.createStatement();
@@ -112,7 +112,7 @@ public class ClienteDAO {
         Cliente cliente = new Cliente();
         connection = DbUtil.getConnection();
         try {
-            String query = "SELECT * FROM clientes WHERE id=?";
+            String query = "SELECT * FROM Cliente WHERE id_cliente=?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setInt(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
