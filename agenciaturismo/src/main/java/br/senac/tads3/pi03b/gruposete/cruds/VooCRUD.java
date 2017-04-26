@@ -1,4 +1,4 @@
-package br.com.tads3.pi03b.gruposete.cruds;
+package br.senac.tads3.pi03b.gruposete.cruds;
 
 import br.senac.tads3.pi03b.gruposete.models.Contato;
 import br.senac.tads3.pi03b.gruposete.models.Endereco;
