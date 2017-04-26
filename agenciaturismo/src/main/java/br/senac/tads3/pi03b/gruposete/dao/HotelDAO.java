@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HotelDAO {
+
     private Connection connection;
 
     public void inserir(Hotel hotel) throws SQLException, Exception {
@@ -45,14 +46,17 @@ public class HotelDAO {
     public void alterar(Hotel hotel) throws SQLException, Exception {
         connection = DbUtil.getConnection();
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "UPDATE Hotel SET pessoa=?, ativo=? WHERE id_hotel=?";
+        String sql = "UPDATE Hotel SET nome_hotel=?, data_entrada=?, data_saida=?, quantidade_quartos=?, quantidade_hospedes=? "
+                + "WHERE id_hotel=?";
         //Cria um statement para execução de instruções SQL
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
             //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setObject(1, cliente.getPessoa());
-            preparedStatement.setBoolean(2, cliente.isAtivo());
-            preparedStatement.setInt(3, cliente.getId_cliente());
+            preparedStatement.setString(1, hotel.getNome_hotel());
+            preparedStatement.setDate(2, (Date) hotel.getData_entrada());
+            preparedStatement.setDate(3, (Date) hotel.getData_saida());
+            preparedStatement.setString(4, hotel.getQuantidade_quartos());
+            preparedStatement.setString(5, hotel.getQuantidade_hospedes());
             //Executa o comando no banco de dados
             preparedStatement.executeUpdate();
         } finally {
@@ -70,7 +74,7 @@ public class HotelDAO {
     public void excluir(int id) throws SQLException, Exception {
         connection = DbUtil.getConnection();
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "DELETE FROM clientes WHERE id=?";
+        String sql = "DELETE FROM Hotel WHERE id_hotel=?";
         //Cria um statement para execução de instruções SQL
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
@@ -90,45 +94,50 @@ public class HotelDAO {
         }
     }
 
-    public List<Cliente> getListaClientes() throws SQLException, ClassNotFoundException {
-        List<Cliente> listaClientes = new ArrayList<>();
+    public List<Hotel> getListaHotel() throws SQLException, ClassNotFoundException {
+        List<Hotel> ListaHotel = new ArrayList<>();
         connection = DbUtil.getConnection();
-        String query = "SELECT * FROM clientes ORDER BY nome";
+        String query = "SELECT * FROM Hotel ORDER BY nome_hotel";
 
         try {
             Statement st = connection.createStatement();
             ResultSet resultSet = st.executeQuery(query);
             while (resultSet.next()) {
                 Hotel hotel = new Hotel();
-                hotel.setId_cliente(resultSet.getInt("id_cliente"));
-                hotel.setAtivo(resultSet.getBoolean("ativo"));
-                hotel.setPessoa(resultSet.getObject("pessoa"));
-                listaClientes.add(hotel);
+                hotel.setNome_hotel(resultSet.getString("nome_hotel"));
+                hotel.setData_entrada(resultSet.getDate("data_entrada"));
+                hotel.setData_saida(resultSet.getDate("data_saida"));
+                hotel.setQuantidade_quartos(resultSet.getString("quantidade_quartos"));
+                hotel.setQuantidade_hospedes(resultSet.getString("quantidade_hospedes"));
+                ListaHotel.add(hotel);
             }
         } catch (SQLException e) {
         }
         connection.close();
-        return listaClientes;
+        return ListaHotel;
     }
 
-    public Cliente getClienteById(int id) throws SQLException, ClassNotFoundException {
-        Cliente cliente = new Cliente();
+    public Hotel getClienteById(int id) throws SQLException, ClassNotFoundException {
+        Hotel hotel = new Hotel();
         connection = DbUtil.getConnection();
         try {
-            String query = "SELECT * FROM clientes WHERE id=?";
+            String query = "SELECT * FROM Hotel WHERE id_hotel=?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setInt(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        cliente.setId_cliente(resultSet.getInt("id_cliente"));
-                        cliente.setAtivo(resultSet.getBoolean("ativo"));
-                        cliente.setPessoa(resultSet.getObject("pessoa"));
+                        hotel.setId_hotel(resultSet.getInt("id_hotel"));
+                        hotel.setNome_hotel(resultSet.getString("nome_hotel"));
+                        hotel.setData_entrada(resultSet.getDate("data_entrada"));
+                        hotel.setData_saida(resultSet.getDate("data_saida"));
+                        hotel.setQuantidade_quartos(resultSet.getString("quantidade_quartos"));
+                        hotel.setQuantidade_hospedes(resultSet.getString("quantidade_hospedes"));
                     }
                 }
             }
         } catch (SQLException e) {
         }
         connection.close();
-        return cliente;
+        return hotel;
     }
 }
