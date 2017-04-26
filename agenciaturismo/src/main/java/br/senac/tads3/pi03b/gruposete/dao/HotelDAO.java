@@ -1,6 +1,8 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
+import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
+import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.sql.Connection;
 import java.sql.Date;
@@ -122,7 +124,7 @@ public class HotelDAO {
                     while (resultSet.next()) {
                         cliente.setId_cliente(resultSet.getInt("id_cliente"));
                         cliente.setAtivo(resultSet.getBoolean("ativo"));
-                        cliente.setPessoa(resultSet.getObject("pessoa"));
+                        cliente.setPessoa((Pessoa) resultSet.getObject("pessoa"));
                     }
                 }
             }
