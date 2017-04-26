@@ -1,6 +1,5 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
-import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
@@ -25,9 +24,9 @@ public class FuncionarioDAO {
         try {
             //Configura os parâmetros do "PreparedStatement"
             preparedStatement.setObject(1, funcionario.getPessoa());
-            preparedStatement.setBoolean(2, funcionario.isAtivo());
+            preparedStatement.setString(2, funcionario.getCargo());
             preparedStatement.setString(3, funcionario.getDepartamento());
-            preparedStatement.setString(4, funcionario.getCargo());
+            preparedStatement.setBoolean(4, funcionario.isAtivo());
             //Executa o comando no banco de dados
             preparedStatement.executeUpdate();
         } finally {
@@ -51,11 +50,11 @@ public class FuncionarioDAO {
         try {
             //Configura os parâmetros do "PreparedStatement"
             preparedStatement.setObject(1, funcionario.getPessoa());
-            preparedStatement.setBoolean(2, funcionario.isAtivo());
+            preparedStatement.setString(2, funcionario.getCargo());
             preparedStatement.setString(3, funcionario.getDepartamento());
-            preparedStatement.setString(4, funcionario.getCargo());
+            preparedStatement.setBoolean(4, funcionario.isAtivo());
             preparedStatement.setInt(5, funcionario.getId_func());
-            
+
             //Executa o comando no banco de dados
             preparedStatement.executeUpdate();
         } finally {
@@ -102,36 +101,40 @@ public class FuncionarioDAO {
             Statement st = connection.createStatement();
             ResultSet resultSet = st.executeQuery(query);
             while (resultSet.next()) {
-                Cliente cliente = new Cliente();
-                cliente.setId_cliente(resultSet.getInt("id_cliente"));
-                cliente.setAtivo(resultSet.getBoolean("ativo"));
-                cliente.setPessoa((Pessoa) resultSet.getObject("pessoa"));
-                ListaFuncionario.add(cliente);
+                Funcionario funcionario = new Funcionario();
+                funcionario.setId_func(resultSet.getInt("id_func"));
+                funcionario.setAtivo(resultSet.getBoolean("ativo"));
+                funcionario.setPessoa((Pessoa) resultSet.getObject("pessoa"));
+                funcionario.setCargo(resultSet.getString("cargo"));
+                funcionario.setDepartamento(resultSet.getString("departamento"));
+                ListaFuncionario.add(funcionario);
             }
         } catch (SQLException e) {
         }
         connection.close();
-        return listaClientes;
+        return ListaFuncionario;
     }
 
-    public Cliente getClienteById(int id) throws SQLException, ClassNotFoundException {
-        Cliente cliente = new Cliente();
+    public Funcionario getFuncionarioById(int id) throws SQLException, ClassNotFoundException {
+        Funcionario funcionario = new Funcionario();
         connection = DbUtil.getConnection();
         try {
-            String query = "SELECT * FROM cliente WHERE id_cliente=?";
+            String query = "SELECT * FROM Funcionario WHERE id_func=?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setInt(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        cliente.setId_cliente(resultSet.getInt("id_cliente"));
-                        cliente.setAtivo(resultSet.getBoolean("ativo"));
-                        cliente.setPessoa((Pessoa) resultSet.getObject("pessoa"));
+                        funcionario.setId_func(resultSet.getInt("id_func"));
+                        funcionario.setAtivo(resultSet.getBoolean("ativo"));
+                        funcionario.setPessoa((Pessoa) resultSet.getObject("pessoa"));
+                        funcionario.setCargo(resultSet.getString("cargo"));
+                        funcionario.setDepartamento(resultSet.getString("departamento"));
                     }
                 }
             }
         } catch (SQLException e) {
         }
         connection.close();
-        return cliente;
+        return funcionario;
     }
 }
