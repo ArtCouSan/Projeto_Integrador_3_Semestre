@@ -1,4 +1,4 @@
-package br.senac.tads3.pi03b.gruposete.cruds;
+package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Voo", urlPatterns = {"/voo"})
-public class VooCRUD extends HttpServlet {
+public class VooServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

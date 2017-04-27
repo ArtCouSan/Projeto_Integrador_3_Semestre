@@ -1,4 +1,4 @@
-package br.senac.tads3.pi03b.gruposete.cruds;
+package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.models.Contato;
 import br.senac.tads3.pi03b.gruposete.models.Endereco;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "FuncionarioCRUD", urlPatterns = {"/funcionario"})
-public class FuncionarioCRUD extends HttpServlet {
+public class FuncionarioServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
