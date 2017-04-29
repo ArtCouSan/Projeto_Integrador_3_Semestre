@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>CRUD Funcionario</title>
+        <title>Cadastro de Funcionario</title>
     </head>
     <body>
         <form action="funcionario" method="post">

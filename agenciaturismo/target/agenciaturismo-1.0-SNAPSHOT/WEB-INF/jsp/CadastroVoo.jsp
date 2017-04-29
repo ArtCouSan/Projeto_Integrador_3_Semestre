@@ -1,10 +1,9 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>CRUD Voo</title>
+        <title>Cadastro de Voo</title>
     </head>
     <body>
         <form>
@@ -18,10 +17,10 @@
             <input type="text" name="quantidade" placeholder="Insira quantidade de passagens"/>
             <br />
             <label for="txtdataIda">Data de ida:</label>  
-            <input type="text" name="dataIda" placeholder="Insira data de ida"/>
+            <input type="text" name="data_ida" placeholder="Insira data de ida"/>
             <br />
             <label for="txtdataVolta">Data de volta:</label>  
-            <input type="text" name="dataVolta" placeholder="Insira data de volta"/>
+            <input type="text" name="data_volta" placeholder="Insira data de volta"/>
             <br />
         </form>
         <input type="submit" value="Salvar" />
