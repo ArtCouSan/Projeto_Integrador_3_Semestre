@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "funcionario", urlPatterns = {"/funcionario"})
 public class FuncionarioServlet extends HttpServlet {
+    
+    private FuncionarioDAO dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -140,7 +142,7 @@ public class FuncionarioServlet extends HttpServlet {
             Funcionario funcionario = new Funcionario(cargo, departamento, true, filial, pessoa);
 
             try {
-                FuncionarioDAO.inserir(funcionario);
+                dao.inserir(funcionario);
             } catch (Exception ex) {
                 Logger.getLogger(FuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

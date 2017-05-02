@@ -15,7 +15,7 @@ public class HotelDAO {
     private static Connection con;
     private static PreparedStatement stmn;
 
-    public static void inserir(Hotel hotel) throws SQLException, Exception {
+    public void inserir(Hotel hotel) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "INSERT INTO Hotel (nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes) "
@@ -45,7 +45,7 @@ public class HotelDAO {
         }
     }
 
-    public static void alterar(Hotel hotel) throws SQLException, Exception {
+    public void alterar(Hotel hotel) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "UPDATE Hotel SET nome_hotel=?, data_entrada=?, data_saida=?, quantidade_quartos=?, quantidade_hospedes=? "
@@ -75,7 +75,7 @@ public class HotelDAO {
         }
     }
 
-    public static void excluir(int id) throws SQLException, Exception {
+    public void excluir(int id) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "DELETE FROM Hotel WHERE id_hotel=?";
@@ -100,7 +100,7 @@ public class HotelDAO {
         }
     }
 
-    public static List<Hotel> getListaHotel() throws SQLException, ClassNotFoundException {
+    public List<Hotel> getListaHotel() throws SQLException, ClassNotFoundException {
         List<Hotel> ListaHotel = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Hotel ORDER BY nome_hotel";
@@ -121,5 +121,28 @@ public class HotelDAO {
         }
         con.close();
         return ListaHotel;
+    }
+    
+    public Hotel getHotelById(int id) throws SQLException, ClassNotFoundException {
+        Hotel hotel = new Hotel();
+        con = DbUtil.getConnection();
+        try {
+            String query = "SELECT * FROM Hotel WHERE id_hotel=?";
+            stmn = con.prepareStatement(query);
+            stmn.setInt(1, id);
+            try (ResultSet resultSet = stmn.executeQuery()) {
+                while (resultSet.next()) {
+                    hotel.setNome_hotel(resultSet.getString("nome_hotel"));
+                    hotel.setData_entrada(resultSet.getString("data_entrada"));
+                    hotel.setData_saida(resultSet.getString("data_saida"));
+                    hotel.setQuantidade_hospedes(resultSet.getString("quantidade_hospedes"));
+                    hotel.setQuantidade_quartos(resultSet.getString("quantidade_quartos"));
+                }
+            }
+            stmn.close();
+        } catch (SQLException e) {
+        }
+        con.close();
+        return hotel;
     }
 }

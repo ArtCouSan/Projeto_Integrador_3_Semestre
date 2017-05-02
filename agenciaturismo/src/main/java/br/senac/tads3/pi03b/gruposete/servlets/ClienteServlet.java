@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
@@ -11,6 +6,7 @@ import br.senac.tads3.pi03b.gruposete.models.Endereco;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -21,18 +17,53 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Rafael Ferreira
- */
 @WebServlet(name = "ClienteServlet", urlPatterns = {"/ClienteServlet"})
 public class ClienteServlet extends HttpServlet {
+    
+    private ClienteDAO dao;
+    public static final String LIST = "WEB-INF/jsp/listarClientes.jsp";
+    public static final String INSERT_OR_EDIT = "WEB-INF/jsp/cadastrarCliente.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("funcionario.jsp");
-        dispatcher.forward(request, response);
+        String forward = "";
+        String action = request.getParameter("action");
+        if ("delete".equalsIgnoreCase(action)) {
+            forward = LIST;
+            int id = Integer.parseInt(request.getParameter("id"));
+            try {
+                dao.excluir(id);
+            } catch (Exception ex) {
+                Logger.getLogger(ClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                request.setAttribute("clientes", dao.getListaClientes());
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if ("edit".equalsIgnoreCase(action)) {
+            forward = INSERT_OR_EDIT;
+            int id = Integer.parseInt(request.getParameter("id"));
+            Cliente cliente = null;
+            try {
+                cliente = dao.getClienteById(id);
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            request.setAttribute("cliente", cliente);
+        } else if ("insert".equalsIgnoreCase(action)) {
+            forward = INSERT_OR_EDIT;
+        } else {
+            forward = LIST;
+            try {
+                request.setAttribute("clientes", dao.getListaClientes());
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        RequestDispatcher view = request.getRequestDispatcher(forward);
+        view.forward(request, response);
     }
 
     @Override
@@ -125,8 +156,6 @@ public class ClienteServlet extends HttpServlet {
             request.setAttribute("erroNascimento", true);
         }
 
-        
-
         if (!erro) {
             Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
             Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
@@ -134,7 +163,7 @@ public class ClienteServlet extends HttpServlet {
             Cliente cliente = new Cliente(true, pessoa);
 
             try {
-                ClienteDAO.inserir(cliente);
+                dao.inserir(cliente);
             } catch (Exception ex) {
                 Logger.getLogger(ClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

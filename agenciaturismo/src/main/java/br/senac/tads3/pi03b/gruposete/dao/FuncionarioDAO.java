@@ -16,7 +16,7 @@ public class FuncionarioDAO {
     private static Connection con;
     private static PreparedStatement stmn;
 
-    public static void inserir(Funcionario funcionario) throws SQLException, Exception {
+    public void inserir(Funcionario funcionario) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "INSERT INTO Funcionario (pessoa, cargo, departamento, ativo) VALUES (?, ?, ?, ?)";
@@ -44,7 +44,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public static void alterar(Funcionario funcionario) throws SQLException, Exception {
+    public void alterar(Funcionario funcionario) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "UPDATE Funcionario SET pessoa=?, cargo=?, departamento=?, ativo=? WHERE id_cliente=?";
@@ -74,17 +74,18 @@ public class FuncionarioDAO {
         }
     }
 
-    public static void excluir(int id) throws SQLException, Exception {
+    public void excluir(int id) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "DELETE FROM Funcionario WHERE id_func=?";
+        String sql = "UPDATE Funcionario SET ativo=? WHERE id_func=?";
         //Cria um statement para execução de instruções SQL
 
         try {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
-            stmn.setInt(1, id);
+            stmn.setBoolean(1, false);
+            stmn.setInt(2, id);
             //Executa o comando no banco de dados
             stmn.executeUpdate();
         } finally {
@@ -99,7 +100,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public static List<Funcionario> getListaFuncionario() throws SQLException, ClassNotFoundException {
+    public List<Funcionario> getListaFuncionario() throws SQLException, ClassNotFoundException {
         List<Funcionario> ListaFuncionario = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Funcionario ORDER BY nome";
@@ -120,5 +121,28 @@ public class FuncionarioDAO {
         }
         con.close();
         return ListaFuncionario;
+    }
+    
+    public Funcionario getFuncionarioById(int id) throws SQLException, ClassNotFoundException {
+        Funcionario funcionario = new Funcionario();
+        con = DbUtil.getConnection();
+        try {
+            String query = "SELECT * FROM Funcionario WHERE id_func=?";
+            stmn = con.prepareStatement(query);
+            stmn.setInt(1, id);
+            try (ResultSet resultSet = stmn.executeQuery()) {
+                while (resultSet.next()) {
+                    funcionario.setPessoa((Pessoa)resultSet.getObject("pessoa"));
+                    funcionario.setAtivo(resultSet.getBoolean("ativo"));
+                    funcionario.setFilial(resultSet.getString("filial"));
+                    funcionario.setCargo(resultSet.getString("cargo"));
+                    funcionario.setDepartamento(resultSet.getString("departamento"));
+                }
+            }
+            stmn.close();
+        } catch (SQLException e) {
+        }
+        con.close();
+        return funcionario;
     }
 }

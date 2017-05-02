@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "hotel", urlPatterns = {"/hotel"})
 public class HotelServlet extends HttpServlet {
+    
+    private HotelDAO dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -56,7 +58,7 @@ public class HotelServlet extends HttpServlet {
         if (!erro) {
             Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes);
             try {
-                HotelDAO.inserir(hotel);
+                dao.inserir(hotel);
             } catch (Exception ex) {
                 Logger.getLogger(HotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

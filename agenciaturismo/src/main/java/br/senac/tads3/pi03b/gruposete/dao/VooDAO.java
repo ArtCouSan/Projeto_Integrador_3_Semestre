@@ -15,7 +15,7 @@ public class VooDAO {
     private static Connection con;
     private static PreparedStatement stmn;
 
-    public static void inserir(Voo voo) throws SQLException, Exception {
+    public void inserir(Voo voo) throws SQLException, Exception {
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "INSERT INTO Voo (data_volta, data_ida, destino, origem, quantidade_passagens) "
                 + "VALUES (?, ?, ?, ?, ?)";
@@ -43,7 +43,7 @@ public class VooDAO {
         }
     }
 
-    public static void alterar(Voo voo) throws SQLException, Exception {
+    public void alterar(Voo voo) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "UPDATE Voo SET data_volta=?, data_ida=?, destino=?, origem=?, quantidade_passagens=? "
@@ -73,7 +73,7 @@ public class VooDAO {
         }
     }
 
-    public static void excluir(int id) throws SQLException, Exception {
+    public void excluir(int id) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "DELETE FROM Voo WHERE id=?";
@@ -98,7 +98,7 @@ public class VooDAO {
         }
     }
 
-    public static List<Voo> getListaVoo() throws SQLException, ClassNotFoundException {
+    public List<Voo> getListaVoo() throws SQLException, ClassNotFoundException {
         List<Voo> ListaVoo = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Voo ORDER BY origem";
@@ -121,4 +121,27 @@ public class VooDAO {
         con.close();
         return ListaVoo;
     }
+    public Voo getHotelById(int id) throws SQLException, ClassNotFoundException {
+        Voo voo = new Voo();
+        con = DbUtil.getConnection();
+        try {
+            String query = "SELECT * FROM Voo WHERE id_voo=?";
+            stmn = con.prepareStatement(query);
+            stmn.setInt(1, id);
+            try (ResultSet resultSet = stmn.executeQuery()) {
+                while (resultSet.next()) {
+                    voo.setData_ida(resultSet.getString("data_ida"));
+                    voo.setData_volta(resultSet.getString("data_volta"));
+                    voo.setDestino(resultSet.getString("destino"));
+                    voo.setOrigem(resultSet.getString("origem"));
+                    voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
+                }
+            }
+            stmn.close();
+        } catch (SQLException e) {
+        }
+        con.close();
+        return voo;
+    }
+    
 }

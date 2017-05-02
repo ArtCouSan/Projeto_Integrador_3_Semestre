@@ -16,7 +16,7 @@ public class ClienteDAO {
     private static Connection con;
     private static PreparedStatement stmn;
 
-    public static void inserir(Cliente cliente) throws SQLException, Exception {
+    public void inserir(Cliente cliente) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "INSERT INTO Cliente (pessoa, ativo) VALUES (?, ?)";
@@ -42,7 +42,7 @@ public class ClienteDAO {
         }
     }
 
-    public static void alterar(Cliente cliente) throws SQLException, Exception {
+    public void alterar(Cliente cliente) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "UPDATE Cliente SET pessoa=?, ativo=? WHERE id_cliente=?";
@@ -69,17 +69,18 @@ public class ClienteDAO {
         }
     }
 
-    public static void excluir(int id) throws SQLException, Exception {
+    public void excluir(int id) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "DELETE FROM Cliente WHERE id_cliente=?";
+        String sql = "UPDATE Cliente SET ativo=? WHERE id_cliente=?";
         //Cria um statement para execução de instruções SQL
 
         try {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
-            stmn.setInt(1, id);
+            stmn.setBoolean(1, false);
+            stmn.setInt(2, id);
             //Executa o comando no banco de dados
             stmn.executeUpdate();
         } finally {
@@ -94,7 +95,7 @@ public class ClienteDAO {
         }
     }
 
-    public static List<Cliente> getListaClientes() throws SQLException, ClassNotFoundException {
+    public List<Cliente> getListaClientes() throws SQLException, ClassNotFoundException {
         List<Cliente> listaClientes = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Cliente ORDER BY nome";
@@ -113,5 +114,25 @@ public class ClienteDAO {
         }
         con.close();
         return listaClientes;
+    }
+    
+    public Cliente getClienteById(int id) throws SQLException, ClassNotFoundException {
+        Cliente cliente = new Cliente();
+        con = DbUtil.getConnection();
+        try {
+            String query = "SELECT * FROM Cliente WHERE id_cliente=?";
+            stmn = con.prepareStatement(query);
+            stmn.setInt(1, id);
+            try (ResultSet resultSet = stmn.executeQuery()) {
+                while (resultSet.next()) {
+                    cliente.setPessoa((Pessoa)resultSet.getObject("pessoa"));
+                    cliente.setAtivo(resultSet.getBoolean("ativo"));
+                }
+            }
+            stmn.close();
+        } catch (SQLException e) {
+        }
+        con.close();
+        return cliente;
     }
 }

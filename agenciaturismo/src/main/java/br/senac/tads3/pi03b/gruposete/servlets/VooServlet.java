@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Voo", urlPatterns = {"/voo"})
 public class VooServlet extends HttpServlet {
+    
+    private VooDAO dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -56,7 +58,7 @@ public class VooServlet extends HttpServlet {
         if (!erro) {
             Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens);
             try {
-                VooDAO.inserir(voo);
+                dao.inserir(voo);
             } catch (Exception ex) {
                 Logger.getLogger(VooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
