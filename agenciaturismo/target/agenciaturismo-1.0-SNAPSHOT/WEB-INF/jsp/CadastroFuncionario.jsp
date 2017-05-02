@@ -54,7 +54,8 @@
             <br />
             <label for="txtfilial">Filial:</label>
             <input type="text" name="filial" placeholder="Insira filial"/>
-        </form>
-        <input type="submit" value="Salvar" />
+            
+            <input type="submit" value="Salvar" />
+        </form>        
     </body>
 </html>
