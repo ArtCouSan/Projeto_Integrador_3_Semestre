@@ -1,33 +1,23 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Funcionalidades Iniciais</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
         <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>
-        
+        <script src="jss/eventos.js" type="text/javascript" ></script>
     </head>
     <body>
-        
-        <h1>FUNCIONALIDADES INICIAIS TESTE</h1>
-        
         <div>
-            <a href="cadastro-cliente">CADASTRAR NOVO CLIENTE</a>
-        </div>
-        <div>
-            <a href="busca-cliente">BUSCAR CLIENTE</a>
-        </div>
-        <div>
-            <a href="cadastro-funcionario">CADASTRAR FUNCIONARIO</a>
-        </div>
-        <div>
-            <a href="busca-funcionario">BUSCAR FUNCIONARIO</a>
+            <nav role="navigation">
+                <ul id="overlay-nav-menu" class="overlay-nav-menu">
+                    <li><a href="cadastro-cliente">CADASTRAR NOVO CLIENTE</a></li>
+                    <li><a href="busca-cliente">BUSCAR CLIENTE</a></li>
+                    <li><a href="cadastro-funcionario">CADASTRAR FUNCIONARIO</a></li>
+                    <li><a href="busca-funcionario">BUSCAR FUNCIONARIO</a></li>
+                </ul>
+                <a data-toggle-menu class="overlay-nav-menu-toggle" href="#overlay-nav-menu"><i class="fa fa-plus"></i></a>
+            </nav>
         </div>
     </body>
 </html>
