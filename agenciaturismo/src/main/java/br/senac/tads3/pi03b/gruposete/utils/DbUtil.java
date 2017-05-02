@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class DbUtil {
 
-    public static Connection getConnection()  {
+    public static Connection getConnection() {
         Connection conn = null;
 
         try {
@@ -21,7 +21,7 @@ public class DbUtil {
         try {
             // Passo 2: Abrir a conexão
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/AGENCIA",
+                    "jdbc:mysql://localhost:3306/agencia",
                     "root", // usuário BD
                     ""); // senha BD
         } catch (SQLException ex) {
