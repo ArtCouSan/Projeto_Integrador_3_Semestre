@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
+        <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Funcionario</title>
     </head>
     <body>
-        <form action="funcionario" method="post">
+        <form action="CadastroFuncionario" method="post">
             <label for="txtnome">Nome:</label>  
             <input type="text" name="nome" placeholder="Insira nome"/>
             <br />
@@ -54,7 +56,7 @@
             <br />
             <label for="txtfilial">Filial:</label>
             <input type="text" name="filial" placeholder="Insira filial"/>
+            <input type="submit" value="Salvar" />
         </form>
-        <input type="submit" value="Salvar" />
     </body>
 </html>

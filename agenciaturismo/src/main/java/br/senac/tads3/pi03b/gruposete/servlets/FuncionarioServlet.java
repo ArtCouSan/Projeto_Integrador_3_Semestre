@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "funcionario", urlPatterns = {"/funcionario"})
+@WebServlet(name = "FuncionarioServlet", urlPatterns = {"/CadastroFuncionario"})
 public class FuncionarioServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("funcionario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("CadsatroFuncionario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -132,7 +132,7 @@ public class FuncionarioServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroFilial", true);
         }
-
+        
         if (!erro) {
             Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
             Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
@@ -147,9 +147,9 @@ public class FuncionarioServlet extends HttpServlet {
 
             HttpSession sessao = request.getSession();
             sessao.setAttribute("novoFuncionario", funcionario);
-            response.sendRedirect("resultado.jsp");
+            response.sendRedirect("index.html");
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
             dispatcher.forward(request, response);
         }
     }
