@@ -16,7 +16,7 @@ public class ClienteDAO {
     private static Connection con;
     private static PreparedStatement stmn;
 
-    public void inserir(Cliente cliente) throws SQLException, Exception {
+    public static void inserir(Cliente cliente) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "INSERT INTO Cliente (pessoa, ativo) VALUES (?, ?)";
@@ -42,7 +42,7 @@ public class ClienteDAO {
         }
     }
 
-    public void alterar(Cliente cliente) throws SQLException, Exception {
+    public static void alterar(Cliente cliente) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "UPDATE Cliente SET pessoa=?, ativo=? WHERE id_cliente=?";
@@ -69,7 +69,7 @@ public class ClienteDAO {
         }
     }
 
-    public void excluir(int id) throws SQLException, Exception {
+    public static void excluir(int id) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "DELETE FROM Cliente WHERE id_cliente=?";
@@ -94,7 +94,7 @@ public class ClienteDAO {
         }
     }
 
-    public List<Cliente> getListaClientes() throws SQLException, ClassNotFoundException {
+    public static List<Cliente> getListaClientes() throws SQLException, ClassNotFoundException {
         List<Cliente> listaClientes = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Cliente ORDER BY nome";

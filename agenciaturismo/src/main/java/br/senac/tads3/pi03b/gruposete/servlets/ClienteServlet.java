@@ -1,9 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.senac.tads3.pi03b.gruposete.servlets;
 
-import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
+import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.models.Contato;
 import br.senac.tads3.pi03b.gruposete.models.Endereco;
-import br.senac.tads3.pi03b.gruposete.models.Funcionario;
+import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -16,8 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "funcionario", urlPatterns = {"/funcionario"})
-public class FuncionarioServlet extends HttpServlet {
+/**
+ *
+ * @author Rafael Ferreira
+ */
+@WebServlet(name = "ClienteServlet", urlPatterns = {"/ClienteServlet"})
+public class ClienteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -116,37 +125,22 @@ public class FuncionarioServlet extends HttpServlet {
             request.setAttribute("erroNascimento", true);
         }
 
-        //Funcionario
-        String departamento = request.getParameter("departamento");
-        if (departamento == null || departamento.length() < 1) {
-            erro = true;
-            request.setAttribute("erroDepartamento", true);
-        }
-        String cargo = request.getParameter("cargo");
-        if (cargo == null || cargo.length() < 1) {
-            erro = true;
-            request.setAttribute("erroCargo", true);
-        }
-        String filial = request.getParameter("filial");
-        if (filial == null || filial.length() < 1) {
-            erro = true;
-            request.setAttribute("erroFilial", true);
-        }
+        
 
         if (!erro) {
             Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
             Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
             Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
-            Funcionario funcionario = new Funcionario(cargo, departamento, true, filial, pessoa);
+            Cliente cliente = new Cliente(true, pessoa);
 
             try {
-                FuncionarioDAO.inserir(funcionario);
+                ClienteDAO.inserir(cliente);
             } catch (Exception ex) {
-                Logger.getLogger(FuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             HttpSession sessao = request.getSession();
-            sessao.setAttribute("novoFuncionario", funcionario);
+            sessao.setAttribute("novoCliente", cliente);
             response.sendRedirect("resultado.jsp");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");

@@ -50,7 +50,7 @@ public class VooServlet extends HttpServlet {
         int quantidade_passagens = Integer.parseInt(request.getParameter("quantidade"));
         if (destino == null || destino.length() < 1) {
             erro = true;
-            request.setAttribute("erroDestino", true);
+            request.setAttribute("erroQuantidade_passagens", true);
         }
 
         if (!erro) {
@@ -68,11 +68,5 @@ public class VooServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
             dispatcher.forward(request, response);
         }
-
-        //sessao.setAttribute("", );
-        // Colocar pag de resposta
-        response.sendRedirect("index.html");
-
     }
-
 }

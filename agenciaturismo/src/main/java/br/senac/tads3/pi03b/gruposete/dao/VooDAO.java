@@ -43,7 +43,7 @@ public class VooDAO {
         }
     }
 
-    public void alterar(Voo voo) throws SQLException, Exception {
+    public static void alterar(Voo voo) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "UPDATE Voo SET data_volta=?, data_ida=?, destino=?, origem=?, quantidade_passagens=? "
@@ -73,7 +73,7 @@ public class VooDAO {
         }
     }
 
-    public void excluir(int id) throws SQLException, Exception {
+    public static void excluir(int id) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "DELETE FROM Voo WHERE id=?";
@@ -98,7 +98,7 @@ public class VooDAO {
         }
     }
 
-    public List<Voo> getListaVoo() throws SQLException, ClassNotFoundException {
+    public static List<Voo> getListaVoo() throws SQLException, ClassNotFoundException {
         List<Voo> ListaVoo = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Voo ORDER BY origem";

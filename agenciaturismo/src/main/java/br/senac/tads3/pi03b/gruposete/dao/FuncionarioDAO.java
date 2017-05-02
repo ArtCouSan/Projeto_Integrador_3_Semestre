@@ -16,7 +16,7 @@ public class FuncionarioDAO {
     private static Connection con;
     private static PreparedStatement stmn;
 
-    public void inserir(Funcionario funcionario) throws SQLException, Exception {
+    public static void inserir(Funcionario funcionario) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "INSERT INTO Funcionario (pessoa, cargo, departamento, ativo) VALUES (?, ?, ?, ?)";
@@ -44,7 +44,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public void alterar(Funcionario funcionario) throws SQLException, Exception {
+    public static void alterar(Funcionario funcionario) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "UPDATE Funcionario SET pessoa=?, cargo=?, departamento=?, ativo=? WHERE id_cliente=?";
@@ -74,7 +74,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public void excluir(int id) throws SQLException, Exception {
+    public static void excluir(int id) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "DELETE FROM Funcionario WHERE id_func=?";
@@ -99,7 +99,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> getListaFuncionario() throws SQLException, ClassNotFoundException {
+    public static List<Funcionario> getListaFuncionario() throws SQLException, ClassNotFoundException {
         List<Funcionario> ListaFuncionario = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Funcionario ORDER BY nome";

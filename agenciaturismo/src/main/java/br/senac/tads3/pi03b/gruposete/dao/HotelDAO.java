@@ -15,7 +15,7 @@ public class HotelDAO {
     private static Connection con;
     private static PreparedStatement stmn;
 
-    public void inserir(Hotel hotel) throws SQLException, Exception {
+    public static void inserir(Hotel hotel) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "INSERT INTO Hotel (nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes) "
@@ -45,7 +45,7 @@ public class HotelDAO {
         }
     }
 
-    public void alterar(Hotel hotel) throws SQLException, Exception {
+    public static void alterar(Hotel hotel) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "UPDATE Hotel SET nome_hotel=?, data_entrada=?, data_saida=?, quantidade_quartos=?, quantidade_hospedes=? "
@@ -75,7 +75,7 @@ public class HotelDAO {
         }
     }
 
-    public void excluir(int id) throws SQLException, Exception {
+    public static void excluir(int id) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "DELETE FROM Hotel WHERE id_hotel=?";
@@ -100,7 +100,7 @@ public class HotelDAO {
         }
     }
 
-    public List<Hotel> getListaHotel() throws SQLException, ClassNotFoundException {
+    public static List<Hotel> getListaHotel() throws SQLException, ClassNotFoundException {
         List<Hotel> ListaHotel = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Hotel ORDER BY nome_hotel";
