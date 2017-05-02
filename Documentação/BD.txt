@@ -53,7 +53,7 @@ id_cliente INT(3) NOT NULL AUTO_INCREMENT,
 id_pessoa INT(3),  
 ativo TINYINT(1) NOT NULL,
 PRIMARY KEY (id_cliente),
-FOREIGN KEY id_pessoa (id_pessoa) REFERENCES Pessoa(id_pessoa),
+FOREIGN KEY Cliente (id_pessoa) REFERENCES Pessoa(id_pessoa),
 UNIQUE KEY id_cliente (id_cliente)
 );
 
