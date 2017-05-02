@@ -17,7 +17,8 @@ import javax.servlet.http.HttpSession;
 public class FuncionarioServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("funcionario.jsp");
         dispatcher.forward(request, response);
     }
