@@ -29,7 +29,7 @@ public class FuncionarioDAO {
             stmn = con.prepareStatement(sql);
             System.out.println(">>>>>>>>>>>>>>>>>>>>>2");
             //Configura os parâmetros do "PreparedStatement"
-            stmn.setObject(1, funcionario.getPessoa());//DEU ERRO AQUI>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            stmn.setObject(1, funcionario.getPessoa());//DEU ERRO AQUI>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             System.out.println(">>>>>>>>>>>>>>>>>>>>>3");
             stmn.setString(2, funcionario.getCargo());
             System.out.println(">>>>>>>>>>>>>>>>>>>>>4");
