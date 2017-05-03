@@ -17,7 +17,7 @@ public class DbUtil {
             String password = "";
             
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cliente", username, password);
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_agencia", username, password);
             
             System.out.println("CONECTOU");
             

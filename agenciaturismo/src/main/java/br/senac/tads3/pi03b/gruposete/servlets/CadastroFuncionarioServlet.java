@@ -30,7 +30,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CadastroFuncionarioServlet", urlPatterns = {"/cadastro-funcionario"})
 public class CadastroFuncionarioServlet extends HttpServlet {
 
-    private FuncionarioDAO dao;
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +45,8 @@ public class CadastroFuncionarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            
+        FuncionarioDAO dao = new FuncionarioDAO();
                     //Contato
         String telefone = request.getParameter("telefone");
         String celular = request.getParameter("celular");
@@ -80,16 +81,21 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         
         //Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
         Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
+        
         System.out.println(numero + "  " + numero + "  ");
         Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
+        System.out.println("SERV 1>>>>>>>>>>>>>>>>>>>>");
         Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
+        System.out.println("SERV 2>>>>>>>>>>>>>>>>>>>>");
         Funcionario funcionario = new Funcionario(cargo, departamento, true, filial, pessoa);
+        System.out.println("SERV 3>>>>>>>>>>>>>>>>>>>>");
 
         try {
-            
+            System.out.println("ENTROU");
             dao.inserir(funcionario);
             System.out.println("INSERIU");
             HttpSession sessao = request.getSession();
+            System.out.println("REQUEST");
             sessao.setAttribute("novoFuncionario", funcionario);
             response.sendRedirect("index.html");
             System.out.println(">>>>>>>>>>>>DEU CERTO");

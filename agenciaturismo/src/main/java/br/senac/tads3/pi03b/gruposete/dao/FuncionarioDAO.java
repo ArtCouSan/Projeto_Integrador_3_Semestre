@@ -16,6 +16,8 @@ public class FuncionarioDAO {
     private static PreparedStatement stmn;
 
     public void inserir(Funcionario funcionario) throws SQLException, Exception {
+        
+        System.out.println("ENTROU DAOFUNC");
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
         String sql = "INSERT INTO funcionario (pessoa, cargo, departamento, ativo) VALUES (?, ?, ?, ?)";
@@ -23,14 +25,21 @@ public class FuncionarioDAO {
 
         try {
             con = DbUtil.getConnection();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>1");
             stmn = con.prepareStatement(sql);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>2");
             //Configura os parâmetros do "PreparedStatement"
-            stmn.setObject(1, funcionario.getPessoa());
+            stmn.setObject(1, funcionario.getPessoa());//DEU ERRO AQUI>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>3");
             stmn.setString(2, funcionario.getCargo());
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>4");
             stmn.setString(3, funcionario.getDepartamento());
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>5");
             stmn.setBoolean(4, funcionario.isAtivo());
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>6");
             //Executa o comando no banco de dados
             stmn.executeUpdate();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>7");
         } finally {
             //Se o statement ainda estiver aberto, realiza seu fechamento
             if (stmn != null && !stmn.isClosed()) {
