@@ -3,21 +3,47 @@ package br.senac.tads3.pi03b.gruposete.models;
 public class Funcionario {
 
     private int id_func;
-    private String cargo;
-    private String departamento;
+    private String nome;
+    private String cpf;
+    private char sexo;
+    private String data_nasc;
+    private int numero;
+    private String cep;
+    private String rua;
+    private String bairro;
+    private String cidade;
+    private String logradouro;
+    private String complemento;
+    private String celular;
+    private String telefone;
+    private String email;
     private boolean ativo;
+    private String cargo;
     private String filial;
-    private Pessoa pessoa;
+    private String departamento;
 
     public Funcionario() {
     }
 
-    public Funcionario(String cargo, String departamento, boolean ativo, String filial, Pessoa pessoa) {
-        this.cargo = cargo;
-        this.departamento = departamento;
+    public Funcionario(String nome, String cpf, char sexo, String data_nasc, int numero, String cep, String rua, String bairro, String cidade, String logradouro, String complemento, String celular, String telefone, String email, boolean ativo, String cargo, String filial, String departamento) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.data_nasc = data_nasc;
+        this.numero = numero;
+        this.cep = cep;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.logradouro = logradouro;
+        this.complemento = complemento;
+        this.celular = celular;
+        this.telefone = telefone;
+        this.email = email;
         this.ativo = ativo;
+        this.cargo = cargo;
         this.filial = filial;
-        this.pessoa = pessoa;
+        this.departamento = departamento;
     }
 
     public int getId_func() {
@@ -28,20 +54,116 @@ public class Funcionario {
         this.id_func = id_func;
     }
 
-    public String getCargo() {
-        return cargo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getDepartamento() {
-        return departamento;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getData_nasc() {
+        return data_nasc;
+    }
+
+    public void setData_nasc(String data_nasc) {
+        this.data_nasc = data_nasc;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public boolean isAtivo() {
@@ -52,6 +174,14 @@ public class Funcionario {
         this.ativo = ativo;
     }
 
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
     public String getFilial() {
         return filial;
     }
@@ -60,12 +190,12 @@ public class Funcionario {
         this.filial = filial;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public String getDepartamento() {
+        return departamento;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
-
+    
 }
