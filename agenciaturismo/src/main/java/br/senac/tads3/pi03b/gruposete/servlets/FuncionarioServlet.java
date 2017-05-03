@@ -1,4 +1,3 @@
-<<<<<<< HEAD:agenciaturismo/src/main/java/br/senac/tads3/pi03b/gruposete/servlets/FuncionarioServlet.java
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;

@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="jss/eventos.js" type="text/javascript" ></script>
         <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
         <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
