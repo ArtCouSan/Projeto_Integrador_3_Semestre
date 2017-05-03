@@ -8,25 +8,25 @@ import java.util.logging.Logger;
 
 public class DbUtil {
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws ClassNotFoundException {
         Connection conn = null;
 
         try {
-            // Passo 1: Registrar o driver JDBC
+            
+            String username = "root";
+            String password = "";
+            
             Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DbUtil.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            // Passo 2: Abrir a conexão
-            conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/agencia",
-                    "root", // usuário BD
-                    ""); // senha BD
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cliente", username, password);
+            
+            System.out.println("CONECTOU");
+            
         } catch (SQLException ex) {
-            Logger.getLogger(DbUtil.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
         }
+        
         return conn;
     }
 }

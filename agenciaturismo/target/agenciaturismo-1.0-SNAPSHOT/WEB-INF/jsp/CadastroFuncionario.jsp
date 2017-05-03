@@ -9,7 +9,7 @@
         <title>Cadastro de Funcionario</title>
     </head>
     <body>
-        <form action="cadastro-funcionario" method="post">
+        <form action="cadastro-funcionario" method="POST">
             <label for="txtnome">Nome:</label>  
             <input type="text" name="nome" placeholder="Insira nome"/>
             <br />

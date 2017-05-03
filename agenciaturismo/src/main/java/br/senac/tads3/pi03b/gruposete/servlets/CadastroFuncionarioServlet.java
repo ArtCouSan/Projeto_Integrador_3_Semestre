@@ -10,7 +10,9 @@ import br.senac.tads3.pi03b.gruposete.models.Contato;
 import br.senac.tads3.pi03b.gruposete.models.Endereco;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import br.senac.tads3.pi03b.gruposete.models.Pessoa;
+import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -44,53 +46,69 @@ public class CadastroFuncionarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //Contato
-        String telefone = request.getParameter("telefone");
-        String celular = request.getParameter("celular");
-        String email = request.getParameter("email");
-        String dd_telefone = request.getParameter("dd_telefone");
-        String dd_celular = request.getParameter("dd_celular");
-        
+            //        //Contato
+//        String telefone = request.getParameter("telefone");
+//        String celular = request.getParameter("celular");
+//        String email = request.getParameter("email");
+//        String dd_telefone = request.getParameter("dd_telefone");
+//        String dd_celular = request.getParameter("dd_celular");
+//
+//
+//        //Endereço
+//        String rua = request.getParameter("rua");
+//        int numero = Integer.parseInt(request.getParameter("numero"));
+//        String complemento = request.getParameter("complemento");
+//        String logradouro = request.getParameter("logradouro");
+//        String cep = request.getParameter("cep");
+//        String cidade = request.getParameter("cidade");
+//        String bairro = request.getParameter("bairro");
+//        
+//        //Pessoa
+//        String nome = request.getParameter("nome");
+//        String cpf = request.getParameter("cpf");
+//        char sexo = request.getParameter("sexo").charAt(0);
+//        String nascimento = request.getParameter("nascimento");
+//
+//
+//        //Funcionario
+//        String departamento = request.getParameter("departamento");
+//        String cargo = request.getParameter("cargo");
+//        String filial = request.getParameter("filial");
+//        
+//        System.out.println(numero + "  " + numero + "  ");
+//
+//        
+//        //Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
+//        Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
+//        System.out.println(numero + "  " + numero + "  ");
+//        Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
+//        Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
+//        Funcionario funcionario = new Funcionario(cargo, departamento, true, filial, pessoa);
+//
+//        try {
+//            
+//            dao.inserir(funcionario);
+//            HttpSession sessao = request.getSession();
+//            sessao.setAttribute("novoFuncionario", funcionario);
+//            response.sendRedirect("index.html");
+//            
+//        } catch (Exception ex) {
+//            
+//            Logger.getLogger(FuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        
+//        }
+//
+//        
 
-        //Endereço
-        String rua = request.getParameter("rua");
-        int numero = Integer.parseInt(request.getParameter("numero"));
-        String complemento = request.getParameter("complemento");
-        String logradouro = request.getParameter("logradouro");
-        String cep = request.getParameter("cep");
-        String cidade = request.getParameter("cidade");
-        String bairro = request.getParameter("bairro");
-        
-        //Pessoa
-        String nome = request.getParameter("nome");
-        String cpf = request.getParameter("cpf");
-        char sexo = request.getParameter("sexo").charAt(0);
-        String nascimento = request.getParameter("nascimento");
-        
 
-        //Funcionario
-        String departamento = request.getParameter("departamento");
-        String cargo = request.getParameter("cargo");
-        String filial = request.getParameter("filial");
-        
-        Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
-        Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
-        Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
-        Funcionario funcionario = new Funcionario(cargo, departamento, true, filial, pessoa);
-
-        try {
-            
-            dao.inserir(funcionario);
-            
-        } catch (Exception ex) {
-            
-            Logger.getLogger(FuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-        
+        try{
+        Connection con = DbUtil.getConnection();
+            System.out.println(">>>>>>>>>>>>DEU CERTO");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(">>>>>>>>>>>>DEU RUIM");
         }
-
-        HttpSession sessao = request.getSession();
-        sessao.setAttribute("novoFuncionario", funcionario);
-        response.sendRedirect("index.html");
+        
         
     }
 

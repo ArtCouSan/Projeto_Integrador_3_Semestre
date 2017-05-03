@@ -18,7 +18,7 @@ public class FuncionarioDAO {
     public void inserir(Funcionario funcionario) throws SQLException, Exception {
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "INSERT INTO Funcionario (pessoa, cargo, departamento, ativo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario (pessoa, cargo, departamento, ativo) VALUES (?, ?, ?, ?)";
         //Cria um statement para execução de instruções SQL
 
         try {
