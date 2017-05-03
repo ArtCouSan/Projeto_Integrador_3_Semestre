@@ -1,5 +1,4 @@
 package br.senac.tads3.pi03b.gruposete.dao;
-
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
