@@ -1,7 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
-import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +25,7 @@ public class ClienteDAO {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
-            stmn.setObject(1, cliente.getPessoa());
+            //stmn.setObject(1, cliente.getPessoa());
             stmn.setBoolean(2, cliente.isAtivo());
             //Executa o comando no banco de dados
             stmn.executeUpdate();
@@ -52,7 +51,7 @@ public class ClienteDAO {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
-            stmn.setObject(1, cliente.getPessoa());
+            //stmn.setObject(1, cliente.getPessoa());
             stmn.setBoolean(2, cliente.isAtivo());
             stmn.setInt(3, cliente.getId_cliente());
             //Executa o comando no banco de dados
@@ -107,7 +106,7 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente();
                 cliente.setId_cliente(resultSet.getInt("id_cliente"));
                 cliente.setAtivo(resultSet.getBoolean("ativo"));
-                cliente.setPessoa((Pessoa) resultSet.getObject("pessoa"));
+                //cliente.setPessoa((Pessoa) resultSet.getObject("pessoa"));
                 listaClientes.add(cliente);
             }
         } catch (SQLException e) {
@@ -125,7 +124,7 @@ public class ClienteDAO {
             stmn.setInt(1, id);
             try (ResultSet resultSet = stmn.executeQuery()) {
                 while (resultSet.next()) {
-                    cliente.setPessoa((Pessoa)resultSet.getObject("pessoa"));
+                    //cliente.setPessoa((Pessoa)resultSet.getObject("pessoa"));
                     cliente.setAtivo(resultSet.getBoolean("ativo"));
                 }
             }

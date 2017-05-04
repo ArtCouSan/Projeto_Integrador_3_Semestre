@@ -6,10 +6,7 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
-import br.senac.tads3.pi03b.gruposete.models.Contato;
-import br.senac.tads3.pi03b.gruposete.models.Endereco;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
-import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.io.IOException;
 import java.sql.Connection;
@@ -80,23 +77,23 @@ public class CadastroFuncionarioServlet extends HttpServlet {
 
         
         //Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
-        Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
+        //Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
         
         System.out.println(numero + "  " + numero + "  ");
-        Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
+        //Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
         System.out.println("SERV 1>>>>>>>>>>>>>>>>>>>>");
-        Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
+        //Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
         System.out.println("SERV 2>>>>>>>>>>>>>>>>>>>>");
-        Funcionario funcionario = new Funcionario(cargo, departamento, true, filial, pessoa);
+        //Funcionario funcionario = new Funcionario(cargo, departamento, true, filial, pessoa);
         System.out.println("SERV 3>>>>>>>>>>>>>>>>>>>>");
 
         try {
             System.out.println("ENTROU");
-            dao.inserir(funcionario);
+            //dao.inserir(funcionario);
             System.out.println("INSERIU");
             HttpSession sessao = request.getSession();
             System.out.println("REQUEST");
-            sessao.setAttribute("novoFuncionario", funcionario);
+            //sessao.setAttribute("novoFuncionario", funcionario);
             response.sendRedirect("index.html");
             System.out.println(">>>>>>>>>>>>DEU CERTO");
             

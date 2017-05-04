@@ -1,10 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
-import br.senac.tads3.pi03b.gruposete.models.Contato;
-import br.senac.tads3.pi03b.gruposete.models.Endereco;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
-import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -157,19 +154,19 @@ public class ClienteServlet extends HttpServlet {
         }
 
         if (!erro) {
-            Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
-            Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
-            Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
-            Cliente cliente = new Cliente(true, pessoa);
+            //Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
+            //Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
+            //Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
+            //Cliente cliente = new Cliente(true, pessoa);
 
             try {
-                dao.inserir(cliente);
+               // dao.inserir(cliente);
             } catch (Exception ex) {
                 Logger.getLogger(ClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             HttpSession sessao = request.getSession();
-            sessao.setAttribute("novoCliente", cliente);
+            //sessao.setAttribute("novoCliente", cliente);
             response.sendRedirect("resultado.jsp");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");

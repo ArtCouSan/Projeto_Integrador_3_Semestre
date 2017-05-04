@@ -1,6 +1,5 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
-import br.senac.tads3.pi03b.gruposete.models.Pessoa;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +28,7 @@ public class FuncionarioDAO {
             stmn = con.prepareStatement(sql);
             System.out.println(">>>>>>>>>>>>>>>>>>>>>2");
             //Configura os parâmetros do "PreparedStatement"
-            stmn.setObject(1, funcionario.getPessoa());//DEU ERRO AQUI>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            //stmn.setObject(1, funcionario.getPessoa());//DEU ERRO AQUI>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             System.out.println(">>>>>>>>>>>>>>>>>>>>>3");
             stmn.setString(2, funcionario.getCargo());
             System.out.println(">>>>>>>>>>>>>>>>>>>>>4");
@@ -62,7 +61,7 @@ public class FuncionarioDAO {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
-            stmn.setObject(1, funcionario.getPessoa());
+            //stmn.setObject(1, funcionario.getPessoa());
             stmn.setString(2, funcionario.getCargo());
             stmn.setString(3, funcionario.getDepartamento());
             stmn.setBoolean(4, funcionario.isAtivo());
@@ -120,7 +119,7 @@ public class FuncionarioDAO {
                 Funcionario funcionario = new Funcionario();
                 funcionario.setId_func(resultSet.getInt("id_func"));
                 funcionario.setAtivo(resultSet.getBoolean("ativo"));
-                funcionario.setPessoa((Pessoa) resultSet.getObject("pessoa"));
+                //funcionario.setPessoa((Pessoa) resultSet.getObject("pessoa"));
                 funcionario.setCargo(resultSet.getString("cargo"));
                 funcionario.setDepartamento(resultSet.getString("departamento"));
                 ListaFuncionario.add(funcionario);
@@ -140,7 +139,7 @@ public class FuncionarioDAO {
             stmn.setInt(1, id);
             try (ResultSet resultSet = stmn.executeQuery()) {
                 while (resultSet.next()) {
-                    funcionario.setPessoa((Pessoa)resultSet.getObject("pessoa"));
+                    //funcionario.setPessoa((Pessoa)resultSet.getObject("pessoa"));
                     funcionario.setAtivo(resultSet.getBoolean("ativo"));
                     funcionario.setFilial(resultSet.getString("filial"));
                     funcionario.setCargo(resultSet.getString("cargo"));
