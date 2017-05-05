@@ -1,9 +1,7 @@
 br\senac\tads3\pi03b\gruposete\servlets\HotelServlet.class
-br\senac\tads3\pi03b\gruposete\models\Contato.class
 br\senac\tads3\pi03b\gruposete\dao\ClienteDAO.class
 br\senac\tads3\pi03b\gruposete\dao\FuncionarioDAO.class
 br\senac\tads3\pi03b\gruposete\servlets\AutorizacaoFilter.class
-br\senac\tads3\pi03b\gruposete\models\Endereco.class
 br\senac\tads3\pi03b\gruposete\servlets\BuscaFuncionarioServlet.class
 br\senac\tads3\pi03b\gruposete\dao\VooDAO.class
 br\senac\tads3\pi03b\gruposete\models\Produto.class
@@ -21,6 +19,5 @@ br\senac\tads3\pi03b\gruposete\servlets\VooServlet.class
 br\senac\tads3\pi03b\gruposete\models\Voo.class
 br\senac\tads3\pi03b\gruposete\models\Venda.class
 br\senac\tads3\pi03b\gruposete\dao\VendaDAO.class
-br\senac\tads3\pi03b\gruposete\models\Pessoa.class
 br\senac\tads3\pi03b\gruposete\models\UsuarioSistema.class
 br\senac\tads3\pi03b\gruposete\servlets\LogoutServlet.class

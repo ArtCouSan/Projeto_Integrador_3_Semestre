@@ -24,11 +24,15 @@ public class FuncionarioSimplaoDAO {
     
     public void inserir(FuncionarioSimplao fun){
         
+        System.out.println("ENTROU NO METODO INSERIR>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        
         String sql = "INSERT INTO func (nome, sobrenome, idade) VALUES (?, ?, ?)";
         
         try{
+            System.out.println("VAI TENTAR CONECTAR>>>>>>>>>>>>>>>>>>>>>");
             con = DbUtil.getConnection();
             stmt = con.prepareStatement(sql);
+            System.out.println("CONECTOU NO BD>>>>>>>>>>>>>>>>>>>");
             
             stmt.setString(1, fun.getNome());
             stmt.setString(2, fun.getSobrenome());

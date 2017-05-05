@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author danimo
  */
-@WebServlet(name = "CadastroFuncionarioSimplaoServlet", urlPatterns = {"/cadastro-funcionario-humildade"})
+@WebServlet(name = "CadastroFuncionarioSimplaoServlet", urlPatterns = {"/cadastro-funcionario-simplao"})
 public class CadastroFuncionarioSimplaoServlet extends HttpServlet {
 
 
@@ -52,8 +52,6 @@ public class CadastroFuncionarioSimplaoServlet extends HttpServlet {
         FuncionarioSimplaoDAO fSDAO = new FuncionarioSimplaoDAO();
         
         fSDAO.inserir(funcHumildade);
-        
-        System.out.println("INSERIU>>>>>>>>>>>>>>>>>");
         
         HttpSession sessao = request.getSession();
         

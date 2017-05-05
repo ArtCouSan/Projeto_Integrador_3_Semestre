@@ -13,11 +13,13 @@ package br.senac.tads3.pi03b.gruposete.models;
  */
 public class FuncionarioSimplao {
     
+    
     private String nome;
     private String sobrenome;
     private int idade;
 
     public FuncionarioSimplao(String nome, String sobrenome, int idade) {
+        System.out.println("ENTROU NO CONSTRUTOR DO FS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.idade = idade;

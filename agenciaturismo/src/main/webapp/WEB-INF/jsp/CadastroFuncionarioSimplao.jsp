@@ -12,6 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Cadastro Da Humildade</h1>
+        
+        <form action="cadastro-funcionario-simplao" method="POST">
+            <input type="text" name="nome" id="nomeFun"/>
+            <input type="text" name="sobrenome" id="sobrenomeFun"/>
+            <input type="number" name="idade" id="idadeFun"/>
+            <input type="submit"/>
+        </form>
     </body>
 </html>
