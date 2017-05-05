@@ -11,6 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import br.senac.tads3.pi03b.gruposete.models.FuncionarioSimplao;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,6 +48,39 @@ public class FuncionarioSimplaoDAO {
             System.out.println(e);
         }
         
+    }
+    
+    public ArrayList<FuncionarioSimplao> listar(){
+        
+        ArrayList<FuncionarioSimplao> listaFunc = new ArrayList<>();
+        
+        String query = "SELECT * FROM func";
+        
+        try {
+            
+            con = DbUtil.getConnection();
+            Statement st = con.createStatement();
+            ResultSet resultSet = st.executeQuery(query);
+            
+            while(resultSet.next()){
+            
+                String nome = resultSet.getString("Nome");
+                String sobrenome = resultSet.getString("Sobrenome");
+                int idade = resultSet.getInt("Idade");
+                
+                FuncionarioSimplao funcionario = new FuncionarioSimplao(nome, sobrenome, idade);
+                
+                listaFunc.add(funcionario);
+            }
+            
+        } catch (Exception e) {
+            
+            Logger.getLogger(FuncionarioSimplaoDAO.class.getName()).log(Level.SEVERE, null, e);
+        
+        }
+        
+        return listaFunc;
+    
     }
     
     
