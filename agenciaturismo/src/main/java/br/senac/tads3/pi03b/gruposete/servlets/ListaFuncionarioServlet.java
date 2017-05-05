@@ -25,7 +25,7 @@ public class ListaFuncionarioServlet extends HttpServlet {
             FuncionarioDAO funcDAO = new FuncionarioDAO();
             List<Funcionario> lista = funcDAO.ListaFuncionario();
             request.setAttribute("listaFuncionarios", lista);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
             
         } catch (SQLException | ClassNotFoundException ex) {

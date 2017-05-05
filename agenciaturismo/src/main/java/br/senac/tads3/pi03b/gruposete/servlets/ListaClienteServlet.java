@@ -34,7 +34,7 @@ public class ListaClienteServlet extends HttpServlet {
             ClienteDAO clienteDAO = new ClienteDAO();
             List<Cliente> lista = clienteDAO.ListaCliente();
             request.setAttribute("listaClientes", lista);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaCliente.jsp");
             dispatcher.forward(request, response);
             
         } catch (SQLException | ClassNotFoundException ex) {

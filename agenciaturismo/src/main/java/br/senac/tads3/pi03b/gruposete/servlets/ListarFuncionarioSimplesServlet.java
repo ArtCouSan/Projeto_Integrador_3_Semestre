@@ -35,7 +35,7 @@ public class ListarFuncionarioSimplesServlet extends HttpServlet {
         
         request.setAttribute("listaFuncionarios", lista);
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaFuncionarioSimples.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaFuncionarioSimples.jsp");
         
         dispatcher.forward(request, response);
         

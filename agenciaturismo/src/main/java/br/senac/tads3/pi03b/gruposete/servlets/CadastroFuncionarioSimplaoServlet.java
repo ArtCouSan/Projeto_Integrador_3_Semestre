@@ -29,7 +29,7 @@ public class CadastroFuncionarioSimplaoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionarioSimplao.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroFuncionarioSimplao.jsp");
         dispatcher.forward(request, response);
     }
 

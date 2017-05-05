@@ -25,7 +25,7 @@ public class ListaVooServlet extends HttpServlet {
             VooDAO vooDAO = new VooDAO();
             List<Voo> lista = vooDAO.ListaVoo();
             request.setAttribute("listaVoos", lista);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaVoo.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaVoo.jsp");
             dispatcher.forward(request, response);
 
         } catch (SQLException | ClassNotFoundException ex) {

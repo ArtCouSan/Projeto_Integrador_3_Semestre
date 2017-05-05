@@ -25,7 +25,7 @@ public class ListaHotelServlet extends HttpServlet {
             HotelDAO hotelDAO = new HotelDAO();
             List<Hotel> lista = hotelDAO.ListaHotel();
             request.setAttribute("listaHoteis", lista);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaHotel.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaHotel.jsp");
             dispatcher.forward(request, response);
 
         } catch (SQLException | ClassNotFoundException ex) {
