@@ -14,12 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Voo", urlPatterns = {"/voo"})
-public class VooServlet extends HttpServlet {
-    
-    private VooDAO dao;
+public class CadastroVooServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("voo.jsp");
         dispatcher.forward(request, response);
@@ -58,14 +56,15 @@ public class VooServlet extends HttpServlet {
         if (!erro) {
             Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens);
             try {
+                VooDAO dao = new VooDAO();
                 dao.inserir(voo);
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("novoVoo", voo);
+                response.sendRedirect("index.html");
+                
             } catch (Exception ex) {
-                Logger.getLogger(VooServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            HttpSession sessao = request.getSession();
-            sessao.setAttribute("novoVoo", voo);
-            response.sendRedirect("resultado.jsp");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
             dispatcher.forward(request, response);

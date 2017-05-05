@@ -1,4 +1,5 @@
 package br.senac.tads3.pi03b.gruposete.dao;
+
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class FuncionarioDAO {
     private static PreparedStatement stmn;
 
     public void inserir(Funcionario funcionario) throws SQLException, Exception {
-        
+
         System.out.println("ENTROU DAOFUNC");
 
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
@@ -107,7 +108,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> getListaFuncionario() throws SQLException, ClassNotFoundException {
+    public List<Funcionario> ListaFuncionario() throws SQLException, ClassNotFoundException {
         List<Funcionario> ListaFuncionario = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Funcionario ORDER BY nome";
@@ -129,7 +130,7 @@ public class FuncionarioDAO {
         con.close();
         return ListaFuncionario;
     }
-    
+
     public Funcionario getFuncionarioById(int id) throws SQLException, ClassNotFoundException {
         Funcionario funcionario = new Funcionario();
         con = DbUtil.getConnection();

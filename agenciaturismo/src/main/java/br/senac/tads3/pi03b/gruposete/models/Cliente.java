@@ -22,7 +22,9 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nome, String cpf, char sexo, String data_nasc, int numero, String cep, String rua, String bairro, String cidade, String logradouro, String complemento, String celular, String telefone, String email, boolean ativo) {
+    public Cliente(String nome, String cpf, char sexo, String data_nasc, int numero, 
+            String cep, String rua, String bairro, String cidade, String logradouro, 
+            String complemento, String celular, String telefone, String email, boolean ativo) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;

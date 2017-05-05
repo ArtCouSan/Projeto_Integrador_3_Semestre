@@ -98,7 +98,7 @@ public class VooDAO {
         }
     }
 
-    public List<Voo> getListaVoo() throws SQLException, ClassNotFoundException {
+    public List<Voo> ListaVoo() throws SQLException, ClassNotFoundException {
         List<Voo> ListaVoo = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Voo ORDER BY origem";

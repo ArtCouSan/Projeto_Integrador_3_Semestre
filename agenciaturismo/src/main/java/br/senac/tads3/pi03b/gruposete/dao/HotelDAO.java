@@ -100,7 +100,7 @@ public class HotelDAO {
         }
     }
 
-    public List<Hotel> getListaHotel() throws SQLException, ClassNotFoundException {
+    public List<Hotel> ListaHotel() throws SQLException, ClassNotFoundException {
         List<Hotel> ListaHotel = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Hotel ORDER BY nome_hotel";

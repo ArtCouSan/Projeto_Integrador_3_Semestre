@@ -25,7 +25,10 @@ public class Funcionario {
     public Funcionario() {
     }
 
-    public Funcionario(String nome, String cpf, char sexo, String data_nasc, int numero, String cep, String rua, String bairro, String cidade, String logradouro, String complemento, String celular, String telefone, String email, boolean ativo, String cargo, String filial, String departamento) {
+    public Funcionario(String nome, String cpf, char sexo, String data_nasc, 
+            int numero, String cep, String rua, String bairro, String cidade, 
+            String logradouro, String complemento, String celular, String telefone, 
+            String email, boolean ativo, String cargo, String filial, String departamento) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;

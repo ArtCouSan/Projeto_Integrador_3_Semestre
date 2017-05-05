@@ -10,23 +10,30 @@
     </head>
     <body>
         <form>
-            
+
             <label for="txtorigem">Origem:</label>  
             <input type="text" name="origem" placeholder="Insira a origem"/>
-            <br />
+            <br/>
+            
             <label for="txtdestino">Destino:</label>  
             <input type="text" name="destino" placeholder="Insira o destino"/>
-            <br />
+            <br/>
+            
             <label for="txtquantidade">Quantidade de Passagens:</label>  
             <input type="text" name="quantidade" placeholder="Insira quantidade de passagens"/>
-            <br />
+            <br/>
+            
             <label for="txtdataIda">Data de ida:</label>  
             <input type="text" name="data_ida" placeholder="Insira data de ida"/>
-            <br />
+            <br/>
+            
             <label for="txtdataVolta">Data de volta:</label>  
             <input type="text" name="data_volta" placeholder="Insira data de volta"/>
-            <br />
+            <br/>
+            
+            <input type="submit" value="Salvar"/>
+            <input type="reset" value="Apagar"/>
+            
         </form>
-        <input type="submit" value="Salvar" />
     </body>
 </html>

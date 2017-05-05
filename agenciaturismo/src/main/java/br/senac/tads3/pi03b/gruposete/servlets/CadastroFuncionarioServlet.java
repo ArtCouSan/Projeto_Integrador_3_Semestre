@@ -7,9 +7,7 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
-import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -27,83 +25,127 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CadastroFuncionarioServlet", urlPatterns = {"/cadastro-funcionario"})
 public class CadastroFuncionarioServlet extends HttpServlet {
 
-    
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        FuncionarioDAO dao = new FuncionarioDAO();
-                    //Contato
-        String telefone = request.getParameter("telefone");
-        String celular = request.getParameter("celular");
-        String email = request.getParameter("email");
-        String dd_telefone = request.getParameter("dd_telefone");
-        String dd_celular = request.getParameter("dd_celular");
 
+        boolean erro = false;
 
-        //Endereço
-        String rua = request.getParameter("rua");
-        int numero = Integer.parseInt(request.getParameter("numero"));
-        String complemento = request.getParameter("complemento");
-        String logradouro = request.getParameter("logradouro");
-        String cep = request.getParameter("cep");
-        String cidade = request.getParameter("cidade");
-        String bairro = request.getParameter("bairro");
-        
-        //Pessoa
         String nome = request.getParameter("nome");
-        String cpf = request.getParameter("cpf");
-        char sexo = request.getParameter("sexo").charAt(0);
-        String nascimento = request.getParameter("nascimento");
-
-
-        //Funcionario
-        String departamento = request.getParameter("departamento");
-        String cargo = request.getParameter("cargo");
-        String filial = request.getParameter("filial");
-        
-        System.out.println(numero + "  " + numero + "  ");
-
-        
-        //Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
-        //Endereco endereco = new Endereco(numero, cep, rua, bairro, cidade, logradouro, complemento);
-        
-        System.out.println(numero + "  " + numero + "  ");
-        //Contato contato = new Contato(celular, telefone, email, dd_telefone, dd_celular);
-        System.out.println("SERV 1>>>>>>>>>>>>>>>>>>>>");
-        //Pessoa pessoa = new Pessoa(nome, cpf, sexo, nascimento, contato, endereco);
-        System.out.println("SERV 2>>>>>>>>>>>>>>>>>>>>");
-        //Funcionario funcionario = new Funcionario(cargo, departamento, true, filial, pessoa);
-        System.out.println("SERV 3>>>>>>>>>>>>>>>>>>>>");
-
-        try {
-            System.out.println("ENTROU");
-            //dao.inserir(funcionario);
-            System.out.println("INSERIU");
-            HttpSession sessao = request.getSession();
-            System.out.println("REQUEST");
-            //sessao.setAttribute("novoFuncionario", funcionario);
-            response.sendRedirect("index.html");
-            System.out.println(">>>>>>>>>>>>DEU CERTO");
-            
-        } catch (Exception ex) {
-            
-            Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(">>>>>>>>>>>>DEU RUIM");
-        
+        if (nome == null || nome.length() < 1) {
+            erro = true;
+            request.setAttribute("erroNome", true);
         }
-        
-    }
+        String cpf = request.getParameter("cpf");
+        if (cpf == null || !"   .   .   -  ".equals(cpf)) {
+            erro = true;
+            request.setAttribute("erroCpf", true);
+        }
+        char sexo = request.getParameter("sexo").charAt(0);
+        if ("".equals(sexo)) {
+            erro = true;
+            request.setAttribute("erroSexo", true);
+        }
+        String data_nasc = request.getParameter("nascimento");
+        if (data_nasc == null || !"  /  /    ".equals(data_nasc)) {
+            erro = true;
+            request.setAttribute("erroNascimento", true);
+        }
 
+        String telefone = request.getParameter("telefone");
+        if (telefone == null || !"     -    ".equals(telefone)) {
+            erro = true;
+            request.setAttribute("erroTelefone", true);
+        }
+        String celular = request.getParameter("celular");
+        if (celular == null || !"     -    ".equals(celular)) {
+            erro = true;
+            request.setAttribute("erroCelular", true);
+        }
+        String email = request.getParameter("email");
+        if (email == null || !email.contains("@") && !email.contains(".com") || !email.contains(".com.br")) {
+            erro = true;
+            request.setAttribute("erroEmail", true);
+        }
+
+        int numero = Integer.parseInt(request.getParameter("numero"));
+        if (numero <= 0) {
+            erro = true;
+            request.setAttribute("erroNumero", true);
+        }
+        String cep = request.getParameter("cep");
+        if (cep == null || !"     -   ".equals(cep)) {
+            erro = true;
+            request.setAttribute("erroCep", true);
+        }
+        String rua = request.getParameter("rua");
+        if (rua == null || rua.length() < 1) {
+            erro = true;
+            request.setAttribute("erroRua", true);
+        }
+        String bairro = request.getParameter("bairro");
+        if (bairro == null || bairro.length() < 1) {
+            erro = true;
+            request.setAttribute("erroBairro", true);
+        }
+        String cidade = request.getParameter("cidade");
+        if (cidade == null || cidade.length() < 1) {
+            erro = true;
+            request.setAttribute("erroCidade", true);
+        }
+        String logradouro = request.getParameter("logradouro");
+        if (logradouro == null || logradouro.length() < 1) {
+            erro = true;
+            request.setAttribute("erroLogradouro", true);
+        }
+        String complemento = request.getParameter("complemento");
+        if (complemento == null || complemento.length() < 1) {
+            erro = true;
+            request.setAttribute("erroComplemento", true);
+        }
+
+        String cargo = request.getParameter("cargo");
+        if (cargo == null || cargo.length() < 1) {
+            erro = true;
+            request.setAttribute("erroCargo", true);
+        }
+        String filial = request.getParameter("filial");
+        if (filial == null || filial.length() < 1) {
+            erro = true;
+            request.setAttribute("erroFilial", true);
+        }
+        String departamento = request.getParameter("departamento");
+        if (departamento == null || departamento.length() < 1) {
+            erro = true;
+            request.setAttribute("erroDepartamento", true);
+        }
+
+        if (!erro) {
+            Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
+                    numero, cep, rua, bairro, cidade, logradouro, complemento,
+                    celular, telefone, email, true, cargo, filial, departamento);
+            try {
+                FuncionarioDAO dao = new FuncionarioDAO();
+                dao.inserir(funcHumilde);
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("novoFuncionario", funcHumilde);
+                response.sendRedirect("index.html");
+
+            } catch (Exception ex) {
+                Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
 }

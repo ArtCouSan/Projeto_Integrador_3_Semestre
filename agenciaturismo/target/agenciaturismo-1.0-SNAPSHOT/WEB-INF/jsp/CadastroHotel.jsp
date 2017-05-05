@@ -10,22 +10,30 @@
     </head>
     <body>
         <form>
+            
             <label for="txtorigem">Nome do Hotel:</label>  
             <input type="text" name="nome_hotel" placeholder="Insira o nome do hotel"/>
-            <br />
+            <br/>
+            
             <label for="txtdestino">Data de Entrada:</label>  
             <input type="text" name="data_entrada" placeholder="Insira a data de entrada"/>
-            <br />
+            <br/>
+            
             <label for="txtquantidade">Data de Saida:</label>  
             <input type="text" name="data_saida" placeholder="Insira a data de saida"/>
-            <br />
+            <br/>
+            
             <label for="txtdataIda">Quantidade de Quartos:</label>  
             <input type="text" name="quantidade_quartos" placeholder="Insira a quantidade de quartos"/>
-            <br />
+            <br/>
+            
             <label for="txtdataVolta">Quantidade de Hospedes:</label>  
             <input type="text" name="quantidade_hospedes" placeholder="Insira a quantidade de hospedes"/>
-            <br />
+            <br/>
+            
+            <input type="submit" value="Salvar"/>
+            <input type="reset" value="Apagar"/>
+            
         </form>
-        <input type="submit" value="Salvar" />
     </body>
 </html>

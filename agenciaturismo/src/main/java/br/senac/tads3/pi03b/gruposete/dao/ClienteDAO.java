@@ -94,7 +94,7 @@ public class ClienteDAO {
         }
     }
 
-    public List<Cliente> getListaClientes() throws SQLException, ClassNotFoundException {
+    public List<Cliente> ListaCliente() throws SQLException, ClassNotFoundException {
         List<Cliente> listaClientes = new ArrayList<>();
         con = DbUtil.getConnection();
         String query = "SELECT * FROM Cliente ORDER BY nome";

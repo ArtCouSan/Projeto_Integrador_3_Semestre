@@ -14,17 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "hotel", urlPatterns = {"/hotel"})
-public class HotelServlet extends HttpServlet {
-    
-    private HotelDAO dao;
+public class CadastroHotelServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("hotel.jsp");
         dispatcher.forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean erro = false;
@@ -58,14 +56,15 @@ public class HotelServlet extends HttpServlet {
         if (!erro) {
             Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes);
             try {
+                HotelDAO dao = new HotelDAO();
                 dao.inserir(hotel);
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("novoHotel", hotel);
+                response.sendRedirect("index.html");
+                
             } catch (Exception ex) {
-                Logger.getLogger(HotelServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            HttpSession sessao = request.getSession();
-            sessao.setAttribute("novoHotel", hotel);
-            response.sendRedirect("resultado.jsp");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
             dispatcher.forward(request, response);
