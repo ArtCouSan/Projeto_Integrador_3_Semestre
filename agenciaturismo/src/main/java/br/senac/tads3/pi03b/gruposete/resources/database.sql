@@ -1,3 +1,7 @@
+CREATE DATABASE AGENCIA;
+
+USE AGENCIA;
+
 CREATE TABLE Funcionario(
 id_func INT(3) NOT NULL AUTO_INCREMENT,
 nome VARCHAR(100) NOT NULL,
@@ -87,7 +91,7 @@ preco FLOAT(5.2) NOT NULL,
 PRIMARY KEY (id_venda),
 FOREIGN KEY id_produto (id_produto) REFERENCES Produto(id_produto),
 FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),
-FOREIGN KEY id_func (id_func) REFERENCES Funcionario(id_funcionario),
+FOREIGN KEY id_func (id_func) REFERENCES Funcionario(id_func),
 UNIQUE KEY id_venda (id_venda)
 );
 
