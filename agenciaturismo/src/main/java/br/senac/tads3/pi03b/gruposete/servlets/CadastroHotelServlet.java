@@ -24,7 +24,7 @@ public class CadastroHotelServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean erro = false;
 
@@ -53,16 +53,21 @@ public class CadastroHotelServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroQuantidade_hospedes", true);
         }
+        double preco = Double.parseDouble(request.getParameter("preco"));
+        if (preco < 0) {
+            erro = true;
+            request.setAttribute("erroPreco", true);
+        }
 
         if (!erro) {
-            Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes);
+            Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
             try {
                 HotelDAO dao = new HotelDAO();
                 dao.inserir(hotel);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoHotel", hotel);
                 response.sendRedirect("index.html");
-                
+
             } catch (Exception ex) {
                 Logger.getLogger(CadastroHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

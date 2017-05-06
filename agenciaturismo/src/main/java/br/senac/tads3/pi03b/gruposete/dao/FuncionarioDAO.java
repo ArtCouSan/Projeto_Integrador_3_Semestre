@@ -17,35 +17,38 @@ public class FuncionarioDAO {
 
     public void inserir(Funcionario funcionario) throws SQLException, Exception {
 
-        System.out.println("ENTROU DAOFUNC");
-
-        //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "INSERT INTO funcionario (pessoa, cargo, departamento, ativo) VALUES (?, ?, ?, ?)";
-        //Cria um statement para execução de instruções SQL
+        String sql = "INSERT INTO Funcionario (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, complemento, celular, telefone, email, cargo, filial, departamento ativo) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = DbUtil.getConnection();
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>1");
             stmn = con.prepareStatement(sql);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>2");
-            //Configura os parâmetros do "PreparedStatement"
-            //stmn.setObject(1, funcionario.getPessoa());//DEU ERRO AQUI>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>3");
-            stmn.setString(2, funcionario.getCargo());
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>4");
-            stmn.setString(3, funcionario.getDepartamento());
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>5");
-            stmn.setBoolean(4, funcionario.isAtivo());
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>6");
-            //Executa o comando no banco de dados
+
+            stmn.setString(1, funcionario.getNome());
+            stmn.setString(2, funcionario.getCpf());
+            stmn.setString(3, funcionario.getSexo());
+            stmn.setString(4, funcionario.getData_nasc());
+            stmn.setInt(5, funcionario.getNumero());
+            stmn.setString(6, funcionario.getCep());
+            stmn.setString(7, funcionario.getRua());
+            stmn.setString(8, funcionario.getBairro());
+            stmn.setString(9, funcionario.getCidade());
+            stmn.setString(10, funcionario.getLogradouro());
+            stmn.setString(11, funcionario.getComplemento());
+            stmn.setString(12, funcionario.getCelular());
+            stmn.setString(13, funcionario.getTelefone());
+            stmn.setString(14, funcionario.getEmail());
+            stmn.setString(15, funcionario.getCargo());
+            stmn.setString(16, funcionario.getFilial());
+            stmn.setString(17, funcionario.getDepartamento());
+            stmn.setBoolean(18, true);
+
             stmn.executeUpdate();
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>7");
+
         } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
             if (stmn != null && !stmn.isClosed()) {
                 stmn.close();
             }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
             if (con != null && !con.isClosed()) {
                 con.close();
             }
@@ -54,54 +57,40 @@ public class FuncionarioDAO {
 
     public void alterar(Funcionario funcionario) throws SQLException, Exception {
 
-        //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "UPDATE Funcionario SET pessoa=?, cargo=?, departamento=?, ativo=? WHERE id_cliente=?";
-        //Cria um statement para execução de instruções SQL
+        String sql = "UPDATE Funcionario "
+                + "SET nome=?, cpf=?, sexo=?, data_nasc=?, numero=?, cep=?, rua=?, bairro=?, cidade=?, logradouro=?, complemento=?, celular=?, telefone=?, email=?, cargo=?, filial=?, departamento=?, ativo=? "
+                + "WHERE id_func=?";
 
         try {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
-            //Configura os parâmetros do "PreparedStatement"
-            //stmn.setObject(1, funcionario.getPessoa());
-            stmn.setString(2, funcionario.getCargo());
-            stmn.setString(3, funcionario.getDepartamento());
-            stmn.setBoolean(4, funcionario.isAtivo());
-            stmn.setInt(5, funcionario.getId_func());
+            
+            stmn.setString(1, funcionario.getNome());
+            stmn.setString(2, funcionario.getCpf());
+            stmn.setString(3, funcionario.getSexo());
+            stmn.setString(4, funcionario.getData_nasc());
+            stmn.setInt(5, funcionario.getNumero());
+            stmn.setString(6, funcionario.getCep());
+            stmn.setString(7, funcionario.getRua());
+            stmn.setString(8, funcionario.getBairro());
+            stmn.setString(9, funcionario.getCidade());
+            stmn.setString(10, funcionario.getLogradouro());
+            stmn.setString(11, funcionario.getComplemento());
+            stmn.setString(12, funcionario.getCelular());
+            stmn.setString(13, funcionario.getTelefone());
+            stmn.setString(14, funcionario.getEmail());
+            stmn.setString(15, funcionario.getCargo());
+            stmn.setString(16, funcionario.getFilial());
+            stmn.setString(17, funcionario.getDepartamento());
+            stmn.setBoolean(18, funcionario.isAtivo());
+            stmn.setInt(19, funcionario.getId_func());
 
-            //Executa o comando no banco de dados
             stmn.executeUpdate();
+            
         } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
             if (stmn != null && !stmn.isClosed()) {
                 stmn.close();
             }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
-        }
-    }
-
-    public void excluir(int id) throws SQLException, Exception {
-
-        //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "UPDATE Funcionario SET ativo=? WHERE id_func=?";
-        //Cria um statement para execução de instruções SQL
-
-        try {
-            con = DbUtil.getConnection();
-            stmn = con.prepareStatement(sql);
-            //Configura os parâmetros do "PreparedStatement"
-            stmn.setBoolean(1, false);
-            stmn.setInt(2, id);
-            //Executa o comando no banco de dados
-            stmn.executeUpdate();
-        } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
-            if (stmn != null && !stmn.isClosed()) {
-                stmn.close();
-            }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
             if (con != null && !con.isClosed()) {
                 con.close();
             }
@@ -109,48 +98,42 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> ListaFuncionario() throws SQLException, ClassNotFoundException {
-        List<Funcionario> ListaFuncionario = new ArrayList<>();
+        List<Funcionario> listaFuncionario = new ArrayList<>();
+
         con = DbUtil.getConnection();
-        String query = "SELECT * FROM Funcionario ORDER BY nome";
+
+        String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo=true";
 
         try {
             Statement st = con.createStatement();
             ResultSet resultSet = st.executeQuery(query);
             while (resultSet.next()) {
-                Funcionario funcionario = new Funcionario();
-                funcionario.setId_func(resultSet.getInt("id_func"));
-                funcionario.setAtivo(resultSet.getBoolean("ativo"));
-                //funcionario.setPessoa((Pessoa) resultSet.getObject("pessoa"));
-                funcionario.setCargo(resultSet.getString("cargo"));
-                funcionario.setDepartamento(resultSet.getString("departamento"));
-                ListaFuncionario.add(funcionario);
-            }
-        } catch (SQLException e) {
-        }
-        con.close();
-        return ListaFuncionario;
-    }
+                Funcionario func = new Funcionario();
 
-    public Funcionario getFuncionarioById(int id) throws SQLException, ClassNotFoundException {
-        Funcionario funcionario = new Funcionario();
-        con = DbUtil.getConnection();
-        try {
-            String query = "SELECT * FROM Funcionario WHERE id_func=?";
-            stmn = con.prepareStatement(query);
-            stmn.setInt(1, id);
-            try (ResultSet resultSet = stmn.executeQuery()) {
-                while (resultSet.next()) {
-                    //funcionario.setPessoa((Pessoa)resultSet.getObject("pessoa"));
-                    funcionario.setAtivo(resultSet.getBoolean("ativo"));
-                    funcionario.setFilial(resultSet.getString("filial"));
-                    funcionario.setCargo(resultSet.getString("cargo"));
-                    funcionario.setDepartamento(resultSet.getString("departamento"));
-                }
+                func.setId_func(resultSet.getInt("id_func"));
+                func.setNome(resultSet.getString("nome"));
+                func.setCpf(resultSet.getString("cpf"));
+                func.setSexo(resultSet.getString("sexo"));
+                func.setData_nasc(resultSet.getString("data_nasc"));
+                func.setNumero(resultSet.getInt("numero"));
+                func.setCep(resultSet.getString("cep"));
+                func.setRua(resultSet.getString("rua"));
+                func.setBairro(resultSet.getString("bairro"));
+                func.setCidade(resultSet.getString("cidade"));
+                func.setLogradouro(resultSet.getString("logradouro"));
+                func.setComplemento(resultSet.getString("complemento"));
+                func.setCelular(resultSet.getString("celular"));
+                func.setTelefone(resultSet.getString("telefone"));
+                func.setEmail(resultSet.getString("email"));
+                func.setCargo(resultSet.getString("cargo"));
+                func.setFilial(resultSet.getString("filial"));
+                func.setDepartamento(resultSet.getString("departamento"));
+
+                listaFuncionario.add(func);
             }
-            stmn.close();
         } catch (SQLException e) {
         }
         con.close();
-        return funcionario;
+        return listaFuncionario;
     }
 }

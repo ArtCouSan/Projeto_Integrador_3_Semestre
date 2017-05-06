@@ -3,21 +3,20 @@ package br.senac.tads3.pi03b.gruposete.models;
 public class Venda {
 
     private int id_venda;
-    private Produto produto;
-    private Cliente cliente;
-    private Funcionario funcionario;
-    private boolean ativo;
-    private float preco;
+    private int id_produto;
+    private int id_cliente;
+    private int id_func;
+    private double preco;
 
     public Venda() {
 
     }
 
-    public Venda(Produto produto, Cliente cliente, Funcionario funcionario, boolean ativo, float preco) {
-        this.produto = produto;
-        this.cliente = cliente;
-        this.funcionario = funcionario;
-        this.ativo = ativo;
+    public Venda(int id_produto, int id_cliente, int id_func, double preco) {
+        this.id_produto = id_produto;
+        this.id_cliente = id_cliente;
+        this.id_func = id_func;
+        this.preco = preco;
     }
 
     public int getId_venda() {
@@ -28,44 +27,35 @@ public class Venda {
         this.id_venda = id_venda;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public int getId_produto() {
+        return id_produto;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setId_produto(int id_produto) {
+        this.id_produto = id_produto;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getId_cliente() {
+        return id_cliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
+    public int getId_func() {
+        return id_func;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
+    public void setId_func(int id_func) {
+        this.id_func = id_func;
     }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    public float getPreco() {
+    
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
-
 }

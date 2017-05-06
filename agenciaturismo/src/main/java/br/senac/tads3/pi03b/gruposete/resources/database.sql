@@ -17,7 +17,7 @@ email VARCHAR(50),
 cargo VARCHAR(100) NOT NULL,
 filial VARCHAR(100) NOT NULL,
 departamento VARCHAR(100) NOT NULL,    
-ativo TINYINT(1) NOT NULL,
+ativo BOOLEAN NOT NULL,
 PRIMARY KEY (id_func),
 UNIQUE KEY id_func (id_func)  
 );
@@ -38,7 +38,7 @@ complemento VARCHAR(5),
 celular VARCHAR(9),
 telefone VARCHAR(8),
 email VARCHAR(50),
-ativo TINYINT(1) NOT NULL,
+ativo BOOLEAN NOT NULL,
 PRIMARY KEY (id_cliente),
 UNIQUE KEY id_cliente (id_cliente)
 );
@@ -50,6 +50,8 @@ data_ida VARCHAR(10),
 destino VARCHAR(50),
 origem VARCHAR(50),
 quantidade_passagens INT(3) NOT NULL,
+preco FLOAT(5.2) NOT NULL,
+ativo BOOLEAN NOT NULL,
 PRIMARY KEY (id_voo)
 );
 
@@ -60,6 +62,8 @@ data_entrada VARCHAR(10),
 data_saida VARCHAR(10),
 quantidade_quartos VARCHAR(50),
 quantidade_hospedes VARCHAR(50),
+preco FLOAT(5.2) NOT NULL,
+ativo BOOLEAN NOT NULL,
 PRIMARY KEY (id_hotel)
 );
 
@@ -67,7 +71,7 @@ CREATE TABLE Produto(
 id_produto INT(3) NOT NULL AUTO_INCREMENT,   
 id_voo INT(3),
 id_hotel INT(3),
-ativo TINYINT(1) NOT NULL,
+preco FLOAT(4.2) NOT NULL,
 PRIMARY KEY (id_produto),
 FOREIGN KEY id_voo (id_voo) REFERENCES Voo(id_voo),
 FOREIGN KEY id_hotel (id_hotel) REFERENCES Hotel(id_hotel),
@@ -79,8 +83,7 @@ id_venda INT(3) NOT NULL AUTO_INCREMENT,
 id_produto INT(3) NOT NULL,
 id_cliente INT(3) NOT NULL,
 id_func INT(3) NOT NULL,
-ativo TINYINT(1) NOT NULL,
-preco FLOAT(3.2) NOT NULL,    
+preco FLOAT(5.2) NOT NULL,    
 PRIMARY KEY (id_venda),
 FOREIGN KEY id_produto (id_produto) REFERENCES Produto(id_produto),
 FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),

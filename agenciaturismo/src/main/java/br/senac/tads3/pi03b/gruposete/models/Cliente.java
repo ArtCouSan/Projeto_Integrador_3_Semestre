@@ -5,7 +5,7 @@ public class Cliente {
     private int id_cliente;
     private String nome;
     private String cpf;
-    private char sexo;
+    private String sexo;
     private String data_nasc;
     private int numero;
     private String cep;
@@ -20,9 +20,10 @@ public class Cliente {
     private boolean ativo;
 
     public Cliente() {
+        
     }
 
-    public Cliente(String nome, String cpf, char sexo, String data_nasc, int numero, 
+    public Cliente(String nome, String cpf, String sexo, String data_nasc, int numero, 
             String cep, String rua, String bairro, String cidade, String logradouro, 
             String complemento, String celular, String telefone, String email, boolean ativo) {
         this.nome = nome;
@@ -66,11 +67,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

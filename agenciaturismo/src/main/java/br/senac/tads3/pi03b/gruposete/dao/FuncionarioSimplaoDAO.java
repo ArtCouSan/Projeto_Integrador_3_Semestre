@@ -1,12 +1,5 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import br.senac.tads3.pi03b.gruposete.models.FuncionarioSimplao;
@@ -17,10 +10,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author danimo
- */
 public class FuncionarioSimplaoDAO {
     
     private static Connection con;

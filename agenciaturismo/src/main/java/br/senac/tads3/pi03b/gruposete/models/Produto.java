@@ -3,27 +3,27 @@ package br.senac.tads3.pi03b.gruposete.models;
 public class Produto {
 
     private int id_produto;
-    private Voo voo;
-    private Hotel hotel;
-    private boolean ativo;
+    private int id_voo;
+    private int id_hotel;
+    private double preco;
 
     // Venda com voo e sem hotel
-    public Produto(Voo voo, boolean ativo) {
-        this.voo = voo;
-        this.ativo = ativo;
+    public Produto(int id_voo, double preco) {
+        this.id_voo = id_voo;
+        this.preco = preco;
     }
 
     // Venda com hotel e sem voo
-    public Produto(Hotel hotel, boolean ativo) {
-        this.hotel = hotel;
-        this.ativo = ativo;
+    public Produto(double preco, int id_hotel) {
+        this.id_hotel = id_hotel;
+        this.preco = preco;
     }
 
     // Venda com voo e com hotel
-    public Produto(Voo voo, Hotel hotel, boolean ativo) {
-        this.voo = voo;
-        this.hotel = hotel;
-        this.ativo = ativo;
+    public Produto(int id_voo, int id_hotel, double preco) {
+        this.id_voo = id_voo;
+        this.id_hotel = id_hotel;
+        this.preco = preco;
     }
 
     public int getId_produto() {
@@ -34,28 +34,28 @@ public class Produto {
         this.id_produto = id_produto;
     }
 
-    public Voo getVoo() {
-        return voo;
+    public int getId_voo() {
+        return id_voo;
     }
 
-    public void setVoo(Voo voo) {
-        this.voo = voo;
+    public void setId_voo(int id_voo) {
+        this.id_voo = id_voo;
     }
 
-    public Hotel getHotel() {
-        return hotel;
+    public int getId_hotel() {
+        return id_hotel;
     }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setId_hotel(int id_hotel) {
+        this.id_hotel = id_hotel;
+    }
+    
+    public double getPreco() {
+        return preco;
     }
 
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
 }

@@ -1,23 +1,28 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
 public class Hotel {
+
     private int id_hotel;
     private String nome_hotel;
     private String data_entrada;
     private String data_saida;
     private String quantidade_quartos;
     private String quantidade_hospedes;
+    private double preco;
+    private boolean ativo;
 
     public Hotel() {
-        
+
     }
 
-    public Hotel(String nome_hotel, String data_entrada, String data_saida, String quantidade_quartos, String quantidade_hospedes) {
+    public Hotel(String nome_hotel, String data_entrada, String data_saida, String quantidade_quartos, String quantidade_hospedes, double preco, boolean ativo) {
         this.nome_hotel = nome_hotel;
         this.data_entrada = data_entrada;
         this.data_saida = data_saida;
         this.quantidade_quartos = quantidade_quartos;
         this.quantidade_hospedes = quantidade_hospedes;
+        this.preco = preco;
+        this.ativo = ativo;
     }
 
     public int getId_hotel() {
@@ -66,6 +71,22 @@ public class Hotel {
 
     public void setQuantidade_hospedes(String quantidade_hospedes) {
         this.quantidade_hospedes = quantidade_hospedes;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
     
 }

@@ -50,7 +50,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroCpf", true);
         }
-        char sexo = request.getParameter("sexo").charAt(0);
+        String sexo = request.getParameter("sexo");
         if ("".equals(sexo)) {
             erro = true;
             request.setAttribute("erroSexo", true);
@@ -132,7 +132,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         if (!erro) {
             Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
                     numero, cep, rua, bairro, cidade, logradouro, complemento,
-                    celular, telefone, email, true, cargo, filial, departamento);
+                    celular, telefone, email, cargo, filial, departamento, true);
             try {
                 FuncionarioDAO dao = new FuncionarioDAO();
                 dao.inserir(funcHumilde);

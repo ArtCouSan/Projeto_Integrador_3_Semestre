@@ -8,17 +8,21 @@ public class Voo {
     private String destino;
     private String origem;
     private int quantidade_passagens;
+    private double preco;
+    private boolean ativo;
 
     public Voo() {
 
     }
 
-    public Voo(String data_ida, String data_volta, String destino, String origem, int quantidade_passagens) {
+    public Voo(String data_ida, String data_volta, String destino, String origem, int quantidade_passagens, double preco, boolean ativo) {
         this.data_ida = data_ida;
         this.data_volta = data_volta;
         this.destino = destino;
         this.origem = origem;
         this.quantidade_passagens = quantidade_passagens;
+        this.preco = preco;
+        this.ativo = ativo;
     }
 
     public int getId_voo() {
@@ -69,4 +73,21 @@ public class Voo {
         this.quantidade_passagens = quantidade_passagens;
     }
 
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
 }

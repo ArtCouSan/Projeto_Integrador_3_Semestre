@@ -31,6 +31,10 @@
             <input type="text" name="data_volta" placeholder="Insira data de volta"/>
             <br/>
             
+            <label for="txtPreco">Preco:</label>  
+            <input type="number" name="preco" placeholder="Insira o preço"/>
+            <br/>
+            
             <input type="submit" value="Salvar"/>
             <input type="reset" value="Apagar"/>
             

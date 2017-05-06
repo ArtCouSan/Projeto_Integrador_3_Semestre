@@ -53,9 +53,14 @@ public class CadastroVooServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroQuantidade_passagens", true);
         }
+        double preco = Double.parseDouble(request.getParameter("preco"));
+        if (preco < 0) {
+            erro = true;
+            request.setAttribute("erroPreco", true);
+        }
 
         if (!erro) {
-            Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens);
+            Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
             try {
                 VooDAO dao = new VooDAO();
                 dao.inserir(voo);

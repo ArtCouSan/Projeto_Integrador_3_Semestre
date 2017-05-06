@@ -5,7 +5,7 @@ public class Funcionario {
     private int id_func;
     private String nome;
     private String cpf;
-    private char sexo;
+    private String sexo;
     private String data_nasc;
     private int numero;
     private String cep;
@@ -17,18 +17,19 @@ public class Funcionario {
     private String celular;
     private String telefone;
     private String email;
-    private boolean ativo;
     private String cargo;
     private String filial;
     private String departamento;
+    private boolean ativo;
 
     public Funcionario() {
+        
     }
 
-    public Funcionario(String nome, String cpf, char sexo, String data_nasc, 
-            int numero, String cep, String rua, String bairro, String cidade, 
-            String logradouro, String complemento, String celular, String telefone, 
-            String email, boolean ativo, String cargo, String filial, String departamento) {
+    public Funcionario(String nome, String cpf, String sexo, String data_nasc, int numero, 
+            String cep, String rua, String bairro, String cidade, String logradouro, 
+            String complemento, String celular, String telefone, String email, String cargo,
+            String filial, String departamento, boolean ativo) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
@@ -43,10 +44,10 @@ public class Funcionario {
         this.celular = celular;
         this.telefone = telefone;
         this.email = email;
-        this.ativo = ativo;
         this.cargo = cargo;
         this.filial = filial;
         this.departamento = departamento;
+        this.ativo = ativo;
     }
 
     public int getId_func() {
@@ -73,11 +74,11 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -169,14 +170,6 @@ public class Funcionario {
         this.email = email;
     }
 
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-
     public String getCargo() {
         return cargo;
     }
@@ -199,6 +192,14 @@ public class Funcionario {
 
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
     
 }

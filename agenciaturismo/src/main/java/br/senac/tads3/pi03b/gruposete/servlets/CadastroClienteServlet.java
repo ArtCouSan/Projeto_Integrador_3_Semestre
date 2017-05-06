@@ -39,7 +39,7 @@ public class CadastroClienteServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroCpf", true);
         }
-        char sexo = request.getParameter("sexo").charAt(0);
+        String sexo = request.getParameter("sexo");
         if ("".equals(sexo)) {
             erro = true;
             request.setAttribute("erroSexo", true);

@@ -17,28 +17,27 @@ public class HotelDAO {
 
     public void inserir(Hotel hotel) throws SQLException, Exception {
 
-        //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "INSERT INTO Hotel (nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes) "
-                + "VALUES (?, ?, ?, ?, ?)";
-        //Cria um statement para execução de instruções SQL
+        String sql = "INSERT INTO Hotel (nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, ativo) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
-            //Configura os parâmetros do "PreparedStatement"
+
             stmn.setString(1, hotel.getNome_hotel());
             stmn.setString(2, hotel.getData_entrada());
             stmn.setString(3, hotel.getData_saida());
             stmn.setString(4, hotel.getQuantidade_quartos());
             stmn.setString(5, hotel.getQuantidade_hospedes());
-            //Executa o comando no banco de dados
+            stmn.setDouble(6, hotel.getPreco());
+            stmn.setBoolean(7, true);
+
             stmn.executeUpdate();
+
         } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
             if (stmn != null && !stmn.isClosed()) {
                 stmn.close();
             }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
             if (con != null && !con.isClosed()) {
                 con.close();
             }
@@ -47,53 +46,28 @@ public class HotelDAO {
 
     public void alterar(Hotel hotel) throws SQLException, Exception {
 
-        //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "UPDATE Hotel SET nome_hotel=?, data_entrada=?, data_saida=?, quantidade_quartos=?, quantidade_hospedes=? "
+        String sql = "UPDATE Hotel "
+                + "SET nome_hotel=?, data_entrada=?, data_saida=?, quantidade_quartos=?, quantidade_hospedes=?, preco=?, ativo=? "
                 + "WHERE id_hotel=?";
-        //Cria um statement para execução de instruções SQL
 
         try {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
-            //Configura os parâmetros do "PreparedStatement"
+
             stmn.setString(1, hotel.getNome_hotel());
             stmn.setString(2, hotel.getData_entrada());
             stmn.setString(3, hotel.getData_saida());
             stmn.setString(4, hotel.getQuantidade_quartos());
             stmn.setString(5, hotel.getQuantidade_hospedes());
-            //Executa o comando no banco de dados
+            stmn.setDouble(6, hotel.getPreco());
+            stmn.setBoolean(7, hotel.isAtivo());
+            stmn.setInt(8, hotel.getId_hotel());
+
             stmn.executeUpdate();
         } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
             if (stmn != null && !stmn.isClosed()) {
                 stmn.close();
             }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
-        }
-    }
-
-    public void excluir(int id) throws SQLException, Exception {
-
-        //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "DELETE FROM Hotel WHERE id_hotel=?";
-        //Cria um statement para execução de instruções SQL
-
-        try {
-            con = DbUtil.getConnection();
-            stmn = con.prepareStatement(sql);
-            //Configura os parâmetros do "PreparedStatement"
-            stmn.setInt(1, id);
-            //Executa o comando no banco de dados
-            stmn.executeUpdate();
-        } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
-            if (stmn != null && !stmn.isClosed()) {
-                stmn.close();
-            }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
             if (con != null && !con.isClosed()) {
                 con.close();
             }
@@ -103,46 +77,27 @@ public class HotelDAO {
     public List<Hotel> ListaHotel() throws SQLException, ClassNotFoundException {
         List<Hotel> ListaHotel = new ArrayList<>();
         con = DbUtil.getConnection();
-        String query = "SELECT * FROM Hotel ORDER BY nome_hotel";
+        String query = "SELECT * FROM Hotel ORDER BY nome_hotel WHERE ativo=true";
 
         try {
             Statement st = con.createStatement();
             ResultSet resultSet = st.executeQuery(query);
             while (resultSet.next()) {
                 Hotel hotel = new Hotel();
+                
+                hotel.setId_hotel(resultSet.getInt("id_hotel"));
                 hotel.setNome_hotel(resultSet.getString("nome_hotel"));
                 hotel.setData_entrada(resultSet.getString("data_entrada"));
                 hotel.setData_saida(resultSet.getString("data_saida"));
                 hotel.setQuantidade_quartos(resultSet.getString("quantidade_quartos"));
                 hotel.setQuantidade_hospedes(resultSet.getString("quantidade_hospedes"));
+                hotel.setPreco(resultSet.getDouble("preco"));
+                
                 ListaHotel.add(hotel);
             }
         } catch (SQLException e) {
         }
         con.close();
         return ListaHotel;
-    }
-    
-    public Hotel getHotelById(int id) throws SQLException, ClassNotFoundException {
-        Hotel hotel = new Hotel();
-        con = DbUtil.getConnection();
-        try {
-            String query = "SELECT * FROM Hotel WHERE id_hotel=?";
-            stmn = con.prepareStatement(query);
-            stmn.setInt(1, id);
-            try (ResultSet resultSet = stmn.executeQuery()) {
-                while (resultSet.next()) {
-                    hotel.setNome_hotel(resultSet.getString("nome_hotel"));
-                    hotel.setData_entrada(resultSet.getString("data_entrada"));
-                    hotel.setData_saida(resultSet.getString("data_saida"));
-                    hotel.setQuantidade_hospedes(resultSet.getString("quantidade_hospedes"));
-                    hotel.setQuantidade_quartos(resultSet.getString("quantidade_quartos"));
-                }
-            }
-            stmn.close();
-        } catch (SQLException e) {
-        }
-        con.close();
-        return hotel;
     }
 }
