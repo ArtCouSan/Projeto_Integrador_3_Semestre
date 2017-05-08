@@ -1,6 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
-import br.senac.tads3.pi03b.gruposete.models.UsuarioSistema;
+import br.senac.tads3.pi03b.gruposete.models.Usuario;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,52 +13,36 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-  @Override
-  public void doGet(HttpServletRequest request,
-	  HttpServletResponse response)
-	  throws ServletException, IOException {
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession sessao = request.getSession(false);
+        if (sessao != null && sessao.getAttribute("usuario") != null) {
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
 
-    // Verifica se usuário já se logou, se positivo redireciona para tela principal
-    HttpSession sessao = request.getSession(false);
-    if (sessao != null && sessao.getAttribute("usuario") != null) {
-      response.sendRedirect(request.getContextPath() + "/agenda");
-      return;
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/login.jsp");
+        dispatcher.forward(request, response);
     }
 
-    // Apresenta tela de login para o usuário
-    RequestDispatcher dispatcher
-	    = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-    dispatcher.forward(request, response);
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String usuario = request.getParameter("login");
+        String senhaDigitada = request.getParameter("senha");
 
-  }
+        Usuario usuarioSistema = Usuario.obterUsuario(usuario, senhaDigitada);
+        if (usuarioSistema != null) {
+            HttpSession sessao = request.getSession(false);
+            if (sessao != null) {
+                sessao.invalidate();
+            }
+            
+            sessao = request.getSession(true);
+            sessao.setAttribute("usuario", usuarioSistema);
 
-  @Override
-  public void doPost(HttpServletRequest request,
-	  HttpServletResponse response)
-	  throws ServletException, IOException {
-    // Recupera dados preenchidos pelo usuário
-    String usuario = request.getParameter("usuario");
-    String senhaDigitada = request.getParameter("senha");
-
-    // Compara com o usuário/senha previamente cadastrado
-    UsuarioSistema usuarioSistema
-	    = UsuarioSistema.obterUsuario(usuario, senhaDigitada);
-    if (usuarioSistema != null) {
-      // Usuario existe e a senha está correta
-      // Caso exista, invalida a sessão anterior (www.owasp.org)
-      HttpSession sessao = request.getSession(false);
-      if (sessao != null) {
-	sessao.invalidate();
-      }
-      // Criar uma sessão
-      sessao = request.getSession(true);
-      sessao.setAttribute("usuario", usuarioSistema);
-
-      response.sendRedirect(request.getContextPath() + "/agenda");
-    } else {
-      response.sendRedirect(
-	      request.getContextPath() + "/erroLogin.jsp");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/erroLogin.jsp");
+        }
     }
-  }
-
 }

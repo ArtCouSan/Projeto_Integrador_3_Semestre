@@ -64,7 +64,7 @@ public class FuncionarioDAO {
         try {
             con = DbUtil.getConnection();
             stmn = con.prepareStatement(sql);
-            
+
             stmn.setString(1, funcionario.getNome());
             stmn.setString(2, funcionario.getCpf());
             stmn.setString(3, funcionario.getSexo());
@@ -86,7 +86,7 @@ public class FuncionarioDAO {
             stmn.setInt(19, funcionario.getId_func());
 
             stmn.executeUpdate();
-            
+
         } finally {
             if (stmn != null && !stmn.isClosed()) {
                 stmn.close();
@@ -135,5 +135,41 @@ public class FuncionarioDAO {
         }
         con.close();
         return listaFuncionario;
+    }
+
+    public Funcionario funcionarioPorNome(String nome) throws SQLException, ClassNotFoundException {
+        Funcionario func = new Funcionario();
+        con = DbUtil.getConnection();
+        try {
+            String query = "SELECT * FROM Funcionario WHERE nome=?";
+            stmn = con.prepareStatement(query);
+            stmn.setString(1, nome);
+            try (ResultSet resultSet = stmn.executeQuery()) {
+                while (resultSet.next()) {
+                    func.setId_func(resultSet.getInt("id_func"));
+                    func.setNome(resultSet.getString("nome"));
+                    func.setCpf(resultSet.getString("cpf"));
+                    func.setSexo(resultSet.getString("sexo"));
+                    func.setData_nasc(resultSet.getString("data_nasc"));
+                    func.setNumero(resultSet.getInt("numero"));
+                    func.setCep(resultSet.getString("cep"));
+                    func.setRua(resultSet.getString("rua"));
+                    func.setBairro(resultSet.getString("bairro"));
+                    func.setCidade(resultSet.getString("cidade"));
+                    func.setLogradouro(resultSet.getString("logradouro"));
+                    func.setComplemento(resultSet.getString("complemento"));
+                    func.setCelular(resultSet.getString("celular"));
+                    func.setTelefone(resultSet.getString("telefone"));
+                    func.setEmail(resultSet.getString("email"));
+                    func.setCargo(resultSet.getString("cargo"));
+                    func.setFilial(resultSet.getString("filial"));
+                    func.setDepartamento(resultSet.getString("departamento"));
+                }
+            }
+            stmn.close();
+        } catch (SQLException e) {
+        }
+        con.close();
+        return func;
     }
 }

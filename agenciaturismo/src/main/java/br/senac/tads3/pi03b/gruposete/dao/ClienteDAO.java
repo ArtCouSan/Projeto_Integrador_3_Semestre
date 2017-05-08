@@ -127,4 +127,37 @@ public class ClienteDAO {
         con.close();
         return listaClientes;
     }
+
+    public Cliente clientePorNome(String nome) throws SQLException, ClassNotFoundException {
+        Cliente cliente = new Cliente();
+        con = DbUtil.getConnection();
+        try {
+            String query = "SELECT * FROM Cliente WHERE nome=?";
+            stmn = con.prepareStatement(query);
+            stmn.setString(1, nome);
+            try (ResultSet resultSet = stmn.executeQuery()) {
+                while (resultSet.next()) {
+                    cliente.setId_cliente(resultSet.getInt("id_cliente"));
+                    cliente.setNome(resultSet.getString("nome"));
+                    cliente.setCpf(resultSet.getString("cpf"));
+                    cliente.setSexo(resultSet.getString("sexo"));
+                    cliente.setData_nasc(resultSet.getString("data_nasc"));
+                    cliente.setNumero(resultSet.getInt("numero"));
+                    cliente.setCep(resultSet.getString("cep"));
+                    cliente.setRua(resultSet.getString("rua"));
+                    cliente.setBairro(resultSet.getString("bairro"));
+                    cliente.setCidade(resultSet.getString("cidade"));
+                    cliente.setLogradouro(resultSet.getString("logradouro"));
+                    cliente.setComplemento(resultSet.getString("complemento"));
+                    cliente.setCelular(resultSet.getString("celular"));
+                    cliente.setTelefone(resultSet.getString("telefone"));
+                    cliente.setEmail(resultSet.getString("email"));
+                }
+            }
+            stmn.close();
+        } catch (SQLException e) {
+        }
+        con.close();
+        return cliente;
+    }
 }
