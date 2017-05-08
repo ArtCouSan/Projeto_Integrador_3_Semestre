@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author danimo
  */
 public class SimpleTestDB {
-    
+
     public static void main(String[] args) {
         try {
             Connection con = DbUtil.getConnection();
@@ -24,5 +24,5 @@ public class SimpleTestDB {
             System.out.println("DOESNT");
         }
     }
-    
+
 }
