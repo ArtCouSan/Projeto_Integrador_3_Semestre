@@ -17,5 +17,4 @@ br\senac\tads3\pi03b\gruposete\servlets\CadastroClienteServlet.class
 br\senac\tads3\pi03b\gruposete\models\Voo.class
 br\senac\tads3\pi03b\gruposete\models\Venda.class
 br\senac\tads3\pi03b\gruposete\dao\VendaDAO.class
-br\senac\tads3\pi03b\gruposete\models\UsuarioSistema.class
 br\senac\tads3\pi03b\gruposete\servlets\LogoutServlet.class

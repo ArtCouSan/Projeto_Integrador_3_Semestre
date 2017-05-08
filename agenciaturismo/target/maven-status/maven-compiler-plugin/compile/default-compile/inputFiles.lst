@@ -2,7 +2,6 @@ C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\models\FuncionarioSimplao.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\dao\FuncionarioDAO.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\ListaVooServlet.java
-C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\models\UsuarioSistema.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\ListaClienteServlet.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\ListarFuncionarioSimplesServlet.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\AutorizacaoFilter.java
@@ -19,11 +18,13 @@ C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\LoginServlet.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\dao\HotelDAO.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\BuscaClienteServlet.java
+C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\models\Usuario.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\utils\DbUtil.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\CadastroClienteServlet.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\dao\VendaDAO.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\models\Cliente.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\BuscaHotelServlet.java
+C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\dao\UsuarioDAO.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\dao\ClienteDAO.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\dao\VooDAO.java
 C:\Users\Rafael\Documents\GitHub\Loja_Agencia_De_Viagens\agenciaturismo\src\main\java\br\senac\tads3\pi03b\gruposete\servlets\ListaHotelServlet.java
