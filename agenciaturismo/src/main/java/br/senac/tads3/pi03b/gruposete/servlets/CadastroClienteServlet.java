@@ -51,12 +51,12 @@ public class CadastroClienteServlet extends HttpServlet {
         }
 
         String telefone = request.getParameter("telefone");
-        if (telefone == null || !"     -    ".equals(telefone)) {
+        if (telefone == null || !"(  )    -    ".equals(telefone)) {
             erro = true;
             request.setAttribute("erroTelefone", true);
         }
         String celular = request.getParameter("celular");
-        if (celular == null || !"     -    ".equals(celular)) {
+        if (celular == null || !"(  )     -    ".equals(celular)) {
             erro = true;
             request.setAttribute("erroCelular", true);
         }

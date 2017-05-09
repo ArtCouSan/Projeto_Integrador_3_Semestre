@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ListaFuncionario
-    Created on : 08/05/2017, 13:47:16
-    Author     : Rafael
+    Document   : BuscaHotel
+    Created on : 08/05/2017, 21:10:19
+    Author     : rafael.fsilva7
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Funcionários</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Todos Funcionarios:</h1>
+        <h1>Hello World!</h1>
     <c:import url="./Layout/rodape.jsp"/>
 </body>
 </html>

@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>FUTURA PAGINA DE BUSCA DE CLIENTES</h1>
-    </body>
+    <c:import url="./Layout/rodape.jsp"/> 
+</body>
 </html>
