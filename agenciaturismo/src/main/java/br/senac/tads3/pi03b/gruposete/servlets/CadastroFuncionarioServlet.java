@@ -132,7 +132,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         if (!erro) {
             Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
                     numero, cep, rua, bairro, cidade, logradouro, complemento,
-                    celular, telefone, email, cargo, filial, departamento, true);
+                    celular, telefone, email, true, cargo, filial, departamento);
             try {
                 FuncionarioDAO dao = new FuncionarioDAO();
                 dao.inserir(funcHumilde);
