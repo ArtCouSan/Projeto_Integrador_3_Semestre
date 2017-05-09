@@ -12,7 +12,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Login</h1>
+        <form action="login" method="post">
+            <div>
+                <label for="txtusuario">Nome de usuário</label>
+                <input type="text" name="usuario" id="txtusuario" />
+            </div>
+            <div>
+                <label for="txtsenha">Senha</label>
+                <input type="password" name="senha" id="txtsenha" />
+            </div>
+            <div>
+                <input type="submit" value="Entrar" />
+            </div>
+        </form>
     <c:import url="./Layout/rodape.jsp"/>
-</body>
+    </body>
 </html>
