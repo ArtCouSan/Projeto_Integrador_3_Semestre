@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ClienteServlet", urlPatterns = {"/cadastro-cliente"})
 public class CadastroClienteServlet extends HttpServlet {
+    
+    private ClienteDAO dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -107,7 +109,6 @@ public class CadastroClienteServlet extends HttpServlet {
                     cep, rua, bairro, cidade, logradouro, complemento, celular,
                     telefone, email, true);
             try {
-                ClienteDAO dao = new ClienteDAO();
                 dao.inserir(cliHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoCliente", cliHumilde);
@@ -118,7 +119,7 @@ public class CadastroClienteServlet extends HttpServlet {
             }
 
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("ListaCliente.jsp");
             dispatcher.forward(request, response);
         }
     }

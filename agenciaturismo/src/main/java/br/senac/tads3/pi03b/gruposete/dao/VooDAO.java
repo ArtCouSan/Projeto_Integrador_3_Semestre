@@ -12,8 +12,10 @@ import java.util.List;
 
 public class VooDAO {
 
-    private static Connection con;
-    private static PreparedStatement stmn;
+    private static Connection connection;
+    private static PreparedStatement preparedStatement;
+    private static Statement statement;
+    private static ResultSet resultSet;
 
     public void inserir(Voo voo) throws SQLException, Exception {
 
@@ -21,25 +23,25 @@ public class VooDAO {
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            con = DbUtil.getConnection();
-            stmn = con.prepareStatement(sql);
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
 
-            stmn.setString(1, voo.getData_volta());
-            stmn.setString(2, voo.getData_ida());
-            stmn.setString(3, voo.getDestino());
-            stmn.setString(4, voo.getOrigem());
-            stmn.setInt(5, voo.getQuantidade_passagens());
-            stmn.setDouble(6, voo.getPreco());
-            stmn.setBoolean(7, true);
+            preparedStatement.setString(1, voo.getData_volta());
+            preparedStatement.setString(2, voo.getData_ida());
+            preparedStatement.setString(3, voo.getDestino());
+            preparedStatement.setString(4, voo.getOrigem());
+            preparedStatement.setInt(5, voo.getQuantidade_passagens());
+            preparedStatement.setDouble(6, voo.getPreco());
+            preparedStatement.setBoolean(7, true);
 
-            stmn.execute();
+            preparedStatement.execute();
 
         } finally {
-            if (stmn != null && !stmn.isClosed()) {
-                stmn.close();
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
             }
-            if (con != null && !con.isClosed()) {
-                con.close();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
             }
         }
     }
@@ -50,38 +52,38 @@ public class VooDAO {
                 + "WHERE id_voo=?";
 
         try {
-            con = DbUtil.getConnection();
-            stmn = con.prepareStatement(sql);
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
 
-            stmn.setString(1, voo.getData_volta());
-            stmn.setString(2, voo.getData_ida());
-            stmn.setString(3, voo.getDestino());
-            stmn.setString(4, voo.getOrigem());
-            stmn.setInt(5, voo.getQuantidade_passagens());
-            stmn.setDouble(6, voo.getPreco());
-            stmn.setBoolean(7, voo.isAtivo());
-            stmn.setInt(8, voo.getId_voo());
+            preparedStatement.setString(1, voo.getData_volta());
+            preparedStatement.setString(2, voo.getData_ida());
+            preparedStatement.setString(3, voo.getDestino());
+            preparedStatement.setString(4, voo.getOrigem());
+            preparedStatement.setInt(5, voo.getQuantidade_passagens());
+            preparedStatement.setDouble(6, voo.getPreco());
+            preparedStatement.setBoolean(7, voo.isAtivo());
+            preparedStatement.setInt(8, voo.getId_voo());
 
-            stmn.executeUpdate();
+            preparedStatement.executeUpdate();
 
         } finally {
-            if (stmn != null && !stmn.isClosed()) {
-                stmn.close();
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
             }
-            if (con != null && !con.isClosed()) {
-                con.close();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
             }
         }
     }
 
     public List<Voo> ListaVoo() throws SQLException, ClassNotFoundException {
         List<Voo> ListaVoo = new ArrayList<>();
-        con = DbUtil.getConnection();
+        connection = DbUtil.getConnection();
         String query = "SELECT * FROM Voo ORDER BY origem WHERE ativo=true";
 
         try {
-            Statement st = con.createStatement();
-            ResultSet resultSet = st.executeQuery(query);
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Voo voo = new Voo();
 
@@ -97,7 +99,37 @@ public class VooDAO {
             }
         } catch (SQLException e) {
         }
-        con.close();
+        connection.close();
         return ListaVoo;
+    }
+
+    public Voo getVooById(int id) throws SQLException, ClassNotFoundException {
+        Voo voo = new Voo();
+
+        connection = DbUtil.getConnection();
+
+        String query = "SELECT * FROM Voo WHERE id_voo=?";
+
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                voo.setId_voo(resultSet.getInt("id_hotel"));
+                voo.setData_ida(resultSet.getString("data_ida"));
+                voo.setData_volta(resultSet.getString("data_volta"));
+                voo.setDestino(resultSet.getString("destino"));
+                voo.setOrigem(resultSet.getString("origem"));
+                voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
+                voo.setPreco(resultSet.getDouble("preco"));
+            }
+
+        } catch (SQLException e) {
+        }
+
+        preparedStatement.close();
+        connection.close();
+        return voo;
     }
 }
