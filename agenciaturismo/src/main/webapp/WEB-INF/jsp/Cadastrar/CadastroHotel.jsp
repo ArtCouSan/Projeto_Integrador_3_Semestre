@@ -39,5 +39,6 @@
             <input type="reset" value="Apagar"/>
             
         </form>
+        <c:import url="./Layout/rodape.jsp"/>
     </body>
 </html>

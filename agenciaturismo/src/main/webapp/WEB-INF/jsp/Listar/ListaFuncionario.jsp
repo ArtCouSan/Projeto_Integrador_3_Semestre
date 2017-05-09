@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Todos Funcionarios:</h1>
-        
-    </body>
+    <c:import url="./Layout/rodape.jsp"/>
+</body>
 </html>

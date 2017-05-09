@@ -86,6 +86,7 @@
             <input type="submit" value="Salvar"/>
             <input type="reset" value="Apagar"/>
             
-        </form>        
+        </form>
+        <c:import url="./Layout/rodape.jsp"/>
     </body>
 </html>
