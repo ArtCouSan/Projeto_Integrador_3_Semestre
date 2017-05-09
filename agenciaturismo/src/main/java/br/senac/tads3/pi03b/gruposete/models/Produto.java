@@ -5,25 +5,25 @@ public class Produto {
     private int id_produto;
     private int id_voo;
     private int id_hotel;
-    private double preco;
+    private double total_preco;
 
     // Venda com voo e sem hotel
     public Produto(int id_voo, double preco) {
         this.id_voo = id_voo;
-        this.preco = preco;
+        this.total_preco = preco;
     }
 
     // Venda com hotel e sem voo
     public Produto(double preco, int id_hotel) {
         this.id_hotel = id_hotel;
-        this.preco = preco;
+        this.total_preco = preco;
     }
 
     // Venda com voo e com hotel
     public Produto(int id_voo, int id_hotel, double preco) {
         this.id_voo = id_voo;
         this.id_hotel = id_hotel;
-        this.preco = preco;
+        this.total_preco = preco;
     }
 
     public int getId_produto() {
@@ -51,11 +51,11 @@ public class Produto {
     }
     
     public double getPreco() {
-        return preco;
+        return total_preco;
     }
 
     public void setPreco(double preco) {
-        this.preco = preco;
+        this.total_preco = preco;
     }
 
 }
