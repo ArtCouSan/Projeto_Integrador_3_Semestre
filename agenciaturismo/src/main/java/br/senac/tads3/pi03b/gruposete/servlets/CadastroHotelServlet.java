@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "hotel", urlPatterns = {"/hotel"})
+@WebServlet(name = "hotel", urlPatterns = {"/cadastro-hotel"})
 public class CadastroHotelServlet extends HttpServlet {
 
     @Override
@@ -43,13 +43,13 @@ public class CadastroHotelServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroData_saida", true);
         }
-        String quantidade_quartos = request.getParameter("quantidade_quartos");
-        if (quantidade_quartos == null || quantidade_quartos.length() < 1) {
+        int quantidade_quartos = Integer.parseInt(request.getParameter("quantidade_quartos"));
+        if (quantidade_quartos < 1) {
             erro = true;
             request.setAttribute("erroQuantidade_quartos", true);
         }
-        String quantidade_hospedes = request.getParameter("quantidade_hospedes");
-        if (quantidade_hospedes == null || quantidade_hospedes.length() < 1) {
+        int quantidade_hospedes = Integer.parseInt(request.getParameter("quantidade_hospedes"));
+        if (quantidade_hospedes < 1) {
             erro = true;
             request.setAttribute("erroQuantidade_hospedes", true);
         }

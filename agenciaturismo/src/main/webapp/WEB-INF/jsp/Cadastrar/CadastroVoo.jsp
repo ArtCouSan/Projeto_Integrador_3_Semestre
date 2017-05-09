@@ -21,7 +21,7 @@
         <br/>
 
         <label for="txtquantidade">Quantidade de Passagens:</label>  
-        <input type="text" name="quantidade" placeholder="Insira quantidade de passagens"/>
+        <input type="number" name="quantidade" placeholder="Insira quantidade de passagens"/>
         <br/>
 
         <label for="txtdataIda">Data de ida:</label>  

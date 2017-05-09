@@ -25,11 +25,11 @@
         <br/>
 
         <label for="txtdataIda">Quantidade de Quartos:</label>  
-        <input type="text" name="quantidade_quartos" placeholder="Insira a quantidade de quartos"/>
+        <input type="number" name="quantidade_quartos" placeholder="Insira a quantidade de quartos"/>
         <br/>
 
         <label for="txtdataVolta">Quantidade de Hospedes:</label>  
-        <input type="text" name="quantidade_hospedes" placeholder="Insira a quantidade de hospedes"/>
+        <input type="number" name="quantidade_hospedes" placeholder="Insira a quantidade de hospedes"/>
         <br/>
 
         <label for="txtPreco">Preco:</label>  
