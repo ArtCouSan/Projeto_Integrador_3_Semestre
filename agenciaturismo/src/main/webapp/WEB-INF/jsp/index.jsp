@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
+        <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+    </head>
+    <body>
+    <c:import url="./Layout/cabecalho.jsp"/>
+    <!--        <div>
+                <nav role="navigation">
+                    <ul id="overlay-nav-menu" class="overlay-nav-menu">
+                        <li><a href="cadastro-cliente">CADASTRAR NOVO CLIENTE</a></li>
+                        <li><a href="busca-cliente">BUSCAR CLIENTE</a></li>
+                        <li><a href="cadastro-funcionario">CADASTRAR FUNCIONARIO</a></li>
+                        <li><a href="busca-funcionario">BUSCAR FUNCIONARIO</a></li>
+                    </ul>
+                    <a data-toggle-menu class="overlay-nav-menu-toggle" href="#overlay-nav-menu"><i class="fa fa-plus"></i></a>
+                </nav>
+            </div>-->
+    <div class="curtain-menu-button" data-curtain-menu-button>
+        <div class="curtain-menu-button-toggle">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+        </div>
+    </div>
+    <!-- the menu  -->
+    <div class="curtain-menu">
+        <div class="curtain"></div>
+        <div class="curtain"></div>
+        <div class="curtain"></div>
+        <div class="curtain-menu-wrapper">
+            <ul class="curtain-menu-list menu vertical">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <script src="javascript.js" type="text/javascript"></script>
+    <c:import url="./Layout/rodape.jsp"/>
+</body>
+
+</html>

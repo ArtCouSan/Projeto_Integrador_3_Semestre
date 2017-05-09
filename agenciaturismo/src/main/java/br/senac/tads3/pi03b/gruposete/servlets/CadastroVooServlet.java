@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "Voo", urlPatterns = {"/voo"})
+@WebServlet(name = "Voo", urlPatterns = {"/cadastro-voo"})
 public class CadastroVooServlet extends HttpServlet {
 
     @Override
@@ -24,7 +24,7 @@ public class CadastroVooServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean erro = false;
 
@@ -48,8 +48,8 @@ public class CadastroVooServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroData_volta", true);
         }
-        int quantidade_passagens = Integer.parseInt(request.getParameter("quantidade"));
-        if (destino == null || destino.length() < 1) {
+        int quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
+        if (quantidade_passagens < 1) {
             erro = true;
             request.setAttribute("erroQuantidade_passagens", true);
         }
@@ -67,7 +67,7 @@ public class CadastroVooServlet extends HttpServlet {
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoVoo", voo);
                 response.sendRedirect("index.html");
-                
+
             } catch (Exception ex) {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -6,8 +6,8 @@ public class Hotel {
     private String nome_hotel;
     private String data_entrada;
     private String data_saida;
-    private String quantidade_quartos;
-    private String quantidade_hospedes;
+    private int quantidade_quartos;
+    private int quantidade_hospedes;
     private double preco;
     private boolean ativo;
 
@@ -15,7 +15,8 @@ public class Hotel {
 
     }
 
-    public Hotel(String nome_hotel, String data_entrada, String data_saida, String quantidade_quartos, String quantidade_hospedes, double preco, boolean ativo) {
+    public Hotel(String nome_hotel, String data_entrada, String data_saida, 
+            int quantidade_quartos, int quantidade_hospedes, double preco, boolean ativo) {
         this.nome_hotel = nome_hotel;
         this.data_entrada = data_entrada;
         this.data_saida = data_saida;
@@ -57,19 +58,19 @@ public class Hotel {
         this.data_saida = data_saida;
     }
 
-    public String getQuantidade_quartos() {
+    public int getQuantidade_quartos() {
         return quantidade_quartos;
     }
 
-    public void setQuantidade_quartos(String quantidade_quartos) {
+    public void setQuantidade_quartos(int quantidade_quartos) {
         this.quantidade_quartos = quantidade_quartos;
     }
 
-    public String getQuantidade_hospedes() {
+    public int getQuantidade_hospedes() {
         return quantidade_hospedes;
     }
 
-    public void setQuantidade_hospedes(String quantidade_hospedes) {
+    public void setQuantidade_hospedes(int quantidade_hospedes) {
         this.quantidade_hospedes = quantidade_hospedes;
     }
 
