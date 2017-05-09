@@ -14,7 +14,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>FUTURA PAGINA DE BUSCA DE FUNCIONARIOS</h1>
+    <c:import url="./Layout/cabecalho.jsp"/>
+    <h1>FUTURA PAGINA DE BUSCA DE FUNCIONARIOS</h1>
     <c:import url="./Layout/rodape.jsp"/>
 </body>
 </html>

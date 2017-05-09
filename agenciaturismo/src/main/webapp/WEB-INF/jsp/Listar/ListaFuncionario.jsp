@@ -12,7 +12,8 @@
         <title>Funcionários</title>
     </head>
     <body>
-        <h1>Todos Funcionarios:</h1>
+    <c:import url="./Layout/cabecalho.jsp"/>
+    <h1>Todos Funcionarios:</h1>
     <c:import url="./Layout/rodape.jsp"/>
 </body>
 </html>

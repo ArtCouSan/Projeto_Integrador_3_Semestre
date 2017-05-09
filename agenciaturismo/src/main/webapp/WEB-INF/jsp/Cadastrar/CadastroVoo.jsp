@@ -9,36 +9,37 @@
         <title>Cadastro de Voo</title>
     </head>
     <body>
-        <form>
+    <c:import url="./Layout/cabecalho.jsp"/>
+    <form>
 
-            <label for="txtorigem">Origem:</label>  
-            <input type="text" name="origem" placeholder="Insira a origem"/>
-            <br/>
-            
-            <label for="txtdestino">Destino:</label>  
-            <input type="text" name="destino" placeholder="Insira o destino"/>
-            <br/>
-            
-            <label for="txtquantidade">Quantidade de Passagens:</label>  
-            <input type="text" name="quantidade" placeholder="Insira quantidade de passagens"/>
-            <br/>
-            
-            <label for="txtdataIda">Data de ida:</label>  
-            <input type="text" name="data_ida" placeholder="Insira data de ida"/>
-            <br/>
-            
-            <label for="txtdataVolta">Data de volta:</label>  
-            <input type="text" name="data_volta" placeholder="Insira data de volta"/>
-            <br/>
-            
-            <label for="txtPreco">Preco:</label>  
-            <input type="number" name="preco" placeholder="Insira o preço"/>
-            <br/>
-            
-            <input type="submit" value="Salvar"/>
-            <input type="reset" value="Apagar"/>
-            
-        </form>
-        <c:import url="./Layout/rodape.jsp"/>
-    </body>
+        <label for="txtorigem">Origem:</label>  
+        <input type="text" name="origem" placeholder="Insira a origem"/>
+        <br/>
+
+        <label for="txtdestino">Destino:</label>  
+        <input type="text" name="destino" placeholder="Insira o destino"/>
+        <br/>
+
+        <label for="txtquantidade">Quantidade de Passagens:</label>  
+        <input type="text" name="quantidade" placeholder="Insira quantidade de passagens"/>
+        <br/>
+
+        <label for="txtdataIda">Data de ida:</label>  
+        <input type="text" name="data_ida" placeholder="Insira data de ida"/>
+        <br/>
+
+        <label for="txtdataVolta">Data de volta:</label>  
+        <input type="text" name="data_volta" placeholder="Insira data de volta"/>
+        <br/>
+
+        <label for="txtPreco">Preco:</label>  
+        <input type="number" name="preco" placeholder="Insira o preço"/>
+        <br/>
+
+        <input type="submit" value="Salvar"/>
+        <input type="reset" value="Apagar"/>
+
+    </form>
+    <c:import url="./Layout/rodape.jsp"/>
+</body>
 </html>
