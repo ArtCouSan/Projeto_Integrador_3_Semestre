@@ -31,7 +31,7 @@
             <input type="text" name="numero" placeholder="Insira numero"/>
 
             <label for="txtcomplemento">Complemento:</label>
-            <input type="text" name="rua" placeholder="Insira complemento"/>
+            <input type="text" name="complemento" placeholder="Insira complemento"/>
 
             <label for="txtcep">CEP:</label>
             <input type="text" name="cep" placeholder="Insira cep"/>

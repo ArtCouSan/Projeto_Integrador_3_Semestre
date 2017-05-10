@@ -4,13 +4,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="jss/eventos.js" type="text/javascript" ></script>
-        <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
-        <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>
+<!--        <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
+        <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>-->
         <title>Cadastro de Funcionario</title>
     </head>
     <body>
     <c:import url="./Layout/cabecalho.jsp"/>
-    <form action="cadastro-funcionario" method="post">
+    <form action="${pageContext.request.contextPath}/CadastroFuncionario" method="post">
 
         <label for="txtnome">Nome:</label>  
         <input type="text" name="nome" placeholder="Insira nome"/>
@@ -31,7 +31,7 @@
         <input type="text" name="numero" placeholder="Insira numero"/>
 
         <label for="txtcomplemento">Complemento:</label>
-        <input type="text" name="rua" placeholder="Insira complemento"/>
+        <input type="text" name="complemento" placeholder="Insira complemento"/>
 
         <label for="txtlogradouro">Logradouro:</label>
         <input type="text" name="logradouro" placeholder="Insira logradouro"/>
