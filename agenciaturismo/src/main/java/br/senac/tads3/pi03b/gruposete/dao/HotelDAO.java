@@ -93,7 +93,7 @@ public class HotelDAO {
                 hotel.setData_saida(resultSet.getString("data_saida"));
                 hotel.setQuantidade_quartos(resultSet.getInt("quantidade_quartos"));
                 hotel.setQuantidade_hospedes(resultSet.getInt("quantidade_hospedes"));
-                hotel.setPreco(resultSet.getDouble("preco"));
+                hotel.setPreco(resultSet.getFloat("preco"));
 
                 ListaHotel.add(hotel);
             }
@@ -122,7 +122,7 @@ public class HotelDAO {
                 hotel.setData_saida(resultSet.getString("data_saida"));
                 hotel.setQuantidade_quartos(resultSet.getInt("quantidade_quartos"));
                 hotel.setQuantidade_hospedes(resultSet.getInt("quantidade_hospedes"));
-                hotel.setPreco(resultSet.getDouble("preco"));
+                hotel.setPreco(resultSet.getFloat("preco"));
             }
             
         } catch (SQLException e) {

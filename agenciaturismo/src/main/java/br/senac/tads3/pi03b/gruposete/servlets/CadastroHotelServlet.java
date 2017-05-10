@@ -53,7 +53,7 @@ public class CadastroHotelServlet extends HttpServlet {
 //            erro = true;
 //            request.setAttribute("erroQuantidade_hospedes", true);
 //        }
-        double preco = Double.parseDouble(request.getParameter("preco"));
+        float preco = Float.parseFloat(request.getParameter("preco"));
 //        if (preco < 0) {
 //            erro = true;
 //            request.setAttribute("erroPreco", true);

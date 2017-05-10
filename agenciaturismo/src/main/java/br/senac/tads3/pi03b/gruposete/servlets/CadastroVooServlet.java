@@ -64,7 +64,7 @@ public class CadastroVooServlet extends HttpServlet {
 
         }
 
-        double preco = Double.parseDouble(request.getParameter("preco"));
+        float preco = Float.parseFloat(request.getParameter("preco"));
 //        if (preco < 0) {
 //            erro = true;
 //            request.setAttribute("erroPreco", true);

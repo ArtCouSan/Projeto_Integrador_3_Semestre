@@ -93,7 +93,7 @@ public class VooDAO {
                 voo.setDestino(resultSet.getString("destino"));
                 voo.setOrigem(resultSet.getString("origem"));
                 voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-                voo.setPreco(resultSet.getDouble("preco"));
+                voo.setPreco(resultSet.getFloat("preco"));
 
                 ListaVoo.add(voo);
             }
@@ -122,7 +122,7 @@ public class VooDAO {
                 voo.setDestino(resultSet.getString("destino"));
                 voo.setOrigem(resultSet.getString("origem"));
                 voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-                voo.setPreco(resultSet.getDouble("preco"));
+                voo.setPreco(resultSet.getFloat("preco"));
             }
 
         } catch (SQLException e) {
