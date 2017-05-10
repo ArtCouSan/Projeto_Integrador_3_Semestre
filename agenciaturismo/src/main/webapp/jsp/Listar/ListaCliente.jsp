@@ -1,6 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page session="true" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +6,7 @@
         <title>Listar Cliente</title>
     </head>
     <body>
-        <c:import url="./Layout/cabecalho.jsp"/>
+        <c:import url="./Layout/cabecalho.jsp" />
         <table>
             <thead>
                 <tr>

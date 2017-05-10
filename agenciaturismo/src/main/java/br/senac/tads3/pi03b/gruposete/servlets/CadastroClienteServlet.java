@@ -27,82 +27,82 @@ public class CadastroClienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        boolean erro = false;
+        boolean erro = true;
 
         String nome = request.getParameter("nome");
-        if (nome == null || nome.length() < 1) {
-            erro = true;
-            request.setAttribute("erroNome", true);
-        }
+//        if (nome == null || nome.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroNome", true);
+//        }
         String cpf = request.getParameter("cpf");
-        if (cpf == null || !"   .   .   -  ".equals(cpf)) {
-            erro = true;
-            request.setAttribute("erroCpf", true);
-        }
+//        if (cpf == null || !"   .   .   -  ".equals(cpf)) {
+//            erro = true;
+//            request.setAttribute("erroCpf", true);
+//        }
         String sexo = request.getParameter("sexo");
-        if ("".equals(sexo)) {
-            erro = true;
-            request.setAttribute("erroSexo", true);
-        }
+//        if ("".equals(sexo)) {
+//            erro = true;
+//            request.setAttribute("erroSexo", true);
+//        }
         String data_nasc = request.getParameter("nascimento");
-        if (data_nasc == null || !"  /  /    ".equals(data_nasc)) {
-            erro = true;
-            request.setAttribute("erroNascimento", true);
-        }
+//        if (data_nasc == null || !"  /  /    ".equals(data_nasc)) {
+//            erro = true;
+//            request.setAttribute("erroNascimento", true);
+//        }
 
         String telefone = request.getParameter("telefone");
-        if (telefone == null || !"(  )    -    ".equals(telefone)) {
-            erro = true;
-            request.setAttribute("erroTelefone", true);
-        }
+//        if (telefone == null || !"(  )    -    ".equals(telefone)) {
+//            erro = true;
+//            request.setAttribute("erroTelefone", true);
+//        }
         String celular = request.getParameter("celular");
-        if (celular == null || !"(  )     -    ".equals(celular)) {
-            erro = true;
-            request.setAttribute("erroCelular", true);
-        }
+//        if (celular == null || !"(  )     -    ".equals(celular)) {
+//            erro = true;
+//            request.setAttribute("erroCelular", true);
+//        }
         String email = request.getParameter("email");
-        if (email == null || !email.contains("@") && !email.contains(".com") || !email.contains(".com.br")) {
-            erro = true;
-            request.setAttribute("erroEmail", true);
-        }
+//        if (email == null || !email.contains("@") && !email.contains(".com") || !email.contains(".com.br")) {
+//            erro = true;
+//            request.setAttribute("erroEmail", true);
+//        }
 
         int numero = Integer.parseInt(request.getParameter("numero"));
-        if (numero <= 0) {
-            erro = true;
-            request.setAttribute("erroNumero", true);
-        }
+//        if (numero <= 0) {
+//            erro = true;
+//            request.setAttribute("erroNumero", true);
+//        }
         String cep = request.getParameter("cep");
-        if (cep == null || !"     -   ".equals(cep)) {
-            erro = true;
-            request.setAttribute("erroCep", true);
-        }
+//        if (cep == null || !"     -   ".equals(cep)) {
+//            erro = true;
+//            request.setAttribute("erroCep", true);
+//        }
         String rua = request.getParameter("rua");
-        if (rua == null || rua.length() < 1) {
-            erro = true;
-            request.setAttribute("erroRua", true);
-        }
+//        if (rua == null || rua.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroRua", true);
+//        }
         String bairro = request.getParameter("bairro");
-        if (bairro == null || bairro.length() < 1) {
-            erro = true;
-            request.setAttribute("erroBairro", true);
-        }
+//        if (bairro == null || bairro.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroBairro", true);
+//        }
         String cidade = request.getParameter("cidade");
-        if (cidade == null || cidade.length() < 1) {
-            erro = true;
-            request.setAttribute("erroCidade", true);
-        }
+//        if (cidade == null || cidade.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroCidade", true);
+//        }
         String logradouro = request.getParameter("logradouro");
-        if (logradouro == null || logradouro.length() < 1) {
-            erro = true;
-            request.setAttribute("erroLogradouro", true);
-        }
+//        if (logradouro == null || logradouro.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroLogradouro", true);
+//        }
         String complemento = request.getParameter("complemento");
-        if (complemento == null || complemento.length() < 1) {
-            erro = true;
-            request.setAttribute("erroComplemento", true);
-        }
+//        if (complemento == null || complemento.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroComplemento", true);
+//        }
 
-        if (!erro) {
+        if (erro) {   
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, bairro, cidade, logradouro, complemento, celular,
                     telefone, email, true);

@@ -3,13 +3,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
-        <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>
+<!--        <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
+        <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>-->
         <title>Buscar Funcionario</title>
     </head>
     <body>
     <c:import url="./Layout/cabecalho.jsp"/>
-    <form action="${pageContext.request.contextPath}/BuscaFuncionario">
+    <form action="${pageContext.request.contextPath}/BuscaFuncionario" method="post">
 
         <label for="txtnome">Nome:</label>  
         <input type="text" name="nome" placeholder="Insira nome"/>

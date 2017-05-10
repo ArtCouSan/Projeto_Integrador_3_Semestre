@@ -10,7 +10,7 @@
     </head>
     <body>
     <c:import url="./Layout/cabecalho.jsp"/>
-    <form action="${pageContext.request.contextPath}/CadastroHotel">
+    <form action="${pageContext.request.contextPath}/CadastroHotel" method="post">
 
         <label for="txtorigem">Nome do Hotel:</label>  
         <input type="text" name="nome_hotel" placeholder="Insira o nome do hotel"/>

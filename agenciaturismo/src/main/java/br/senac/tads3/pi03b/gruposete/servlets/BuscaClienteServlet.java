@@ -3,7 +3,8 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -29,6 +30,7 @@ public class BuscaClienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         boolean erro = false;
 
         String nome = request.getParameter("nome");
@@ -45,7 +47,17 @@ public class BuscaClienteServlet extends HttpServlet {
 
         String email = request.getParameter("email");
 
-        int numero = Integer.parseInt(request.getParameter("numero"));
+        int numero;
+
+        try {
+
+            numero = Integer.parseInt(request.getParameter("numero"));
+
+        } catch (NumberFormatException e) {
+
+            numero = 0;
+
+        }
 
         String cep = request.getParameter("cep");
 
@@ -60,29 +72,36 @@ public class BuscaClienteServlet extends HttpServlet {
         String complemento = request.getParameter("complemento");
 
         if (!erro) {
+
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, bairro, cidade, logradouro, complemento, celular,
                     telefone, email, true);
+
             try {
-
-                ClienteDAO dao = new ClienteDAO();
-                ArrayList<Cliente> encontrados = dao.procurarCliente(cliHumilde);
-                // sessao true
-                HttpSession sessao = request.getSession(true);
-                sessao.setAttribute("ListaCliente", encontrados);
-                response.sendRedirect("jsp/index.html");
-
-            } catch (Exception ex) {
                 
+                ClienteDAO dao = new ClienteDAO();
+                List<Cliente> encontrados = dao.procurarCliente(cliHumilde);
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("encontrados", encontrados);
+                for (Cliente encontrado : encontrados) {
+                    System.out.println(encontrado.getBairro());
+                    System.out.println(encontrado.getNome());
+                }
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaCliente.jsp");
+                dispatcher.forward(request, response);
+
+            } catch (IOException | SQLException | ClassNotFoundException ex) {
+
                 Logger.getLogger(BuscaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
-            
+
         } else {
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/BuscaCliente.jsp");
-            
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListarCliente.jsp");
+
             dispatcher.forward(request, response);
-            
+
         }
     }
 
