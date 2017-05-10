@@ -7,8 +7,13 @@ public final class Funcionario extends Pessoa {
     private String filial;
     private String departamento;
 
-    public Funcionario(String nome, String cpf, String sexo, String data_nasc, int numero, String cep, String rua, String bairro, String cidade, String logradouro, String complemento, String celular, String telefone, String email, boolean ativo,String cargo, String filial, String departamento) {
-        super(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, complemento, celular, telefone, email, ativo);
+    public Funcionario(String nome, String cpf, String sexo, String data_nasc, 
+            int numero, String cep, String rua, String bairro, String cidade, 
+            String logradouro, String complemento, String celular, String telefone, 
+            String email, boolean ativo,String cargo, String filial, String departamento) {
+        
+        super(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, 
+                complemento, celular, telefone, email, ativo);
         this.cargo = cargo;
         this.filial = filial;
         this.departamento = departamento;

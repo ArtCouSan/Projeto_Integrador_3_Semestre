@@ -25,7 +25,7 @@ public class VendaDAO {
         // Comando SQL.
         String slq = "INSERT INTO venda "
                 + "(id_cliente, id_produto, id_func, preco) "
-                + "VALUES (? , ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(slq);
 
@@ -177,6 +177,7 @@ public class VendaDAO {
      * @param id
      * @return venda.
      * @throws SQLException
+     * @throws java.lang.ClassNotFoundException
      */
     public Venda procurarVenda(int id) throws SQLException, ClassNotFoundException {
 
@@ -225,6 +226,7 @@ public class VendaDAO {
      * @param id
      * @return
      * @throws SQLException
+     * @throws java.lang.ClassNotFoundException
      */
     public ArrayList<Carrinho> procurarItens(int id) throws SQLException, ClassNotFoundException {
 
@@ -270,6 +272,5 @@ public class VendaDAO {
         return listaResultado;
 
     }
-
 
 }
