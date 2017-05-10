@@ -44,7 +44,6 @@ departamento VARCHAR(100) NOT NULL,
 filial VARCHAR(100) NOT NULL,
 ativo TINYINT(1) NOT NULL,
 PRIMARY KEY (id_func),
-FOREIGN KEY id_contato (id_contato) REFERENCES Contato(id_contato),
 UNIQUE KEY id_func (id_func)  
 );
 
@@ -90,16 +89,26 @@ UNIQUE KEY id_produto (id_produto)
 
 CREATE TABLE Venda(
 id_venda INT(3) NOT NULL AUTO_INCREMENT,
-id_produto INT(3) NOT NULL,
 id_cliente INT(3) NOT NULL,
 id_funcionario INT(3) NOT NULL,
 ativo TINYINT(1) NOT NULL,
-preco FLOAT(3.2) NOT NULL,    
+total_preco FLOAT(3.2) NOT NULL,    
 PRIMARY KEY (id_venda),
 FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),
 FOREIGN KEY id_funcionario (id_funcionario) REFERENCES Funcionario(id_func),
 FOREIGN KEY id_produto (id_produto) REFERENCES Produto(id_produto),
 UNIQUE KEY id_venda (id_venda)
+);
+
+CREATE TABLE Itens_Venda (
+id_lista INT(5) NOT NULL AUTO_INCREMENT,
+id_venda INT(5) NOT NULL,
+id_produto INT(5) NOT NULL,
+quantidade INT(50) NOT NULL,
+preco FLOAT(3.2) NOT NULL,
+PRIMARY KEY  (id_lista),
+FOREIGN KEY id_venda(id_venda) REFERENCES Venda(id_venda),
+FOREIGN KEY id_produto(id_produto) REFERENCES PRODUTO(id_produto)
 );
 
 CREATE TABLE Usuario(
