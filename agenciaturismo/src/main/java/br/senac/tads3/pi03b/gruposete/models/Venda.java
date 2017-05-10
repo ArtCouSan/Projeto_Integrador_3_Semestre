@@ -58,4 +58,12 @@ public class Venda {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+    public boolean isAtivo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setTotal_quantidade(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

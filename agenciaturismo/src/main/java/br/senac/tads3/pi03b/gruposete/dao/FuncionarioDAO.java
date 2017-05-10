@@ -17,7 +17,7 @@ public class FuncionarioDAO {
 
     public void inserir(Funcionario funcionario) throws SQLException, Exception {
 
-        String sql = "INSERT INTO Funcionario (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, complemento, celular, telefone, email, cargo, filial, departamento ativo) "
+        String sql = "INSERT INTO Funcionario (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, complemento, celular, telefone, email, cargo, filial, departamento, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
