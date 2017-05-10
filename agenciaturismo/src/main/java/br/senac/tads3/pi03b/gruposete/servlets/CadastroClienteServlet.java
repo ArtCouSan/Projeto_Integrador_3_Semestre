@@ -16,20 +16,18 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CadastroClienteServlet", urlPatterns = {"/CadastroCliente"})
 public class CadastroClienteServlet extends HttpServlet {
 
-    private ClienteDAO dao;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Cadastrar/CadastroCliente.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        boolean erro = true;
+        boolean erro = false;
 
         String nome = request.getParameter("nome");
 //        if (nome == null || nome.length() < 1) {
@@ -105,19 +103,20 @@ public class CadastroClienteServlet extends HttpServlet {
 //        }
 
         if (!erro) {
+            Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
+                    cep, rua, bairro, cidade, logradouro, complemento, celular,
+                    telefone, email, true);
             try {
-                Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                        cep, rua, bairro, cidade, logradouro, complemento, celular,
-                        telefone, email, true);
+
+                ClienteDAO dao = new ClienteDAO();
                 dao.inserir(cliHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoCliente", cliHumilde);
-                response.sendRedirect("index.html");
+                response.sendRedirect("jsp/index.html");
 
             } catch (Exception ex) {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroCliente.jsp");
             dispatcher.forward(request, response);
