@@ -19,7 +19,7 @@
         <input type="text" name="destino" placeholder="Insira o destino"/>
 
         <label for="txtquantidade">Quantidade de Passagens:</label>  
-        <input type="number" name="quantidade" placeholder="Insira quantidade de passagens"/>
+        <input type="number" name="quantidade_passagens" placeholder="Insira quantidade de passagens"/>
 
         <label for="txtdataIda">Data de ida:</label>  
         <input type="text" name="data_ida" placeholder="Insira data de ida"/>
