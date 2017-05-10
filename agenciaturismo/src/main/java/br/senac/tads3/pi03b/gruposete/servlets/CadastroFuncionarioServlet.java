@@ -138,7 +138,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                 dao.inserir(funcHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoFuncionario", funcHumilde);
-                response.sendRedirect("index.html");
+                response.sendRedirect("jsp/index.html");
 
             } catch (Exception ex) {
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
