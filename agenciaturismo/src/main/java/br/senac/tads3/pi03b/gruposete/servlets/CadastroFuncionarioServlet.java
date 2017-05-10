@@ -22,14 +22,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author danimo
  */
-@WebServlet(name = "CadastroFuncionarioServlet", urlPatterns = {"/cadastro-funcionario"})
+@WebServlet(name = "CadastroFuncionarioServlet", urlPatterns = {"/CadastroFuncionario"})
 public class CadastroFuncionarioServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroFuncionario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Cadastrar/CadastroFuncionario.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -138,13 +138,13 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                 dao.inserir(funcHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoFuncionario", funcHumilde);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("jsp/index.html");
 
             } catch (Exception ex) {
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastrarFuncionario.jsp");
             dispatcher.forward(request, response);
         }
     }

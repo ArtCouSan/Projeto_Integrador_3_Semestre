@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "Voo", urlPatterns = {"/cadastro-voo"})
+@WebServlet(name = "CadastroVooServlet", urlPatterns = {"/CadastroVoo"})
 public class CadastroVooServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroVoo.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroVoo.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -66,13 +66,13 @@ public class CadastroVooServlet extends HttpServlet {
                 dao.inserir(voo);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoVoo", voo);
-                response.sendRedirect("index.html");
+                response.sendRedirect("jsp/index.html");
 
             } catch (Exception ex) {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroVoo.jsp");
             dispatcher.forward(request, response);
         }
     }
