@@ -133,8 +133,51 @@ public class VooDAO {
         return voo;
     }
 
-    public List<Voo> procurarVoo(Voo voo) {
+    public List<Voo> procurarVoo(Voo voo) throws SQLException, ClassNotFoundException {
+        List<Voo> listaResultado = new ArrayList<>();
 
+        connection = DbUtil.getConnection();
+
+        String sql = "SELECT * FROM hotel WHERE"
+                + " nome_hotel = ?"
+                + " OR data_entrada = ?"
+                + " OR data_saida = ?"
+                + " OR preco = ?"
+                + " OR quantidade_quartos = ?"
+                + " OR quantidade_hospedes = ?";
+
+        preparedStatement = connection.prepareStatement(sql);
+
+        // Insercoes.
+        preparedStatement.setString(1, voo.getData_ida());
+        preparedStatement.setString(2, voo.getData_volta());
+        preparedStatement.setString(3, voo.getDestino());
+        preparedStatement.setString(4, voo.getOrigem());
+        preparedStatement.setInt(5, voo.getQuantidade_passagens());
+        preparedStatement.setDouble(6, voo.getPreco());
+
+        // Recebe e executa pergunta.
+        try (ResultSet result = preparedStatement.executeQuery()) {
+
+            // Loop com resultados.
+            while (result.next()) {
+
+                Voo voos = new Voo();
+
+                // Insere informacoes.
+                voos.setId_voo(result.getInt("id_voo"));
+                voos.setData_ida(result.getString("data_ida"));
+                voos.setData_volta(result.getString("data_volta"));
+                voos.setQuantidade_passagens(result.getInt("quantidade_passagens"));
+                voos.setPreco(result.getFloat("preco"));
+
+                // Insere na lista.
+                listaResultado.add(voos);
+
+            }
+
+            // Retorna lista.
+            return listaResultado;
+        }
     }
-    
 }

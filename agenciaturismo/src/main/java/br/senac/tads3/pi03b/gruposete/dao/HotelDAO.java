@@ -181,8 +181,6 @@ public class HotelDAO {
 
             // Retorna lista.
             return listaResultado;
-
         }
-
     }
 }
