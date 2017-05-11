@@ -157,27 +157,30 @@ public class VooDAO {
         preparedStatement.setDouble(6, voo.getPreco());
 
         // Recebe e executa pergunta.
-        try (ResultSet result = preparedStatement.executeQuery()) {
+        try {
+            resultSet = preparedStatement.executeQuery();
 
             // Loop com resultados.
-            while (result.next()) {
+            while (resultSet.next()) {
 
                 Voo voos = new Voo();
 
                 // Insere informacoes.
-                voos.setId_voo(result.getInt("id_voo"));
-                voos.setData_ida(result.getString("data_ida"));
-                voos.setData_volta(result.getString("data_volta"));
-                voos.setQuantidade_passagens(result.getInt("quantidade_passagens"));
-                voos.setPreco(result.getFloat("preco"));
+                voos.setId_voo(resultSet.getInt("id_voo"));
+                voos.setData_ida(resultSet.getString("data_ida"));
+                voos.setData_volta(resultSet.getString("data_volta"));
+                voos.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
+                voos.setPreco(resultSet.getFloat("preco"));
 
                 // Insere na lista.
                 listaResultado.add(voos);
 
             }
 
-            // Retorna lista.
-            return listaResultado;
+        } catch (SQLException e) {
         }
+        
+        // Retorna lista.
+        return listaResultado;
     }
 }

@@ -228,46 +228,46 @@ public class FuncionarioDAO {
         preparedStatement.setString(15, funcionario.getCargo());
         preparedStatement.setString(16, funcionario.getFilial());
         preparedStatement.setString(17, funcionario.getDepartamento());
-        
+
         // Recebe e executa pergunta.
-        try (ResultSet result = preparedStatement.executeQuery()) {
+        try {
+            resultSet = preparedStatement.executeQuery();
 
             // Loop com resultados.
-            while (result.next()) {
+            while (resultSet.next()) {
 
                 // Cria cliente.
                 Funcionario funcionarios = new Funcionario();
 
                 // Insere informacoes.
-                funcionarios.setId_func(result.getInt("id_func"));
-                funcionarios.setBairro(result.getString("bairro"));
-                funcionarios.setCelular(result.getString("celular"));
-                funcionarios.setCep(result.getString("cep"));
-                funcionarios.setComplemento(result.getString("complemento"));
-                funcionarios.setCpf(result.getString("cpf"));
-                funcionarios.setData_nasc(result.getString("data_nasc"));
-                funcionarios.setEmail(result.getString("email"));
-                funcionarios.setLogradouro(result.getString("logradouro"));
-                funcionarios.setNome(result.getString("nome"));
-                funcionarios.setNumero(result.getInt("numero"));
-                funcionarios.setRua(result.getString("rua"));
-                funcionarios.setSexo(result.getString("sexo"));
-                funcionarios.setTelefone(result.getString("telefone"));
-                funcionarios.setCidade(result.getString("cidade"));
-                funcionarios.setCargo(result.getString("cargo"));
-                funcionarios.setFilial(result.getString("filial"));
-                funcionarios.setDepartamento(result.getString("departamento"));
- 
+                funcionarios.setId_func(resultSet.getInt("id_func"));
+                funcionarios.setBairro(resultSet.getString("bairro"));
+                funcionarios.setCelular(resultSet.getString("celular"));
+                funcionarios.setCep(resultSet.getString("cep"));
+                funcionarios.setComplemento(resultSet.getString("complemento"));
+                funcionarios.setCpf(resultSet.getString("cpf"));
+                funcionarios.setData_nasc(resultSet.getString("data_nasc"));
+                funcionarios.setEmail(resultSet.getString("email"));
+                funcionarios.setLogradouro(resultSet.getString("logradouro"));
+                funcionarios.setNome(resultSet.getString("nome"));
+                funcionarios.setNumero(resultSet.getInt("numero"));
+                funcionarios.setRua(resultSet.getString("rua"));
+                funcionarios.setSexo(resultSet.getString("sexo"));
+                funcionarios.setTelefone(resultSet.getString("telefone"));
+                funcionarios.setCidade(resultSet.getString("cidade"));
+                funcionarios.setCargo(resultSet.getString("cargo"));
+                funcionarios.setFilial(resultSet.getString("filial"));
+                funcionarios.setDepartamento(resultSet.getString("departamento"));
+
                 // Insere na lista.
                 listaResultado.add(funcionarios);
 
             }
 
-            // Retorna lista.
-            return listaResultado;
-
+        } catch (SQLException e) {
         }
-
+        
+        // Retorna lista.
+        return listaResultado;
     }
-
 }
