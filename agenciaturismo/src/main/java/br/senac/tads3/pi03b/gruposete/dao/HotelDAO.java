@@ -132,4 +132,8 @@ public class HotelDAO {
         connection.close();
         return hotel;
     }
+
+    public List<Hotel> procurarHotel(Hotel hotel) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
