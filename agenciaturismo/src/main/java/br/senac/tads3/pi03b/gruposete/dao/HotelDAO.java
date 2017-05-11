@@ -102,19 +102,19 @@ public class HotelDAO {
         connection.close();
         return ListaHotel;
     }
-    
+
     public Hotel getHotelById(int id) throws SQLException, ClassNotFoundException {
         Hotel hotel = new Hotel();
-        
+
         connection = DbUtil.getConnection();
-        
+
         String query = "SELECT * FROM Hotel WHERE id_hotel=?";
-        
+
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
-            
+
             while (resultSet.next()) {
                 hotel.setId_hotel(resultSet.getInt("id_hotel"));
                 hotel.setNome_hotel(resultSet.getString("nome_hotel"));
@@ -124,16 +124,65 @@ public class HotelDAO {
                 hotel.setQuantidade_hospedes(resultSet.getInt("quantidade_hospedes"));
                 hotel.setPreco(resultSet.getFloat("preco"));
             }
-            
+
         } catch (SQLException e) {
         }
-        
+
         preparedStatement.close();
         connection.close();
         return hotel;
     }
 
-    public List<Hotel> procurarHotel(Hotel hotel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Hotel> procurarHotel(Hotel hotel) throws ClassNotFoundException, SQLException {
+
+        List<Hotel> listaResultado = new ArrayList<>();
+
+        connection = DbUtil.getConnection();
+
+        String sql = "SELECT * FROM hotel WHERE"
+                + " nome_hotel = ?"
+                + " OR data_entrada = ?"
+                + " OR data_saida = ?"
+                + " OR preco = ?"
+                + " OR quantidade_quartos = ?"
+                + " OR quantidade_hospedes = ?";
+
+        preparedStatement = connection.prepareStatement(sql);
+
+        // Insercoes.
+        preparedStatement.setString(1, hotel.getNome_hotel());
+        preparedStatement.setString(2, hotel.getData_entrada());
+        preparedStatement.setString(3, hotel.getData_saida());
+        preparedStatement.setDouble(4, hotel.getPreco());
+        preparedStatement.setInt(5, hotel.getQuantidade_quartos());
+        preparedStatement.setInt(6, hotel.getQuantidade_hospedes());
+
+        // Recebe e executa pergunta.
+        try (ResultSet result = preparedStatement.executeQuery()) {
+
+            // Loop com resultados.
+            while (result.next()) {
+
+                Hotel hoteis = new Hotel();
+
+                // Insere informacoes.
+                hoteis.setId_hotel(result.getInt("id_hotel"));
+                hoteis.setData_entrada(result.getString("data_entrada"));
+                hoteis.setData_saida(result.getString("data_saida"));
+                hoteis.setQuantidade_hospedes(result.getInt("quantidade_hospedes"));
+                hoteis.setQuantidade_quartos(result.getInt("quantidade_quartos"));
+                hoteis.setPreco(result.getFloat("preco"));
+                hoteis.setNome_hotel(result.getString("nome_hotel"));
+
+                // Insere na lista.
+                listaResultado.add(hoteis);
+
+            }
+
+            // Retorna lista.
+            return listaResultado;
+
+        }
+
     }
 }

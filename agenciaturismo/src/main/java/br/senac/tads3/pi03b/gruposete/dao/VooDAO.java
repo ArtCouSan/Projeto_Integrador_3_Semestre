@@ -132,4 +132,9 @@ public class VooDAO {
         connection.close();
         return voo;
     }
+
+    public List<Voo> procurarVoo(Voo voo) {
+
+    }
+    
 }

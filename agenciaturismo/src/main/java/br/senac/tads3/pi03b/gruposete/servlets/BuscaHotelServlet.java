@@ -81,7 +81,6 @@ public class BuscaHotelServlet extends HttpServlet {
             try {
                 
                 HotelDAO dao = new HotelDAO();
-                //dao.
                 List<Hotel> encontrados = dao.procurarHotel(hotel);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("encontrados", encontrados);
