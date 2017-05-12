@@ -53,16 +53,16 @@ public class VendaDAO {
                 + "(Id_produto, quantidade, preco, id_venda) "
                 + "VALUES (? , ?, ?, ?)";
 
-        PreparedStatement stmt = connection.prepareStatement(slq);
+        preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
-        stmt.setInt(1, id_produto);
-        stmt.setInt(2, quantidade);
-        stmt.setFloat(3, preco);
-        stmt.setInt(4, id_venda);
+        preparedStatement.setInt(1, id_produto);
+        preparedStatement.setInt(2, quantidade);
+        preparedStatement.setFloat(3, preco);
+        preparedStatement.setInt(4, id_venda);
 
         // Executa.
-        stmt.execute();
+        preparedStatement.execute();
 
         // Fecha conexao.
         connection.close();
@@ -77,19 +77,19 @@ public class VendaDAO {
         // Comando SQL.
         String slq = "SELECT MAX(id_venda) FROM venda";
 
-        PreparedStatement stmt = connection.prepareStatement(slq);
+        preparedStatement = connection.prepareStatement(slq);
 
         // Executa e recebe resultado.
-        ResultSet result = stmt.executeQuery();
+        resultSet = preparedStatement.executeQuery();
 
         // Declara id.
         int maiorID = 0;
 
         // Loop de resultado.
-        while (result.next()) {
+        while (resultSet.next()) {
 
             // Pega maximo id.
-            maiorID = result.getInt("MAX(id_venda)");
+            maiorID = resultSet.getInt("MAX(id_venda)");
 
         }
 
@@ -189,22 +189,22 @@ public class VendaDAO {
         // Comando SQL.
         String slq = "SELECT * FROM venda WHERE id_venda = ?";
 
-        PreparedStatement stmt = connection.prepareStatement(slq);
+        preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
-        stmt.setInt(1, id);
+        preparedStatement.setInt(1, id);
 
         // Executa e recebe resultado.
-        ResultSet result = stmt.executeQuery();
+        resultSet = preparedStatement.executeQuery();
 
         // Loop com resultados.
-        while (result.next()) {
+        while (resultSet.next()) {
 
             // Prenche.
-            venda.setId_venda(result.getInt("id_venda"));
-            venda.setId_cliente(result.getInt("id_cliente"));
-            venda.setPreco(result.getFloat("total"));
-            venda.setTotal_quantidade(result.getInt("total_quantidade"));
+            venda.setId_venda(resultSet.getInt("id_venda"));
+            venda.setId_cliente(resultSet.getInt("id_cliente"));
+            venda.setPreco(resultSet.getFloat("total"));
+            venda.setTotal_quantidade(resultSet.getInt("total_quantidade"));
 
             // Fecha conexao.
             connection.close();
@@ -238,13 +238,13 @@ public class VendaDAO {
         // Comando SQL.
         String slq = "SELECT * FROM itens_venda WHERE id_venda = ?";
 
-        PreparedStatement stmt = connection.prepareStatement(slq);
+        preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
-        stmt.setInt(1, id);
+        preparedStatement.setInt(1, id);
 
         // Executa e recebe resultado.
-        ResultSet result = stmt.executeQuery();
+        resultSet = preparedStatement.executeQuery();
 
         // Declara variaveis.
         int id_produto;
@@ -252,12 +252,12 @@ public class VendaDAO {
         float preco;
 
         // Loop com resultados.
-        while (result.next()) {
+        while (resultSet.next()) {
 
             // Prenche.
-            id_produto = (result.getInt("id_produto"));
-            quantidade = (result.getInt("quantidade"));
-            preco = (result.getFloat("preco"));
+            id_produto = (resultSet.getInt("id_produto"));
+            quantidade = (resultSet.getInt("quantidade"));
+            preco = (resultSet.getFloat("preco"));
 
             Carrinho carrinho = new Carrinho(id_produto, preco, quantidade);
 

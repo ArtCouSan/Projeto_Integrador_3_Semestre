@@ -3,6 +3,7 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,9 +65,7 @@ public class BuscaVooServlet extends HttpServlet {
         }
 
         if (!erro) {
-
             Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
-
             try {
 
                 VooDAO dao = new VooDAO();
@@ -80,10 +79,11 @@ public class BuscaVooServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
                 dispatcher.forward(request, response);
 
-            } catch (IOException ex) {
-
+            } catch (IOException | ServletException ex) {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-
+            
+            } catch (ClassNotFoundException | SQLException ex){
+                Logger.getLogger(BuscaHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
