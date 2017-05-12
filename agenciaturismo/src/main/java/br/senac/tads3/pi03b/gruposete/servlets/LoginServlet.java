@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 
             response.sendRedirect(request.getContextPath() + ">>>>>>>>>>>TELA MENU AQUI<<<<<<<<<<<<<");
         } else {
-            response.sendRedirect(request.getContextPath() + ">>>>>>>>>>>TELA DE ERRO DE LOGIN AQUI<<<<<<<<<<<");
+            response.sendRedirect(request.getContextPath() + ">>>>>>>>>>>ERRO<<<<<<<<<<<<<<<");
         }
     }
 }
