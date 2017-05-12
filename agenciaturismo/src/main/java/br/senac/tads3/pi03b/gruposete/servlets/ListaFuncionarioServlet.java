@@ -60,12 +60,12 @@ public class ListaFuncionarioServlet extends HttpServlet {
 
         String departamento = request.getParameter("departamento");
 
-        int id = request.getParameter("id");
-        
+        String id = request.getParameter("id");
+
         Funcionario funcionario = new Funcionario(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, complemento, celular, telefone, email, true, cargo, filial, departamento);
 
-        funcionario.setId_func(id);
-        
+        funcionario.setId_func(Integer.parseInt(id));
+
         HttpSession sessao = request.getSession();
         sessao.setAttribute("funcionario", funcionario);
 

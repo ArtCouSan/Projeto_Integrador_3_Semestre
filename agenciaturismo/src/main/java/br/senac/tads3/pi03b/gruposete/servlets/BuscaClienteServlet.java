@@ -80,7 +80,7 @@ public class BuscaClienteServlet extends HttpServlet {
             try {
                 ClienteDAO dao = new ClienteDAO();
                 List<Cliente> encontrados = dao.procurarCliente(cliHumilde);
-                request.getServletContext.setAttribute("encontrados", encontrados);
+                request.setAttribute("encontrados", encontrados);
                 for (Cliente encontrado : encontrados) {
                     System.out.println(encontrado.getBairro());
                     System.out.println(encontrado.getNome());

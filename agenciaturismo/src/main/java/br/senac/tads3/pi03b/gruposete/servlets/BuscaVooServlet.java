@@ -3,6 +3,7 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,9 +69,21 @@ public class BuscaVooServlet extends HttpServlet {
             Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
 
             VooDAO dao = new VooDAO();
-            List<Voo> encontrados = dao.procurarVoo(voo);
+            
+            List<Voo> encontrados = null;
+            
+            try {
+                
+                encontrados = dao.procurarVoo(voo);
+                
+            } catch (SQLException | ClassNotFoundException ex) {
+                
+                Logger.getLogger(BuscaVooServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             HttpSession sessao = request.getSession();
+            
             sessao.setAttribute("encontrados", encontrados);
+            
             for (Voo encontrado : encontrados) {
                 System.out.println(encontrado.getOrigem());
                 System.out.println(encontrado.getPreco());

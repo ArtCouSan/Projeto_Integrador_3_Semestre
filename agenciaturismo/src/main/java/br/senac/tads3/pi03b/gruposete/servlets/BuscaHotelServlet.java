@@ -3,6 +3,7 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 import br.senac.tads3.pi03b.gruposete.dao.HotelDAO;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -95,6 +96,10 @@ public class BuscaHotelServlet extends HttpServlet {
 
                 Logger.getLogger(CadastroHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
 
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(BuscaHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(BuscaHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
