@@ -12,8 +12,10 @@ import java.util.List;
 
 public class UsuarioDAO {
 
-    private static Connection con;
-    private static PreparedStatement stmn;
+    private static Connection connection;
+    private static PreparedStatement preparedStatement;
+    private static Statement statement;
+    private static ResultSet resultSet;
 
     public void inserir(Usuario usuario) throws SQLException, Exception {
 
@@ -21,22 +23,22 @@ public class UsuarioDAO {
                 + "VALUES (?, ?, ?, ?)";
 
         try {
-            con = DbUtil.getConnection();
-            stmn = con.prepareStatement(sql);
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
 
-            stmn.setString(1, usuario.getNome());
-            stmn.setString(2, usuario.getLogin());
-            stmn.setString(3, usuario.getSenha());
-            stmn.setString(4, usuario.getAcesso());
+            preparedStatement.setString(1, usuario.getNome());
+            preparedStatement.setString(2, usuario.getLogin());
+            preparedStatement.setString(3, usuario.getSenha());
+            preparedStatement.setString(4, usuario.getAcesso());
 
-            stmn.executeUpdate();
+            preparedStatement.executeUpdate();
 
         } finally {
-            if (stmn != null && !stmn.isClosed()) {
-                stmn.close();
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
             }
-            if (con != null && !con.isClosed()) {
-                con.close();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
             }
         }
     }
@@ -48,23 +50,23 @@ public class UsuarioDAO {
                 + "WHERE id_usuario=?";
 
         try {
-            con = DbUtil.getConnection();
-            stmn = con.prepareStatement(sql);
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
 
-            stmn.setString(1, usuario.getNome());
-            stmn.setString(2, usuario.getLogin());
-            stmn.setString(3, usuario.getSenha());
-            stmn.setString(4, usuario.getAcesso());
-            stmn.setInt(5, usuario.getId_usuario());
+            preparedStatement.setString(1, usuario.getNome());
+            preparedStatement.setString(2, usuario.getLogin());
+            preparedStatement.setString(3, usuario.getSenha());
+            preparedStatement.setString(4, usuario.getAcesso());
+            preparedStatement.setInt(5, usuario.getId_usuario());
 
-            stmn.executeUpdate();
+            preparedStatement.executeUpdate();
 
         } finally {
-            if (stmn != null && !stmn.isClosed()) {
-                stmn.close();
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
             }
-            if (con != null && !con.isClosed()) {
-                con.close();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
             }
         }
     }
@@ -74,19 +76,19 @@ public class UsuarioDAO {
         String sql = "DELETE FROM Usuario WHERE id_usuario=?";
 
         try {
-            con = DbUtil.getConnection();
-            stmn = con.prepareStatement(sql);
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
 
-            stmn.setInt(1, id);
+            preparedStatement.setInt(1, id);
 
-            stmn.executeUpdate();
+            preparedStatement.executeUpdate();
 
         } finally {
-            if (stmn != null && !stmn.isClosed()) {
-                stmn.close();
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
             }
-            if (con != null && !con.isClosed()) {
-                con.close();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
             }
         }
     }
@@ -94,13 +96,13 @@ public class UsuarioDAO {
     public List<Usuario> ListaUsuario() throws SQLException, ClassNotFoundException {
         List<Usuario> listaUsuario = new ArrayList<>();
 
-        con = DbUtil.getConnection();
+        connection = DbUtil.getConnection();
 
         String query = "SELECT * FROM Usuario ORDER BY nome";
 
         try {
-            Statement st = con.createStatement();
-            ResultSet resultSet = st.executeQuery(query);
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Usuario usuario = new Usuario();
 
@@ -114,7 +116,7 @@ public class UsuarioDAO {
             }
         } catch (SQLException e) {
         }
-        con.close();
+        connection.close();
         return listaUsuario;
     }
 
