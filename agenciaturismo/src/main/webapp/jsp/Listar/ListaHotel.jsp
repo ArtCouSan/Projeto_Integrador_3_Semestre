@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +7,6 @@
         <title>Listar Hotel</title>
     </head>
     <body>
-    <c:import url="./Layout/cabecalho.jsp"/>
     <table>
         <thead>
             <tr>
@@ -31,6 +31,5 @@
         </c:forEach>
     </tbody>
 </table>
-<c:import url="./Layout/rodape.jsp"/>
 </body>
 </html>

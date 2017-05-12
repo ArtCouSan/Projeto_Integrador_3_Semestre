@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +7,6 @@
         <title>Listar Voos</title>
     </head>
     <body>
-    <c:import url="./Layout/cabecalho.jsp"/>
     <table>
         <thead>
             <tr>
@@ -22,7 +22,7 @@
         <c:forEach var="voos" items="${encontrados}">
             <tr id="${voos.getId_voo()}">
                 <td>${voos.getOrigem()}</td>
-                <td>${voos.getDestino()}"></c:out></td>
+                <td>${voos.getDestino()}"></td>
                 <td>${voos.getData_ida()}"></td>
                 <td>${voos.getData_volta()}"</td>
                 <td>${voos.getQuantidade_passagens()}"</td>
@@ -31,6 +31,5 @@
         </c:forEach>
     </tbody>
 </table>
-<c:import url="./Layout/rodape.jsp"/>
 </body>
 </html>

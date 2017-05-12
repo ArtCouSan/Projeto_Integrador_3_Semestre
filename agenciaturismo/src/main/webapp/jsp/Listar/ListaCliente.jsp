@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +7,6 @@
         <title>Listar Cliente</title>
     </head>
     <body>
-        <c:import url="./Layout/cabecalho.jsp" />
         <table>
             <thead>
                 <tr>
@@ -30,25 +30,24 @@
             <tbody>
                 <c:forEach var="clientes" items="${encontrados}">
                     <tr id="${clientes.getId_cliente()}">
-                        <td>${clientes.getNome()}"</td>
-                        <td>${clientes.getCpf()}"</td>
-                        <td>${clientes.getSexo()}"</td>
-                        <td>${clientes.getData_nasc()}"</td>
-                        <td>${clientes.getNumero()}"</td>
-                        <td>${clientes.getCep()}"></td>
-                        <td>${clientes.getRua()}"></td>
-                        <td>${clientes.getBairro()}"></td>
-                        <td>${clientes.getCidade()}"></td>
-                        <td>${clientes.getLogradouro()}"></td>
-                        <td>${clientes.getComplemento()}"></td>
-                        <td>${clientes.getCelular()}"></td>
-                        <td>${clientes.getTelefone()}"></td>
-                        <td>${clientes.getEmail()}"></td>
-                        <td>${true}"></td>
+                        <td>${clientes.getNome()}</td>
+                        <td>${clientes.getCpf()}</td>
+                        <td>${clientes.getSexo()}</td>
+                        <td>${clientes.getData_nasc()}</td>
+                        <td>${clientes.getNumero()}</td>
+                        <td>${clientes.getCep()}</td>
+                        <td>${clientes.getRua()}</td>
+                        <td>${clientes.getBairro()}</td>
+                        <td>${clientes.getCidade()}</td>
+                        <td>${clientes.getLogradouro()}</td>
+                        <td>${clientes.getComplemento()}</td>
+                        <td>${clientes.getCelular()}</td>
+                        <td>${clientes.getTelefone()}</td>
+                        <td>${clientes.getEmail()}</td>
+                        <td>${true}</td>
                         </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <c:import url="./Layout/rodape.jsp"/>
     </body>
 </html>
