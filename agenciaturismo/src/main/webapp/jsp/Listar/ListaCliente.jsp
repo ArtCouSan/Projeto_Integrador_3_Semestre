@@ -29,22 +29,22 @@
             </thead>
             <tbody>
                 <c:forEach var="clientes" items="${encontrados}">
-                    <tr>
-                        <td><c:out value="${clientes.nome}"></c:out></td>
-                        <td><c:out value="${clientes.cpf}"></c:out></td>
-                        <td><c:out value="${clientes.sexo}"></c:out></td>
-                        <td><c:out value="${clientes.data_nasc}"></c:out></td>
-                        <td><c:out value="${clientes.numero}"></c:out></td>
-                        <td><c:out value="${clientes.cep}"></c:out></td>
-                        <td><c:out value="${clientes.rua}"></c:out></td>
-                        <td><c:out value="${clientes.bairro}"></c:out></td>
-                        <td><c:out value="${clientes.cidade}"></c:out></td>
-                        <td><c:out value="${clientes.logradouro}"></c:out></td>
-                        <td><c:out value="${clientes.complemento}"></c:out></td>
-                        <td><c:out value="${clientes.celular}"></c:out></td>
-                        <td><c:out value="${clientes.telefone}"></c:out></td>
-                        <td><c:out value="${clientes.email}"></c:out></td>
-                        <td><c:out value="${true}"></c:out></td>
+                    <tr id="${clientes.getId_cliente()}">
+                        <td>${clientes.getNome()}"</td>
+                        <td>${clientes.getCpf()}"</td>
+                        <td>${clientes.getSexo()}"</td>
+                        <td>${clientes.getData_nasc()}"</td>
+                        <td>${clientes.getNumero()}"</td>
+                        <td>${clientes.getCep()}"></td>
+                        <td>${clientes.getRua()}"></td>
+                        <td>${clientes.getBairro()}"></td>
+                        <td>${clientes.getCidade()}"></td>
+                        <td>${clientes.getLogradouro()}"></td>
+                        <td>${clientes.getComplemento()}"></td>
+                        <td>${clientes.getCelular()}"></td>
+                        <td>${clientes.getTelefone()}"></td>
+                        <td>${clientes.getEmail()}"></td>
+                        <td>${true}"></td>
                         </tr>
                 </c:forEach>
             </tbody>

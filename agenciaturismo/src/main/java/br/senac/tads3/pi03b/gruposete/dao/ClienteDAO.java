@@ -211,40 +211,41 @@ public class ClienteDAO {
         preparedStatement.setString(14, cliente.getCidade());
 
         // Recebe e executa pergunta.
-        try {
-            resultSet = preparedStatement.executeQuery();
+        try (ResultSet result = preparedStatement.executeQuery()) {
 
             // Loop com resultados.
-            while (resultSet.next()) {
+            while (result.next()) {
 
                 // Cria cliente.
                 Cliente clientes = new Cliente();
 
                 // Insere informacoes.
-                clientes.setId_cliente(resultSet.getInt("id_cliente"));
-                clientes.setBairro(resultSet.getString("bairro"));
-                clientes.setCelular(resultSet.getString("celular"));
-                clientes.setCep(resultSet.getString("cep"));
-                clientes.setComplemento(resultSet.getString("complemento"));
-                clientes.setCpf(resultSet.getString("cpf"));
-                clientes.setData_nasc(resultSet.getString("data_nasc"));
-                clientes.setEmail(resultSet.getString("email"));
-                clientes.setLogradouro(resultSet.getString("logradouro"));
-                clientes.setNome(resultSet.getString("nome"));
-                clientes.setNumero(resultSet.getInt("numero"));
-                clientes.setRua(resultSet.getString("rua"));
-                clientes.setSexo(resultSet.getString("sexo"));
-                clientes.setTelefone(resultSet.getString("telefone"));
-                clientes.setCidade(resultSet.getString("cidade"));
+                clientes.setId_cliente(result.getInt("id_cliente"));
+                clientes.setBairro(result.getString("bairro"));
+                clientes.setCelular(result.getString("celular"));
+                clientes.setCep(result.getString("cep"));
+                clientes.setComplemento(result.getString("complemento"));
+                clientes.setCpf(result.getString("cpf"));
+                clientes.setData_nasc(result.getString("data_nasc"));
+                clientes.setEmail(result.getString("email"));
+                clientes.setLogradouro(result.getString("logradouro"));
+                clientes.setNome(result.getString("nome"));
+                clientes.setNumero(result.getInt("numero"));
+                clientes.setRua(result.getString("rua"));
+                clientes.setSexo(result.getString("sexo"));
+                clientes.setTelefone(result.getString("telefone"));
+                clientes.setCidade(result.getString("cidade"));
 
                 // Insere na lista.
                 listaResultado.add(clientes);
 
             }
-        } catch (SQLException e) {
+
+            // Retorna lista.
+            return listaResultado;
+
         }
 
-        // Retorna lista.
-        return listaResultado;
     }
+
 }

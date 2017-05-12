@@ -3,7 +3,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,7 +40,7 @@ public class BuscaVooServlet extends HttpServlet {
         String data_volta = request.getParameter("data_volta");
 
         int quantidade_passagens;
-        
+
         try {
 
             quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
@@ -65,31 +64,24 @@ public class BuscaVooServlet extends HttpServlet {
         }
 
         if (!erro) {
+
             Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
-            try {
 
-                VooDAO dao = new VooDAO();
-                List<Voo> encontrados = dao.procurarVoo(voo);
-                HttpSession sessao = request.getSession();
-                sessao.setAttribute("encontrados", encontrados);
-                for (Voo encontrado : encontrados) {
-                    System.out.println(encontrado.getOrigem());
-                    System.out.println(encontrado.getPreco());
-                }
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
-                dispatcher.forward(request, response);
-
-            } catch (IOException | ServletException ex) {
-                Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-            
-            } catch (ClassNotFoundException | SQLException ex){
-                Logger.getLogger(BuscaHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
+            VooDAO dao = new VooDAO();
+            List<Voo> encontrados = dao.procurarVoo(voo);
+            HttpSession sessao = request.getSession();
+            sessao.setAttribute("encontrados", encontrados);
+            for (Voo encontrado : encontrados) {
+                System.out.println(encontrado.getOrigem());
+                System.out.println(encontrado.getPreco());
             }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
+            dispatcher.forward(request, response);
 
         } else {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
-                dispatcher.forward(request, response);
+            dispatcher.forward(request, response);
 
         }
 

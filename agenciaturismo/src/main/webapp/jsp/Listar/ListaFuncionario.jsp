@@ -32,25 +32,25 @@
         </thead>
         <tbody>
         <c:forEach var="funcionarios" items="${encontrados}">
-            <tr>
-                <td><c:out value="${funcionarios.nome}"></c:out></td>
-            <td><c:out value="${funcionarios.cpf}"></c:out></td>
-            <td><c:out value="${funcionarios.sexo}"></c:out></td>
-            <td><c:out value="${funcionarios.data_nasc}"></c:out></td>
-            <td><c:out value="${funcionarios.numero}"></c:out></td>
-            <td><c:out value="${funcionarios.cep}"></c:out></td>
-            <td><c:out value="${funcionarios.rua}"></c:out></td>
-            <td><c:out value="${funcionarios.bairro}"></c:out></td>
-            <td><c:out value="${funcionarios.cidade}"></c:out></td>
-            <td><c:out value="${funcionarios.logradouro}"></c:out></td>
-            <td><c:out value="${funcionarios.complemento}"></c:out></td>
-            <td><c:out value="${funcionarios.celular}"></c:out></td>
-            <td><c:out value="${funcionarios.telefone}"></c:out></td>
-            <td><c:out value="${funcionarios.email}"></c:out></td>
-            <td><c:out value="${funcionarios.cargo}"></c:out></td>
-            <td><c:out value="${funcionarios.filial}"></c:out></td>
-            <td><c:out value="${funcionarios.departamento}"></c:out></td>
-            <td><c:out value="${true}"></c:out></td>
+            <tr name="id" id="${funcionarios.getId_funcionario()}">
+                <td name="nome">${funcionarios.getNome()}</td>
+                <td name="cpf">${funcionarios.getCpf()}</td>
+                <td name="sexo">${funcionarios.getSexo()}</td>
+                <td name="data_nasc">${funcionarios.getData_nasc()}></td>
+                <td name="numero">${funcionarios.getNumero()}</td>
+                <td name="cep">${funcionarios.getCep()}</td>
+                <td name="rua">${funcionarios.getRua()}</td>
+                <td name="bairro">${funcionarios.getBairro()}</td>
+                <td name="cidade">${funcionarios.getCidade()}</td>
+                <td name="logradouro">${funcionarios.getLogradouro()}</td>
+                <td name="complemento">${funcionarios.getComplemento()}</td>
+                <td name="celular">${funcionarios.getCelular()}</td>
+                <td name="telefone">${funcionarios.getTelefone()}</td>
+                <td name="email">${funcionarios.getEmail()}</td>
+                <td name="cargo">${funcionarios.getCargo}</td>
+                <td name="filial">${funcionarios.getFilial}</td>
+                <td name="departamento">${funcionarios.getDepartamento}</td>
+                <td name="ativo">${true}></td>
             </tr>
         </c:forEach>
     </tbody>

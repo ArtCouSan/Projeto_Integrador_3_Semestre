@@ -134,41 +134,45 @@ public class VooDAO {
     }
 
     public List<Voo> procurarVoo(Voo voo) throws SQLException, ClassNotFoundException {
+
         List<Voo> listaResultado = new ArrayList<>();
 
         connection = DbUtil.getConnection();
 
-        String sql = "SELECT * FROM hotel WHERE"
-                + " nome_hotel = ?"
-                + " OR data_entrada = ?"
-                + " OR data_saida = ?"
-                + " OR preco = ?"
-                + " OR quantidade_quartos = ?"
-                + " OR quantidade_hospedes = ?";
+        String sql = "SELECT * FROM voo WHERE"
+                + " data_volta = ?"
+                + " OR data_ida = ?"
+                + " OR destino = ?"
+                + " OR origem = ?"
+                + " OR quantidade_passagens = ?"
+                + " OR ativo = ?"
+                + " OR preco = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, voo.getData_ida());
-        preparedStatement.setString(2, voo.getData_volta());
+        preparedStatement.setString(1, voo.getData_volta());
+        preparedStatement.setString(2, voo.getData_ida());
         preparedStatement.setString(3, voo.getDestino());
         preparedStatement.setString(4, voo.getOrigem());
         preparedStatement.setInt(5, voo.getQuantidade_passagens());
-        preparedStatement.setDouble(6, voo.getPreco());
+        preparedStatement.setBoolean(6, voo.isAtivo());
+        preparedStatement.setDouble(7, voo.getPreco());
 
         // Recebe e executa pergunta.
-        try {
-            resultSet = preparedStatement.executeQuery();
+        try (ResultSet result = preparedStatement.executeQuery()) {
 
             // Loop com resultados.
-            while (resultSet.next()) {
+            while (result.next()) {
 
                 Voo voos = new Voo();
 
                 // Insere informacoes.
-                voos.setId_voo(resultSet.getInt("id_voo"));
+                voos.setId_voo(resultSet.getInt("id_hotel"));
                 voos.setData_ida(resultSet.getString("data_ida"));
                 voos.setData_volta(resultSet.getString("data_volta"));
+                voos.setDestino(resultSet.getString("destino"));
+                voos.setOrigem(resultSet.getString("origem"));
                 voos.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
                 voos.setPreco(resultSet.getFloat("preco"));
 
@@ -177,10 +181,11 @@ public class VooDAO {
 
             }
 
-        } catch (SQLException e) {
+            // Retorna lista.
+            return listaResultado;
+
         }
-        
-        // Retorna lista.
-        return listaResultado;
+
     }
+
 }

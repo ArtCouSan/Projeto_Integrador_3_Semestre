@@ -30,6 +30,7 @@ public class BuscaFuncionarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         boolean erro = false;
 
         String nome = request.getParameter("nome");
@@ -95,7 +96,7 @@ public class BuscaFuncionarioServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaFuncionario.jsp");
                 dispatcher.forward(request, response);
 
-            } catch (IOException | ClassNotFoundException | SQLException | ServletException ex) {
+            } catch (IOException | ClassNotFoundException | SQLException ex) {
 
                 Logger.getLogger(BuscaFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : EditarCliente
-    Created on : 08/05/2017, 21:07:17
-    Author     : rafael.fsilva7
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
