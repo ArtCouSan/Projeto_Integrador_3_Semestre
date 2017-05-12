@@ -8,14 +8,14 @@ public class Voo {
     private String destino;
     private String origem;
     private int quantidade_passagens;
-    private double preco;
+    private float preco;
     private boolean ativo;
 
     public Voo() {
 
     }
 
-    public Voo(String data_ida, String data_volta, String destino, String origem, int quantidade_passagens, double preco, boolean ativo) {
+    public Voo(String data_ida, String data_volta, String destino, String origem, int quantidade_passagens, float preco, boolean ativo) {
         this.data_ida = data_ida;
         this.data_volta = data_volta;
         this.destino = destino;
@@ -77,7 +77,7 @@ public class Voo {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 

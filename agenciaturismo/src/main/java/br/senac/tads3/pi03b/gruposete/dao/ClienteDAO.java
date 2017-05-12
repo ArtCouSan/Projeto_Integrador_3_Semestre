@@ -169,12 +169,14 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public ArrayList<Cliente> procurarCliente(Cliente cliente) throws SQLException, IOException {
+    public List<Cliente> procurarCliente(Cliente cliente) throws SQLException, IOException, ClassNotFoundException {
 
         // Cria lista de clientes.
-        ArrayList<Cliente> listaResultado = new ArrayList<>();
+        List<Cliente> listaResultado = new ArrayList<>();
 
-        String slq = "SELECT * FROM cliente WHERE"
+        connection = DbUtil.getConnection();
+
+        String sql = "SELECT * FROM cliente WHERE"
                 + " bairro = ?"
                 + " OR celular = ?"
                 + " OR cep = ?"
@@ -190,7 +192,7 @@ public class ClienteDAO {
                 + " OR telefone = ?"
                 + " OR cidade = ?";
 
-        connection.prepareStatement(slq);
+        preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
         preparedStatement.setString(1, cliente.getBairro());

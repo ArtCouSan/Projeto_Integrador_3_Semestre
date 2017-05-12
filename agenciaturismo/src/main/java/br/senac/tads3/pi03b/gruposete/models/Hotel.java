@@ -8,7 +8,7 @@ public class Hotel {
     private String data_saida;
     private int quantidade_quartos;
     private int quantidade_hospedes;
-    private double preco;
+    private float preco;
     private boolean ativo;
 
     public Hotel() {
@@ -16,7 +16,7 @@ public class Hotel {
     }
 
     public Hotel(String nome_hotel, String data_entrada, String data_saida, 
-            int quantidade_quartos, int quantidade_hospedes, double preco, boolean ativo) {
+            int quantidade_quartos, int quantidade_hospedes, float preco, boolean ativo) {
         this.nome_hotel = nome_hotel;
         this.data_entrada = data_entrada;
         this.data_saida = data_saida;
@@ -78,7 +78,7 @@ public class Hotel {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 

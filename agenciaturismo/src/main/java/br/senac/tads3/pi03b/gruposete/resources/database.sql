@@ -48,10 +48,11 @@ UNIQUE KEY id_cliente (id_cliente)
 
 CREATE TABLE Voo(
 id_voo INT(3) NOT NULL AUTO_INCREMENT,    
-data_volta DATE,
-data_ida DATE,
+data_volta VARCHAR(50),
+data_ida VARCHAR(50),
 destino VARCHAR(50),
 origem VARCHAR(50),
+preco FLOAT(3.2) NOT NULL,
 quantidade_passagens INT(3) NOT NULL,
 PRIMARY KEY (id_voo)
 );
@@ -59,8 +60,9 @@ PRIMARY KEY (id_voo)
 CREATE TABLE Hotel(
 id_hotel INT(3) NOT NULL AUTO_INCREMENT,
 nome_hotel VARCHAR(50),
-data_entrada DATE,
-data_saida DATE,
+data_entrada VARCHAR(50),
+data_saida VARCHAR(50),
+preco FLOAT(3.2) NOT NULL,
 quantidade_quartos VARCHAR(50),
 quantidade_hospedes VARCHAR(50),
 PRIMARY KEY (id_hotel)

@@ -8,9 +8,6 @@ public class DbUtil {
 
     public static Connection getConnection() throws ClassNotFoundException {
         Connection conn = null;
-        
-        //mudanca
-
         try {
             
             String username = "root";
