@@ -248,4 +248,20 @@ public class ClienteDAO {
 
     }
 
+    public void excluirCliente(int id) throws SQLException {
+
+        // Comando SQL.
+        String slq = "UPDATE cliente SET ativo = ? WHERE  id_cliente = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setBoolean(1, false);
+        preparedStatement.setInt(2, id);
+
+        // Executa.
+        preparedStatement.execute();
+
+    }
+
 }

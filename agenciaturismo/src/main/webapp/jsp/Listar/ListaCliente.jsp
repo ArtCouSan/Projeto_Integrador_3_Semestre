@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="br.senac.tads3.pi03b.gruposete.servlets.ExcluiClienteServlet"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
@@ -46,7 +47,7 @@
                         <td name="telefone">${clientes.getTelefone()}</td>
                         <td name="email">${clientes.getEmail()}</td>
                         <td name="ativo">${true}</td>
-                        <td><a class="button" href="CaminhoDoServlet?action=edit&id=<c:out value="${cliente.id}"/>">Atualizar</a></td>
+                        <td><a class="button" href="./ExcluiClienteServlet?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>">Atualizar</a></td>
                         <td><button >Alterar</button></td>
                     </tr>
                 </c:forEach>
