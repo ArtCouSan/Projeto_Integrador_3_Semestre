@@ -13,51 +13,51 @@
     <form action="${pageContext.request.contextPath}/EditarCliente" method="post">
 
         <label for="txtnome">Nome:</label>  
-        <input type="text" name="nome" value="{}"/>
+        <input type="text" name="nome" value="${clientes.getNome()}"/>
         <br>
         <label for="txtcpf">CPF:</label>
-        <input type="text" name="cpf" value="{}"/>
+        <input type="text" name="cpf" value="${clientes.getCpf()}"/>
         <br>
         <label for="txtsexo">Sexo:</label>
-        <input type="text" name="sexo" value="{}"/>
+        <input type="text" name="sexo" value="${clientes.Sexo()}"/>
         <br>
         <label for="txtnascimento">Nascimento:</label>
-        <input type="text" name="nascimento" value="{}"/>
+        <input type="text" name="nascimento" value="${clientes.Data_nasc()}"/>
         <br>
         <label for="txtrua">Rua:</label>
-        <input type="text" name="rua" value="{}"/>
+        <input type="text" name="rua" value="${clientes.getRua()}"/>
         <br>
         <label for="txtnumero">Numero:</label>
-        <input type="text" name="numero" value="{}"/>
+        <input type="text" name="numero" value="${clientes.getNumero()}"/>
         <br>
         <label for="txtcomplemento">Complemento:</label>
-        <input type="text" name="complemento" value="{}"/>
+        <input type="text" name="complemento" value="${clientes.getComplemento()}"/>
         <br>
         <label for="txtcep">CEP:</label>
-        <input type="text" name="cep" value="{}"/>
+        <input type="text" name="cep" value="${clientes.getCep()}"/>
         <br>
         <label for="txtlogradouro">Logradouro:</label>
-        <input type="text" name="logradouro" value="{}"/>
+        <input type="text" name="logradouro" value="${clientes.getLogradouro()}"/>
         <br>
         <label for="txtcidade">Cidade:</label>
-        <input type="text" name="cidade" value="{}"/>
+        <input type="text" name="cidade" value="${clientes.getNoCidade()}"/>
         <br>
         <label for="txtbairro">Bairro:</label>
-        <input type="text" name="bairro" value="{}"/>
+        <input type="text" name="bairro" value="${clientes.getBairro()}"/>
         <br>
         <label for="txtestado">Estado:</label>
-        <input type="text" name="estado" value="{}"/>
+        <input type="text" name="estado" value="${clientes.getEstado()}"/>
         <br>
         <label for="txttelefone">Telefone:</label>
-        <input type="text" name="telefone" value="{}"/>
+        <input type="text" name="telefone" value="${clientes.getTelefone()}"/>
         <br>
         <label for="txtcelular">Celular:</label>
-        <input type="text" name="celular" value="{}"/>
+        <input type="text" name="celular" value="${clientes.getCelular()}"/>
         <br>
         <label for="txtemail">Email:</label>
-        <input type="text" name="email" value="{}"/>
+        <input type="text" name="email" value="${clientes.getEmail()}"/>
         <br>
-        <input type="submit" value="Salvar"/>
+        <input type="submit" value="Alterar" />
         <br>
     </form>     
     <c:import url="./Layout/rodape.jsp"/>

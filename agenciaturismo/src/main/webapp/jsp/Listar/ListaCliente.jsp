@@ -10,48 +10,48 @@
     </head>
     <body>
         <table/>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Sexo</th>
-                    <th>Data de Nascimento</th>
-                    <th>Numero</th>
-                    <th>CEP</th>
-                    <th>Rua</th>
-                    <th>Bairro</th>
-                    <th>Cidade</th>
-                    <th>Logradouro</th>
-                    <th>Complemento</th>
-                    <th>Celular</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                    <th>Ativo ?</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="clientes" items="${encontrados}">
-                    <tr id="${clientes.getId_cliente()}">
-                        <td name="nome">${clientes.getNome()}</td>
-                        <td name="cpf">${clientes.getCpf()}</td>
-                        <td name="sexo">${clientes.getSexo()}</td>
-                        <td name="data_nasc">${clientes.getData_nasc()}</td>
-                        <td name="numero">${clientes.getNumero()}</td>
-                        <td name="cep">${clientes.getCep()}</td>
-                        <td name="rua">${clientes.getRua()}</td>
-                        <td name="bairro">${clientes.getBairro()}</td>
-                        <td name="cidade">${clientes.getCidade()}</td>
-                        <td name="logradouro">${clientes.getLogradouro()}</td>
-                        <td name="complemento">${clientes.getComplemento()}</td>
-                        <td name="celular">${clientes.getCelular()}</td>
-                        <td name="telefone">${clientes.getTelefone()}</td>
-                        <td name="email">${clientes.getEmail()}</td>
-                        <td name="ativo">${true}</td>
-                        <td><a class="button" href="ExcluiClienteServlet?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
-                        <td><button >Alterar</button></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </body>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Sexo</th>
+            <th>Data de Nascimento</th>
+            <th>Numero</th>
+            <th>CEP</th>
+            <th>Rua</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Logradouro</th>
+            <th>Complemento</th>
+            <th>Celular</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Ativo ?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="clientes" items="${encontrados}">
+            <tr id="${clientes.getId_cliente()}">
+                <td>${clientes.getNome()}</td>
+                <td>${clientes.getCpf()}</td>
+                <td>${clientes.getSexo()}</td>
+                <td>${clientes.getData_nasc()}</td>
+                <td>${clientes.getNumero()}</td>
+                <td>${clientes.getCep()}</td>
+                <td>${clientes.getRua()}</td>
+                <td>${clientes.getBairro()}</td>
+                <td>${clientes.getCidade()}</td>
+                <td>${clientes.getLogradouro()}</td>
+                <td>${clientes.getComplemento()}</td>
+                <td>${clientes.getCelular()}</td>
+                <td>${clientes.getTelefone()}</td>
+                <td>${clientes.getEmail()}</td>
+                <td>${true}</td>
+                <td><a class="button" href="ExcluiClienteServlet?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
+                <td><a class="button" href="EditaClienteServlet?id=<c:out value="${clientes.getId_cliente()}"/>">Alterar</a></td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+</body>
 </html>

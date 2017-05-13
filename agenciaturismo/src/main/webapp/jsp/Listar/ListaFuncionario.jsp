@@ -34,26 +34,28 @@
             <tbody>
                 <c:forEach var="funcionarios" items="${encontrados}">
                     <tr name="id" id="${funcionarios.getId_func()}">
-                        <td name="nome">${funcionarios.getNome()}</td>
-                        <td name="cpf">${funcionarios.getCpf()}</td>
-                        <td name="sexo">${funcionarios.getSexo()}</td>
-                        <td name="data_nasc">${funcionarios.getData_nasc()}</td>
-                        <td name="numero">${funcionarios.getNumero()}</td>
-                        <td name="cep">${funcionarios.getCep()}</td>
-                        <td name="rua">${funcionarios.getRua()}</td>
-                        <td name="bairro">${funcionarios.getBairro()}</td>
-                        <td name="cidade">${funcionarios.getCidade()}</td>
-                        <td name="logradouro">${funcionarios.getLogradouro()}</td>
-                        <td name="complemento">${funcionarios.getComplemento()}</td>
-                        <td name="celular">${funcionarios.getCelular()}</td>
-                        <td name="telefone">${funcionarios.getTelefone()}</td>
-                        <td name="email">${funcionarios.getEmail()}</td>
-                        <td name="cargo">${funcionarios.getCargo()}</td>
-                        <td name="filial">${funcionarios.getFilial()}</td>
-                        <td name="departamento">${funcionarios.getDepartamento()}</td>
+                        <td name="nome"><c:out value="${funcionarios.getNome()}"/></td>
+                        <td name="cpf"><c:out value="${funcionarios.getCpf()}"/></td>
+                        <td name="sexo"><c:out value="${funcionarios.getSexo()}"/></td>
+                        <td name="data_nasc"><c:out value="${funcionarios.getData_nasc()}"/></td>
+                        <td name="numero"><c:out value="${funcionarios.getNumero()}"/></td>
+                        <td name="cep"><c:out value="${funcionarios.getCep()}"/></td>
+                        <td name="rua"><c:out value="${funcionarios.getRua()}"/></td>
+                        <td name="bairro"><c:out value="${funcionarios.getBairro()}"/></td>
+                        <td name="cidade"><c:out value="${funcionarios.getCidade()}"/></td>
+                        <td name="logradouro"><c:out value="${funcionarios.getLogradouro()}"/></td>
+                        <td name="complemento"><c:out value="${funcionarios.getComplemento()}"/></td>
+                        <td name="celular"><c:out value="${funcionarios.getCelular()}"/></td>
+                        <td name="telefone"><c:out value="${funcionarios.getTelefone()}"/></td>
+                        <td name="email"><c:out value="${funcionarios.getEmail()}"/></td>
+                        <td name="cargo"><c:out value="${funcionarios.getCargo()}"/></td>
+                        <td name="filial"><c:out value="${funcionarios.getFilial()}"/></td>
+                        <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
                         <td name="ativo">${true}</td>
                         <td><a class="button" href="ExcluiFuncionarioServlet?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
-                        <td><button >Alterar</button></td>
+                        <td><a class="button" href="EditarFuncionario?
+                               nome=<c:out value="${funcionarios.getId_func()}"/>
+                               ">Alterar</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

@@ -57,11 +57,26 @@ public class ClienteDAO {
 
     public void alterar(Cliente cliente) throws SQLException, Exception {
 
-        String sql = "UPDATE Cliente "
-                + "SET nome=?, cpf=?, sexo=?, data_nasc=?, numero=?, cep=?, rua=?, bairro=?, cidade=?, logradouro=?, complemento=?, celular=?, telefone=?, email=?, ativo=? "
-                + "WHERE id_cliente=?";
+        String sql = "UPDATE cliente "
+                + "SET "
+                + "nome = ?, "
+                + "cpf = ?, "
+                + "sexo = ?, "
+                + "data_nasc = ?, "
+                + "numero = ?, "
+                + "cep = ?, "
+                + "rua = ?, "
+                + "bairro = ?, "
+                + "cidade = ?, "
+                + "logradouro = ?, "
+                + "complemento = ?, "
+                + "celular = ?, "
+                + "telefone = ?, "
+                + "email = ?, "
+                + "WHERE id_cliente = ?";
 
         try {
+
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
@@ -79,18 +94,24 @@ public class ClienteDAO {
             preparedStatement.setString(12, cliente.getCelular());
             preparedStatement.setString(13, cliente.getTelefone());
             preparedStatement.setString(14, cliente.getEmail());
-            preparedStatement.setBoolean(15, cliente.isAtivo());
-            preparedStatement.setInt(16, cliente.getId_cliente());
+            preparedStatement.setInt(15, cliente.getId_cliente());
 
             preparedStatement.executeUpdate();
 
         } finally {
+
             if (preparedStatement != null && !preparedStatement.isClosed()) {
+
                 preparedStatement.close();
+
             }
+
             if (connection != null && !connection.isClosed()) {
+
                 connection.close();
+
             }
+
         }
     }
 
@@ -132,36 +153,33 @@ public class ClienteDAO {
     }
 
     public Cliente getClienteById(int id) throws SQLException, ClassNotFoundException {
+
         Cliente cliente = new Cliente();
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Cliente WHERE id_cliente=?";
+        String query = "SELECT * FROM Cliente WHERE id_cliente = ?";
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                cliente.setId_cliente(resultSet.getInt("id_cliente"));
-                cliente.setNome(resultSet.getString("nome"));
-                cliente.setCpf(resultSet.getString("cpf"));
-                cliente.setSexo(resultSet.getString("sexo"));
-                cliente.setData_nasc(resultSet.getString("data_nasc"));
-                cliente.setNumero(resultSet.getInt("numero"));
-                cliente.setCep(resultSet.getString("cep"));
-                cliente.setRua(resultSet.getString("rua"));
-                cliente.setBairro(resultSet.getString("bairro"));
-                cliente.setCidade(resultSet.getString("cidade"));
-                cliente.setLogradouro(resultSet.getString("logradouro"));
-                cliente.setComplemento(resultSet.getString("complemento"));
-                cliente.setCelular(resultSet.getString("celular"));
-                cliente.setTelefone(resultSet.getString("telefone"));
-                cliente.setEmail(resultSet.getString("email"));
-            }
-
-        } catch (SQLException e) {
+        while (resultSet.next()) {
+            cliente.setId_cliente(resultSet.getInt("id_cliente"));
+            cliente.setNome(resultSet.getString("nome"));
+            cliente.setCpf(resultSet.getString("cpf"));
+            cliente.setSexo(resultSet.getString("sexo"));
+            cliente.setData_nasc(resultSet.getString("data_nasc"));
+            cliente.setNumero(resultSet.getInt("numero"));
+            cliente.setCep(resultSet.getString("cep"));
+            cliente.setRua(resultSet.getString("rua"));
+            cliente.setBairro(resultSet.getString("bairro"));
+            cliente.setCidade(resultSet.getString("cidade"));
+            cliente.setLogradouro(resultSet.getString("logradouro"));
+            cliente.setComplemento(resultSet.getString("complemento"));
+            cliente.setCelular(resultSet.getString("celular"));
+            cliente.setTelefone(resultSet.getString("telefone"));
+            cliente.setEmail(resultSet.getString("email"));
         }
 
         preparedStatement.close();
