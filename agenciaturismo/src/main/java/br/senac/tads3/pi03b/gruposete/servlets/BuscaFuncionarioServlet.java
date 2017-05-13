@@ -19,31 +19,21 @@ import javax.servlet.http.HttpSession;
 public class BuscaFuncionarioServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaFuncionario.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         boolean erro = false;
 
-        String busca = request.getParameter("pesquisa");
-     
+        String pesquisa = request.getParameter("pesquisa");
+
         if (!erro) {
-           
+
             try {
 
                 FuncionarioDAO dao = new FuncionarioDAO();
-                List<Funcionario> encontrados = dao.procurarFuncionario(busca);
+                List<Funcionario> encontrados = dao.procurarFuncionario(pesquisa);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("encontrados", encontrados);
-                
+                request.setAttribute("pesquisa", pesquisa);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaFuncionario.jsp");
                 dispatcher.forward(request, response);
 
@@ -58,5 +48,6 @@ public class BuscaFuncionarioServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         }
+
     }
 }

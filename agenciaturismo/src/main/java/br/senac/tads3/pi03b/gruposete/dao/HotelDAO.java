@@ -209,7 +209,7 @@ public class HotelDAO {
     public void excluirHotel(int id) throws SQLException {
 
         // Comando SQL.
-        String slq = "UPDATE cliente SET ativo = ? WHERE id_hotel = ?";
+        String slq = "UPDATE Hotel SET ativo = ? WHERE id_hotel = ?";
 
         preparedStatement = connection.prepareStatement(slq);
 

@@ -19,30 +19,22 @@ import javax.servlet.http.HttpSession;
 public class BuscaHotelServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaHotel.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         boolean erro = false;
 
-        String busca = request.getParameter("pesquisa");
+        String pesquisa = request.getParameter("pesquisa");
 
         if (!erro) {
 
             try {
 
                 HotelDAO dao = new HotelDAO();
-                List<Hotel> encontrados = dao.procurarHotel(busca);
+                List<Hotel> encontrados = dao.procurarHotel(pesquisa);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("encontrados", encontrados);
+                sessao.setAttribute("pesquisa", pesquisa);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaHotel.jsp");
                 dispatcher.forward(request, response);
 

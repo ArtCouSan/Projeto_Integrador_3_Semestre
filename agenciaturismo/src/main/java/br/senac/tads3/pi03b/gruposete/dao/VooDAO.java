@@ -204,7 +204,7 @@ public class VooDAO {
     public void excluirVoo(int id) throws SQLException {
 
         // Comando SQL.
-        String slq = "UPDATE cliente SET ativo = ? WHERE id_voo = ?";
+        String slq = "UPDATE Voo SET ativo = ? WHERE id_voo = ?";
 
         preparedStatement = connection.prepareStatement(slq);
 

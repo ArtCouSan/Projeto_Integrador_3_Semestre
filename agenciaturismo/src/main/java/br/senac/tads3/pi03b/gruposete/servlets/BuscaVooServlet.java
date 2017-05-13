@@ -19,21 +19,12 @@ import javax.servlet.http.HttpSession;
 public class BuscaVooServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaVoo.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         boolean erro = false;
 
-        String busca = request.getParameter("pesquisa");
+        String pesquisa = request.getParameter("pesquisa");
 
         if (!erro) {
 
@@ -42,13 +33,10 @@ public class BuscaVooServlet extends HttpServlet {
                 List<Voo> encontrados;
 
                 VooDAO dao = new VooDAO();
-
-                encontrados = dao.procurarVoo(busca);
-
+                encontrados = dao.procurarVoo(pesquisa);
                 HttpSession sessao = request.getSession();
-
                 sessao.setAttribute("encontrados", encontrados);
-
+                sessao.setAttribute("pesquisa", pesquisa);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
                 dispatcher.forward(request, response);
 

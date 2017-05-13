@@ -9,6 +9,7 @@
     </head>
     <body>
     <c:import url="./Layout/cabecalho.jsp"/>
+    <h1>Digite o campo(s) pela informação que gostaria de buscar</h1>
     <form action="${pageContext.request.contextPath}/BuscaFuncionario" method="post">
         <label for="txtPesquisa">Pesquisa:</label>  
         <input type="text" name="pesquisa" placeholder="Insira a pesquisa"/>

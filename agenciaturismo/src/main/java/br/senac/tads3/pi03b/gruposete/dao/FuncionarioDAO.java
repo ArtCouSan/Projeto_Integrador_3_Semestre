@@ -280,7 +280,7 @@ public class FuncionarioDAO {
     public void excluirFuncionario(int id) throws SQLException {
 
         // Comando SQL.
-        String slq = "UPDATE cliente SET ativo = ? WHERE id_func = ?";
+        String slq = "UPDATE funcionario SET ativo = ? WHERE id_func = ?";
 
         preparedStatement = connection.prepareStatement(slq);
 
