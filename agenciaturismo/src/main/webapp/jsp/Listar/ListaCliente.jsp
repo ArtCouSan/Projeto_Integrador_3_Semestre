@@ -47,7 +47,7 @@
                         <td name="telefone">${clientes.getTelefone()}</td>
                         <td name="email">${clientes.getEmail()}</td>
                         <td name="ativo">${true}</td>
-                        <td><a class="button" href="ExcluiClienteServlet?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Atualizar</a></td>
+                        <td><a class="button" href="ExcluiClienteServlet?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
                         <td><button >Alterar</button></td>
                     </tr>
                 </c:forEach>

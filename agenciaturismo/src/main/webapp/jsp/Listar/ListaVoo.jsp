@@ -27,7 +27,7 @@
                         <td name="data_volta">${voos.getData_volta()}</td>
                         <td name="quantidade_passagens">${voos.getQuantidade_passagens()}</td>
                         <td name="preco">${voos.getPreco()}</td>
-                        <td><button name="$${voos.getId_voo()}">Excluir</button></td>
+                        <td><a class="button" href="ExcluiVooServlet?action=edit&id=<c:out value="${voos.getId_voo()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
                         <td><button >Alterar</button></td>
                     </tr>
                 </c:forEach>

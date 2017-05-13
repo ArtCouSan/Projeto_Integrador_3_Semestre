@@ -51,7 +51,7 @@
                         <td name="filial">${funcionarios.getFilial()}</td>
                         <td name="departamento">${funcionarios.getDepartamento()}</td>
                         <td name="ativo">${true}</td>
-                        <td><button name="${funcionarios.getId_func()}">Excluir</button></td>
+                        <td><a class="button" href="ExcluiFuncionarioServlet?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
                         <td><button >Alterar</button></td>
                     </tr>
                 </c:forEach>
