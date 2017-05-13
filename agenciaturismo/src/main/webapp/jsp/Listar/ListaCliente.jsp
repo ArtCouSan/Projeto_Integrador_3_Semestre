@@ -45,6 +45,8 @@
                         <td name="telefone">${clientes.getTelefone()}</td>
                         <td name="email">${clientes.getEmail()}</td>
                         <td name="ativo">${true}</td>
+                        <td><button name="${clientes.getId_cliente()}">Excluir</button></td>
+                        <td><button >Alterar</button></td>
                     </tr>
                 </c:forEach>
             </tbody>
