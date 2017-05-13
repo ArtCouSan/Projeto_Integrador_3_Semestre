@@ -73,7 +73,7 @@ public class Voo {
         this.quantidade_passagens = quantidade_passagens;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return preco;
     }
 

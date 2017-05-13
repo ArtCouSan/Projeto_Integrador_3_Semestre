@@ -66,30 +66,25 @@ public class BuscaVooServlet extends HttpServlet {
 
         if (!erro) {
 
-            Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
-
-            VooDAO dao = new VooDAO();
-            
-            List<Voo> encontrados = null;
-            
             try {
-                
+                Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
+
+                VooDAO dao = new VooDAO();
+
+                List<Voo> encontrados;
+
                 encontrados = dao.procurarVoo(voo);
-                
+
+                HttpSession sessao = request.getSession();
+
+                sessao.setAttribute("encontrados", encontrados);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
+                dispatcher.forward(request, response);
+
             } catch (SQLException | ClassNotFoundException ex) {
-                
                 Logger.getLogger(BuscaVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            HttpSession sessao = request.getSession();
-            
-            sessao.setAttribute("encontrados", encontrados);
-            
-            for (Voo encontrado : encontrados) {
-                System.out.println(encontrado.getOrigem());
-                System.out.println(encontrado.getPreco());
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
-            dispatcher.forward(request, response);
 
         } else {
 

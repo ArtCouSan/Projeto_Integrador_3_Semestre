@@ -15,7 +15,7 @@ public class VooDAO {
     private static Connection connection;
     private static PreparedStatement preparedStatement;
     private static Statement statement;
-    private static ResultSet resultSet;
+    private static ResultSet resultSet = null;
 
     public void inserir(Voo voo) throws SQLException, Exception {
 
@@ -145,7 +145,6 @@ public class VooDAO {
                 + " OR destino = ?"
                 + " OR origem = ?"
                 + " OR quantidade_passagens = ?"
-                + " OR ativo = ?"
                 + " OR preco = ?";
 
         preparedStatement = connection.prepareStatement(sql);
@@ -156,35 +155,32 @@ public class VooDAO {
         preparedStatement.setString(3, voo.getDestino());
         preparedStatement.setString(4, voo.getOrigem());
         preparedStatement.setInt(5, voo.getQuantidade_passagens());
-        preparedStatement.setBoolean(6, true);
-        preparedStatement.setDouble(7, voo.getPreco());
+        preparedStatement.setFloat(6, voo.getPreco());
 
         // Recebe e executa pergunta.
-        try (ResultSet result = preparedStatement.executeQuery()) {
+        ResultSet result = preparedStatement.executeQuery();
 
-            // Loop com resultados.
-            while (result.next()) {
+        // Loop com resultados.
+        while (result.next()) {
 
-                Voo voos = new Voo();
+            Voo voos = new Voo();
 
-                // Insere informacoes.
-                voos.setId_voo(resultSet.getInt("id_voo"));
-                voos.setData_ida(resultSet.getString("data_ida"));
-                voos.setData_volta(resultSet.getString("data_volta"));
-                voos.setDestino(resultSet.getString("destino"));
-                voos.setOrigem(resultSet.getString("origem"));
-                voos.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-                voos.setPreco(resultSet.getFloat("preco"));
+            // Insere informacoes.
+            voos.setId_voo(resultSet.getInt("id_voo"));
+            voos.setData_ida(resultSet.getString("data_ida"));
+            voos.setData_volta(resultSet.getString("data_volta"));
+            voos.setDestino(resultSet.getString("destino"));
+            voos.setOrigem(resultSet.getString("origem"));
+            voos.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
+            voos.setPreco(resultSet.getFloat("preco"));
 
-                // Insere na lista.
-                listaResultado.add(voos);
-
-            }
-
-            // Retorna lista.
-            return listaResultado;
+            // Insere na lista.
+            listaResultado.add(voos);
 
         }
+
+        // Retorna lista.
+        return listaResultado;
 
     }
 
