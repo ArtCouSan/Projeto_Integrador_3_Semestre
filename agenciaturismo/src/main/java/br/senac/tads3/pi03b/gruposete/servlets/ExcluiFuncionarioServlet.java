@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("ExcluiFuncionarioServlet")
+@WebServlet("/ExcluiFuncionarioServlet")
 public class ExcluiFuncionarioServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         String action = request.getParameter("action");
 
         String pesquisa = request.getParameter("pesquisa");
@@ -39,7 +39,7 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
 
                 request.setAttribute("encontrados", encontrados);
 
-            } catch (SQLException | ClassNotFoundException ex) {
+            } catch (ClassNotFoundException | SQLException ex) {
 
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -49,6 +49,6 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         }
-
     }
+
 }

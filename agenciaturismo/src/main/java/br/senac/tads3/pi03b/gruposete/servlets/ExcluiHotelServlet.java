@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("ExcluiHotelServlet")
+@WebServlet("/ExcluiHotelServlet")
 public class ExcluiHotelServlet extends HttpServlet {
 
     @Override
