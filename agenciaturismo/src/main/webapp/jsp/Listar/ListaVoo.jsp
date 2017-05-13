@@ -21,12 +21,12 @@
         <tbody>
         <c:forEach var="voos" items="${encontrados}">
             <tr id="${voos.getId_voo()}">
-                <td>${voos.getOrigem()}</td>
-                <td>${voos.getDestino()}</td>
-                <td>${voos.getData_ida()}</td>
-                <td>${voos.getData_volta()}</td>
-                <td>${voos.getQuantidade_passagens()}</td>
-                <td>${voos.getPreco()}</td>
+                <td name="origem">${voos.getOrigem()}</td>
+                <td name="destino">${voos.getDestino()}</td>
+                <td name="data_ida">${voos.getData_ida()}</td>
+                <td name="data_volta">${voos.getData_volta()}</td>
+                <td name="quantidade_passagens">${voos.getQuantidade_passagens()}</td>
+                <td name="preco">${voos.getPreco()}</td>
             </tr>
         </c:forEach>
     </tbody>

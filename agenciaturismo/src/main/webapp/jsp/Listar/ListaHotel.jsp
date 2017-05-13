@@ -21,12 +21,12 @@
         <tbody>
         <c:forEach var="hoteis" items="${encontrados}">
             <tr id="${hoteis.getId_hotel()}">
-                <td>${hoteis.getNome_hotel()}</td>
-                <td>${hoteis.getData_entrada()}</td>
-                <td>${hoteis.getData_saida()}</td>
-                <td>${hoteis.getPreco()}</td>
-                <td>${hoteis.getQuantidade_quartos()}</td>
-                <td>${hoteis.getQuantidade_hospedes()}</td>
+                <td name="nome">${hoteis.getNome_hotel()}</td>
+                <td name="data_entrada">${hoteis.getData_entrada()}</td>
+                <td name="data_saida">${hoteis.getData_saida()}</td>
+                <td name="preco">${hoteis.getPreco()}</td>
+                <td name="quantidade_quartos">${hoteis.getQuantidade_quartos()}</td>
+                <td name="quantidade_hospedes">${hoteis.getQuantidade_hospedes()}</td>
             </tr>
         </c:forEach>
     </tbody>
