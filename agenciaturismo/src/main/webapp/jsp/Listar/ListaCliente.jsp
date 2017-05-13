@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="teste.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Listar Cliente</title>
     </head>
@@ -45,7 +46,7 @@
                         <td name="telefone">${clientes.getTelefone()}</td>
                         <td name="email">${clientes.getEmail()}</td>
                         <td name="ativo">${true}</td>
-                        <td><button name="${clientes.getId_cliente()}">Excluir</button></td>
+                        <td><a class="button" href="CaminhoDoServlet?action=edit&id=<c:out value="${cliente.id}"/>">Atualizar</a></td>
                         <td><button >Alterar</button></td>
                     </tr>
                 </c:forEach>
