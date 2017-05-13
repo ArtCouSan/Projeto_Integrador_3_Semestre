@@ -205,4 +205,20 @@ public class HotelDAO {
         }
 
     }
+
+    public void excluirHotel(int id) throws SQLException {
+
+        // Comando SQL.
+        String slq = "UPDATE cliente SET ativo = ? WHERE id_hotel = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setBoolean(1, false);
+        preparedStatement.setInt(2, id);
+
+        // Executa.
+        preparedStatement.execute();
+    }
+
 }

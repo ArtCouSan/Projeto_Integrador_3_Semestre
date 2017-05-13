@@ -1,7 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
-import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
-import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
+import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/ExcluiClienteServlet")
-public class ExcluiClienteServlet extends HttpServlet {
+@WebServlet("ExcluiVooServlet")
+public class ExcluiVooServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +25,7 @@ public class ExcluiClienteServlet extends HttpServlet {
 
         String pesquisa = request.getParameter("pesquisa");
 
-        ClienteDAO query = new ClienteDAO();
+        VooDAO query = new VooDAO();
 
         if ("edit".equalsIgnoreCase(action)) {
 
@@ -33,19 +33,19 @@ public class ExcluiClienteServlet extends HttpServlet {
 
             try {
 
-                query.excluirCliente(id);
+                query.excluirVoo(id);
 
-                List<Cliente> encontrados = query.procurarCliente(pesquisa);
+                List<Voo> encontrados = query.procurarVoo(pesquisa);
 
                 request.setAttribute("encontrados", encontrados);
 
             } catch (SQLException | ClassNotFoundException ex) {
 
-                Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex); 
-                
+                Logger.getLogger(ExcluiVooServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
             dispatcher.forward(request, response);
 
         }

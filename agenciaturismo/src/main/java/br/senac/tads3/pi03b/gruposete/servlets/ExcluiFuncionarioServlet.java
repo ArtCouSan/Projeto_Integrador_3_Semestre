@@ -1,7 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
-import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
-import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
+import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/ExcluiClienteServlet")
-public class ExcluiClienteServlet extends HttpServlet {
+@WebServlet("ExcluiFuncionarioServlet")
+public class ExcluiFuncionarioServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +25,7 @@ public class ExcluiClienteServlet extends HttpServlet {
 
         String pesquisa = request.getParameter("pesquisa");
 
-        ClienteDAO query = new ClienteDAO();
+        FuncionarioDAO query = new FuncionarioDAO();
 
         if ("edit".equalsIgnoreCase(action)) {
 
@@ -33,23 +33,22 @@ public class ExcluiClienteServlet extends HttpServlet {
 
             try {
 
-                query.excluirCliente(id);
+                query.excluirFuncionario(id);
 
-                List<Cliente> encontrados = query.procurarCliente(pesquisa);
+                List<Funcionario> encontrados = query.procurarFuncionario(pesquisa);
 
                 request.setAttribute("encontrados", encontrados);
 
             } catch (SQLException | ClassNotFoundException ex) {
 
-                Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex); 
-                
+                Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
 
         }
 
     }
-
 }
