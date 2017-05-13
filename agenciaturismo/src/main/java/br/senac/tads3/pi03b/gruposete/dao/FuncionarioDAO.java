@@ -181,7 +181,7 @@ public class FuncionarioDAO {
         return func;
     }
 
-    public List<Funcionario> procurarFuncionario(Funcionario funcionario) throws SQLException, IOException, ClassNotFoundException {
+    public List<Funcionario> procurarFuncionario(String busca) throws SQLException, IOException, ClassNotFoundException {
 
         // Cria lista de clientes.
         List<Funcionario> listaResultado = new ArrayList<>();
@@ -211,23 +211,29 @@ public class FuncionarioDAO {
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, funcionario.getBairro());
-        preparedStatement.setString(2, funcionario.getCelular());
-        preparedStatement.setString(3, funcionario.getCep());
-        preparedStatement.setString(4, funcionario.getComplemento());
-        preparedStatement.setString(5, funcionario.getCpf());
-        preparedStatement.setString(6, funcionario.getData_nasc());
-        preparedStatement.setString(7, funcionario.getEmail());
-        preparedStatement.setString(8, funcionario.getLogradouro());
-        preparedStatement.setString(9, funcionario.getNome());
-        preparedStatement.setInt(10, funcionario.getNumero());
-        preparedStatement.setString(11, funcionario.getRua());
-        preparedStatement.setString(12, funcionario.getSexo());
-        preparedStatement.setString(13, funcionario.getTelefone());
-        preparedStatement.setString(14, funcionario.getCidade());
-        preparedStatement.setString(15, funcionario.getCargo());
-        preparedStatement.setString(16, funcionario.getFilial());
-        preparedStatement.setString(17, funcionario.getDepartamento());
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        preparedStatement.setString(5, busca);
+        preparedStatement.setString(6, busca);
+        preparedStatement.setString(7, busca);
+        preparedStatement.setString(8, busca);
+        preparedStatement.setString(9, busca);
+        int n1 = 0;
+        try {
+            n1 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setInt(10, n1);
+        preparedStatement.setString(11, busca);
+        preparedStatement.setString(12, busca);
+        preparedStatement.setString(13, busca);
+        preparedStatement.setString(14, busca);
+        preparedStatement.setString(15, busca);
+        preparedStatement.setString(16, busca);
+        preparedStatement.setString(17, busca);
         preparedStatement.setBoolean(18, true);
 
         // Recebe e executa pergunta.

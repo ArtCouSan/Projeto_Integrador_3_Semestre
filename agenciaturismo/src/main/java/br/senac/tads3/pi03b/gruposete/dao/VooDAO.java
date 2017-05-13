@@ -134,30 +134,42 @@ public class VooDAO {
         return voo;
     }
 
-    public List<Voo> procurarVoo(Voo voo) throws SQLException, IOException, ClassNotFoundException {
+    public List<Voo> procurarVoo(String busca) throws SQLException, IOException, ClassNotFoundException {
 
         List<Voo> listaResultado = new ArrayList<>();
 
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM voo WHERE"
-                + " data_volta = ?"
+                + " (data_volta = ?"
                 + " OR data_ida = ?"
                 + " OR destino = ?"
                 + " OR origem = ?"
                 + " OR quantidade_passagens = ?"
-                + " OR preco = ?"
+                + " OR preco = ?)"
                 + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, voo.getData_volta());
-        preparedStatement.setString(2, voo.getData_ida());
-        preparedStatement.setString(3, voo.getDestino());
-        preparedStatement.setString(4, voo.getOrigem());
-        preparedStatement.setInt(5, voo.getQuantidade_passagens());
-        preparedStatement.setFloat(6, voo.getPreco());
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        int n1 = 0;
+        try {
+            n1 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        float n2 = 0;
+        try {
+            n2 = Float.parseFloat(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setInt(5, n1);
+        preparedStatement.setFloat(6, n2);
         preparedStatement.setBoolean(7, true);
 
         // Recebe e executa pergunta.

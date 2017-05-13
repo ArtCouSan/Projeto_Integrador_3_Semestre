@@ -169,7 +169,7 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public List<Cliente> procurarCliente(Cliente cliente) throws SQLException, IOException, ClassNotFoundException {
+    public List<Cliente> procurarCliente(String busca) throws SQLException, IOException, ClassNotFoundException {
 
         // Cria lista de clientes.
         List<Cliente> listaResultado = new ArrayList<>();
@@ -196,20 +196,26 @@ public class ClienteDAO {
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, cliente.getBairro());
-        preparedStatement.setString(2, cliente.getCelular());
-        preparedStatement.setString(3, cliente.getCep());
-        preparedStatement.setString(4, cliente.getComplemento());
-        preparedStatement.setString(5, cliente.getCpf());
-        preparedStatement.setString(6, cliente.getData_nasc());
-        preparedStatement.setString(7, cliente.getEmail());
-        preparedStatement.setString(8, cliente.getLogradouro());
-        preparedStatement.setString(9, cliente.getNome());
-        preparedStatement.setInt(10, cliente.getNumero());
-        preparedStatement.setString(11, cliente.getRua());
-        preparedStatement.setString(12, cliente.getSexo());
-        preparedStatement.setString(13, cliente.getTelefone());
-        preparedStatement.setString(14, cliente.getCidade());
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        preparedStatement.setString(5, busca);
+        preparedStatement.setString(6, busca);
+        preparedStatement.setString(7, busca);
+        preparedStatement.setString(8, busca);
+        preparedStatement.setString(9, busca);
+        int buscaN = 0;
+        try {
+            buscaN = Integer.parseInt(busca);
+        } catch (NumberFormatException w) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setInt(10, buscaN);
+        preparedStatement.setString(11, busca);
+        preparedStatement.setString(12, busca);
+        preparedStatement.setString(13, busca);
+        preparedStatement.setString(14, busca);
         preparedStatement.setBoolean(15, true);
 
         // Recebe e executa pergunta.

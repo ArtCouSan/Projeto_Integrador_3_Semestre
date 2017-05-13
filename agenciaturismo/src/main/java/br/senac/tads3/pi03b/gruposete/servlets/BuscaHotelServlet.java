@@ -30,65 +30,19 @@ public class BuscaHotelServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         boolean erro = false;
 
-        String nome_hotel = request.getParameter("nome_hotel");
-
-        String data_entrada = request.getParameter("data_entrada");
-
-        String data_saida = request.getParameter("data_saida");
-
-        int quantidade_quartos;
-
-        try {
-
-            quantidade_quartos = Integer.parseInt(request.getParameter("quantidade_quartos"));
-
-        } catch (NumberFormatException e) {
-
-            quantidade_quartos = 0;
-
-        }
-
-        int quantidade_hospedes;
-
-        try {
-
-            quantidade_hospedes = Integer.parseInt(request.getParameter("quantidade_hospedes"));
-
-        } catch (NumberFormatException e) {
-
-            quantidade_hospedes = 0;
-
-        }
-
-        float preco;
-
-        try {
-
-            preco = Float.parseFloat(request.getParameter("preco"));
-
-        } catch (NumberFormatException e) {
-
-            preco = 0;
-
-        }
+        String busca = request.getParameter("pesquisa");
 
         if (!erro) {
-            
-            Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
-            
+
             try {
-                
+
                 HotelDAO dao = new HotelDAO();
-                List<Hotel> encontrados = dao.procurarHotel(hotel);
+                List<Hotel> encontrados = dao.procurarHotel(busca);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("encontrados", encontrados);
-                for (Hotel encontrado : encontrados) {
-                    System.out.println(encontrado.getNome_hotel());
-                    System.out.println(encontrado.getPreco());
-                }
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaHotel.jsp");
                 dispatcher.forward(request, response);
 
@@ -96,9 +50,7 @@ public class BuscaHotelServlet extends HttpServlet {
 
                 Logger.getLogger(CadastroHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
 
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(BuscaHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+            } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(BuscaHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 

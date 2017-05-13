@@ -1,8 +1,10 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
+import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -21,6 +23,8 @@ public class ExcluiClienteServlet extends HttpServlet {
 
         String action = request.getParameter("action");
 
+        String pesquisa = request.getParameter("pesquisa");
+
         ClienteDAO query = new ClienteDAO();
 
         if ("edit".equalsIgnoreCase(action)) {
@@ -28,12 +32,18 @@ public class ExcluiClienteServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
 
             try {
-                
+
                 query.excluirCliente(id);
-                
-            } catch (SQLException ex) {
-                
-                Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+                List<Cliente> encontrados = query.procurarCliente(pesquisa);
+
+                System.out.println("2/...................");
+
+                request.setAttribute("encontrados", encontrados);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+
+                Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex); 
                 
             }
 

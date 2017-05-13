@@ -32,58 +32,15 @@ public class BuscaClienteServlet extends HttpServlet {
 
         boolean erro = false;
 
-        String nome = request.getParameter("nome");
-
-        String cpf = request.getParameter("cpf");
-
-        String sexo = request.getParameter("sexo");
-
-        String data_nasc = request.getParameter("nascimento");
-
-        String telefone = request.getParameter("telefone");
-
-        String celular = request.getParameter("celular");
-
-        String email = request.getParameter("email");
-
-        int numero;
-
-        try {
-
-            numero = Integer.parseInt(request.getParameter("numero"));
-
-        } catch (NumberFormatException e) {
-
-            numero = 0;
-
-        }
-
-        String cep = request.getParameter("cep");
-
-        String rua = request.getParameter("rua");
-
-        String bairro = request.getParameter("bairro");
-
-        String cidade = request.getParameter("cidade");
-
-        String logradouro = request.getParameter("logradouro");
-
-        String complemento = request.getParameter("complemento");
+        String pesquisa = request.getParameter("pesquisa");
 
         if (!erro) {
 
-            Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                    cep, rua, bairro, cidade, logradouro, complemento, celular,
-                    telefone, email, true);
-
             try {
                 ClienteDAO dao = new ClienteDAO();
-                List<Cliente> encontrados = dao.procurarCliente(cliHumilde);
+                List<Cliente> encontrados = dao.procurarCliente(pesquisa);
                 request.setAttribute("encontrados", encontrados);
-                for (Cliente encontrado : encontrados) {
-                    System.out.println(encontrado.getBairro());
-                    System.out.println(encontrado.getNome());
-                }
+                request.setAttribute("pesquisa", pesquisa);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaCliente.jsp");
                 dispatcher.forward(request, response);
 

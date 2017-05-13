@@ -32,48 +32,18 @@ public class BuscaVooServlet extends HttpServlet {
             throws ServletException, IOException {
 
         boolean erro = false;
-        String origem = request.getParameter("origem");
 
-        String destino = request.getParameter("destino");
-
-        String data_ida = request.getParameter("data_ida");
-
-        String data_volta = request.getParameter("data_volta");
-
-        int quantidade_passagens;
-
-        try {
-
-            quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
-
-        } catch (NumberFormatException e) {
-
-            quantidade_passagens = 0;
-
-        }
-
-        float preco;
-
-        try {
-
-            preco = Float.parseFloat(request.getParameter("preco"));
-
-        } catch (NumberFormatException e) {
-
-            preco = 0;
-
-        }
+        String busca = request.getParameter("pesquisa");
 
         if (!erro) {
 
             try {
-                Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
-
-                VooDAO dao = new VooDAO();
 
                 List<Voo> encontrados;
 
-                encontrados = dao.procurarVoo(voo);
+                VooDAO dao = new VooDAO();
+
+                encontrados = dao.procurarVoo(busca);
 
                 HttpSession sessao = request.getSession();
 

@@ -133,30 +133,48 @@ public class HotelDAO {
         return hotel;
     }
 
-    public List<Hotel> procurarHotel(Hotel hotel) throws ClassNotFoundException, SQLException {
+    public List<Hotel> procurarHotel(String busca) throws ClassNotFoundException, SQLException {
 
         List<Hotel> listaResultado = new ArrayList<>();
 
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM hotel WHERE"
-                + " nome_hotel = ?"
+                + " (nome_hotel = ?"
                 + " OR data_entrada = ?"
                 + " OR data_saida = ?"
                 + " OR preco = ?"
                 + " OR quantidade_quartos = ?"
-                + " OR quantidade_hospedes = ?"
+                + " OR quantidade_hospedes = ?)"
                 + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, hotel.getNome_hotel());
-        preparedStatement.setString(2, hotel.getData_entrada());
-        preparedStatement.setString(3, hotel.getData_saida());
-        preparedStatement.setDouble(4, hotel.getPreco());
-        preparedStatement.setInt(5, hotel.getQuantidade_quartos());
-        preparedStatement.setInt(6, hotel.getQuantidade_hospedes());
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        double n1 = 0;
+        try {
+            Double.parseDouble(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        int n2 = 0;
+        try {
+            n2 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        int n3 = 0;
+        try {
+            n3 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setDouble(4, n1);
+        preparedStatement.setInt(5, n2);
+        preparedStatement.setInt(6, n3);
         preparedStatement.setBoolean(7, true);
 
         // Recebe e executa pergunta.
