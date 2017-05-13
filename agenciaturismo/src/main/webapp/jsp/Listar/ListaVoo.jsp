@@ -22,11 +22,11 @@
         <c:forEach var="voos" items="${encontrados}">
             <tr id="${voos.getId_voo()}">
                 <td>${voos.getOrigem()}</td>
-                <td>${voos.getDestino()}"></td>
-                <td>${voos.getData_ida()}"></td>
-                <td>${voos.getData_volta()}"</td>
-                <td>${voos.getQuantidade_passagens()}"</td>
-                <td>${voos.getPreco()}"</td>
+                <td>${voos.getDestino()}</td>
+                <td>${voos.getData_ida()}</td>
+                <td>${voos.getData_volta()}</td>
+                <td>${voos.getQuantidade_passagens()}</td>
+                <td>${voos.getPreco()}</td>
             </tr>
         </c:forEach>
     </tbody>

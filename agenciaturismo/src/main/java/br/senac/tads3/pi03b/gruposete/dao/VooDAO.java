@@ -2,6 +2,7 @@ package br.senac.tads3.pi03b.gruposete.dao;
 
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -133,7 +134,7 @@ public class VooDAO {
         return voo;
     }
 
-    public List<Voo> procurarVoo(Voo voo) throws SQLException, ClassNotFoundException {
+    public List<Voo> procurarVoo(Voo voo) throws SQLException, IOException, ClassNotFoundException {
 
         List<Voo> listaResultado = new ArrayList<>();
 
@@ -158,29 +159,31 @@ public class VooDAO {
         preparedStatement.setFloat(6, voo.getPreco());
 
         // Recebe e executa pergunta.
-        ResultSet result = preparedStatement.executeQuery();
+        try (ResultSet result = preparedStatement.executeQuery()) {
 
-        // Loop com resultados.
-        while (result.next()) {
+            // Loop com resultados.
+            while (result.next()) {
 
-            Voo voos = new Voo();
+                Voo voos = new Voo();
 
-            // Insere informacoes.
-            voos.setId_voo(resultSet.getInt("id_voo"));
-            voos.setData_ida(resultSet.getString("data_ida"));
-            voos.setData_volta(resultSet.getString("data_volta"));
-            voos.setDestino(resultSet.getString("destino"));
-            voos.setOrigem(resultSet.getString("origem"));
-            voos.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-            voos.setPreco(resultSet.getFloat("preco"));
+                // Insere informacoes.
+                voos.setId_voo(result.getInt("id_voo"));
+                voos.setData_ida(result.getString("data_ida"));
+                voos.setData_volta(result.getString("data_volta"));
+                voos.setDestino(result.getString("destino"));
+                voos.setOrigem(result.getString("origem"));
+                voos.setQuantidade_passagens(result.getInt("quantidade_passagens"));
+                voos.setPreco(result.getFloat("preco"));
 
-            // Insere na lista.
-            listaResultado.add(voos);
+                // Insere na lista.
+                listaResultado.add(voos);
+
+            }
+
+            // Retorna lista.
+            return listaResultado;
 
         }
-
-        // Retorna lista.
-        return listaResultado;
 
     }
 
