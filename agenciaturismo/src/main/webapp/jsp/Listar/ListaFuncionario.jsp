@@ -32,11 +32,11 @@
         </thead>
         <tbody>
         <c:forEach var="funcionarios" items="${encontrados}">
-            <tr name="id" id="${funcionarios.getId_funcionario()}">
+            <tr name="id" id="${funcionarios.getId_func()}">
                 <td name="nome">${funcionarios.getNome()}</td>
                 <td name="cpf">${funcionarios.getCpf()}</td>
                 <td name="sexo">${funcionarios.getSexo()}</td>
-                <td name="data_nasc">${funcionarios.getData_nasc()}></td>
+                <td name="data_nasc">${funcionarios.getData_nasc()}</td>
                 <td name="numero">${funcionarios.getNumero()}</td>
                 <td name="cep">${funcionarios.getCep()}</td>
                 <td name="rua">${funcionarios.getRua()}</td>
@@ -47,10 +47,10 @@
                 <td name="celular">${funcionarios.getCelular()}</td>
                 <td name="telefone">${funcionarios.getTelefone()}</td>
                 <td name="email">${funcionarios.getEmail()}</td>
-                <td name="cargo">${funcionarios.getCargo}</td>
-                <td name="filial">${funcionarios.getFilial}</td>
-                <td name="departamento">${funcionarios.getDepartamento}</td>
-                <td name="ativo">${true}></td>
+                <td name="cargo">${funcionarios.getCargo()}</td>
+                <td name="filial">${funcionarios.getFilial()}</td>
+                <td name="departamento">${funcionarios.getDepartamento()}</td>
+                <td name="ativo">${true}</td>
             </tr>
         </c:forEach>
     </tbody>

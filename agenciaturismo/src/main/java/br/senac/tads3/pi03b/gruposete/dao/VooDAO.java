@@ -156,7 +156,7 @@ public class VooDAO {
         preparedStatement.setString(3, voo.getDestino());
         preparedStatement.setString(4, voo.getOrigem());
         preparedStatement.setInt(5, voo.getQuantidade_passagens());
-        preparedStatement.setBoolean(6, voo.isAtivo());
+        preparedStatement.setBoolean(6, true);
         preparedStatement.setDouble(7, voo.getPreco());
 
         // Recebe e executa pergunta.
@@ -168,7 +168,7 @@ public class VooDAO {
                 Voo voos = new Voo();
 
                 // Insere informacoes.
-                voos.setId_voo(resultSet.getInt("id_hotel"));
+                voos.setId_voo(resultSet.getInt("id_voo"));
                 voos.setData_ida(resultSet.getString("data_ida"));
                 voos.setData_volta(resultSet.getString("data_volta"));
                 voos.setDestino(resultSet.getString("destino"));
