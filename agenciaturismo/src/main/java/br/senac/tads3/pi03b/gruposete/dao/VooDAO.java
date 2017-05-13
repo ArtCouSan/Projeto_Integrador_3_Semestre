@@ -146,7 +146,8 @@ public class VooDAO {
                 + " OR destino = ?"
                 + " OR origem = ?"
                 + " OR quantidade_passagens = ?"
-                + " OR preco = ?";
+                + " OR preco = ?"
+                + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -157,6 +158,7 @@ public class VooDAO {
         preparedStatement.setString(4, voo.getOrigem());
         preparedStatement.setInt(5, voo.getQuantidade_passagens());
         preparedStatement.setFloat(6, voo.getPreco());
+        preparedStatement.setBoolean(7, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {

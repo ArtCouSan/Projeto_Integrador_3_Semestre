@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ExcluiClienteServlet", urlPatterns = {"/ExcluiCliente"})
+@WebServlet("/ExcluiClienteServlet")
 public class ExcluiClienteServlet extends HttpServlet {
 
     @Override
@@ -41,15 +41,6 @@ public class ExcluiClienteServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         }
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Listar/ListaCliente.jsp");
-        dispatcher.forward(request, response);
 
     }
 

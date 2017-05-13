@@ -145,7 +145,8 @@ public class HotelDAO {
                 + " OR data_saida = ?"
                 + " OR preco = ?"
                 + " OR quantidade_quartos = ?"
-                + " OR quantidade_hospedes = ?";
+                + " OR quantidade_hospedes = ?"
+                + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -156,6 +157,7 @@ public class HotelDAO {
         preparedStatement.setDouble(4, hotel.getPreco());
         preparedStatement.setInt(5, hotel.getQuantidade_quartos());
         preparedStatement.setInt(6, hotel.getQuantidade_hospedes());
+        preparedStatement.setBoolean(7, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {

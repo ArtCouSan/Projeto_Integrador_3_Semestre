@@ -189,7 +189,7 @@ public class FuncionarioDAO {
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM funcionario WHERE"
-                + " bairro = ?"
+                + " (bairro = ?"
                 + " OR celular = ?"
                 + " OR cep = ?"
                 + " OR complemento = ?"
@@ -205,7 +205,8 @@ public class FuncionarioDAO {
                 + " OR cidade = ?"
                 + " OR cargo = ?"
                 + " OR filial = ?"
-                + " OR departamento = ?";
+                + " OR departamento = ?)"
+                + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -227,7 +228,8 @@ public class FuncionarioDAO {
         preparedStatement.setString(15, funcionario.getCargo());
         preparedStatement.setString(16, funcionario.getFilial());
         preparedStatement.setString(17, funcionario.getDepartamento());
-        
+        preparedStatement.setBoolean(18, true);
+
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
 
@@ -256,7 +258,7 @@ public class FuncionarioDAO {
                 funcionarios.setCargo(result.getString("cargo"));
                 funcionarios.setFilial(result.getString("filial"));
                 funcionarios.setDepartamento(result.getString("departamento"));
- 
+
                 // Insere na lista.
                 listaResultado.add(funcionarios);
 

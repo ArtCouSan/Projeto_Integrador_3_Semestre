@@ -177,7 +177,7 @@ public class ClienteDAO {
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM cliente WHERE"
-                + " bairro = ?"
+                + " (bairro = ?"
                 + " OR celular = ?"
                 + " OR cep = ?"
                 + " OR complemento = ?"
@@ -190,7 +190,8 @@ public class ClienteDAO {
                 + " OR rua = ?"
                 + " OR sexo = ?"
                 + " OR telefone = ?"
-                + " OR cidade = ?";
+                + " OR cidade = ?)"
+                + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -209,6 +210,7 @@ public class ClienteDAO {
         preparedStatement.setString(12, cliente.getSexo());
         preparedStatement.setString(13, cliente.getTelefone());
         preparedStatement.setString(14, cliente.getCidade());
+        preparedStatement.setBoolean(15, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
