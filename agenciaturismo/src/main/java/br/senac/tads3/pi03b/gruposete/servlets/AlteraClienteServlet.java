@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "AlteraClienteServlet", urlPatterns = {"/AlteraClienteServlet"})
+@WebServlet(name = "AlteraClienteServlet", urlPatterns = {"/EditarCliente"})
 public class AlteraClienteServlet extends HttpServlet {
 
     @Override
@@ -95,10 +95,13 @@ public class AlteraClienteServlet extends HttpServlet {
 //            request.setAttribute("erroComplemento", true);
 //        }
 
+        int id = Integer.parseInt(request.getParameter("identificacao"));
+
         if (erro) {
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, bairro, cidade, logradouro, complemento, celular,
                     telefone, email, true);
+            cliHumilde.setId_cliente(id);
             try {
 
                 ClienteDAO dao = new ClienteDAO();
@@ -108,11 +111,16 @@ public class AlteraClienteServlet extends HttpServlet {
                 response.sendRedirect("jsp/index.html");
 
             } catch (Exception ex) {
+
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
+
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditaCliente.jsp");
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
             dispatcher.forward(request, response);
+
         }
 
     }

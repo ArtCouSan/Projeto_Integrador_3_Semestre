@@ -72,47 +72,31 @@ public class ClienteDAO {
                 + "complemento = ?, "
                 + "celular = ?, "
                 + "telefone = ?, "
-                + "email = ?, "
+                + "email = ? "
                 + "WHERE id_cliente = ?";
 
-        try {
+        connection = DbUtil.getConnection();
 
-            connection = DbUtil.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setString(2, cliente.getCpf());
-            preparedStatement.setString(3, cliente.getSexo());
-            preparedStatement.setString(4, cliente.getData_nasc());
-            preparedStatement.setInt(5, cliente.getNumero());
-            preparedStatement.setString(6, cliente.getCep());
-            preparedStatement.setString(7, cliente.getRua());
-            preparedStatement.setString(8, cliente.getBairro());
-            preparedStatement.setString(9, cliente.getCidade());
-            preparedStatement.setString(10, cliente.getLogradouro());
-            preparedStatement.setString(11, cliente.getComplemento());
-            preparedStatement.setString(12, cliente.getCelular());
-            preparedStatement.setString(13, cliente.getTelefone());
-            preparedStatement.setString(14, cliente.getEmail());
-            preparedStatement.setInt(15, cliente.getId_cliente());
+        preparedStatement.setString(1, cliente.getNome());
+        preparedStatement.setString(2, cliente.getCpf());
+        preparedStatement.setString(3, cliente.getSexo());
+        preparedStatement.setString(4, cliente.getData_nasc());
+        preparedStatement.setInt(5, cliente.getNumero());
+        preparedStatement.setString(6, cliente.getCep());
+        preparedStatement.setString(7, cliente.getRua());
+        preparedStatement.setString(8, cliente.getBairro());
+        preparedStatement.setString(9, cliente.getCidade());
+        preparedStatement.setString(10, cliente.getLogradouro());
+        preparedStatement.setString(11, cliente.getComplemento());
+        preparedStatement.setString(12, cliente.getCelular());
+        preparedStatement.setString(13, cliente.getTelefone());
+        preparedStatement.setString(14, cliente.getEmail());
+        preparedStatement.setInt(15, cliente.getId_cliente());
 
-            preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
 
-        } finally {
-
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-
-                preparedStatement.close();
-
-            }
-
-            if (connection != null && !connection.isClosed()) {
-
-                connection.close();
-
-            }
-
-        }
     }
 
     public List<Cliente> ListaCliente() throws SQLException, ClassNotFoundException {
@@ -123,9 +107,13 @@ public class ClienteDAO {
         String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo=true";
 
         try {
+
             statement = connection.createStatement();
+
             resultSet = statement.executeQuery(query);
+
             while (resultSet.next()) {
+
                 Cliente cliente = new Cliente();
 
                 cliente.setId_cliente(resultSet.getInt("id_cliente"));
@@ -158,7 +146,7 @@ public class ClienteDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Cliente WHERE id_cliente = ?";
+        String query = "SELECT * FROM cliente WHERE id_cliente = ?";
 
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id);

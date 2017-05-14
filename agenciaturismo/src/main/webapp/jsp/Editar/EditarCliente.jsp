@@ -11,7 +11,8 @@
     <body>
     <c:import url="./Layout/cabecalho.jsp"/>
     <form action="${pageContext.request.contextPath}/EditarCliente" method="post">
-
+        <label name="identificacao">${clientes.getId_cliente()}</label>
+        <br>
         <label for="txtnome">Nome:</label>  
         <input type="text" name="nome" value="${clientes.getNome()}"/>
         <br>

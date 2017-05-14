@@ -117,9 +117,13 @@ public class CadastroClienteServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         } else {
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroCliente.jsp");
+            
             dispatcher.forward(request, response);
+            
         }
     }
 }
