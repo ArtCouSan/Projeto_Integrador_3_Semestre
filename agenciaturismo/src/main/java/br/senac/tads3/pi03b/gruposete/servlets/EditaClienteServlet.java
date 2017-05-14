@@ -12,35 +12,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "EditaClienteServlet", urlPatterns = {"/EditaClienteServlet"})
+@WebServlet("/EditaClienteServlet")
 public class EditaClienteServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
         ClienteDAO dao = new ClienteDAO();
 
-        try {
+        String action = request.getParameter("action");
 
-            Cliente clientes = dao.getClienteById(id);
+        if ("edit".equalsIgnoreCase(action)) {
 
-            HttpSession sessao = request.getSession();
-            sessao.setAttribute("clientes", clientes);
+            try {
 
-        } catch (SQLException | ClassNotFoundException ex) {
+                Cliente clientes = dao.getClienteById(id);
 
-            Logger.getLogger(EditaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("clientes", clientes);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+
+                Logger.getLogger(EditaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditaCliente.jsp");
+            dispatcher.forward(request, response);
 
         }
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditaCliente.jsp");
-        dispatcher.forward(request, response);
-
     }
 
 }

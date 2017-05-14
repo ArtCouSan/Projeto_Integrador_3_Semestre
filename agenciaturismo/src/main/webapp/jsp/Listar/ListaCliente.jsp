@@ -48,7 +48,7 @@
                 <td>${clientes.getEmail()}</td>
                 <td>${true}</td>
                 <td><a class="button" href="ExcluiClienteServlet?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
-                <td><a class="button" href="EditaClienteServlet?id=<c:out value="${clientes.getId_cliente()}"/>">Alterar</a></td>
+                <td><a class="button" href="EditaClienteServlet?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>">Alterar</a></td>
             </tr>
         </c:forEach>
     </tbody>
