@@ -2,7 +2,7 @@
 - Cadastrar Okay
 - Buscar Okay
 - Excluir Okay
-- Alterar
+- Alterar Okay
 --------------------------------------------
 Projeto do 3° Semestre da Universidade Senac
 Integrantes:
