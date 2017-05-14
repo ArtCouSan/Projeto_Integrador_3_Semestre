@@ -105,28 +105,25 @@ public class VooDAO {
     }
 
     public Voo getVooById(int id) throws SQLException, ClassNotFoundException {
+
         Voo voo = new Voo();
 
         connection = DbUtil.getConnection();
 
         String query = "SELECT * FROM Voo WHERE id_voo=?";
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                voo.setId_voo(resultSet.getInt("id_hotel"));
-                voo.setData_ida(resultSet.getString("data_ida"));
-                voo.setData_volta(resultSet.getString("data_volta"));
-                voo.setDestino(resultSet.getString("destino"));
-                voo.setOrigem(resultSet.getString("origem"));
-                voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-                voo.setPreco(resultSet.getFloat("preco"));
-            }
-
-        } catch (SQLException e) {
+        while (resultSet.next()) {
+            voo.setId_voo(resultSet.getInt("id_hotel"));
+            voo.setData_ida(resultSet.getString("data_ida"));
+            voo.setData_volta(resultSet.getString("data_volta"));
+            voo.setDestino(resultSet.getString("destino"));
+            voo.setOrigem(resultSet.getString("origem"));
+            voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
+            voo.setPreco(resultSet.getFloat("preco"));
         }
 
         preparedStatement.close();

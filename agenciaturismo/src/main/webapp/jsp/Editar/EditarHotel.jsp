@@ -12,25 +12,25 @@
     <c:import url="./Layout/cabecalho.jsp"/>
     <form action="${pageContext.request.contextPath}/EditarHotel" method="post">
 
-        <label name="identificacao">${hotel.getId_hotel()}</label>
+        <label name="identificacao">${hoteis.getId_hotel()}</label>
         <br>
         <label for="txtorigem">Nome do Hotel:</label>  
-        <input type="text" name="nome_hotel" value="${hotel.getNome_hotel()}"/>
+        <input type="text" name="nome_hotel" value="${hoteis.getNome_hotel()}"/>
         <br>
         <label for="txtdestino">Data de Entrada:</label>  
-        <input type="text" name="data_entrada" value="${hotel.getData_entrada()}"/>
+        <input type="text" name="data_entrada" value="${hoteis.getData_entrada()}"/>
         <br>
         <label for="txtquantidade">Data de Saida:</label>  
-        <input type="text" name="data_saida" value="${hotel.getData_saida()}"/>
+        <input type="text" name="data_saida" value="${hoteis.getData_saida()}"/>
         <br>
         <label for="txtdataIda">Quantidade de Quartos:</label>  
-        <input type="number" name="quantidade_quartos" value="${hotel.getQuantidade_quartos()}"/>
+        <input type="number" name="quantidade_quartos" value="${hoteis.getQuantidade_quartos()}"/>
         <br>
         <label for="txtdataVolta">Quantidade de Hospedes:</label>  
-        <input type="number" name="quantidade_hospedes" value="${hotel.getQuantidade_hospedes()}"/>
+        <input type="number" name="quantidade_hospedes" value="${hoteis.getQuantidade_hospedes()}"/>
         <br>
         <label for="txtPreco">Preco:</label>  
-        <input type="number" name="preco" value="${hotel.getPreco()}"/>
+        <input type="number" name="preco" value="${hoteis.getPreco()}"/>
         <br>
         <input type="submit" value="Alterar"/>
         <br>

@@ -108,7 +108,7 @@ public class HotelDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Hotel WHERE id_hotel=?";
+        String query = "SELECT * FROM Hotel WHERE id_hotel = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);

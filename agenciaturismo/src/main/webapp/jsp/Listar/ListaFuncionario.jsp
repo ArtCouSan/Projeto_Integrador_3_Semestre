@@ -53,9 +53,7 @@
                         <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
                         <td name="ativo">${true}</td>
                         <td><a class="button" href="ExcluiFuncionarioServlet?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
-                        <td><a class="button" href="EditarFuncionario?
-                               nome=<c:out value="${funcionarios.getId_func()}"/>
-                               ">Alterar</a></td>
+                        <td><a class="button" href="EditaFuncionario??action=edit&id=<c:out value="${funcionarios.getId_func()}"/>">Alterar</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

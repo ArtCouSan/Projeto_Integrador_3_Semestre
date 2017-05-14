@@ -1,7 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
-import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
-import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
+import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "AlteraClienteServlet", urlPatterns = {"/EditarCliente"})
-public class AlteraClienteServlet extends HttpServlet {
+@WebServlet(name = "AlteraFuncionarioServlet", urlPatterns = {"/AlteraFuncionarioServlet"})
+public class AlteraFuncionarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = true;
+        boolean erro = false;
 
         String nome = request.getParameter("nome");
 //        if (nome == null || nome.length() < 1) {
@@ -44,12 +44,12 @@ public class AlteraClienteServlet extends HttpServlet {
 //        }
 
         String telefone = request.getParameter("telefone");
-//        if (telefone == null || !"(  )    -    ".equals(telefone)) {
+//        if (telefone == null || !"     -    ".equals(telefone)) {
 //            erro = true;
 //            request.setAttribute("erroTelefone", true);
 //        }
         String celular = request.getParameter("celular");
-//        if (celular == null || !"(  )     -    ".equals(celular)) {
+//        if (celular == null || !"     -    ".equals(celular)) {
 //            erro = true;
 //            request.setAttribute("erroCelular", true);
 //        }
@@ -95,30 +95,44 @@ public class AlteraClienteServlet extends HttpServlet {
 //            request.setAttribute("erroComplemento", true);
 //        }
 
+        String cargo = request.getParameter("cargo");
+//        if (cargo == null || cargo.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroCargo", true);
+//        }
+        String filial = request.getParameter("filial");
+//        if (filial == null || filial.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroFilial", true);
+//        }
+        String departamento = request.getParameter("departamento");
+//        if (departamento == null || departamento.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroDepartamento", true);
+//        }
+
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
-        if (erro) {
-            Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                    cep, rua, bairro, cidade, logradouro, complemento, celular,
-                    telefone, email, true);
-            cliHumilde.setId_cliente(id);
+        if (!erro) {
+            Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
+                    numero, cep, rua, bairro, cidade, logradouro, complemento,
+                    celular, telefone, email, true, cargo, filial, departamento);
+            funcHumilde.setId_func(id);
             try {
-
-                ClienteDAO dao = new ClienteDAO();
-                dao.alterar(cliHumilde);
+                FuncionarioDAO dao = new FuncionarioDAO();
+                dao.alterar(funcHumilde);
                 HttpSession sessao = request.getSession();
-                sessao.setAttribute("editarCliente", cliHumilde);
+                sessao.setAttribute("editarFuncionario", funcHumilde);
                 response.sendRedirect("jsp/index.html");
 
             } catch (Exception ex) {
 
-                Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-
+                //Logger.getLogger(EditarFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } else {
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarFuncionario.jsp");
+
             dispatcher.forward(request, response);
 
         }

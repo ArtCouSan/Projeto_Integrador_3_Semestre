@@ -11,7 +11,7 @@
     <body>
     <c:import url="./Layout/cabecalho.jsp"/>
     <form action="${pageContext.request.contextPath}/EditarVoo" method="post">
-        <label name="identificacao">${voo.getId_voo()}</label>
+        <label name="identificacao">${voos.getId_voo()}</label>
         <br>
         <label for="txtorigem">Origem:</label>  
         <input type="text" name="origem" value="${voos.getOrigem()}"/>

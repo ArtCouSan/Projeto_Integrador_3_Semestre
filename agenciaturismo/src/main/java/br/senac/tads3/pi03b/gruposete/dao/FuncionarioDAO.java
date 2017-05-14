@@ -145,7 +145,7 @@ public class FuncionarioDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Funcionario WHERE id_func=?";
+        String query = "SELECT * FROM Funcionario WHERE id_func = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);
