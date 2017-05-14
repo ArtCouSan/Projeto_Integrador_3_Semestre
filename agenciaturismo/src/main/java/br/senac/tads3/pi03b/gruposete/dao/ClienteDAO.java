@@ -57,41 +57,46 @@ public class ClienteDAO {
 
     public void alterar(Cliente cliente) throws SQLException, Exception {
 
-        String sql = "UPDATE Cliente "
-                + "SET nome=?, cpf=?, sexo=?, data_nasc=?, numero=?, cep=?, rua=?, bairro=?, cidade=?, logradouro=?, complemento=?, celular=?, telefone=?, email=?, ativo=? "
-                + "WHERE id_cliente=?";
+        String sql = "UPDATE cliente "
+                + "SET "
+                + "nome = ?, "
+                + "cpf = ?, "
+                + "sexo = ?, "
+                + "data_nasc = ?, "
+                + "numero = ?, "
+                + "cep = ?, "
+                + "rua = ?, "
+                + "bairro = ?, "
+                + "cidade = ?, "
+                + "logradouro = ?, "
+                + "complemento = ?, "
+                + "celular = ?, "
+                + "telefone = ?, "
+                + "email = ? "
+                + "WHERE id_cliente = ?";
 
-        try {
-            connection = DbUtil.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
+        connection = DbUtil.getConnection();
 
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setString(2, cliente.getCpf());
-            preparedStatement.setString(3, cliente.getSexo());
-            preparedStatement.setString(4, cliente.getData_nasc());
-            preparedStatement.setInt(5, cliente.getNumero());
-            preparedStatement.setString(6, cliente.getCep());
-            preparedStatement.setString(7, cliente.getRua());
-            preparedStatement.setString(8, cliente.getBairro());
-            preparedStatement.setString(9, cliente.getCidade());
-            preparedStatement.setString(10, cliente.getLogradouro());
-            preparedStatement.setString(11, cliente.getComplemento());
-            preparedStatement.setString(12, cliente.getCelular());
-            preparedStatement.setString(13, cliente.getTelefone());
-            preparedStatement.setString(14, cliente.getEmail());
-            preparedStatement.setBoolean(15, cliente.isAtivo());
-            preparedStatement.setInt(16, cliente.getId_cliente());
+        preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.executeUpdate();
+        preparedStatement.setString(1, cliente.getNome());
+        preparedStatement.setString(2, cliente.getCpf());
+        preparedStatement.setString(3, cliente.getSexo());
+        preparedStatement.setString(4, cliente.getData_nasc());
+        preparedStatement.setInt(5, cliente.getNumero());
+        preparedStatement.setString(6, cliente.getCep());
+        preparedStatement.setString(7, cliente.getRua());
+        preparedStatement.setString(8, cliente.getBairro());
+        preparedStatement.setString(9, cliente.getCidade());
+        preparedStatement.setString(10, cliente.getLogradouro());
+        preparedStatement.setString(11, cliente.getComplemento());
+        preparedStatement.setString(12, cliente.getCelular());
+        preparedStatement.setString(13, cliente.getTelefone());
+        preparedStatement.setString(14, cliente.getEmail());
+        preparedStatement.setInt(15, cliente.getId_cliente());
 
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
+        preparedStatement.executeUpdate();
+
     }
 
     public List<Cliente> ListaCliente() throws SQLException, ClassNotFoundException {
@@ -102,9 +107,13 @@ public class ClienteDAO {
         String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo=true";
 
         try {
+
             statement = connection.createStatement();
+
             resultSet = statement.executeQuery(query);
+
             while (resultSet.next()) {
+
                 Cliente cliente = new Cliente();
 
                 cliente.setId_cliente(resultSet.getInt("id_cliente"));
@@ -132,36 +141,33 @@ public class ClienteDAO {
     }
 
     public Cliente getClienteById(int id) throws SQLException, ClassNotFoundException {
+
         Cliente cliente = new Cliente();
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Cliente WHERE id_cliente=?";
+        String query = "SELECT * FROM cliente WHERE id_cliente = ?";
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                cliente.setId_cliente(resultSet.getInt("id_cliente"));
-                cliente.setNome(resultSet.getString("nome"));
-                cliente.setCpf(resultSet.getString("cpf"));
-                cliente.setSexo(resultSet.getString("sexo"));
-                cliente.setData_nasc(resultSet.getString("data_nasc"));
-                cliente.setNumero(resultSet.getInt("numero"));
-                cliente.setCep(resultSet.getString("cep"));
-                cliente.setRua(resultSet.getString("rua"));
-                cliente.setBairro(resultSet.getString("bairro"));
-                cliente.setCidade(resultSet.getString("cidade"));
-                cliente.setLogradouro(resultSet.getString("logradouro"));
-                cliente.setComplemento(resultSet.getString("complemento"));
-                cliente.setCelular(resultSet.getString("celular"));
-                cliente.setTelefone(resultSet.getString("telefone"));
-                cliente.setEmail(resultSet.getString("email"));
-            }
-
-        } catch (SQLException e) {
+        while (resultSet.next()) {
+            cliente.setId_cliente(resultSet.getInt("id_cliente"));
+            cliente.setNome(resultSet.getString("nome"));
+            cliente.setCpf(resultSet.getString("cpf"));
+            cliente.setSexo(resultSet.getString("sexo"));
+            cliente.setData_nasc(resultSet.getString("data_nasc"));
+            cliente.setNumero(resultSet.getInt("numero"));
+            cliente.setCep(resultSet.getString("cep"));
+            cliente.setRua(resultSet.getString("rua"));
+            cliente.setBairro(resultSet.getString("bairro"));
+            cliente.setCidade(resultSet.getString("cidade"));
+            cliente.setLogradouro(resultSet.getString("logradouro"));
+            cliente.setComplemento(resultSet.getString("complemento"));
+            cliente.setCelular(resultSet.getString("celular"));
+            cliente.setTelefone(resultSet.getString("telefone"));
+            cliente.setEmail(resultSet.getString("email"));
         }
 
         preparedStatement.close();
@@ -169,7 +175,7 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public List<Cliente> procurarCliente(Cliente cliente) throws SQLException, IOException, ClassNotFoundException {
+    public List<Cliente> procurarCliente(String busca) throws SQLException, IOException, ClassNotFoundException {
 
         // Cria lista de clientes.
         List<Cliente> listaResultado = new ArrayList<>();
@@ -177,7 +183,7 @@ public class ClienteDAO {
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM cliente WHERE"
-                + " bairro = ?"
+                + " (bairro = ?"
                 + " OR celular = ?"
                 + " OR cep = ?"
                 + " OR complemento = ?"
@@ -190,61 +196,86 @@ public class ClienteDAO {
                 + " OR rua = ?"
                 + " OR sexo = ?"
                 + " OR telefone = ?"
-                + " OR cidade = ?";
+                + " OR cidade = ?)"
+                + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, cliente.getBairro());
-        preparedStatement.setString(2, cliente.getCelular());
-        preparedStatement.setString(3, cliente.getCep());
-        preparedStatement.setString(4, cliente.getComplemento());
-        preparedStatement.setString(5, cliente.getCpf());
-        preparedStatement.setString(6, cliente.getData_nasc());
-        preparedStatement.setString(7, cliente.getEmail());
-        preparedStatement.setString(8, cliente.getLogradouro());
-        preparedStatement.setString(9, cliente.getNome());
-        preparedStatement.setInt(10, cliente.getNumero());
-        preparedStatement.setString(11, cliente.getRua());
-        preparedStatement.setString(12, cliente.getSexo());
-        preparedStatement.setString(13, cliente.getTelefone());
-        preparedStatement.setString(14, cliente.getCidade());
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        preparedStatement.setString(5, busca);
+        preparedStatement.setString(6, busca);
+        preparedStatement.setString(7, busca);
+        preparedStatement.setString(8, busca);
+        preparedStatement.setString(9, busca);
+        int buscaN = 0;
+        try {
+            buscaN = Integer.parseInt(busca);
+        } catch (NumberFormatException w) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setInt(10, buscaN);
+        preparedStatement.setString(11, busca);
+        preparedStatement.setString(12, busca);
+        preparedStatement.setString(13, busca);
+        preparedStatement.setString(14, busca);
+        preparedStatement.setBoolean(15, true);
 
         // Recebe e executa pergunta.
-        try {
-            resultSet = preparedStatement.executeQuery();
+        try (ResultSet result = preparedStatement.executeQuery()) {
 
             // Loop com resultados.
-            while (resultSet.next()) {
+            while (result.next()) {
 
                 // Cria cliente.
                 Cliente clientes = new Cliente();
 
                 // Insere informacoes.
-                clientes.setId_cliente(resultSet.getInt("id_cliente"));
-                clientes.setBairro(resultSet.getString("bairro"));
-                clientes.setCelular(resultSet.getString("celular"));
-                clientes.setCep(resultSet.getString("cep"));
-                clientes.setComplemento(resultSet.getString("complemento"));
-                clientes.setCpf(resultSet.getString("cpf"));
-                clientes.setData_nasc(resultSet.getString("data_nasc"));
-                clientes.setEmail(resultSet.getString("email"));
-                clientes.setLogradouro(resultSet.getString("logradouro"));
-                clientes.setNome(resultSet.getString("nome"));
-                clientes.setNumero(resultSet.getInt("numero"));
-                clientes.setRua(resultSet.getString("rua"));
-                clientes.setSexo(resultSet.getString("sexo"));
-                clientes.setTelefone(resultSet.getString("telefone"));
-                clientes.setCidade(resultSet.getString("cidade"));
+                clientes.setId_cliente(result.getInt("id_cliente"));
+                clientes.setBairro(result.getString("bairro"));
+                clientes.setCelular(result.getString("celular"));
+                clientes.setCep(result.getString("cep"));
+                clientes.setComplemento(result.getString("complemento"));
+                clientes.setCpf(result.getString("cpf"));
+                clientes.setData_nasc(result.getString("data_nasc"));
+                clientes.setEmail(result.getString("email"));
+                clientes.setLogradouro(result.getString("logradouro"));
+                clientes.setNome(result.getString("nome"));
+                clientes.setNumero(result.getInt("numero"));
+                clientes.setRua(result.getString("rua"));
+                clientes.setSexo(result.getString("sexo"));
+                clientes.setTelefone(result.getString("telefone"));
+                clientes.setCidade(result.getString("cidade"));
 
                 // Insere na lista.
                 listaResultado.add(clientes);
 
             }
-        } catch (SQLException e) {
+
+            // Retorna lista.
+            return listaResultado;
+
         }
 
-        // Retorna lista.
-        return listaResultado;
     }
+
+    public void excluirCliente(int id) throws SQLException {
+
+        // Comando SQL.
+        String slq = "UPDATE cliente SET ativo = ? WHERE  id_cliente = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setBoolean(1, false);
+        preparedStatement.setInt(2, id);
+
+        // Executa.
+        preparedStatement.execute();
+
+    }
+
 }

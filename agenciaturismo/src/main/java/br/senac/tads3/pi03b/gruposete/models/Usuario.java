@@ -6,7 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class Usuario {
 
-private static Map<String, Usuario> USUARIOS_CADASTRADOS = new LinkedHashMap<>();
+private final static Map<String, Usuario> USUARIOS_CADASTRADOS = new LinkedHashMap<>();
 
     static {
         USUARIOS_CADASTRADOS.put("admin", new Usuario("admin",
@@ -14,8 +14,8 @@ private static Map<String, Usuario> USUARIOS_CADASTRADOS = new LinkedHashMap<>()
     }
 
     private int id_usuario;
-    private String login;
     private String nome;
+    private String login;
     private String senha;
     private String hashSenha;
     private String acesso;
@@ -23,12 +23,12 @@ private static Map<String, Usuario> USUARIOS_CADASTRADOS = new LinkedHashMap<>()
     public Usuario() {
     }
 
-    public Usuario(String usuario, String nome, String senha, String papel) {
-        this.login = usuario;
+    public Usuario(String nome, String login, String senha, String acesso) {
         this.nome = nome;
+        this.login = login;
         this.setHashSenha(senha);
         this.setSenha(senha);
-        this.acesso = papel;
+        this.acesso = acesso;
     }
 
     public int getId_usuario() {

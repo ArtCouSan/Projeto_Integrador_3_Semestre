@@ -2,6 +2,7 @@ package br.senac.tads3.pi03b.gruposete.dao;
 
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ public class VooDAO {
     private static Connection connection;
     private static PreparedStatement preparedStatement;
     private static Statement statement;
-    private static ResultSet resultSet;
+    private static ResultSet resultSet = null;
 
     public void inserir(Voo voo) throws SQLException, Exception {
 
@@ -104,28 +105,25 @@ public class VooDAO {
     }
 
     public Voo getVooById(int id) throws SQLException, ClassNotFoundException {
+
         Voo voo = new Voo();
 
         connection = DbUtil.getConnection();
 
         String query = "SELECT * FROM Voo WHERE id_voo=?";
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                voo.setId_voo(resultSet.getInt("id_hotel"));
-                voo.setData_ida(resultSet.getString("data_ida"));
-                voo.setData_volta(resultSet.getString("data_volta"));
-                voo.setDestino(resultSet.getString("destino"));
-                voo.setOrigem(resultSet.getString("origem"));
-                voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-                voo.setPreco(resultSet.getFloat("preco"));
-            }
-
-        } catch (SQLException e) {
+        while (resultSet.next()) {
+            voo.setId_voo(resultSet.getInt("id_hotel"));
+            voo.setData_ida(resultSet.getString("data_ida"));
+            voo.setData_volta(resultSet.getString("data_volta"));
+            voo.setDestino(resultSet.getString("destino"));
+            voo.setOrigem(resultSet.getString("origem"));
+            voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
+            voo.setPreco(resultSet.getFloat("preco"));
         }
 
         preparedStatement.close();
@@ -133,54 +131,86 @@ public class VooDAO {
         return voo;
     }
 
-    public List<Voo> procurarVoo(Voo voo) throws SQLException, ClassNotFoundException {
+    public List<Voo> procurarVoo(String busca) throws SQLException, IOException, ClassNotFoundException {
+
         List<Voo> listaResultado = new ArrayList<>();
 
         connection = DbUtil.getConnection();
 
-        String sql = "SELECT * FROM hotel WHERE"
-                + " nome_hotel = ?"
-                + " OR data_entrada = ?"
-                + " OR data_saida = ?"
-                + " OR preco = ?"
-                + " OR quantidade_quartos = ?"
-                + " OR quantidade_hospedes = ?";
+        String sql = "SELECT * FROM voo WHERE"
+                + " (data_volta = ?"
+                + " OR data_ida = ?"
+                + " OR destino = ?"
+                + " OR origem = ?"
+                + " OR quantidade_passagens = ?"
+                + " OR preco = ?)"
+                + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, voo.getData_ida());
-        preparedStatement.setString(2, voo.getData_volta());
-        preparedStatement.setString(3, voo.getDestino());
-        preparedStatement.setString(4, voo.getOrigem());
-        preparedStatement.setInt(5, voo.getQuantidade_passagens());
-        preparedStatement.setDouble(6, voo.getPreco());
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        int n1 = 0;
+        try {
+            n1 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        float n2 = 0;
+        try {
+            n2 = Float.parseFloat(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setInt(5, n1);
+        preparedStatement.setFloat(6, n2);
+        preparedStatement.setBoolean(7, true);
 
         // Recebe e executa pergunta.
-        try {
-            resultSet = preparedStatement.executeQuery();
+        try (ResultSet result = preparedStatement.executeQuery()) {
 
             // Loop com resultados.
-            while (resultSet.next()) {
+            while (result.next()) {
 
                 Voo voos = new Voo();
 
                 // Insere informacoes.
-                voos.setId_voo(resultSet.getInt("id_voo"));
-                voos.setData_ida(resultSet.getString("data_ida"));
-                voos.setData_volta(resultSet.getString("data_volta"));
-                voos.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-                voos.setPreco(resultSet.getFloat("preco"));
+                voos.setId_voo(result.getInt("id_voo"));
+                voos.setData_ida(result.getString("data_ida"));
+                voos.setData_volta(result.getString("data_volta"));
+                voos.setDestino(result.getString("destino"));
+                voos.setOrigem(result.getString("origem"));
+                voos.setQuantidade_passagens(result.getInt("quantidade_passagens"));
+                voos.setPreco(result.getFloat("preco"));
 
                 // Insere na lista.
                 listaResultado.add(voos);
 
             }
 
-        } catch (SQLException e) {
+            // Retorna lista.
+            return listaResultado;
+
         }
-        
-        // Retorna lista.
-        return listaResultado;
+
     }
+
+    public void excluirVoo(int id) throws SQLException {
+
+        // Comando SQL.
+        String slq = "UPDATE Voo SET ativo = ? WHERE id_voo = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setBoolean(1, false);
+        preparedStatement.setInt(2, id);
+
+        // Executa.
+        preparedStatement.execute();
+    }
+
 }
