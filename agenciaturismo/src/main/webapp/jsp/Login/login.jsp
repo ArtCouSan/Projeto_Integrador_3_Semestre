@@ -12,15 +12,15 @@
         <title>Login</title>
     </head>
     <body>
-        <h1>Login</h1>
-        <form action="login" method="post">
+        <h1>Agência Turismo</h1>
+        <form action="${pageContext.request.contextPath}/login" method="post">
             <div>
-                <label for="txtusuario">Usuário</label>
-                <input type="text" name="usuario" id="txtusuario" placeholder="user" />
+                <label for="txtusuario">Login</label>
+                <input type="text" name="usuario" id="txtusuario" placeholder="user" required/>
             </div>
             <div>
                 <label for="txtsenha">Senha</label>
-                <input type="password" name="senha" id="txtsenha" placeholder="password"/>
+                <input type="password" name="senha" id="txtsenha" placeholder="password" required/>
             </div>
             <div>
                 <input type="submit" value="Entrar" />
