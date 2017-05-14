@@ -14,23 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ListaVooServlet", urlPatterns = {"/lista-voo"})
+@WebServlet(name = "ListaVooServlet", urlPatterns = {"/ListaVoo"})
 public class ListaVooServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            VooDAO vooDAO = new VooDAO();
-            List<Voo> lista = vooDAO.ListaVoo();
-            request.setAttribute("listaVoos", lista);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaVoo.jsp");
-            dispatcher.forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Listar/ListaVoo.jsp");
+        dispatcher.forward(request, response);
 
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(ListaFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @Override

@@ -19,77 +19,35 @@ import javax.servlet.http.HttpSession;
 public class BuscaVooServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaVoo.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         boolean erro = false;
-        String origem = request.getParameter("origem");
 
-        String destino = request.getParameter("destino");
-
-        String data_ida = request.getParameter("data_ida");
-
-        String data_volta = request.getParameter("data_volta");
-
-        int quantidade_passagens;
-        
-        try {
-
-            quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
-
-        } catch (NumberFormatException e) {
-
-            quantidade_passagens = 0;
-
-        }
-
-        float preco;
-
-        try {
-
-            preco = Float.parseFloat(request.getParameter("preco"));
-
-        } catch (NumberFormatException e) {
-
-            preco = 0;
-
-        }
+        String pesquisa = request.getParameter("pesquisa");
 
         if (!erro) {
-            Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
+
             try {
 
+                List<Voo> encontrados;
+
                 VooDAO dao = new VooDAO();
-                List<Voo> encontrados = dao.procurarVoo(voo);
+                encontrados = dao.procurarVoo(pesquisa);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("encontrados", encontrados);
-                for (Voo encontrado : encontrados) {
-                    System.out.println(encontrado.getOrigem());
-                    System.out.println(encontrado.getPreco());
-                }
+                sessao.setAttribute("pesquisa", pesquisa);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
                 dispatcher.forward(request, response);
 
-            } catch (IOException | ServletException ex) {
-                Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-            
-            } catch (ClassNotFoundException | SQLException ex){
-                Logger.getLogger(BuscaHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(BuscaVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
-                dispatcher.forward(request, response);
+            dispatcher.forward(request, response);
 
         }
 

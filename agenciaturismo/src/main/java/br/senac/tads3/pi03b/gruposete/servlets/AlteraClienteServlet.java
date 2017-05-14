@@ -13,19 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "CadastroClienteServlet", urlPatterns = {"/CadastroCliente"})
-public class CadastroClienteServlet extends HttpServlet {
+@WebServlet(name = "AlteraClienteServlet", urlPatterns = {"/EditarCliente"})
+public class AlteraClienteServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Cadastrar/CadastroCliente.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         boolean erro = true;
 
@@ -102,28 +95,34 @@ public class CadastroClienteServlet extends HttpServlet {
 //            request.setAttribute("erroComplemento", true);
 //        }
 
-        if (erro) {   
+        int id = Integer.parseInt(request.getParameter("identificacao"));
+
+        if (erro) {
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, bairro, cidade, logradouro, complemento, celular,
                     telefone, email, true);
+            cliHumilde.setId_cliente(id);
             try {
 
                 ClienteDAO dao = new ClienteDAO();
-                dao.inserir(cliHumilde);
+                dao.alterar(cliHumilde);
                 HttpSession sessao = request.getSession();
-                sessao.setAttribute("novoCliente", cliHumilde);
+                sessao.setAttribute("editarCliente", cliHumilde);
                 response.sendRedirect("jsp/index.html");
 
             } catch (Exception ex) {
-                Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+                Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
-            
+
         } else {
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroCliente.jsp");
-            
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
             dispatcher.forward(request, response);
-            
+
         }
+
     }
+
 }

@@ -108,7 +108,7 @@ public class HotelDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Hotel WHERE id_hotel=?";
+        String query = "SELECT * FROM Hotel WHERE id_hotel = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -133,57 +133,92 @@ public class HotelDAO {
         return hotel;
     }
 
-    public List<Hotel> procurarHotel(Hotel hotel) throws ClassNotFoundException, SQLException {
+    public List<Hotel> procurarHotel(String busca) throws ClassNotFoundException, SQLException {
 
         List<Hotel> listaResultado = new ArrayList<>();
 
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM hotel WHERE"
-                + " nome_hotel = ?"
+                + " (nome_hotel = ?"
                 + " OR data_entrada = ?"
                 + " OR data_saida = ?"
                 + " OR preco = ?"
                 + " OR quantidade_quartos = ?"
-                + " OR quantidade_hospedes = ?";
+                + " OR quantidade_hospedes = ?)"
+                + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, hotel.getNome_hotel());
-        preparedStatement.setString(2, hotel.getData_entrada());
-        preparedStatement.setString(3, hotel.getData_saida());
-        preparedStatement.setDouble(4, hotel.getPreco());
-        preparedStatement.setInt(5, hotel.getQuantidade_quartos());
-        preparedStatement.setInt(6, hotel.getQuantidade_hospedes());
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        double n1 = 0;
+        try {
+            Double.parseDouble(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        int n2 = 0;
+        try {
+            n2 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        int n3 = 0;
+        try {
+            n3 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setDouble(4, n1);
+        preparedStatement.setInt(5, n2);
+        preparedStatement.setInt(6, n3);
+        preparedStatement.setBoolean(7, true);
 
         // Recebe e executa pergunta.
-        try {
-            resultSet = preparedStatement.executeQuery();
+        try (ResultSet result = preparedStatement.executeQuery()) {
 
             // Loop com resultados.
-            while (resultSet.next()) {
+            while (result.next()) {
 
                 Hotel hoteis = new Hotel();
 
                 // Insere informacoes.
-                hoteis.setId_hotel(resultSet.getInt("id_hotel"));
-                hoteis.setData_entrada(resultSet.getString("data_entrada"));
-                hoteis.setData_saida(resultSet.getString("data_saida"));
-                hoteis.setQuantidade_hospedes(resultSet.getInt("quantidade_hospedes"));
-                hoteis.setQuantidade_quartos(resultSet.getInt("quantidade_quartos"));
-                hoteis.setPreco(resultSet.getFloat("preco"));
-                hoteis.setNome_hotel(resultSet.getString("nome_hotel"));
+                hoteis.setId_hotel(result.getInt("id_hotel"));
+                hoteis.setData_entrada(result.getString("data_entrada"));
+                hoteis.setData_saida(result.getString("data_saida"));
+                hoteis.setQuantidade_hospedes(result.getInt("quantidade_hospedes"));
+                hoteis.setQuantidade_quartos(result.getInt("quantidade_quartos"));
+                hoteis.setPreco(result.getFloat("preco"));
+                hoteis.setNome_hotel(result.getString("nome_hotel"));
 
                 // Insere na lista.
                 listaResultado.add(hoteis);
 
             }
 
-        } catch (SQLException e) {
+            // Retorna lista.
+            return listaResultado;
+
         }
-        
-        // Retorna lista.
-        return listaResultado;
+
     }
+
+    public void excluirHotel(int id) throws SQLException {
+
+        // Comando SQL.
+        String slq = "UPDATE Hotel SET ativo = ? WHERE id_hotel = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setBoolean(1, false);
+        preparedStatement.setInt(2, id);
+
+        // Executa.
+        preparedStatement.execute();
+    }
+
 }

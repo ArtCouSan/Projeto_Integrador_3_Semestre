@@ -1,6 +1,5 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
-import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.io.IOException;
@@ -146,7 +145,7 @@ public class FuncionarioDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Funcionario WHERE id_func=?";
+        String query = "SELECT * FROM Funcionario WHERE id_func = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -182,7 +181,7 @@ public class FuncionarioDAO {
         return func;
     }
 
-    public List<Funcionario> procurarFuncionario(Funcionario funcionario) throws SQLException, IOException, ClassNotFoundException {
+    public List<Funcionario> procurarFuncionario(String busca) throws SQLException, IOException, ClassNotFoundException {
 
         // Cria lista de clientes.
         List<Funcionario> listaResultado = new ArrayList<>();
@@ -190,7 +189,7 @@ public class FuncionarioDAO {
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM funcionario WHERE"
-                + " bairro = ?"
+                + " (bairro = ?"
                 + " OR celular = ?"
                 + " OR cep = ?"
                 + " OR complemento = ?"
@@ -206,68 +205,91 @@ public class FuncionarioDAO {
                 + " OR cidade = ?"
                 + " OR cargo = ?"
                 + " OR filial = ?"
-                + " OR departamento = ?";
+                + " OR departamento = ?)"
+                + " AND ativo = ?";
 
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
-        preparedStatement.setString(1, funcionario.getBairro());
-        preparedStatement.setString(2, funcionario.getCelular());
-        preparedStatement.setString(3, funcionario.getCep());
-        preparedStatement.setString(4, funcionario.getComplemento());
-        preparedStatement.setString(5, funcionario.getCpf());
-        preparedStatement.setString(6, funcionario.getData_nasc());
-        preparedStatement.setString(7, funcionario.getEmail());
-        preparedStatement.setString(8, funcionario.getLogradouro());
-        preparedStatement.setString(9, funcionario.getNome());
-        preparedStatement.setInt(10, funcionario.getNumero());
-        preparedStatement.setString(11, funcionario.getRua());
-        preparedStatement.setString(12, funcionario.getSexo());
-        preparedStatement.setString(13, funcionario.getTelefone());
-        preparedStatement.setString(14, funcionario.getCidade());
-        preparedStatement.setString(15, funcionario.getCargo());
-        preparedStatement.setString(16, funcionario.getFilial());
-        preparedStatement.setString(17, funcionario.getDepartamento());
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        preparedStatement.setString(5, busca);
+        preparedStatement.setString(6, busca);
+        preparedStatement.setString(7, busca);
+        preparedStatement.setString(8, busca);
+        preparedStatement.setString(9, busca);
+        int n1 = 0;
+        try {
+            n1 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setInt(10, n1);
+        preparedStatement.setString(11, busca);
+        preparedStatement.setString(12, busca);
+        preparedStatement.setString(13, busca);
+        preparedStatement.setString(14, busca);
+        preparedStatement.setString(15, busca);
+        preparedStatement.setString(16, busca);
+        preparedStatement.setString(17, busca);
+        preparedStatement.setBoolean(18, true);
 
         // Recebe e executa pergunta.
-        try {
-            resultSet = preparedStatement.executeQuery();
+        try (ResultSet result = preparedStatement.executeQuery()) {
 
             // Loop com resultados.
-            while (resultSet.next()) {
+            while (result.next()) {
 
                 // Cria cliente.
                 Funcionario funcionarios = new Funcionario();
 
                 // Insere informacoes.
-                funcionarios.setId_func(resultSet.getInt("id_func"));
-                funcionarios.setBairro(resultSet.getString("bairro"));
-                funcionarios.setCelular(resultSet.getString("celular"));
-                funcionarios.setCep(resultSet.getString("cep"));
-                funcionarios.setComplemento(resultSet.getString("complemento"));
-                funcionarios.setCpf(resultSet.getString("cpf"));
-                funcionarios.setData_nasc(resultSet.getString("data_nasc"));
-                funcionarios.setEmail(resultSet.getString("email"));
-                funcionarios.setLogradouro(resultSet.getString("logradouro"));
-                funcionarios.setNome(resultSet.getString("nome"));
-                funcionarios.setNumero(resultSet.getInt("numero"));
-                funcionarios.setRua(resultSet.getString("rua"));
-                funcionarios.setSexo(resultSet.getString("sexo"));
-                funcionarios.setTelefone(resultSet.getString("telefone"));
-                funcionarios.setCidade(resultSet.getString("cidade"));
-                funcionarios.setCargo(resultSet.getString("cargo"));
-                funcionarios.setFilial(resultSet.getString("filial"));
-                funcionarios.setDepartamento(resultSet.getString("departamento"));
+                funcionarios.setId_func(result.getInt("id_func"));
+                funcionarios.setBairro(result.getString("bairro"));
+                funcionarios.setCelular(result.getString("celular"));
+                funcionarios.setCep(result.getString("cep"));
+                funcionarios.setComplemento(result.getString("complemento"));
+                funcionarios.setCpf(result.getString("cpf"));
+                funcionarios.setData_nasc(result.getString("data_nasc"));
+                funcionarios.setEmail(result.getString("email"));
+                funcionarios.setLogradouro(result.getString("logradouro"));
+                funcionarios.setNome(result.getString("nome"));
+                funcionarios.setNumero(result.getInt("numero"));
+                funcionarios.setRua(result.getString("rua"));
+                funcionarios.setSexo(result.getString("sexo"));
+                funcionarios.setTelefone(result.getString("telefone"));
+                funcionarios.setCidade(result.getString("cidade"));
+                funcionarios.setCargo(result.getString("cargo"));
+                funcionarios.setFilial(result.getString("filial"));
+                funcionarios.setDepartamento(result.getString("departamento"));
 
                 // Insere na lista.
                 listaResultado.add(funcionarios);
 
             }
 
-        } catch (SQLException e) {
+            // Retorna lista.
+            return listaResultado;
+
         }
-        
-        // Retorna lista.
-        return listaResultado;
+
     }
+
+    public void excluirFuncionario(int id) throws SQLException {
+
+        // Comando SQL.
+        String slq = "UPDATE funcionario SET ativo = ? WHERE id_func = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setBoolean(1, false);
+        preparedStatement.setInt(2, id);
+
+        // Executa.
+        preparedStatement.execute();
+    }
+
 }

@@ -19,83 +19,25 @@ import javax.servlet.http.HttpSession;
 public class BuscaFuncionarioServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaFuncionario.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean erro = false;
 
-        String nome = request.getParameter("nome");
-
-        String cpf = request.getParameter("cpf");
-
-        String sexo = request.getParameter("sexo");
-
-        String data_nasc = request.getParameter("nascimento");
-
-        String telefone = request.getParameter("telefone");
-
-        String celular = request.getParameter("celular");
-
-        String email = request.getParameter("email");
-
-        int numero;
-
-        try {
-
-            numero = Integer.parseInt(request.getParameter("numero"));
-
-        } catch (NumberFormatException e) {
-
-            numero = 0;
-
-        }
-
-        String cep = request.getParameter("cep");
-
-        String rua = request.getParameter("rua");
-
-        String bairro = request.getParameter("bairro");
-
-        String cidade = request.getParameter("cidade");
-
-        String logradouro = request.getParameter("logradouro");
-
-        String complemento = request.getParameter("complemento");
-
-        String cargo = request.getParameter("cargo");
-
-        String filial = request.getParameter("filial");
-
-        String departamento = request.getParameter("departamento");
+        String pesquisa = request.getParameter("pesquisa");
 
         if (!erro) {
-            Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
-                    numero, cep, rua, bairro, cidade, logradouro, complemento,
-                    celular, telefone, email, true, cargo, filial, departamento);
+
             try {
 
                 FuncionarioDAO dao = new FuncionarioDAO();
-                List<Funcionario> encontrados = dao.procurarFuncionario(funcHumilde);
+                List<Funcionario> encontrados = dao.procurarFuncionario(pesquisa);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("encontrados", encontrados);
-                
-                for (Funcionario encontrado : encontrados) {
-                    System.out.println(encontrado.getBairro());
-                    System.out.println(encontrado.getNome());
-                }
-                
+                request.setAttribute("pesquisa", pesquisa);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaFuncionario.jsp");
                 dispatcher.forward(request, response);
 
-            } catch (IOException | ClassNotFoundException | SQLException | ServletException ex) {
+            } catch (IOException | ClassNotFoundException | SQLException ex) {
 
                 Logger.getLogger(BuscaFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -106,5 +48,6 @@ public class BuscaFuncionarioServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         }
+
     }
 }
