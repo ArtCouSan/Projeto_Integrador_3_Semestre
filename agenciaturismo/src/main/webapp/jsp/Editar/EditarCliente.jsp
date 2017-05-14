@@ -19,10 +19,10 @@
         <input type="text" name="cpf" value="${clientes.getCpf()}"/>
         <br>
         <label for="txtsexo">Sexo:</label>
-        <input type="text" name="sexo" value="${clientes.Sexo()}"/>
+        <input type="text" name="sexo" value="${clientes.getSexo()}"/>
         <br>
         <label for="txtnascimento">Nascimento:</label>
-        <input type="text" name="nascimento" value="${clientes.Data_nasc()}"/>
+        <input type="text" name="nascimento" value="${clientes.getData_nasc()}"/>
         <br>
         <label for="txtrua">Rua:</label>
         <input type="text" name="rua" value="${clientes.getRua()}"/>
@@ -40,13 +40,10 @@
         <input type="text" name="logradouro" value="${clientes.getLogradouro()}"/>
         <br>
         <label for="txtcidade">Cidade:</label>
-        <input type="text" name="cidade" value="${clientes.getNoCidade()}"/>
+        <input type="text" name="cidade" value="${clientes.getCidade()}"/>
         <br>
         <label for="txtbairro">Bairro:</label>
         <input type="text" name="bairro" value="${clientes.getBairro()}"/>
-        <br>
-        <label for="txtestado">Estado:</label>
-        <input type="text" name="estado" value="${clientes.getEstado()}"/>
         <br>
         <label for="txttelefone">Telefone:</label>
         <input type="text" name="telefone" value="${clientes.getTelefone()}"/>

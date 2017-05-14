@@ -45,9 +45,6 @@
         <label for="txtbairro">Bairro:</label>
         <input type="text" name="bairro" placeholder="Insira bairro"/>
         <br>
-        <label for="txtestado">Estado:</label>
-        <input type="text" name="estado" placeholder="Insira estado"/>
-        <br>
         <label for="txttelefone">Telefone:</label>
         <input type="text" name="telefone" placeholder="Insira telefone"/>
         <br>

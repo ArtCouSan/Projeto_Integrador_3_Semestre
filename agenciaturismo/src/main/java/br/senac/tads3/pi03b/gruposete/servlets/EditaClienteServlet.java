@@ -40,7 +40,7 @@ public class EditaClienteServlet extends HttpServlet {
 
             }
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditaCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
             dispatcher.forward(request, response);
 
         }
