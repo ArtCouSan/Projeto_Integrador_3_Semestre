@@ -8,6 +8,6 @@
     <body>
         <p>Login ou senha estão errados</p>
         </br>
-        <a role="button" class="btn btn-info" href="login">Voltar para tela inicial</a>
+        <a role="button" href="login">Voltar para tela inicial</a>
     </body>
 </html>

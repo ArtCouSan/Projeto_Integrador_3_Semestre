@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : 10/05/2017, 20:17:49
-    Author     : rafael.fsilva7
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

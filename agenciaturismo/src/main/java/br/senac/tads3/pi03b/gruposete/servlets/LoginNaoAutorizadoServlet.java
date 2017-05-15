@@ -16,7 +16,7 @@ import java.io.IOException;
  *
  * @author Rafael Ferreira
  */
-@WebServlet(name = "LoginNaoAutorizadoServlet", urlPatterns = {"/LoginNaoAutorizadoServlet"})
+@WebServlet(name = "LoginNaoAutorizadoServlet", urlPatterns = {"/LoginNaoAutorizado"})
 public class LoginNaoAutorizadoServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -24,4 +24,20 @@ public class LoginNaoAutorizadoServlet extends HttpServlet {
         request.getRequestDispatcher("jsp/erroNaoAutorizado.jsp").forward(request, response);
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
 }
