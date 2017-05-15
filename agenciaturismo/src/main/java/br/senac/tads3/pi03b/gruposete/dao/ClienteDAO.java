@@ -16,8 +16,8 @@ public class ClienteDAO {
 
     public void inserir(Cliente cliente) throws SQLException, Exception {
 
-        String sql = "INSERT INTO Cliente (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, complemento, celular, telefone, email, ativo) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, complemento, celular, telefone, email, ativo) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DbUtil.getConnection();
@@ -32,12 +32,11 @@ public class ClienteDAO {
             preparedStatement.setString(7, cliente.getRua());
             preparedStatement.setString(8, cliente.getBairro());
             preparedStatement.setString(9, cliente.getCidade());
-            preparedStatement.setString(10, cliente.getLogradouro());
-            preparedStatement.setString(11, cliente.getComplemento());
-            preparedStatement.setString(12, cliente.getCelular());
-            preparedStatement.setString(13, cliente.getTelefone());
-            preparedStatement.setString(14, cliente.getEmail());
-            preparedStatement.setBoolean(15, true);
+            preparedStatement.setString(10, cliente.getComplemento());
+            preparedStatement.setString(11, cliente.getCelular());
+            preparedStatement.setString(12, cliente.getTelefone());
+            preparedStatement.setString(13, cliente.getEmail());
+            preparedStatement.setBoolean(14, true);
 
             preparedStatement.executeUpdate();
 
@@ -64,7 +63,6 @@ public class ClienteDAO {
                 + "rua = ?, "
                 + "bairro = ?, "
                 + "cidade = ?, "
-                + "logradouro = ?, "
                 + "complemento = ?, "
                 + "celular = ?, "
                 + "telefone = ?, "
@@ -84,12 +82,11 @@ public class ClienteDAO {
         preparedStatement.setString(7, cliente.getRua());
         preparedStatement.setString(8, cliente.getBairro());
         preparedStatement.setString(9, cliente.getCidade());
-        preparedStatement.setString(10, cliente.getLogradouro());
-        preparedStatement.setString(11, cliente.getComplemento());
-        preparedStatement.setString(12, cliente.getCelular());
-        preparedStatement.setString(13, cliente.getTelefone());
-        preparedStatement.setString(14, cliente.getEmail());
-        preparedStatement.setInt(15, cliente.getId_cliente());
+        preparedStatement.setString(10, cliente.getComplemento());
+        preparedStatement.setString(11, cliente.getCelular());
+        preparedStatement.setString(12, cliente.getTelefone());
+        preparedStatement.setString(13, cliente.getEmail());
+        preparedStatement.setInt(14, cliente.getId_cliente());
 
         preparedStatement.executeUpdate();
 
@@ -122,7 +119,6 @@ public class ClienteDAO {
                 cliente.setRua(resultSet.getString("rua"));
                 cliente.setBairro(resultSet.getString("bairro"));
                 cliente.setCidade(resultSet.getString("cidade"));
-                cliente.setLogradouro(resultSet.getString("logradouro"));
                 cliente.setComplemento(resultSet.getString("complemento"));
                 cliente.setCelular(resultSet.getString("celular"));
                 cliente.setTelefone(resultSet.getString("telefone"));
@@ -159,7 +155,6 @@ public class ClienteDAO {
             cliente.setRua(resultSet.getString("rua"));
             cliente.setBairro(resultSet.getString("bairro"));
             cliente.setCidade(resultSet.getString("cidade"));
-            cliente.setLogradouro(resultSet.getString("logradouro"));
             cliente.setComplemento(resultSet.getString("complemento"));
             cliente.setCelular(resultSet.getString("celular"));
             cliente.setTelefone(resultSet.getString("telefone"));
@@ -186,7 +181,6 @@ public class ClienteDAO {
                 + " OR cpf = ?"
                 + " OR data_nasc = ?"
                 + " OR email = ?"
-                + " OR logradouro = ?"
                 + " OR nome = ?"
                 + " OR numero = ?"
                 + " OR rua = ?"
@@ -217,8 +211,7 @@ public class ClienteDAO {
         preparedStatement.setString(11, busca);
         preparedStatement.setString(12, busca);
         preparedStatement.setString(13, busca);
-        preparedStatement.setString(14, busca);
-        preparedStatement.setBoolean(15, true);
+        preparedStatement.setBoolean(14, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -238,7 +231,6 @@ public class ClienteDAO {
                 clientes.setCpf(result.getString("cpf"));
                 clientes.setData_nasc(result.getString("data_nasc"));
                 clientes.setEmail(result.getString("email"));
-                clientes.setLogradouro(result.getString("logradouro"));
                 clientes.setNome(result.getString("nome"));
                 clientes.setNumero(result.getInt("numero"));
                 clientes.setRua(result.getString("rua"));
