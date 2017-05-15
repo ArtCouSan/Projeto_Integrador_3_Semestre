@@ -11,7 +11,6 @@ public abstract class Pessoa {
     private String rua;
     private String bairro;
     private String cidade;
-    private String logradouro;
     private String complemento;
     private String celular;
     private String telefone;
@@ -19,7 +18,7 @@ public abstract class Pessoa {
     private boolean ativo;
 
     public Pessoa(String nome, String cpf, String sexo, String data_nasc, int numero, 
-            String cep, String rua, String bairro, String cidade, String logradouro, 
+            String cep, String rua, String bairro, String cidade, 
             String complemento, String celular, String telefone, String email, boolean ativo) {
         
         this.nome = nome;
@@ -31,7 +30,6 @@ public abstract class Pessoa {
         this.rua = rua;
         this.bairro = bairro;
         this.cidade = cidade;
-        this.logradouro = logradouro;
         this.complemento = complemento;
         this.celular = celular;
         this.telefone = telefone;
@@ -113,14 +111,6 @@ public abstract class Pessoa {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
-    }
-
-    public String getLogradouro() {
-        return logradouro;
-    }
-
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
     }
 
     public String getComplemento() {
