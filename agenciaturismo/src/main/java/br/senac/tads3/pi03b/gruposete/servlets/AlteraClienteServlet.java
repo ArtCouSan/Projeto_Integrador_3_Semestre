@@ -85,11 +85,6 @@ public class AlteraClienteServlet extends HttpServlet {
 //            erro = true;
 //            request.setAttribute("erroCidade", true);
 //        }
-        String logradouro = request.getParameter("logradouro");
-//        if (logradouro == null || logradouro.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroLogradouro", true);
-//        }
         String complemento = request.getParameter("complemento");
 //        if (complemento == null || complemento.length() < 1) {
 //            erro = true;
@@ -100,7 +95,7 @@ public class AlteraClienteServlet extends HttpServlet {
 
         if (erro) {
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                    cep, rua, bairro, cidade, logradouro, complemento, celular,
+                    cep, rua, bairro, cidade, complemento, celular,
                     telefone, email, true);
             cliHumilde.setId_cliente(id);
             try {
