@@ -20,7 +20,6 @@
             <li role="presentation"><a href="#">Busca Hotel</a></li>
             <li role="presentation"><a href="#">Busca Voo</a></li>    
         </ul>
-
         <form action="${pageContext.request.contextPath}/CadastroCliente" method="post">
             <label for="txtnome">Nome:</label>  
             <input type="text" name="nome" placeholder="Insira nome"/>
