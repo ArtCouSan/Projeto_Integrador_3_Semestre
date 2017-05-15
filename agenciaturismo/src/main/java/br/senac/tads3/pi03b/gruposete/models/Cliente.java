@@ -8,7 +8,7 @@ public final class Cliente extends Pessoa {
             String cep, String rua, String bairro, String cidade, 
             String complemento, String celular, String telefone, String email, boolean ativo) {
         
-        super(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, 
+        super(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, 
                 complemento, celular, telefone, email, ativo);
     }
 
