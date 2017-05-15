@@ -17,7 +17,7 @@ public class UsuarioDAO {
 
     public void inserir(Usuario usuario) throws SQLException, Exception {
 
-        String sql = "INSERT INTO Usuario (nome, login senha, acesso) "
+        String sql = "INSERT INTO Usuario (nome, login, senha, acesso) "
                 + "VALUES (?, ?, ?, ?)";
 
         try {

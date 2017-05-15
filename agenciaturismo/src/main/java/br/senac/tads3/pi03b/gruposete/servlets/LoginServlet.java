@@ -21,16 +21,16 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Login/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Login/login.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String usuario = request.getParameter("login");
-        String senhaDigitada = request.getParameter("senha");
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
 
-        Usuario user = Usuario.obterUsuario(usuario, senhaDigitada);
+        Usuario user = Usuario.obterUsuario(login, senha);
         if (user != null) {
             HttpSession sessao = request.getSession(false);
             if (sessao != null) {
@@ -40,9 +40,9 @@ public class LoginServlet extends HttpServlet {
             sessao = request.getSession(true);
             sessao.setAttribute("usuario", user);
 
-            response.sendRedirect(request.getContextPath() + ">>>>>>>>>>>TELA MENU AQUI<<<<<<<<<<<<<");
+            response.sendRedirect(request.getContextPath() + "/index.html");
         } else {
-            response.sendRedirect(request.getContextPath() + ">>>>>>>>>>>TELA DE ERRO DE LOGIN AQUI<<<<<<<<<<<");
+            response.sendRedirect(request.getContextPath() + "/LoginErroServlet");
         }
     }
 }
