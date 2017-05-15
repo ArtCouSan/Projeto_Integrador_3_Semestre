@@ -17,7 +17,7 @@ public class FuncionarioDAO {
 
     public void inserir(Funcionario funcionario) throws SQLException, Exception {
 
-        String sql = "INSERT INTO Funcionario (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, complemento, celular, telefone, email, cargo, filial, departamento, ativo) "
+        String sql = "INSERT INTO Funcionario (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, complemento, celular, telefone, email, cargo, filial, departamento, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -33,15 +33,14 @@ public class FuncionarioDAO {
             preparedStatement.setString(7, funcionario.getRua());
             preparedStatement.setString(8, funcionario.getBairro());
             preparedStatement.setString(9, funcionario.getCidade());
-            preparedStatement.setString(10, funcionario.getLogradouro());
-            preparedStatement.setString(11, funcionario.getComplemento());
-            preparedStatement.setString(12, funcionario.getCelular());
-            preparedStatement.setString(13, funcionario.getTelefone());
-            preparedStatement.setString(14, funcionario.getEmail());
-            preparedStatement.setString(15, funcionario.getCargo());
-            preparedStatement.setString(16, funcionario.getFilial());
-            preparedStatement.setString(17, funcionario.getDepartamento());
-            preparedStatement.setBoolean(18, true);
+            preparedStatement.setString(10, funcionario.getComplemento());
+            preparedStatement.setString(11, funcionario.getCelular());
+            preparedStatement.setString(12, funcionario.getTelefone());
+            preparedStatement.setString(13, funcionario.getEmail());
+            preparedStatement.setString(14, funcionario.getCargo());
+            preparedStatement.setString(15, funcionario.getFilial());
+            preparedStatement.setString(16, funcionario.getDepartamento());
+            preparedStatement.setBoolean(17, true);
 
             preparedStatement.executeUpdate();
 
@@ -74,16 +73,15 @@ public class FuncionarioDAO {
             preparedStatement.setString(7, funcionario.getRua());
             preparedStatement.setString(8, funcionario.getBairro());
             preparedStatement.setString(9, funcionario.getCidade());
-            preparedStatement.setString(10, funcionario.getLogradouro());
-            preparedStatement.setString(11, funcionario.getComplemento());
-            preparedStatement.setString(12, funcionario.getCelular());
-            preparedStatement.setString(13, funcionario.getTelefone());
-            preparedStatement.setString(14, funcionario.getEmail());
-            preparedStatement.setString(15, funcionario.getCargo());
-            preparedStatement.setString(16, funcionario.getFilial());
-            preparedStatement.setString(17, funcionario.getDepartamento());
-            preparedStatement.setBoolean(18, funcionario.isAtivo());
-            preparedStatement.setInt(19, funcionario.getId_func());
+            preparedStatement.setString(10, funcionario.getComplemento());
+            preparedStatement.setString(11, funcionario.getCelular());
+            preparedStatement.setString(12, funcionario.getTelefone());
+            preparedStatement.setString(13, funcionario.getEmail());
+            preparedStatement.setString(14, funcionario.getCargo());
+            preparedStatement.setString(15, funcionario.getFilial());
+            preparedStatement.setString(16, funcionario.getDepartamento());
+            preparedStatement.setBoolean(17, funcionario.isAtivo());
+            preparedStatement.setInt(18, funcionario.getId_func());
 
             preparedStatement.executeUpdate();
 
@@ -120,7 +118,6 @@ public class FuncionarioDAO {
                 func.setRua(resultSet.getString("rua"));
                 func.setBairro(resultSet.getString("bairro"));
                 func.setCidade(resultSet.getString("cidade"));
-                func.setLogradouro(resultSet.getString("logradouro"));
                 func.setComplemento(resultSet.getString("complemento"));
                 func.setCelular(resultSet.getString("celular"));
                 func.setTelefone(resultSet.getString("telefone"));
@@ -160,7 +157,6 @@ public class FuncionarioDAO {
                 func.setRua(resultSet.getString("rua"));
                 func.setBairro(resultSet.getString("bairro"));
                 func.setCidade(resultSet.getString("cidade"));
-                func.setLogradouro(resultSet.getString("logradouro"));
                 func.setComplemento(resultSet.getString("complemento"));
                 func.setCelular(resultSet.getString("celular"));
                 func.setTelefone(resultSet.getString("telefone"));
@@ -193,7 +189,6 @@ public class FuncionarioDAO {
                 + " OR cpf = ?"
                 + " OR data_nasc = ?"
                 + " OR email = ?"
-                + " OR logradouro = ?"
                 + " OR nome = ?"
                 + " OR numero = ?"
                 + " OR rua = ?"
@@ -230,8 +225,7 @@ public class FuncionarioDAO {
         preparedStatement.setString(14, busca);
         preparedStatement.setString(15, busca);
         preparedStatement.setString(16, busca);
-        preparedStatement.setString(17, busca);
-        preparedStatement.setBoolean(18, true);
+        preparedStatement.setBoolean(17, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -251,7 +245,6 @@ public class FuncionarioDAO {
                 funcionarios.setCpf(result.getString("cpf"));
                 funcionarios.setData_nasc(result.getString("data_nasc"));
                 funcionarios.setEmail(result.getString("email"));
-                funcionarios.setLogradouro(result.getString("logradouro"));
                 funcionarios.setNome(result.getString("nome"));
                 funcionarios.setNumero(result.getInt("numero"));
                 funcionarios.setRua(result.getString("rua"));
