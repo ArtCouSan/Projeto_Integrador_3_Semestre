@@ -22,46 +22,46 @@
         </ul>
         <form action="${pageContext.request.contextPath}/CadastroCliente" method="post">
             <label for="txtnome">Nome:</label>  
-            <input type="text" name="nome" placeholder="Insira nome"/>
+            <input type="text" name="nome" placeholder="Insira nome" required/>
             <br>
             <label for="txtcpf">CPF:</label>
-            <input type="text" name="cpf" placeholder="Insira cpf"/>
+            <input type="text" name="cpf" placeholder="Insira cpf" required/>
             <br>
             <label for="txtsexo">Sexo:</label>
-            <input type="text" name="sexo" placeholder="Insira sexo"/>
+            <input type="text" name="sexo" placeholder="Insira sexo" required/>
             <br>
             <label for="txtnascimento">Nascimento:</label>
-            <input type="text" name="nascimento" placeholder="Insira nascimento"/>
+            <input type="text" name="nascimento" placeholder="Insira nascimento" required/>
             <br>
             <label for="txtrua">Rua:</label>
-            <input type="text" name="rua" placeholder="Insira rua"/>
+            <input type="text" name="rua" placeholder="Insira rua" required/>
             <br>
             <label for="txtnumero">Numero:</label>
-            <input type="text" name="numero" placeholder="Insira numero"/>
+            <input type="text" name="numero" placeholder="Insira numero" required/>
             <br>
             <label for="txtcomplemento">Complemento:</label>
-            <input type="text" name="complemento" placeholder="Insira complemento"/>
+            <input type="text" name="complemento" placeholder="Insira complemento" required/>
             <br>
             <label for="txtcep">CEP:</label>
-            <input type="text" name="cep" placeholder="Insira cep"/>
+            <input type="text" name="cep" placeholder="Insira cep" required/>
             <br>
             <label for="txtlogradouro">Logradouro:</label>
-            <input type="text" name="logradouro" placeholder="Insira logradouro"/>
+            <input type="text" name="logradouro" placeholder="Insira logradouro" required/>
             <br>
             <label for="txtcidade">Cidade:</label>
-            <input type="text" name="cidade" placeholder="Insira cidade"/>
+            <input type="text" name="cidade" placeholder="Insira cidade" required/>
             <br>
             <label for="txtbairro">Bairro:</label>
-            <input type="text" name="bairro" placeholder="Insira bairro"/>
+            <input type="text" name="bairro" placeholder="Insira bairro" required/>
             <br>
             <label for="txttelefone">Telefone:</label>
-            <input type="text" name="telefone" placeholder="Insira telefone"/>
+            <input type="text" name="telefone" placeholder="Insira telefone" required/>
             <br>
             <label for="txtcelular">Celular:</label>
-            <input type="text" name="celular" placeholder="Insira celular"/>
+            <input type="text" name="celular" placeholder="Insira celular" required/>
             <br>
             <label for="txtemail">Email:</label>
-            <input type="text" name="email" placeholder="Insira email"/>
+            <input type="text" name="email" placeholder="Insira email" required/>
             <br>
             <input type="submit" value="Salvar"/>
             <input type="reset" value="Apagar"/>

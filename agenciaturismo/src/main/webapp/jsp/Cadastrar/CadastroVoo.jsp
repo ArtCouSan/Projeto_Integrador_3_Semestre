@@ -10,22 +10,22 @@
     <form action="${pageContext.request.contextPath}/CadastroVoo" method="post">
 
         <label for="txtorigem">Origem:</label>  
-        <input type="text" name="origem" placeholder="Insira a origem"/>
+        <input type="text" name="origem" placeholder="Insira a origem" required/>
         <br>
         <label for="txtdestino">Destino:</label>  
-        <input type="text" name="destino" placeholder="Insira o destino"/>
+        <input type="text" name="destino" placeholder="Insira o destino" required/>
         <br>
         <label for="txtquantidade">Quantidade de Passagens:</label>  
-        <input type="number" name="quantidade_passagens" placeholder="Insira quantidade de passagens"/>
+        <input type="number" name="quantidade_passagens" placeholder="Insira quantidade de passagens" required/>
         <br>
         <label for="txtdataIda">Data de ida:</label>  
-        <input type="text" name="data_ida" placeholder="Insira data de ida"/>
+        <input type="text" name="data_ida" placeholder="Insira data de ida" required/>
         <br>
         <label for="txtdataVolta">Data de volta:</label>  
-        <input type="text" name="data_volta" placeholder="Insira data de volta"/>
+        <input type="text" name="data_volta" placeholder="Insira data de volta" required/>
         <br>
         <label for="txtPreco">Preco:</label>  
-        <input type="number" name="preco" placeholder="Insira o preço"/>
+        <input type="number" name="preco" placeholder="Insira o preço" required/>
         <br>
         <input type="submit" value="Salvar"/>
         <input type="reset" value="Apagar"/>

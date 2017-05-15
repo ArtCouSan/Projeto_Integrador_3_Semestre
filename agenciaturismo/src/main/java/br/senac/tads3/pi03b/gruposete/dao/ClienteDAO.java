@@ -2,12 +2,9 @@ package br.senac.tads3.pi03b.gruposete.dao;
 
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
+
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +12,6 @@ public class ClienteDAO {
 
     private static Connection connection;
     private static PreparedStatement preparedStatement;
-    private static Statement statement;
     private static ResultSet resultSet;
 
     public void inserir(Cliente cliente) throws SQLException, Exception {
@@ -108,7 +104,7 @@ public class ClienteDAO {
 
         try {
 
-            statement = connection.createStatement();
+            Statement statement = connection.createStatement();
 
             resultSet = statement.executeQuery(query);
 
