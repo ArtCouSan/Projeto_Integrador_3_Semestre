@@ -7,7 +7,6 @@
         <title>Cadastro de Cliente</title>
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="./bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>    
         <ul class="nav nav-pills nav-stacked">
@@ -40,13 +39,10 @@
             <input type="text" name="numero" placeholder="Insira numero" required/>
             <br>
             <label for="txtcomplemento">Complemento:</label>
-            <input type="text" name="complemento" placeholder="Insira complemento" required/>
+            <input type="text" name="complemento" placeholder="Insira complemento" />
             <br>
             <label for="txtcep">CEP:</label>
             <input type="text" name="cep" placeholder="Insira cep" required/>
-            <br>
-            <label for="txtlogradouro">Logradouro:</label>
-            <input type="text" name="logradouro" placeholder="Insira logradouro" required/>
             <br>
             <label for="txtcidade">Cidade:</label>
             <input type="text" name="cidade" placeholder="Insira cidade" required/>
@@ -55,13 +51,13 @@
             <input type="text" name="bairro" placeholder="Insira bairro" required/>
             <br>
             <label for="txttelefone">Telefone:</label>
-            <input type="text" name="telefone" placeholder="Insira telefone" required/>
+            <input type="text" name="telefone" placeholder="Insira telefone" />
             <br>
             <label for="txtcelular">Celular:</label>
-            <input type="text" name="celular" placeholder="Insira celular" required/>
+            <input type="text" name="celular" placeholder="Insira celular" />
             <br>
             <label for="txtemail">Email:</label>
-            <input type="text" name="email" placeholder="Insira email" required/>
+            <input type="text" name="email" placeholder="Insira email" />
             <br>
             <input type="submit" value="Salvar"/>
             <input type="reset" value="Apagar"/>
