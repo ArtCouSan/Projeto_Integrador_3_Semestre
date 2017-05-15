@@ -51,8 +51,6 @@ public class ListaFuncionarioServlet extends HttpServlet {
 
         String cidade = request.getParameter("cidade");
 
-        String logradouro = request.getParameter("logradouro");
-
         String complemento = request.getParameter("complemento");
 
         String cargo = request.getParameter("cargo");
@@ -63,7 +61,7 @@ public class ListaFuncionarioServlet extends HttpServlet {
 
         String id = request.getParameter("id");
 
-        Funcionario funcionario = new Funcionario(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, logradouro, complemento, celular, telefone, email, true, cargo, filial, departamento);
+        Funcionario funcionario = new Funcionario(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, complemento, celular, telefone, email, true, cargo, filial, departamento);
 
         funcionario.setId_func(Integer.parseInt(id));
 
