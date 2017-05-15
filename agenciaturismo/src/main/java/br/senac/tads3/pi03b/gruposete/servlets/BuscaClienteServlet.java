@@ -19,6 +19,14 @@ import java.util.logging.Logger;
 public class BuscaClienteServlet extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaCliente.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
