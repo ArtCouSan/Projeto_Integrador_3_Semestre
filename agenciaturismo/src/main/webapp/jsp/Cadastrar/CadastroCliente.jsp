@@ -1,11 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
-<html>
+<html >
     <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-        <link href="css/bootstrap.min.css" rel="stylesheet" >
         <title>Cadastro de Cliente</title>
+        <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
+        <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="./bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>    
         <ul class="nav nav-pills nav-stacked">
@@ -18,6 +20,7 @@
             <li role="presentation"><a href="#">Busca Hotel</a></li>
             <li role="presentation"><a href="#">Busca Voo</a></li>    
         </ul>
+
         <form action="${pageContext.request.contextPath}/CadastroCliente" method="post">
             <label for="txtnome">Nome:</label>  
             <input type="text" name="nome" placeholder="Insira nome"/>
@@ -65,7 +68,7 @@
             <input type="reset" value="Apagar"/>
             <br>
         </form>     
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
