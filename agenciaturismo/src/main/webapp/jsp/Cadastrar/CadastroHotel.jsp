@@ -10,19 +10,19 @@
     <form action="${pageContext.request.contextPath}/CadastroHotel" method="post">
 
         <label for="txtorigem">Nome do Hotel:</label>  
-        <input type="text" name="nome_hotel" placeholder="Insira o nome do hotel"/>
+        <input type="text" name="nome_hotel" placeholder="Insira o nome do hotel" required/>
         <br>
         <label for="txtdestino">Data de Entrada:</label>  
-        <input type="text" name="data_entrada" placeholder="Insira a data de entrada"/>
+        <input type="text" name="data_entrada" placeholder="Insira a data de entrada" required/>
         <br>
         <label for="txtquantidade">Data de Saida:</label>  
-        <input type="text" name="data_saida" placeholder="Insira a data de saida"/>
+        <input type="text" name="data_saida" placeholder="Insira a data de saida" required/>
         <br>
         <label for="txtdataIda">Quantidade de Quartos:</label>  
-        <input type="number" name="quantidade_quartos" placeholder="Insira a quantidade de quartos"/>
+        <input type="number" name="quantidade_quartos" placeholder="Insira a quantidade de quartos" required/>
         <br>
         <label for="txtdataVolta">Quantidade de Hospedes:</label>  
-        <input type="number" name="quantidade_hospedes" placeholder="Insira a quantidade de hospedes"/>
+        <input type="number" name="quantidade_hospedes" placeholder="Insira a quantidade de hospedes" required/>
         <br>
         <label for="txtPreco">Preco:</label>  
         <input type="number" name="preco" placeholder="Insira o preço"/>

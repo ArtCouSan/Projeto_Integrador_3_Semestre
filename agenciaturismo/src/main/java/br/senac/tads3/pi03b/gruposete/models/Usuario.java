@@ -1,8 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class Usuario {
 
