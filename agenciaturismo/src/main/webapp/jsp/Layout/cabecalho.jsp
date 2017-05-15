@@ -1,17 +1,10 @@
-<%-- 
-    Document   : cabecalho
-    Created on : 07/05/2017, 23:28:15
-    Author     : Rafael
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<ul class="nav nav-pills nav-stacked">
+    <li role="presentation" class="active"><a href="#">Cadastrar Cliente</a></li>
+    <li role="presentation"><a href="#">Cadastrar Funcionario</a></li>
+    <li role="presentation"><a href="#">Cadastrar Hotel</a></li>
+    <li role="presentation"><a href="#">Cadastrar Voo</a></li>
+    <li role="presentation"><a href="#">Busca Cliente</a></li>
+    <li role="presentation"><a href="#">Busca Funcionario</a></li>
+    <li role="presentation"><a href="#">Busca Hotel</a></li>
+    <li role="presentation"><a href="#">Busca Voo</a></li>    
+</ul>
