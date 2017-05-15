@@ -1,13 +1,12 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
 import org.mindrot.jbcrypt.BCrypt;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Usuario {
 
-private final static Map<String, Usuario> USUARIOS_CADASTRADOS = new LinkedHashMap<>();
+    private final static Map<String, Usuario> USUARIOS_CADASTRADOS = new LinkedHashMap<>();
 
     static {
         USUARIOS_CADASTRADOS.put("admin", new Usuario("admin",
