@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @WebServlet(name = "AlteraFuncionarioServlet", urlPatterns = {"/EditarFuncionario"})
 public class AlteraFuncionarioServlet extends HttpServlet {
@@ -22,27 +19,9 @@ public class AlteraFuncionarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarFuncionario.jsp");
+        dispatcher.forward(request, response);
 
-        FuncionarioDAO dao = new FuncionarioDAO();
-
-        String action = request.getParameter("action");
-
-        if ("edit".equalsIgnoreCase(action)) {
-
-            try {
-
-                Funcionario funcionarios = dao.getFuncionarioById(id);
-
-                request.setAttribute("funcionarios", funcionarios);
-
-            } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarFuncionario.jsp");
-            dispatcher.forward(request, response);
-        }
     }
 
     @Override

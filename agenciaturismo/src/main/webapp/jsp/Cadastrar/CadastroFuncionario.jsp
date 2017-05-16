@@ -10,63 +10,120 @@
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form action="${pageContext.request.contextPath}/CadastroFuncionario" method="post">
+        <div class="panel-body">
+            <form action="${pageContext.request.contextPath}/CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
+                <div class="form-group ">
+                    <label for="example-text-input" class="control-label col-md-4">Nome:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" name="nome" type="text" placeholder="Insira nome" data-maxlength="100" id="example-text-input" required>
+                        <span class="help-block">Maximo 100 caracteres</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">CPF:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control cpf-mask" placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
 
-            <label for="txtnome">Nome:</label>  
-            <input type="text" name="nome" placeholder="Insira nome"required/>
-            <br>
-            <label for="txtcpf">CPF:</label>
-            <input type="text" name="cpf" placeholder="Insira cpf" required/>
-            <br>
-            <label for="txtsexo">Sexo:</label>
-            <input type="text" name="sexo" placeholder="Insira sexo" required/>
-            <br>
-            <label for="txtnascimento">Nascimento:</label>
-            <input type="text" name="nascimento" placeholder="Insira nascimento" required/>
-            <br>
-            <label for="txtrua">Rua:</label>
-            <input type="text" name="rua" placeholder="Insira rua" required/>
-            <br>
-            <label for="txtnumero">Numero:</label>
-            <input type="text" name="numero" placeholder="Insira numero" required/>
-            <br>
-            <label for="txtcomplemento">Complemento:</label>
-            <input type="text" name="complemento" placeholder="Insira complemento" required/>
-            <br>
-            <label for="txtcep">CEP:</label>
-            <input type="text" name="cep" placeholder="Insira cep" required/>
-            <br>
-            <label for="txtbairro">Bairro:</label>
-            <input type="text" name="bairro" placeholder="Insira bairro"  required/>
-            <br>
-            <label for="txtcidade">Cidade:</label>
-            <input type="text" name="cidade" placeholder="Insira cidade" required/>
-            <br>
-            <label for="txtestado">Estado:</label>
-            <input type="text" name="estado" placeholder="Insira estado" required/>
-            <br>
-            <label for="txttelefone">Telefone:</label>
-            <input type="text" name="telefone" placeholder="Insira telefone" required/>
-            <br>
-            <label for="txtcelular">Celular:</label>
-            <input type="text" name="celular" placeholder="Insira celular" required/>
-            <br>
-            <label for="txtemail">Email:</label>
-            <input type="text" name="email" placeholder="Insira email" required/>
-            <br>
-            <label for="txtdepartamento">Departamento:</label>
-            <input type="text" name="departamento" placeholder="Insira departamento" required/>
-            <br>
-            <label for="txtcargo">Cargo:</label>
-            <input type="text" name="cargo" placeholder="Insira cargo" required/>
-            <br>
-            <label for="txtfilial">Filial:</label>
-            <input type="text" name="filial" placeholder="Insira filial" required/>
-            <br>
-            <input type="submit" value="Salvar"/>
-            <input type="reset" value="Apagar"/>
-            <br>
-        </form>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Sexo</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" placeholder="Genero" name="sexo" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-date-input" class="control-label col-md-4">Nascimento:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" placeholder="Insira nascimento" type="date" name="nascimento" id="example-date-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Rua:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" name="rua" placeholder="Insira rua" data-maxlength="50"  type="text" id="example-text-input" required>
+                        <span class="help-block">Maximo 50 caracteres</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-number-input" class="control-label col-md-4">Numero:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" type="number" name="numero" placeholder="Insira numero"  id="example-number-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Complemento:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="example-text-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">CEP:</label>
+                    <div class="controls col-md-5">
+                        <input required class="form-control cep-mask form-control" placeholder="00000-000"  name="cep"  type="text" id="example-text-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Cidade:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" name="cidade" placeholder="Insira cidade" data-maxlength="100"  type="text"id="example-text-input" required>
+                        <span class="help-block">Maximo 100 caracteres</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Bairro:</label>
+                    <div class="controls col-md-5">
+                        <input required class="form-control" name="bairro" placeholder="Insira bairro" data-maxlength="50" type="text" id="example-text-input" required>
+                        <span class="help-block">Maximo 50 caracteres</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Celular:</label>
+                    <div class="controls col-md-5">
+                        <input required  class="form-control cel-sp-mask" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Telefone:</label>
+                    <div class="controls col-md-5">
+                        <input required  class="form-control phone-ddd-mask" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-email-input" class="control-label col-md-4">Email:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" type="email" name="email" placeholder="Insira email" id="example-email-input" data-error="Por favor, informe um e-mail correto.">
+                    </div>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Departamento:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" placeholder="Insira departamento" name="departamento" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Cargo:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" placeholder="Insira cargo" name="cargo" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Filial</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" placeholder="Insira filial" name="filial" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="aab controls col-md-4">
+                        <div class="controls col-md-8" >
+                            <button type="submit"><span class="">Cadastrar</span></button>
+                            <button type="reset"><span class="">Apagar Campos</span></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>

@@ -22,32 +22,11 @@ public class AlteraVooServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
+        dispatcher.forward(request, response);
 
-        VooDAO dao = new VooDAO();
-
-        String action = request.getParameter("action");
-
-        if ("edit".equalsIgnoreCase(action)) {
-
-            try {
-
-                Voo voos = dao.getVooById(id);
-
-                request.setAttribute("voos", voos);
-
-            } catch (SQLException | ClassNotFoundException ex) {
-
-                Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-            }
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
-            dispatcher.forward(request, response);
-
-        }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -111,13 +90,13 @@ public class AlteraVooServlet extends HttpServlet {
             } catch (Exception ex) {
 
             }
-            
+
         } else {
-            
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
-            
+
             dispatcher.forward(request, response);
-            
+
         }
     }
 
