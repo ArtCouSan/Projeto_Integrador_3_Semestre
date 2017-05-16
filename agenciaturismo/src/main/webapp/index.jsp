@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,15 +9,6 @@
         <title>Index</title>
     </head>
     <body>
-        <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active"><a href="CadastroCliente">Cadastrar Cliente</a></li>
-            <li role="presentation"><a href="CadastroFuncionario">Cadastrar Funcionario</a></li>
-            <li role="presentation"><a href="CadastroHotel">Cadastrar Hotel</a></li>
-            <li role="presentation"><a href="CadastroVoo">Cadastrar Voo</a></li>
-            <li role="presentation"><a href="BuscaCliente">Busca Cliente</a></li>
-            <li role="presentation"><a href="BuscaFuncionario">Busca Funcionario</a></li>
-            <li role="presentation"><a href="BuscaHotel">Busca Hotel</a></li>
-            <li role="presentation"><a href="BuscaVoo">Busca Voo</a></li> 
-        </ul>
+        <c:import url="jsp/Layout/cabecalho.jsp"/>
     </body>
 </html>

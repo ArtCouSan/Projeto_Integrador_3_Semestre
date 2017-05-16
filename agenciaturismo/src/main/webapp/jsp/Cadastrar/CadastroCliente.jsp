@@ -8,51 +8,77 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     </head>
-    <body>    
-        <form action="${pageContext.request.contextPath}/CadastroCliente" method="post">
-            <label for="txtnome">Nome:</label>  
-            <input type="text" name="nome" placeholder="Insira nome" required/>
-            <br>
+    <body>
+        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" >
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">Nome:</label>
+                <div class="col-10">
+                    <input class="form-control" name="nome" type="text" placeholder="Insira nome" id="example-text-input" required>
+                </div>
+            </div>
             <label for="txtcpf">CPF:</label>
             <input type="text" name="cpf" placeholder="Insira cpf" required/>
             <br>
-            <label for="txtsexo">Sexo:</label>
-            <input type="text" name="sexo" placeholder="Insira sexo" required/>
-            <br>
-            <label for="txtnascimento">Nascimento:</label>
-            <input type="text" name="nascimento" placeholder="Insira nascimento" required/>
-            <br>
-            <label for="txtrua">Rua:</label>
-            <input type="text" name="rua" placeholder="Insira rua" required/>
-            <br>
-            <label for="txtnumero">Numero:</label>
-            <input type="text" name="numero" placeholder="Insira numero" required/>
-            <br>
-            <label for="txtcomplemento">Complemento:</label>
-            <input type="text" name="complemento" placeholder="Insira complemento" />
-            <br>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">Sexo</label>
+                <select name="sexo" class="form-control">
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                </select>
+            </div>
+            <div class="form-group row form-inline">
+                <label for="example-date-input" class="col-2 col-form-label">Nascimento:</label>
+                <div class="col-10">
+                    <input class="form-control" placeholder="Insira nascimento" type="date" name="nascimento" id="example-date-input" required>
+                </div>
+            </div>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">Rua:</label>
+                <div class="col-10">
+                    <input required class="form-control" name="rua" placeholder="Insira rua"  type="text" id="example-text-input" required>
+                </div>
+            </div>
+            <div class="form-group row form-inline">
+                <label for="example-number-input" class="col-2 col-form-label">Numero:</label>
+                <div class="col-10">
+                    <input class="form-control" type="number" name="numero" placeholder="Insira numero"  id="example-number-input" required>
+                </div>
+            </div>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">Complemento:</label>
+                <div class="col-10">
+                    <input required class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="example-text-input" required>
+                </div>
+            </div>
             <label for="txtcep">CEP:</label>
             <input type="text" name="cep" placeholder="Insira cep" required/>
             <br>
             <label for="txtcidade">Cidade:</label>
             <input type="text" name="cidade" placeholder="Insira cidade" required/>
             <br>
-            <label for="txtbairro">Bairro:</label>
-            <input type="text" name="bairro" placeholder="Insira bairro" required/>
-            <br>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">Bairro:</label>
+                <div class="col-10">
+                    <input required class="form-control" name="bairro" placeholder="Insira bairro" type="text" id="example-text-input" required>
+                </div>
+            </div>
             <label for="txttelefone">Telefone:</label>
             <input type="text" name="telefone" placeholder="Insira telefone" />
             <br>
             <label for="txtcelular">Celular:</label>
             <input type="text" name="celular" placeholder="Insira celular" />
             <br>
-            <label for="txtemail">Email:</label>
-            <input type="text" name="email" placeholder="Insira email" />
-            <br>
+            <div class="form-group row form-inline">
+                <label for="example-email-input" class="col-2 col-form-label">Email:</label>
+                <div class="col-10">
+                    <input class="form-control" type="email" name="email" placeholder="Insira email" id="example-email-input">
+                </div>
+            </div>
             <input type="submit" value="Salvar"/>
             <input type="reset" value="Apagar"/>
             <br>
-        </form>     
+        </form>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>
