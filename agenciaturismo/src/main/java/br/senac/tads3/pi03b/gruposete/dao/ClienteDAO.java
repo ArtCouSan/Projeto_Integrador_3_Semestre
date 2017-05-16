@@ -97,7 +97,7 @@ public class ClienteDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo=true";
+        String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo = true";
 
         try {
 
@@ -126,10 +126,15 @@ public class ClienteDAO {
 
                 listaClientes.add(cliente);
             }
+            
         } catch (SQLException e) {
+            
         }
+        
         connection.close();
+        
         return listaClientes;
+        
     }
 
     public Cliente getClienteById(int id) throws SQLException, ClassNotFoundException {

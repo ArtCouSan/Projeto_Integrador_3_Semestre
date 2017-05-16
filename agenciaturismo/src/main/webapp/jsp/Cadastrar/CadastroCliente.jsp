@@ -10,17 +10,19 @@
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" class="text-justify">
+        <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" class="text-justify" data-toggle="validator">
             <div class="form-group row form-inline">
                 <label for="example-text-input" class="col-2 col-form-label">Nome:</label>
                 <div class="col-10">
-                    <input class="form-control" name="nome" type="text" placeholder="Insira nome" id="example-text-input" required>
+                    <input class="form-control" name="nome" type="text" placeholder="Insira nome" data-maxlength="100" id="example-text-input" required>
+                    <span class="help-block">Maximo 100 caracteres</span>
                 </div>
             </div>
             <div class="form-group row form-inline">
                 <label for="example-text-input" class="col-2 col-form-label">CPF:</label>
                 <div class="col-10">
-                    <input required class="form-control cep-mask form-control" placeholder="00000-000" name="cpf" type="text" id="example-text-input" required>
+                    <input class="form-control cpf-mask" placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
+
                 </div>
             </div>
             <div class="form-group row form-inline">
@@ -39,7 +41,8 @@
             <div class="form-group row form-inline">
                 <label for="example-text-input" class="col-2 col-form-label">Rua:</label>
                 <div class="col-10">
-                    <input required class="form-control" name="rua" placeholder="Insira rua"  type="text" id="example-text-input" required>
+                    <input class="form-control" name="rua" placeholder="Insira rua" data-maxlength="50"  type="text" id="example-text-input" required>
+                    <span class="help-block">Maximo 50 caracteres</span>
                 </div>
             </div>
             <div class="form-group row form-inline">
@@ -51,36 +54,54 @@
             <div class="form-group row form-inline">
                 <label for="example-text-input" class="col-2 col-form-label">Complemento:</label>
                 <div class="col-10">
-                    <input required class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="example-text-input" required>
+                    <input class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="example-text-input" required>
                 </div>
             </div>
-            <label for="txtcep">CEP:</label>
-            <input type="text" name="cep" placeholder="Insira cep" required/>
-            <br>
-            <label for="txtcidade">Cidade:</label>
-            <input type="text" name="cidade" placeholder="Insira cidade" required/>
-            <br>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">CEP:</label>
+                <div class="col-10">
+                    <input required class="form-control cep-mask form-control" placeholder="00000-000"  name="cep"  type="text" id="example-text-input" required>
+                </div>
+            </div>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">Cidade:</label>
+                <div class="col-10">
+                    <input class="form-control" name="cidade" placeholder="Insira cidade" data-maxlength="100"  type="text"id="example-text-input" required>
+                    <span class="help-block">Maximo 100 caracteres</span>
+                </div>
+            </div>
             <div class="form-group row form-inline">
                 <label for="example-text-input" class="col-2 col-form-label">Bairro:</label>
                 <div class="col-10">
-                    <input required class="form-control" name="bairro" placeholder="Insira bairro" type="text" id="example-text-input" required>
+                    <input required class="form-control" name="bairro" placeholder="Insira bairro" data-maxlength="50" type="text" id="example-text-input" required>
+                    <span class="help-block">Maximo 50 caracteres</span>
                 </div>
             </div>
-            <label for="txttelefone">Telefone:</label>
-            <input type="text" name="telefone" placeholder="Insira telefone" />
-            <br>
-            <label for="txtcelular">Celular:</label>
-            <input type="text" name="celular" placeholder="Insira celular" />
-            <br>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">Celular:</label>
+                <div class="col-10">
+                    <input required  class="form-control cel-sp-mask" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input">
+                </div>
+            </div>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">Telefone:</label>
+                <div class="col-10">
+                    <input required  class="form-control phone-ddd-mask" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
+                </div>
+            </div>
             <div class="form-group row form-inline">
                 <label for="example-email-input" class="col-2 col-form-label">Email:</label>
                 <div class="col-10">
-                    <input class="form-control" type="email" name="email" placeholder="Insira email" id="example-email-input">
+                    <input class="form-control" type="email" name="email" placeholder="Insira email" id="example-email-input" data-error="Por favor, informe um e-mail correto.">
+                </div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <button type="submit"><i class="icon-ok">Cadastrar</i></button>
+                    <button type="reset"><i class="icon-remove">Apagar Campos</i></button>
                 </div>
             </div>
-            <input type="submit" value="Salvar"/>
-            <input type="reset" value="Apagar"/>
-            <br>
         </form>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>

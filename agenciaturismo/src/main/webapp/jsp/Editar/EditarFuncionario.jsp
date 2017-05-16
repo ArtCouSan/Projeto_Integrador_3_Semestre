@@ -4,10 +4,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
+        <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <script src="jss/eventos.js" type="text/javascript" ></script>
         <title>Editar Funcionario</title>
     </head>
     <body>
+        <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <form action="${pageContext.request.contextPath}/EditarFuncionario" method="post">
             <input type="text" name="identificacao" value="${funcionarios.getId_func()}"/>
             <br>
@@ -62,5 +65,7 @@
             <input type="submit" value="Alterar"/>
             <br>
         </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
