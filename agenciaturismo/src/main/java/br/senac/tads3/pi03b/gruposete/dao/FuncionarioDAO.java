@@ -56,8 +56,9 @@ public class FuncionarioDAO {
 
     public void alterar(Funcionario funcionario) throws SQLException, Exception {
 
-        String sql = "UPDATE Funcionario "
-                + "SET nome=?, cpf=?, sexo=?, data_nasc=?, numero=?, cep=?, rua=?, bairro=?, cidade=?, logradouro=?, complemento=?, celular=?, telefone=?, email=?, cargo=?, filial=?, departamento=?, ativo=? "
+        String sql = "UPDATE funcionario "
+                + "SET nome = ?, "
+                + "cpf = ?, sexo=?, data_nasc=?, numero=?, cep=?, rua=?, bairro=?, cidade=?, complemento=?, celular=?, telefone=?, email=?, cargo=?, filial=?, departamento=? "
                 + "WHERE id_func=?";
 
         try {
@@ -80,8 +81,7 @@ public class FuncionarioDAO {
             preparedStatement.setString(14, funcionario.getCargo());
             preparedStatement.setString(15, funcionario.getFilial());
             preparedStatement.setString(16, funcionario.getDepartamento());
-            preparedStatement.setBoolean(17, funcionario.isAtivo());
-            preparedStatement.setInt(18, funcionario.getId_func());
+            preparedStatement.setInt(17, funcionario.getId_func());
 
             preparedStatement.executeUpdate();
 

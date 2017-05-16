@@ -200,14 +200,14 @@ public class ClienteDAO {
         preparedStatement.setString(6, busca);
         preparedStatement.setString(7, busca);
         preparedStatement.setString(8, busca);
-        preparedStatement.setString(9, busca);
+        preparedStatement.setString(10, busca);
         int buscaN = 0;
         try {
             buscaN = Integer.parseInt(busca);
         } catch (NumberFormatException w) {
             System.out.println("Erro");
         }
-        preparedStatement.setInt(10, buscaN);
+        preparedStatement.setInt(9, buscaN);
         preparedStatement.setString(11, busca);
         preparedStatement.setString(12, busca);
         preparedStatement.setString(13, busca);

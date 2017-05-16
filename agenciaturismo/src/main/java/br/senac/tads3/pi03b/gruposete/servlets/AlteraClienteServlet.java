@@ -21,7 +21,7 @@ public class AlteraClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Buscar/BuscaCliente.jsp");
         dispatcher.forward(request, response);
     }
     

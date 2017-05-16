@@ -11,16 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Level;
 
-@WebServlet(name = "AlteraFuncionarioServlet", urlPatterns = {"/EditaFuncionario"})
+@WebServlet(name = "AlteraFuncionarioServlet", urlPatterns = {"/EditarFuncionario"})
 public class AlteraFuncionarioServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Editar/EditarFuncionario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarFuncionario.jsp");
         dispatcher.forward(request, response);
     }
 

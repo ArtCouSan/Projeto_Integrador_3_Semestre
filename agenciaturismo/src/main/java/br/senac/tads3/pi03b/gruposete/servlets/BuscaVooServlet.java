@@ -20,6 +20,14 @@ import java.util.logging.Logger;
 public class BuscaVooServlet extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaVoo.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
