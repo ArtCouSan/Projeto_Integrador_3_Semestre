@@ -10,16 +10,19 @@
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" >
+        <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" class="text-justify">
             <div class="form-group row form-inline">
                 <label for="example-text-input" class="col-2 col-form-label">Nome:</label>
                 <div class="col-10">
                     <input class="form-control" name="nome" type="text" placeholder="Insira nome" id="example-text-input" required>
                 </div>
             </div>
-            <label for="txtcpf">CPF:</label>
-            <input type="text" name="cpf" placeholder="Insira cpf" required/>
-            <br>
+            <div class="form-group row form-inline">
+                <label for="example-text-input" class="col-2 col-form-label">CPF:</label>
+                <div class="col-10">
+                    <input required class="form-control cep-mask form-control" placeholder="00000-000" name="cpf" type="text" id="example-text-input" required>
+                </div>
+            </div>
             <div class="form-group row form-inline">
                 <label for="example-text-input" class="col-2 col-form-label">Sexo</label>
                 <select name="sexo" class="form-control">
