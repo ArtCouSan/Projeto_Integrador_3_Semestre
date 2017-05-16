@@ -13,90 +13,99 @@
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <form action="${pageContext.request.contextPath}/EditarCliente" method="post">
             <input type="text" name="identificacao" value="${clientes.getId_cliente()}"/>
-            <br>
-            <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" class="text-justify">
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">Nome:</label>
-                    <div class="col-10">
-                        <input class="form-control" name="nome" type="text" value="${clientes.getNome()}" id="example-text-input" required>
+            <div class="form-group ">
+                <label for="example-text-input" class="control-label col-md-4">Nome:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control" name="nome" type="text" value="${clientes.getNome()}" data-maxlength="100" id="example-text-input" required>
+                    <span class="help-block">Maximo 100 caracteres</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">CPF:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control cpf-mask" value="${clientes.getCpf()}" name="cpf" type="text" id="example-text-input" required>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">Sexo</label>
+                <div class="controls col-md-5">
+                    <input class="form-control" value="${clientes.getSexo()}" name="sexo" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-date-input" class="control-label col-md-4">Nascimento:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control" value="${clientes.getData_nasc()}" type="date" name="nascimento" id="example-date-input" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">Rua:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control" name="rua" value="${clientes.getRua()}" data-maxlength="50"  type="text" id="example-text-input" required>
+                    <span class="help-block">Maximo 50 caracteres</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-number-input" class="control-label col-md-4">Numero:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control" type="number" name="numero" value="${clientes.getNumero()}" id="example-number-input" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">Complemento:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control" name="complemento" value="${clientes.getComplemento()}" type="text" id="example-text-input" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">CEP:</label>
+                <div class="controls col-md-5">
+                    <input required class="form-control cep-mask form-control" value="${clientes.getCep()}" name="cep"  type="text" id="example-text-input" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">Cidade:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control" name="cidade" value="${clientes.getCidade()}" data-maxlength="100"  type="text"id="example-text-input" required>
+                    <span class="help-block">Maximo 100 caracteres</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">Bairro:</label>
+                <div class="controls col-md-5">
+                    <input required class="form-control" name="bairro" value="${clientes.getBairro()}" data-maxlength="50" type="text" id="example-text-input" required>
+                    <span class="help-block">Maximo 50 caracteres</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">Celular:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control cel-sp-mask" value="${clientes.getCelular()}" name="celular" type="text" id="example-text-input">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-text-input" class="control-label col-md-4">Telefone:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control phone-ddd-mask" value="${clientes.getTelefone()}" name="telefone" type="text" id="example-text-input">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="example-email-input" class="control-label col-md-4">Email:</label>
+                <div class="controls col-md-5">
+                    <input class="form-control" type="email" name="email" value="${clientes.getEmail()}"  id="example-email-input" data-error="Por favor, informe um e-mail correto.">
+                </div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <div class="aab controls col-md-4">
+                    <div class="controls col-md-8" >
+                        <input type="submit" value="Alterar" />
                     </div>
                 </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">CPF:</label>
-                    <div class="col-10">
-                        <input required class="form-control cpf-mask" value="${clientes.getCpf()}" name="cpf" type="text" id="example-text-input" required>
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">Sexo</label>
-                    <select name="sexo" class="form-control" value="${clientes.getSexo()}">
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                    </select>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-date-input" class="col-2 col-form-label">Nascimento:</label>
-                    <div class="col-10">
-                        <input class="form-control" value="${clientes.getData_nasc()}" type="date" name="nascimento" id="example-date-input" required>
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">Rua:</label>
-                    <div class="col-10">
-                        <input required class="form-control" name="rua" value="${clientes.getRua()}"  type="text" id="example-text-input" required>
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-number-input" class="col-2 col-form-label">Numero:</label>
-                    <div class="col-10">
-                        <input class="form-control" type="number" name="numero" value="${clientes.getNumero()}"  id="example-number-input" required>
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">Complemento:</label>
-                    <div class="col-10">
-                        <input required class="form-control" name="complemento" value="${clientes.getComplemento()}"  type="text" id="example-text-input">
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">CEP:</label>
-                    <div class="col-10">
-                        <input required class="form-control cep-mask form-control" value="${clientes.getCep()}"  name="cep"  type="text" id="example-text-input" required>
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">Cidade:</label>
-                    <div class="col-10">
-                        <input class="form-control" name="cidade" value="${clientes.getCidade()}"  type="text"id="example-text-input" required>
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">Bairro:</label>
-                    <div class="col-10">
-                        <input required class="form-control" name="bairro" value="${clientes.getBairro()}" type="text" id="example-text-input" required>
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">Celular:</label>
-                    <div class="col-10">
-                        <input required  class="form-control cel-sp-mask" value="${clientes.getCelular()}" name="celular" type="text" id="example-text-input">
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-text-input" class="col-2 col-form-label">Telefone:</label>
-                    <div class="col-10">
-                        <input required  class="form-control phone-ddd-mask" value="${clientes.getTelefone()}"  name="telefone" type="text" id="example-text-input">
-                    </div>
-                </div>
-                <div class="form-group row form-inline">
-                    <label for="example-email-input" class="col-2 col-form-label">Email:</label>
-                    <div class="col-10">
-                        <input class="form-control" type="email" name="email" value="${clientes.getEmail()}" id="example-email-input">
-                    </div>
-                </div>
-                <input type="submit" value="Alterar" />
-            </form>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-            <script src="./bootstrap/js/bootstrap.min.js"></script>
+            </div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
