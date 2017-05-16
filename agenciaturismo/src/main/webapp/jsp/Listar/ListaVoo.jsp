@@ -29,7 +29,7 @@
                         <td name="quantidade_passagens">${voos.getQuantidade_passagens()}</td>
                         <td name="preco">${voos.getPreco()}</td>
                         <td><a class="button" href="ExcluiVooServlet?action=edit&id=<c:out value="${voos.getId_voo()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
-                        <td><a class="button" href="EditaVooServlet?action=edit&id=<c:out value="${voos.getId_voo()}"/>">Alterar</a></td>
+                        <td><a class="button" href="EditarVoo?action=edit&id=<c:out value="${voos.getId_voo()}"/>">Alterar</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

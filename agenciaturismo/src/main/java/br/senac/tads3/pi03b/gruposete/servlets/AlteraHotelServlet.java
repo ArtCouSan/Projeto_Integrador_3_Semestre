@@ -11,9 +11,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet(name = "AlteraHotelServlet", urlPatterns = {"/EditarHotel"})
 public class AlteraHotelServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        HotelDAO dao = new HotelDAO();
+
+        String action = request.getParameter("action");
+
+        if ("edit".equalsIgnoreCase(action)) {
+
+            try {
+
+                Hotel hoteis = dao.getHotelById(id);
+
+                request.setAttribute("hoteis", hoteis);
+                
+            } catch (SQLException | ClassNotFoundException ex) {
+                
+                Logger.getLogger(AlteraHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarHotel.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

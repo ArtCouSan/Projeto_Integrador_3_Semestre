@@ -29,7 +29,7 @@
                         <td name="quantidade_quartos">${hoteis.getQuantidade_quartos()}</td>
                         <td name="quantidade_hospedes">${hoteis.getQuantidade_hospedes()}</td>
                         <td><a class="button" href="ExcluiHotelServlet?action=edit&id=<c:out value="${hoteis.getId_hotel()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
-                        <td><a class="button" href="EditaHotelServlet?action=edit&id=<c:out value="${hoteis.getId_hotel()}"/>">Alterar</a></td>
+                        <td><a class="button" href="EditarHotel?action=edit&id=<c:out value="${hoteis.getId_hotel()}"/>">Alterar</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
