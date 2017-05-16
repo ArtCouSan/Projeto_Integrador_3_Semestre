@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 @WebServlet(name = "AlteraVooServlet", urlPatterns = {"/EditarVoo"})
 public class AlteraVooServlet extends HttpServlet {
@@ -22,30 +20,9 @@ public class AlteraVooServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
+        dispatcher.forward(request, response);
 
-        VooDAO dao = new VooDAO();
-
-        String action = request.getParameter("action");
-
-        if ("edit".equalsIgnoreCase(action)) {
-
-            try {
-
-                Voo voos = dao.getVooById(id);
-
-                request.setAttribute("voos", voos);
-
-            } catch (SQLException | ClassNotFoundException ex) {
-
-                Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-            }
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
-            dispatcher.forward(request, response);
-
-        }
     }
 
     @Override
@@ -55,37 +32,46 @@ public class AlteraVooServlet extends HttpServlet {
         boolean erro = false;
 
         String origem = request.getParameter("origem");
-        if (origem == null || origem.length() < 1) {
-            erro = true;
-            request.setAttribute("erroOrigem", true);
-        }
+//        if (origem == null || origem.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroOrigem", true);
+//        }
         String destino = request.getParameter("destino");
-        if (destino == null || destino.length() < 1) {
-            erro = true;
-            request.setAttribute("erroDestino", true);
-        }
+//        if (destino == null || destino.length() < 1) {
+//            erro = true;
+//            request.setAttribute("erroDestino", true);
+//        }
         String data_ida = request.getParameter("data_ida");
-        if (data_ida == null || !"  /  /    ".equals(data_ida)) {
-            erro = true;
-            request.setAttribute("erroData_ida", true);
-        }
+//        if (data_ida == null || !"  /  /    ".equals(data_ida)) {
+//            erro = true;
+//            request.setAttribute("erroData_ida", true);
+//        }
         String data_volta = request.getParameter("data_volta");
-        if (data_volta == null || !"  /  /    ".equals(data_volta)) {
-            erro = true;
-            request.setAttribute("erroData_volta", true);
-        }
+//        if (data_volta == null || !"  /  /    ".equals(data_volta)) {
+//            erro = true;
+//            request.setAttribute("erroData_volta", true);
+//        }
+        int quantidade_passagens;
 
-        int quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
-        if (quantidade_passagens < 1) {
-            erro = true;
-            request.setAttribute("erroQuantidade_passagens", true);
+        try {
+
+            quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
+//        if (quantidade_passagens < 1) {
+//            erro = true;
+//            request.setAttribute("erroQuantidade_passagens", true);
+//        }
+
+        } catch (NumberFormatException e) {
+
+            quantidade_passagens = 0;
+
         }
 
         float preco = Float.parseFloat(request.getParameter("preco"));
-        if (preco < 0) {
-            erro = true;
-            request.setAttribute("erroPreco", true);
-        }
+//        if (preco < 0) {
+//            erro = true;
+//            request.setAttribute("erroPreco", true);
+//        }
 
         int id = Integer.parseInt(request.getParameter("identificacao"));
 

@@ -50,14 +50,19 @@ public class CadastroVooServlet extends HttpServlet {
             request.setAttribute("erroData_volta", true);
         }
         int quantidade_passagens;
+
         try {
+
             quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
-            if (quantidade_passagens < 1) {
-                erro = true;
-                request.setAttribute("erroQuantidade_passagens", true);
-            }
+        if (quantidade_passagens < 1) {
+            erro = true;
+            request.setAttribute("erroQuantidade_passagens", true);
+        }
+
         } catch (NumberFormatException e) {
+
             quantidade_passagens = 0;
+
         }
 
         float preco = Float.parseFloat(request.getParameter("preco"));

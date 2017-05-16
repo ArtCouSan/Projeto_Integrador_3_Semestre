@@ -28,9 +28,6 @@ public class CadastroHotelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean erro = false;
-        
-        System.out.println(!"  /  /    ".equals("  /  /    "));
-        System.out.println(!"  /  /    ".equals(request.getParameter("data_entrada")));
 
         String nome_hotel = request.getParameter("nome_hotel");
         if (nome_hotel == null || nome_hotel.length() < 1) {
@@ -38,8 +35,6 @@ public class CadastroHotelServlet extends HttpServlet {
             request.setAttribute("erroNome_hotel", true);
         }
         String data_entrada = request.getParameter("data_entrada");
-        
-        
         if (data_entrada == null || !"  /  /    ".equals(data_entrada)) {
             erro = true;
             request.setAttribute("erroData_entrada", true);
