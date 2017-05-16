@@ -30,6 +30,7 @@ public class CadastroClienteServlet extends HttpServlet {
 
         boolean erro = true;
 
+        //CAMPOS OBRIGATÓRIOS
         String nome = request.getParameter("nome");
         if (nome == null || nome.length() < 1) {
             erro = true;
@@ -50,23 +51,11 @@ public class CadastroClienteServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroNascimento", true);
         }
-
-        String telefone = request.getParameter("telefone");
-        if (telefone == null || !"(  )    -    ".equals(telefone)) {
-            erro = true;
-            request.setAttribute("erroTelefone", true);
-        }
         String celular = request.getParameter("celular");
         if (celular == null || !"(  )     -    ".equals(celular)) {
             erro = true;
             request.setAttribute("erroCelular", true);
         }
-        String email = request.getParameter("email");
-        if (email == null || !email.contains("@") && !email.contains(".com") || !email.contains(".com.br")) {
-            erro = true;
-            request.setAttribute("erroEmail", true);
-        }
-
         int numero = Integer.parseInt(request.getParameter("numero"));
         if (numero <= 0) {
             erro = true;
@@ -92,13 +81,32 @@ public class CadastroClienteServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroCidade", true);
         }
+
+        //CAMPOS OPCIONAIS
         String complemento = request.getParameter("complemento");
-        if (complemento == null || complemento.length() < 1) {
-            erro = true;
-            request.setAttribute("erroComplemento", true);
+        if (complemento != null) {
+            if (complemento.length() > 20 || complemento.length() < 1) {
+                erro = true;
+                request.setAttribute("erroComplemento", true);
+            }
+        }
+        String telefone = request.getParameter("telefone");
+        if (telefone != null) {
+            if (!"(  )    -    ".equals(telefone)) {
+                erro = true;
+                request.setAttribute("erroTelefone", true);
+            }
+        }
+        String email = request.getParameter("email");
+        if (email != null) {
+            if (!email.contains("@") && !email.contains(".com") || !email.contains(".com.br")) {
+                erro = true;
+                request.setAttribute("erroEmail", true);
+            }
         }
 
-        if (erro) {   
+
+        if (erro) {
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, bairro, cidade, complemento, celular,
                     telefone, email, true);
@@ -113,13 +121,13 @@ public class CadastroClienteServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         } else {
-            
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroCliente.jsp");
-            
+
             dispatcher.forward(request, response);
-            
+
         }
     }
 }

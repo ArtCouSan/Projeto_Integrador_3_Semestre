@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 @WebServlet(name = "CadastroFuncionarioServlet", urlPatterns = {"/CadastroFuncionario"})
 public class CadastroFuncionarioServlet extends HttpServlet {
 
@@ -32,7 +31,8 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             throws ServletException, IOException {
 
         boolean erro = false;
-
+        
+        //CAMPOS OBRIGATÓRIOS
         String nome = request.getParameter("nome");
         if (nome == null || nome.length() < 1) {
             erro = true;
@@ -53,14 +53,8 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroNascimento", true);
         }
-
-        String telefone = request.getParameter("telefone");
-        if (telefone == null || !"     -    ".equals(telefone)) {
-            erro = true;
-            request.setAttribute("erroTelefone", true);
-        }
         String celular = request.getParameter("celular");
-        if (celular == null || !"     -    ".equals(celular)) {
+        if (celular == null || !"(  )     -    ".equals(celular)) {
             erro = true;
             request.setAttribute("erroCelular", true);
         }
@@ -69,7 +63,6 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroEmail", true);
         }
-
         int numero = Integer.parseInt(request.getParameter("numero"));
         if (numero <= 0) {
             erro = true;
@@ -95,12 +88,6 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroCidade", true);
         }
-        String complemento = request.getParameter("complemento");
-        if (complemento == null || complemento.length() < 1) {
-            erro = true;
-            request.setAttribute("erroComplemento", true);
-        }
-
         String cargo = request.getParameter("cargo");
         if (cargo == null || cargo.length() < 1) {
             erro = true;
@@ -116,6 +103,22 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroDepartamento", true);
         }
+        
+        //CAMPOS OPCIONAIS
+        String complemento = request.getParameter("complemento");
+        if (complemento != null) {
+            if (complemento.length() > 20 || complemento.length() < 1) {
+                erro = true;
+                request.setAttribute("erroComplemento", true);
+            }
+        }
+        String telefone = request.getParameter("telefone");
+        if (telefone != null) {
+            if (!"(  )    -    ".equals(telefone)) {
+                erro = true;
+                request.setAttribute("erroTelefone", true);
+            }
+        }
 
         if (!erro) {
             Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
@@ -129,16 +132,16 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                 response.sendRedirect("index.jsp");
 
             } catch (Exception ex) {
-                
+
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-                
+
             }
         } else {
-            
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroFuncionario.jsp");
-            
+
             dispatcher.forward(request, response);
-            
+
         }
     }
 }
