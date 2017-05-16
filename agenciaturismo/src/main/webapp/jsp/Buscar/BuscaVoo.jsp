@@ -11,7 +11,8 @@
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <form action="${pageContext.request.contextPath}/BuscaVoo" method="post" class="form-horizontal">
-           <h1> Digite o campo(s) pela informação que gostaria de buscar</h1>
+            <div class="controls col-md-5">
+                <h1> Digite o campo(s) pela informação que gostaria de buscar</h1>
                 <input name="pesquisa" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
                 <button type="submit" class="btn">Pesquisar</button>
                 <button type="reset" class="btn">Apagar</button>
