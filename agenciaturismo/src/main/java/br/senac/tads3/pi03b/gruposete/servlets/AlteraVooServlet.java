@@ -16,34 +16,13 @@ import java.io.IOException;
 @WebServlet(name = "AlteraVooServlet", urlPatterns = {"/EditarVoo"})
 public class AlteraVooServlet extends HttpServlet {
 
-     @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
+        dispatcher.forward(request, response);
 
-        VooDAO dao = new VooDAO();
-
-        String action = request.getParameter("action");
-
-        if ("edit".equalsIgnoreCase(action)) {
-
-            try {
-
-                Voo voos = dao.getVooById(id);
-
-                request.setAttribute("voos", voos);
-
-            } catch (SQLException | ClassNotFoundException ex) {
-
-                Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-            }
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
-            dispatcher.forward(request, response);
-
-        }
     }
 
     @Override
