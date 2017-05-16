@@ -56,7 +56,7 @@
                         <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
                         <td name="ativo">${true}</td>
                         <td><a class="btn btn-danger" href="ExcluiFuncionarioServlet?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>&pesquisa=<c:out value="${pesquisa}"/>"><i class="icon-trash">Remover</i></a></td>
-                        <td><a class="btn" href="EditaFuncionarioServlet?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>"><i class="icon-pencil">Alterar</i></a></td>
+                        <td><a class="btn" href="EditarFuncionario?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>"><i class="icon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>

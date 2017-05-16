@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,10 +22,32 @@ public class AlteraClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
-        dispatcher.forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
 
+        ClienteDAO dao = new ClienteDAO();
+
+        String action = request.getParameter("action");
+
+        if ("edit".equalsIgnoreCase(action)) {
+
+            try {
+
+                Cliente clientes = dao.getClienteById(id);
+
+                request.setAttribute("clientes", clientes);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+
+                Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
+            dispatcher.forward(request, response);
+
+        }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
