@@ -12,7 +12,7 @@
         <label for="txtPesquisa">Pesquisa:</label>  
         <input type="text" name="pesquisa" placeholder="Insira a pesquisa"/>
         <input type="submit" value="Buscar"/>
-        <input type="reset" value="Apagar"/>
+        <input type="reset" value="Limpar"/>
     </form>
     <c:import url="./Layout/rodape.jsp"/>
 </body>
