@@ -4,14 +4,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="jss/eventos.js" type="text/javascript" ></script>
-        <!--        <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
-                <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>-->
         <title>Editar Cliente</title>
     </head>
     <body>
     <c:import url="./Layout/cabecalho.jsp"/>
     <form action="${pageContext.request.contextPath}/EditarCliente" method="post">
-        <label name="identificacao">${clientes.getId_cliente()}</label>
+        <input type="text" name="identificacao" value="${clientes.getId_cliente()}"/>
         <br>
         <label for="txtnome">Nome:</label>  
         <input type="text" name="nome" value="${clientes.getNome()}"/>

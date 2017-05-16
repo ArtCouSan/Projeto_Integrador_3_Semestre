@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "AlteraHotelServlet", urlPatterns = {"/AlteraHotelServlet"})
+@WebServlet(name = "AlteraHotelServlet", urlPatterns = {"/EditarHotel"})
 public class AlteraHotelServlet extends HttpServlet {
 
     @Override
@@ -62,11 +62,9 @@ public class AlteraHotelServlet extends HttpServlet {
                 dao.alterar(hotel);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("editarHotel", hotel);
-                response.sendRedirect("jsp/index.html");
+                response.sendRedirect("index.jsp");
 
             } catch (Exception ex) {
-
-                //Logger.getLogger(EditarHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
 
             }
 

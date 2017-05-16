@@ -4,15 +4,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="jss/eventos.js" type="text/javascript" ></script>
-        <!--        <link href="foundation/css/foundation.css" rel="stylesheet" type="text/css"/>
-                <link href="foundation/css/foundation-icons/foundation-icons.css" rel="stylesheet" type="text/css"/>-->
-        <title>Cadastro de Hotel</title>
+        <title>Editar Hotel</title>
     </head>
     <body>
     <c:import url="./Layout/cabecalho.jsp"/>
     <form action="${pageContext.request.contextPath}/EditarHotel" method="post">
-
-        <label name="identificacao">${hoteis.getId_hotel()}</label>
+        <input type="text" name="identificacao" value="${hoteis.getId_hotel()}"/>
         <br>
         <label for="txtorigem">Nome do Hotel:</label>  
         <input type="text" name="nome_hotel" value="${hoteis.getNome_hotel()}"/>

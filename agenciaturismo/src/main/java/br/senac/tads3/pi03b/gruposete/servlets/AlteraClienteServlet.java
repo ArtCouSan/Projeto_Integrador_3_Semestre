@@ -21,7 +21,7 @@ public class AlteraClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Buscar/BuscaCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
         dispatcher.forward(request, response);
     }
     
@@ -30,7 +30,7 @@ public class AlteraClienteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = true;
+        boolean erro = false;
 
         String nome = request.getParameter("nome");
 //        if (nome == null || nome.length() < 1) {
@@ -102,7 +102,7 @@ public class AlteraClienteServlet extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
-        if (erro) {
+        if (!erro) {
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, bairro, cidade, complemento, celular,
                     telefone, email, true);

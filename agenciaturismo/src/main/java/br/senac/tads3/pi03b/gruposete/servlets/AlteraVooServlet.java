@@ -12,9 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "AlterarVooServlet", urlPatterns = {"/AlterarVooServlet"})
+@WebServlet(name = "AlteraVooServlet", urlPatterns = {"/EditarVoo"})
 public class AlteraVooServlet extends HttpServlet {
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
+        dispatcher.forward(request, response);
+    }
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -73,15 +81,18 @@ public class AlteraVooServlet extends HttpServlet {
                 dao.alterar(voo);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("editarVoo", voo);
-                response.sendRedirect("jsp/index.html");
+                response.sendRedirect("index.jsp");
 
             } catch (Exception ex) {
 
-                //Logger.getLogger(EditarVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         } else {
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
+            
             dispatcher.forward(request, response);
+            
         }
     }
 

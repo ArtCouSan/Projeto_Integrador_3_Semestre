@@ -46,7 +46,13 @@ public class VooDAO {
 
     public void alterar(Voo voo) throws SQLException, Exception {
 
-        String sql = "UPDATE Voo SET data_volta=?, data_ida=?, destino=?, origem=?, quantidade_passagens=?, preco=?, ativo=? "
+        String sql = "UPDATE Voo SET data_volta = ?,"
+                + " data_ida = ?,"
+                + " destino = ?, "
+                + "origem = ?, "
+                + "quantidade_passagens = ?, "
+                + "preco = ?, "
+                + "ativo = ? "
                 + "WHERE id_voo=?";
 
         try {
@@ -107,14 +113,14 @@ public class VooDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Voo WHERE id_voo=?";
+        String query = "SELECT * FROM Voo WHERE id_voo = ? ";
 
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id);
         resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            voo.setId_voo(resultSet.getInt("id_hotel"));
+            voo.setId_voo(resultSet.getInt("id_voo"));
             voo.setData_ida(resultSet.getString("data_ida"));
             voo.setData_volta(resultSet.getString("data_volta"));
             voo.setDestino(resultSet.getString("destino"));

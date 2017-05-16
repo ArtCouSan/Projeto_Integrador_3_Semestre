@@ -16,7 +16,7 @@
             <li role="presentation"><a href="BuscaCliente">Busca Cliente</a></li>
             <li role="presentation"><a href="BuscaFuncionario">Busca Funcionario</a></li>
             <li role="presentation"><a href="BuscaHotel">Busca Hotel</a></li>
-            <li role="presentation"><a href="BuscaFuncionario">Busca Voo</a></li> 
+            <li role="presentation"><a href="BuscaVoo">Busca Voo</a></li> 
         </ul>
     </body>
 </html>

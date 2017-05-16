@@ -30,7 +30,7 @@
     </thead>
     <tbody>
         <c:forEach var="clientes" items="${encontrados}">
-            <tr name="identificacao" id="${clientes.getId_cliente()}">
+            <tr >
                 <td>${clientes.getNome()}</td>
                 <td>${clientes.getCpf()}</td>
                 <td>${clientes.getSexo()}</td>

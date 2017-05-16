@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <c:forEach var="voos" items="${encontrados}">
-                    <tr name="identificacao" id="${voos.getId_voo()}">
+                    <tr>
                         <td name="origem">${voos.getOrigem()}</td>
                         <td name="destino">${voos.getDestino()}</td>
                         <td name="data_ida">${voos.getData_ida()}</td>

@@ -58,7 +58,21 @@ public class FuncionarioDAO {
 
         String sql = "UPDATE funcionario "
                 + "SET nome = ?, "
-                + "cpf = ?, sexo=?, data_nasc=?, numero=?, cep=?, rua=?, bairro=?, cidade=?, complemento=?, celular=?, telefone=?, email=?, cargo=?, filial=?, departamento=? "
+                + "cpf = ?, "
+                + "sexo = ?, "
+                + "data_nasc = ?, "
+                + "numero = ?, "
+                + "cep = ?, "
+                + "rua = ?, "
+                + "bairro = ?, "
+                + "cidade = ?, "
+                + "complemento = ?, "
+                + "celular = ?, "
+                + "telefone = ?, "
+                + "email = ?, "
+                + "cargo = ?, "
+                + "filial = ?, "
+                + "departamento = ? "
                 + "WHERE id_func=?";
 
         try {
@@ -100,7 +114,7 @@ public class FuncionarioDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo=true";
+        String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo = true";
 
         try {
             statement = connection.createStatement();

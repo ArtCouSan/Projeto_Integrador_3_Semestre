@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <c:forEach var="hoteis" items="${encontrados}">
-                    <tr name="identificacao" id="${hoteis.getId_hotel()}">
+                    <tr >
                         <td name="nome">${hoteis.getNome_hotel()}</td>
                         <td name="data_entrada">${hoteis.getData_entrada()}</td>
                         <td name="data_saida">${hoteis.getData_saida()}</td>
