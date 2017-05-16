@@ -113,7 +113,9 @@ public class AlteraFuncionarioServlet extends HttpServlet {
 //            request.setAttribute("erroDepartamento", true);
 //        }
 
-        int id = Integer.parseInt(request.getParameter("identificacao"));
+        int id;
+
+        id = Integer.parseInt(request.getParameter("identificacao"));
 
         if (!erro) {
             Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,

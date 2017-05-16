@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,9 +10,9 @@
         <title>Alterar Funcionario</title>
     </head>
     <body>
-    <c:import url="./Layout/cabecalho.jsp"/>
     <form action="${pageContext.request.contextPath}/EditarFuncionario" method="post">
-        <label name="identificacao">${funcionarios.getId_func()}</label>
+        <input type="text" name="identificacao" value="${funcionarios.getId_func()}"/>
+        <br>
         <label for="txtnome">Nome:</label>  
         <input type="text" name="nome" value="${funcionarios.getNome()}"/>
         <br>
@@ -63,6 +64,5 @@
         <input type="submit" value="Alterar"/>
         <br>
     </form>
-    <c:import url="./Layout/rodape.jsp"/>
 </body>
 </html>
