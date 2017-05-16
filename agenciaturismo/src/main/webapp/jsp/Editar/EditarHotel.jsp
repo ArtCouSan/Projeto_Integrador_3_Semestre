@@ -11,7 +11,7 @@
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form action="${pageContext.request.contextPath}/EditarHotel" method="post">
+        <form action="${pageContext.request.contextPath}/EditarHotel" method="post" class="form-horizontal">
             <input type="text" name="identificacao" value="${hoteis.getId_hotel()}"/>
             <br>
             <label for="txtorigem">Nome do Hotel:</label>  

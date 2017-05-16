@@ -28,6 +28,8 @@
                     <th>Telefone</th>
                     <th>Email</th>
                     <th>Ativo ?</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -47,8 +49,8 @@
                         <td><c:out value="${clientes.getTelefone()}"/></td>
                         <td><c:out value="${clientes.getEmail()}"/></td>
                         <td><c:out value="${true}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiClienteServlet?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>&pesquisa=<c:out value="${pesquisa}"/>"><i class="icon-trash">Remover</i><</a></td>
-                        <td><a class="btn " href="EditarCliente?action=edit&id=<c:out value="${clientes.getId_cliente()}"/>"><i class="icon-pencil">Alterar</i></a></td>
+                        <td><a class="btn btn-danger" href="ExcluiClienteServlet?action=edit&id=${clientes.getId_cliente()}&pesquisa=${pesquisa}"/><i class="icon-trash">Remover</i></a></td>
+                        <td><a class="btn " href="EditaClienteServlet?action=edit&id=${clientes.getId_cliente()}"><i class="icon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>

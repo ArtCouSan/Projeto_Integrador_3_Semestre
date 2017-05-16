@@ -20,6 +20,8 @@
                     <th>Preco</th>
                     <th>Quantidade de quartos</th>
                     <th>Quantidade de hospedes</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +33,7 @@
                         <td name="preco"><c:out value="${hoteis.getPreco()}"/></td>
                         <td name="quantidade_quartos"><c:out value="${hoteis.getQuantidade_quartos()}"/></td>
                         <td name="quantidade_hospedes"><c:out value="${hoteis.getQuantidade_hospedes()}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiHotelServlet?action=edit&id=<c:out value="${hoteis.getId_hotel()}"/>&pesquisa=<c:out value="${pesquisa}"/>"><i class="icon-trash">Remover</i><</a></td>
+                        <td><a class="btn btn-danger" href="ExcluiHotelServlet?action=edit&id=<c:out value="${hoteis.getId_hotel()}"/>&pesquisa=<c:out value="${pesquisa}"/>"><i class="icon-trash">Remover</i></a></td>
                         <td><a class="btn" href="EditaHotelServlet?action=edit&id=<c:out value="${hoteis.getId_hotel()}"/>"><i class="icon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>

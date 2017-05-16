@@ -11,7 +11,7 @@
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form action="${pageContext.request.contextPath}/EditarCliente" method="post">
+        <form action="${pageContext.request.contextPath}/EditarCliente" method="post" class="form-horizontal">
             <input type="text" name="identificacao" value="${clientes.getId_cliente()}"/>
             <div class="form-group ">
                 <label for="example-text-input" class="control-label col-md-4">Nome:</label>

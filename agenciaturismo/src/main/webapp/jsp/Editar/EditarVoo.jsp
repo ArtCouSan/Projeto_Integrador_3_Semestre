@@ -11,7 +11,7 @@ bvbvb<%@page contentType="text/html" pageEncoding="UTF-8"%>
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form action="${pageContext.request.contextPath}/EditarVoo" method="post">
+        <form action="${pageContext.request.contextPath}/EditarVoo" method="post" class="form-horizontal">
             <input type="text" name="identificacao" value="${voos.getId_voo()}"/>
             <br>
             <label for="txtorigem">Origem:</label>  
