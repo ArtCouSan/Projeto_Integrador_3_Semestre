@@ -23,7 +23,6 @@
                     <th>Rua</th>
                     <th>Bairro</th>
                     <th>Cidade</th>
-                    <th>Logradouro</th>
                     <th>Complemento</th>
                     <th>Celular</th>
                     <th>Telefone</th>
