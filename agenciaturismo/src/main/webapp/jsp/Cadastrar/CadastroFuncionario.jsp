@@ -30,9 +30,6 @@
         <label for="txtcomplemento">Complemento:</label>
         <input type="text" name="complemento" placeholder="Insira complemento" required/>
         <br>
-        <label for="txtlogradouro">Logradouro:</label>
-        <input type="text" name="logradouro" placeholder="Insira logradouro" required/>
-        <br>
         <label for="txtcep">CEP:</label>
         <input type="text" name="cep" placeholder="Insira cep" required/>
         <br>

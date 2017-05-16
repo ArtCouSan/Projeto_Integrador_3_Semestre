@@ -17,6 +17,15 @@ import java.util.logging.Logger;
 @WebServlet(name = "AlteraClienteServlet", urlPatterns = {"/EditarCliente"})
 public class AlteraClienteServlet extends HttpServlet {
 
+      @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaCliente.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -104,7 +113,7 @@ public class AlteraClienteServlet extends HttpServlet {
                 dao.alterar(cliHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("editarCliente", cliHumilde);
-                response.sendRedirect("jsp/index.html");
+                response.sendRedirect("index.jsp");
 
             } catch (Exception ex) {
 

@@ -11,9 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.logging.Level;
 
-@WebServlet(name = "AlteraFuncionarioServlet", urlPatterns = {"/AlteraFuncionarioServlet"})
+@WebServlet(name = "AlteraFuncionarioServlet", urlPatterns = {"/EditaFuncionario"})
 public class AlteraFuncionarioServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Editar/EditarFuncionario.jsp");
+        dispatcher.forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -109,7 +118,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
 
         if (!erro) {
             Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
-                    numero, cep, rua, bairro, cidade,complemento,
+                    numero, cep, rua, bairro, cidade, complemento,
                     celular, telefone, email, true, cargo, filial, departamento);
             funcHumilde.setId_func(id);
             try {
@@ -117,11 +126,10 @@ public class AlteraFuncionarioServlet extends HttpServlet {
                 dao.alterar(funcHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("editarFuncionario", funcHumilde);
-                response.sendRedirect("jsp/index.html");
+                response.sendRedirect("index.jsp");
 
             } catch (Exception ex) {
 
-                //Logger.getLogger(EditarFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
 

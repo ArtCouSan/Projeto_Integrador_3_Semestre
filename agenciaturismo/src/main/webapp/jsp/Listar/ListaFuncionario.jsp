@@ -33,7 +33,7 @@
             </thead>
             <tbody>
                 <c:forEach var="funcionarios" items="${encontrados}">
-                    <tr name="id" id="${funcionarios.getId_func()}">
+                    <tr name="identificacao" id="${funcionarios.getId_func()}">
                         <td name="nome"><c:out value="${funcionarios.getNome()}"/></td>
                         <td name="cpf"><c:out value="${funcionarios.getCpf()}"/></td>
                         <td name="sexo"><c:out value="${funcionarios.getSexo()}"/></td>
@@ -43,7 +43,6 @@
                         <td name="rua"><c:out value="${funcionarios.getRua()}"/></td>
                         <td name="bairro"><c:out value="${funcionarios.getBairro()}"/></td>
                         <td name="cidade"><c:out value="${funcionarios.getCidade()}"/></td>
-                        <td name="logradouro"><c:out value="${funcionarios.getLogradouro()}"/></td>
                         <td name="complemento"><c:out value="${funcionarios.getComplemento()}"/></td>
                         <td name="celular"><c:out value="${funcionarios.getCelular()}"/></td>
                         <td name="telefone"><c:out value="${funcionarios.getTelefone()}"/></td>
@@ -53,7 +52,7 @@
                         <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
                         <td name="ativo">${true}</td>
                         <td><a class="button" href="ExcluiFuncionarioServlet?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>&pesquisa=<c:out value="${pesquisa}"/>">Remover</a></td>
-                        <td><a class="button" href="EditaFuncionario??action=edit&id=<c:out value="${funcionarios.getId_func()}"/>">Alterar</a></td>
+                        <td><a class="button" href="EditaFuncionarioServlet?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>">Alterar</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

@@ -37,9 +37,6 @@
         <label for="txtcep">CEP:</label>
         <input type="text" name="cep" value="${clientes.getCep()}"/>
         <br>
-        <label for="txtlogradouro">Logradouro:</label>
-        <input type="text" name="logradouro" value="${clientes.getLogradouro()}"/>
-        <br>
         <label for="txtcidade">Cidade:</label>
         <input type="text" name="cidade" value="${clientes.getCidade()}"/>
         <br>

@@ -40,7 +40,6 @@
                 <td>${clientes.getRua()}</td>
                 <td>${clientes.getBairro()}</td>
                 <td>${clientes.getCidade()}</td>
-                <td>${clientes.getLogradouro()}</td>
                 <td>${clientes.getComplemento()}</td>
                 <td>${clientes.getCelular()}</td>
                 <td>${clientes.getTelefone()}</td>

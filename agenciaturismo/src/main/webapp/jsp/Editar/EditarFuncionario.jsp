@@ -33,9 +33,6 @@
         <label for="txtcomplemento">Complemento:</label>
         <input type="text" name="complemento" value="${funcionarios.getComplemento()}"/>
         <br>
-        <label for="txtlogradouro">Logradouro:</label>
-        <input type="text" name="logradouro" value="${funcionarios.getLogradouro()}"/>
-        <br>
         <label for="txtcep">CEP:</label>
         <input type="text" name="cep" value="${funcionarios.getCep()}"/>
         <br>

@@ -67,7 +67,7 @@ public class CadastroHotelServlet extends HttpServlet {
                 dao.inserir(hotel);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoHotel", hotel);
-                response.sendRedirect("jsp/index.html");
+                response.sendRedirect("index.jsp");
 
             } catch (Exception ex) {
                 

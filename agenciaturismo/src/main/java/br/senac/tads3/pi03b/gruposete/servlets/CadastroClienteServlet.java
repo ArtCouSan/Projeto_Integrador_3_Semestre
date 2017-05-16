@@ -108,7 +108,7 @@ public class CadastroClienteServlet extends HttpServlet {
                 dao.inserir(cliHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoCliente", cliHumilde);
-                response.sendRedirect("jsp/index.html");
+                response.sendRedirect("index.jsp");
 
             } catch (Exception ex) {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);

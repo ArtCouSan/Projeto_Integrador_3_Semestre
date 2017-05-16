@@ -78,7 +78,7 @@ public class CadastroVooServlet extends HttpServlet {
                 dao.inserir(voo);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoVoo", voo);
-                response.sendRedirect("jsp/index.html");
+                response.sendRedirect("index.jsp");
 
             } catch (Exception ex) {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
