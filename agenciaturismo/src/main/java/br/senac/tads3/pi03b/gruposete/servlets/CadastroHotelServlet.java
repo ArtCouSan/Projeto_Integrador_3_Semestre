@@ -29,41 +29,39 @@ public class CadastroHotelServlet extends HttpServlet {
             throws ServletException, IOException {
         boolean erro = false;
         
-        System.out.println(!"  /  /    ".equals("  /  /    "));
-        System.out.println(!"  /  /    ".equals(request.getParameter("data_entrada")));
 
         String nome_hotel = request.getParameter("nome_hotel");
-        if (nome_hotel == null || nome_hotel.length() < 1) {
-            erro = true;
-            request.setAttribute("erroNome_hotel", true);
-        }
+        //if (nome_hotel == null || nome_hotel.length() < 1) {
+          //  erro = true;
+            //request.setAttribute("erroNome_hotel", true);
+        //}
         String data_entrada = request.getParameter("data_entrada");
         
         
-        if (data_entrada == null || !"  /  /    ".equals(data_entrada)) {
-            erro = true;
-            request.setAttribute("erroData_entrada", true);
-        }
+      //  if (data_entrada == null || !"  /  /    ".equals(data_entrada)) {
+//            erro = true;
+  //          request.setAttribute("erroData_entrada", true);
+    //    }
         String data_saida = request.getParameter("data_saida");
-        if (data_saida == null || !"  /  /    ".equals(data_saida)) {
-            erro = true;
-            request.setAttribute("erroData_saida", true);
-        }
+//        if (data_saida == null || !"  /  /    ".equals(data_saida)) {
+  //          erro = true;
+    //        request.setAttribute("erroData_saida", true);
+      //  }
         int quantidade_quartos = Integer.parseInt(request.getParameter("quantidade_quartos"));
-        if (quantidade_quartos < 1) {
-            erro = true;
-            request.setAttribute("erroQuantidade_quartos", true);
-        }
+//        if (quantidade_quartos < 1) {
+  //          erro = true;
+    //        request.setAttribute("erroQuantidade_quartos", true);
+      //  }
         int quantidade_hospedes = Integer.parseInt(request.getParameter("quantidade_hospedes"));
-        if (quantidade_hospedes < 1) {
-            erro = true;
-            request.setAttribute("erroQuantidade_hospedes", true);
-        }
+//        if (quantidade_hospedes < 1) {
+  //          erro = true;
+    //        request.setAttribute("erroQuantidade_hospedes", true);
+      //  }
         float preco = Float.parseFloat(request.getParameter("preco"));
-        if (preco < 0) {
-            erro = true;
-            request.setAttribute("erroPreco", true);
-        }
+//        if (preco < 0) {
+  //          erro = true;
+    //        request.setAttribute("erroPreco", true);
+      //  }
 
         if (!erro) {
             Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);

@@ -55,37 +55,37 @@ public class AlteraVooServlet extends HttpServlet {
         boolean erro = false;
 
         String origem = request.getParameter("origem");
-        if (origem == null || origem.length() < 1) {
-            erro = true;
-            request.setAttribute("erroOrigem", true);
-        }
+//        if (origem == null || origem.length() < 1) {
+  //          erro = true;
+    //        request.setAttribute("erroOrigem", true);
+      //  }
         String destino = request.getParameter("destino");
-        if (destino == null || destino.length() < 1) {
-            erro = true;
-            request.setAttribute("erroDestino", true);
-        }
+//        if (destino == null || destino.length() < 1) {
+  //          erro = true;
+    //        request.setAttribute("erroDestino", true);
+      //  }
         String data_ida = request.getParameter("data_ida");
-        if (data_ida == null || !"  /  /    ".equals(data_ida)) {
-            erro = true;
-            request.setAttribute("erroData_ida", true);
-        }
+//        if (data_ida == null || !"  /  /    ".equals(data_ida)) {
+  //          erro = true;
+    //        request.setAttribute("erroData_ida", true);
+      //  }
         String data_volta = request.getParameter("data_volta");
-        if (data_volta == null || !"  /  /    ".equals(data_volta)) {
-            erro = true;
-            request.setAttribute("erroData_volta", true);
-        }
+//        if (data_volta == null || !"  /  /    ".equals(data_volta)) {
+  //          erro = true;
+    //        request.setAttribute("erroData_volta", true);
+      //  }
 
         int quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
-        if (quantidade_passagens < 1) {
-            erro = true;
-            request.setAttribute("erroQuantidade_passagens", true);
-        }
+//        if (quantidade_passagens < 1) {
+  //          erro = true;
+    //        request.setAttribute("erroQuantidade_passagens", true);
+      //  }
 
         float preco = Float.parseFloat(request.getParameter("preco"));
-        if (preco < 0) {
-            erro = true;
-            request.setAttribute("erroPreco", true);
-        }
+//        if (preco < 0) {
+  //          erro = true;
+    //        request.setAttribute("erroPreco", true);
+      //  }
 
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
