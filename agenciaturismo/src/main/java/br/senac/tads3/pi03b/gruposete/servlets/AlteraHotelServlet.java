@@ -22,9 +22,30 @@ public class AlteraHotelServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarHotel.jsp");
-        dispatcher.forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
 
+        HotelDAO dao = new HotelDAO();
+
+        String action = request.getParameter("action");
+
+        if ("edit".equalsIgnoreCase(action)) {
+
+            try {
+
+                Hotel hoteis = dao.getHotelById(id);
+
+                request.setAttribute("hoteis", hoteis);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+
+                Logger.getLogger(AlteraHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarHotel.jsp");
+            dispatcher.forward(request, response);
+
+        }
     }
 
     @Override
