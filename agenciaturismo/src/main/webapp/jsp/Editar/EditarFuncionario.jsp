@@ -13,7 +13,7 @@
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
             <form action="${pageContext.request.contextPath}/EditarFuncionario" method="post" class="form-horizontal">
-                <input type="text" name="identificacao" value="${funcionarios.getId_func()}"/>
+                <input type="hidden" name="identificacao" value="${funcionarios.getId_func()}"/>
                 <div class="form-group ">
                     <label for="example-text-input" class="control-label col-md-4">Nome:</label>
                     <div class="controls col-md-5">

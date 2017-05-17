@@ -10,31 +10,56 @@ bvbvb<%@page contentType="text/html" pageEncoding="UTF-8"%>
         <title>Editar Voo</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form action="${pageContext.request.contextPath}/EditarVoo" method="post" class="form-horizontal">
-            <input type="text" name="identificacao" value="${voos.getId_voo()}"/>
-            <br>
-            <label for="txtorigem">Origem:</label>  
-            <input type="text" name="origem" value="${voos.getOrigem()}"/>
-            <br>
-            <label for="txtdestino">Destino:</label>  
-            <input type="text" name="destino" value="${voos.getDestino()}"/>
-            <br>
-            <label for="txtquantidade">Quantidade de Passagens:</label>  
-            <input type="number" name="quantidade_passagens" value="${voos.getQuantidade_passagens()}"/>
-            <br>
-            <label for="txtdataIda">Data de ida:</label>  
-            <input type="text" name="data_ida" value="${voos.getData_ida()}"/>
-            <br>
-            <label for="txtdataVolta">Data de volta:</label>  
-            <input type="text" name="data_volta" value="${voos.getData_volta()}"/>
-            <br>
-            <label for="txtPreco">Preco:</label>  
-            <input type="number" name="preco" value="${voos.getPreco()}"/>
-            <br>
-            <input type="submit" value="Alterar"/>
-            <br>
-        </form>
+        <div class="panel-body">
+            <c:import url="/jsp/Layout/cabecalho.jsp"/>
+            <form action="${pageContext.request.contextPath}/EditarVoo" method="post" class="form-horizontal">
+                <input type="hidden" name="identificacao" value="${voos.getId_voo()}"/>
+                <div class="form-group ">
+                    <label for="example-text-input" class="control-label col-md-4">Origem:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" name="origem" value="${voos.getOrigem()}"type="text" id="example-text-input" required> 
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="example-text-input" class="control-label col-md-4">Destino:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" name="destino" value="${voos.getDestino()}" type="text" id="example-text-input" required>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="example-text-input" class="control-label col-md-4">Quantidade de passagens:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" type="number" name="quantidade_passagens" value="${voos.getQuantidade_passagens()}" id="example-text-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-date-input" class="control-label col-md-4">Data de ida:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" name="data_ida" value="${voos.getData_ida()}" type="date" id="example-date-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-date-input" class="control-label col-md-4">Data de volta:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" name="data_volta" value="${voos.getData_volta()}" type="date" id="example-date-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-number-input" class="control-label col-md-4">Preco:</label>
+                    <div class="controls col-md-5">
+                        <input class="form-control" type="number" name="preco" value="${voos.getPreco()}" id="example-number-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="aab controls col-md-4">
+                        <div class="controls col-md-8" >
+                            <button type="submit"><span class="">Alterar</span></button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>

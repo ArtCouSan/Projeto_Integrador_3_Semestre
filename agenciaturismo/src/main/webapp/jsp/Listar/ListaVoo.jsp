@@ -33,8 +33,8 @@
                         <td name="data_volta"><c:out value="${voos.getData_volta()}"/></td>
                         <td name="quantidade_passagens"><c:out value="${voos.getQuantidade_passagens()}"/></td>
                         <td name="preco"><c:out value="${voos.getPreco()}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiVooServlet?action=edit&id=${voos.getId_voo()}&pesquisa=${pesquisa}"><i class="icon-trash">Remover</i></a></td>
-                        <td><a class="btn" href="EditaVooServlet?action=edit&id=<c:out value="${voos.getId_voo()}"/>"><i class="icon-pencil">Alterar</i></a></td>
+                        <td><a class="btn btn-danger" href="ExcluiVooServlet?action=edit&id=${voos.getId_voo()}&pesquisa=${pesquisa}"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-info" href="EditaVooServlet?action=edit&id=<c:out value="${voos.getId_voo()}"/>"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>
