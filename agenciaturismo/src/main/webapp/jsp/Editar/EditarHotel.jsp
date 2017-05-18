@@ -12,7 +12,7 @@
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
-            <form action="${pageContext.request.contextPath}/EditarHotel" method="post" class="form-horizontal">
+            <form name="editah" action="${pageContext.request.contextPath}/EditarHotel" method="post" class="form-horizontal">
                 <input type="hidden" name="identificacao" value="${hoteis.getId_hotel()}"/>
                 <div class="form-group ">
                     <label for="example-text-input" class="control-label col-md-4">Nome do Hotel:</label>

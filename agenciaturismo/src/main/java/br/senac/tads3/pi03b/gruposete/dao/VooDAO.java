@@ -16,7 +16,6 @@ public class VooDAO {
     private static ResultSet resultSet = null;
 
     public void inserir(Voo voo) throws SQLException, Exception {
-
         String sql = "INSERT INTO Voo (data_volta, data_ida, destino, origem, quantidade_passagens, preco, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -45,7 +44,6 @@ public class VooDAO {
     }
 
     public void alterar(Voo voo) throws SQLException, Exception {
-
         String sql = "UPDATE Voo SET data_volta = ?,"
                 + " data_ida = ?,"
                 + " destino = ?, "
@@ -108,7 +106,6 @@ public class VooDAO {
     }
 
     public Voo getVooById(int id) throws SQLException, ClassNotFoundException {
-
         Voo voo = new Voo();
 
         connection = DbUtil.getConnection();
@@ -135,7 +132,6 @@ public class VooDAO {
     }
 
     public List<Voo> procurarVoo(String busca) throws SQLException, IOException, ClassNotFoundException {
-
         List<Voo> listaResultado = new ArrayList<>();
 
         connection = DbUtil.getConnection();
@@ -191,18 +187,13 @@ public class VooDAO {
 
                 // Insere na lista.
                 listaResultado.add(voos);
-
             }
-
             // Retorna lista.
             return listaResultado;
-
         }
-
     }
 
     public void excluirVoo(int id) throws SQLException {
-
         // Comando SQL.
         String slq = "UPDATE Voo SET ativo = ? WHERE id_voo = ?";
 
@@ -215,5 +206,4 @@ public class VooDAO {
         // Executa.
         preparedStatement.execute();
     }
-
 }

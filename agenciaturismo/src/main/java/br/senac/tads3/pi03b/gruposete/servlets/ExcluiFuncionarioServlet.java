@@ -23,33 +23,19 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String action = request.getParameter("action");
-
         String pesquisa = request.getParameter("pesquisa");
-
         FuncionarioDAO query = new FuncionarioDAO();
-
         if ("edit".equalsIgnoreCase(action)) {
-
             int id = Integer.parseInt(request.getParameter("id"));
-
             try {
-
                 query.excluirFuncionario(id);
-
                 List<Funcionario> encontrados = query.procurarFuncionario(pesquisa);
-
                 request.setAttribute("encontrados", encontrados);
-
             } catch (ClassNotFoundException | SQLException ex) {
-
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-
             }
-
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
-
         }
     }
-
 }

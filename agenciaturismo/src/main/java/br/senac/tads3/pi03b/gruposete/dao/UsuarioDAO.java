@@ -114,5 +114,4 @@ public class UsuarioDAO {
         con.close();
         return listaUsuario;
     }
-
 }

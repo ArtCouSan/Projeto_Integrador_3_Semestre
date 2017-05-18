@@ -16,7 +16,6 @@ public class FuncionarioDAO {
     private static ResultSet resultSet;
 
     public void inserir(Funcionario funcionario) throws SQLException, Exception {
-
         String sql = "INSERT INTO Funcionario (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, complemento, celular, telefone, email, cargo, filial, departamento, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -55,7 +54,6 @@ public class FuncionarioDAO {
     }
 
     public void alterar(Funcionario funcionario) throws SQLException, Exception {
-
         String sql = "UPDATE funcionario "
                 + "SET nome = ?, "
                 + "cpf = ?, "
@@ -120,6 +118,7 @@ public class FuncionarioDAO {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
+                
                 Funcionario func = new Funcionario();
 
                 func.setId_func(resultSet.getInt("id_func"));
@@ -189,7 +188,6 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> procurarFuncionario(String busca) throws SQLException, IOException, ClassNotFoundException {
-
         // Cria lista de clientes.
         List<Funcionario> listaResultado = new ArrayList<>();
 
@@ -226,6 +224,7 @@ public class FuncionarioDAO {
         preparedStatement.setString(7, busca);
         preparedStatement.setString(8, busca);
         preparedStatement.setString(9, busca);
+        
         int n1 = 0;
         try {
             n1 = Integer.parseInt(busca);
@@ -271,18 +270,13 @@ public class FuncionarioDAO {
 
                 // Insere na lista.
                 listaResultado.add(funcionarios);
-
             }
-
             // Retorna lista.
             return listaResultado;
-
         }
-
     }
 
     public void excluirFuncionario(int id) throws SQLException {
-
         // Comando SQL.
         String slq = "UPDATE funcionario SET ativo = ? WHERE id_func = ?";
 
@@ -295,5 +289,4 @@ public class FuncionarioDAO {
         // Executa.
         preparedStatement.execute();
     }
-
 }
