@@ -131,7 +131,6 @@ public class HotelDAO {
     }
 
     public List<Hotel> procurarHotel(String busca) throws ClassNotFoundException, SQLException {
-
         List<Hotel> listaResultado = new ArrayList<>();
 
         connection = DbUtil.getConnection();
@@ -195,16 +194,12 @@ public class HotelDAO {
                 listaResultado.add(hoteis);
 
             }
-
             // Retorna lista.
             return listaResultado;
-
         }
-
     }
 
     public void excluirHotel(int id) throws SQLException {
-
         // Comando SQL.
         String slq = "UPDATE Hotel SET ativo = ? WHERE id_hotel = ?";
 
@@ -217,5 +212,4 @@ public class HotelDAO {
         // Executa.
         preparedStatement.execute();
     }
-
 }

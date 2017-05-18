@@ -15,7 +15,6 @@ public class ClienteDAO {
     private static ResultSet resultSet;
 
     public void inserir(Cliente cliente) throws SQLException, Exception {
-
         String sql = "INSERT INTO Cliente (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, complemento, celular, telefone, email, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -106,7 +105,6 @@ public class ClienteDAO {
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-
                 Cliente cliente = new Cliente();
 
                 cliente.setId_cliente(resultSet.getInt("id_cliente"));
@@ -126,19 +124,14 @@ public class ClienteDAO {
 
                 listaClientes.add(cliente);
             }
-            
         } catch (SQLException e) {
-            
         }
         
         connection.close();
-        
         return listaClientes;
-        
     }
 
     public Cliente getClienteById(int id) throws SQLException, ClassNotFoundException {
-
         Cliente cliente = new Cliente();
 
         connection = DbUtil.getConnection();
@@ -150,6 +143,7 @@ public class ClienteDAO {
         resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
+            
             cliente.setId_cliente(resultSet.getInt("id_cliente"));
             cliente.setNome(resultSet.getString("nome"));
             cliente.setCpf(resultSet.getString("cpf"));
@@ -206,6 +200,7 @@ public class ClienteDAO {
         preparedStatement.setString(7, busca);
         preparedStatement.setString(8, busca);
         preparedStatement.setString(10, busca);
+        
         int buscaN = 0;
         try {
             buscaN = Integer.parseInt(busca);
@@ -245,18 +240,13 @@ public class ClienteDAO {
 
                 // Insere na lista.
                 listaResultado.add(clientes);
-
             }
-
             // Retorna lista.
             return listaResultado;
-
         }
-
     }
 
     public void excluirCliente(int id) throws SQLException {
-
         // Comando SQL.
         String slq = "UPDATE cliente SET ativo = ? WHERE  id_cliente = ?";
 
@@ -270,5 +260,4 @@ public class ClienteDAO {
         preparedStatement.execute();
 
     }
-
 }

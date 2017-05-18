@@ -16,7 +16,6 @@ public class VendaDAO {
     private static ResultSet resultSet;
 
     public void inserir(Venda venda) throws SQLException, FileNotFoundException, ClassNotFoundException {
-
         connection = DbUtil.getConnection();
 
         // Comando SQL.
@@ -37,11 +36,9 @@ public class VendaDAO {
 
         // Fecha conexao.
         preparedStatement.close();
-
     }
 
     public void inserirLista(int id_produto, int quantidade, float preco, int id_venda) throws SQLException, FileNotFoundException, ClassNotFoundException {
-
         // Conecta.
         connection = DbUtil.getConnection();
 

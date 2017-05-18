@@ -23,34 +23,19 @@ public class ExcluiVooServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-
         String pesquisa = request.getParameter("pesquisa");
-
         VooDAO query = new VooDAO();
-
         if ("edit".equalsIgnoreCase(action)) {
-
             int id = Integer.parseInt(request.getParameter("id"));
-
             try {
-
                 query.excluirVoo(id);
-
                 List<Voo> encontrados = query.procurarVoo(pesquisa);
-
                 request.setAttribute("encontrados", encontrados);
-
             } catch (SQLException | ClassNotFoundException ex) {
-
                 Logger.getLogger(ExcluiVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-
             }
-
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
             dispatcher.forward(request, response);
-
         }
-
     }
-
 }

@@ -23,34 +23,19 @@ public class ExcluiClienteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-
         String pesquisa = request.getParameter("pesquisa");
-
         ClienteDAO query = new ClienteDAO();
-
         if ("edit".equalsIgnoreCase(action)) {
-
             int id = Integer.parseInt(request.getParameter("id"));
-
             try {
-
                 query.excluirCliente(id);
-
                 List<Cliente> encontrados = query.procurarCliente(pesquisa);
-
                 request.setAttribute("encontrados", encontrados);
-
             } catch (SQLException | ClassNotFoundException ex) {
-
                 Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex); 
-                
             }
-
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaCliente.jsp");
             dispatcher.forward(request, response);
-
         }
-
     }
-
 }

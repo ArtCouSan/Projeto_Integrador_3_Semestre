@@ -12,7 +12,7 @@ bvbvb<%@page contentType="text/html" pageEncoding="UTF-8"%>
     <body>
         <div class="panel-body">
             <c:import url="/jsp/Layout/cabecalho.jsp"/>
-            <form action="${pageContext.request.contextPath}/EditarVoo" method="post" class="form-horizontal">
+            <form name="editav" action="${pageContext.request.contextPath}/EditarVoo" method="post" class="form-horizontal">
                 <input type="hidden" name="identificacao" value="${voos.getId_voo()}"/>
                 <div class="form-group ">
                     <label for="example-text-input" class="control-label col-md-4">Origem:</label>

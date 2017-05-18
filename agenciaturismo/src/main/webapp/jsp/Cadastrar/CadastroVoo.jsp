@@ -11,7 +11,7 @@
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
-            <form action="${pageContext.request.contextPath}/CadastroVoo" method="post" class="form-horizontal">
+            <form name="cadastrov" action="${pageContext.request.contextPath}/CadastroVoo" method="post" class="form-horizontal">
                 <div class="form-group ">
                     <label for="example-text-input" class="control-label col-md-4">Origem:</label>
                     <div class="controls col-md-5">
