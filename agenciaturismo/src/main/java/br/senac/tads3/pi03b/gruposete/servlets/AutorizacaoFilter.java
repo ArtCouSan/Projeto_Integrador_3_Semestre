@@ -10,7 +10,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(filterName = "AutorizacaoFilter",
-        servletNames = {"AgendaServlet", "EntradaServlet"},
+        
+        servletNames = {"AlteraClienteServlet", "AlteraFuncionarioServlet", "AlteraHotelServlet", "AlteraVooServlet",
+                        "BuscaClienteServlet", "BuscaFuncionarioServlet", "BuscaHotelServlet", "BuscaVooServlet",
+                        "CadastroClienteServlet", "CadastroFuncionarioServlet", "CadastroHotelServlet", "CadastroVooServlet",
+                        "ExcluiClienteServlet", "ExcluiFuncionarioServlet", "ExcluiHotelServlet", "ExcluiVooServlet"},
+        
         urlPatterns = {"/protegido/*"}
 )
 public class AutorizacaoFilter implements Filter {
@@ -46,7 +51,7 @@ public class AutorizacaoFilter implements Filter {
             chain.doFilter(request, response);
         } else {
             // Usuário não tem permissão de acesso a página.
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/erroNaoAutorizado.jsp");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/LoginNaoAutorizado");
         }
     }
 
