@@ -9,7 +9,7 @@
         <title>Cadastro de Voo</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="/jsp/Layout/cabecalho.jsp"/>s
         <div class="panel-body">
             <form action="${pageContext.request.contextPath}/CadastroVoo" method="post" class="form-horizontal">
                 <div class="form-group ">
@@ -48,13 +48,8 @@
                         <input class="form-control" type="number" name="preco" placeholder="Insira o preço" id="example-number-input" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="aab controls col-md-4">
-                        <div class="controls col-md-8" >
-                            <button type="submit"><span class="">Salvar</span></button>
-                            <button type="reset"><span class="">Apagar Campos</span></button>
-                        </div>
-                    </div>
+                <div class="col-md-12 text-center">
+                    <button type="submit"><span class="">Cadastrar</span></button>
                 </div>
             </form>
         </div>

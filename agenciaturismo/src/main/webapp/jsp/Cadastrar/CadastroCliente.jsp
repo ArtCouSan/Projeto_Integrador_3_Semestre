@@ -7,16 +7,16 @@
         <title>Cadastro de Cliente</title>
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
-            <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" class="form-horizontal" data-toggle="validator">
+            <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" class="form-horizontal form_fundo">
                 <div class="form-group ">
                     <label for="example-text-input" class="control-label col-md-4">Nome:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="nome" type="text" placeholder="Insira nome" data-maxlength="100" id="example-text-input" required>
-                        <span class="help-block">Maximo 100 caracteres</span>
+                        <input class="form-control" name="nome" type="text" placeholder="Insira nome"  id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,8 +41,7 @@
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Rua:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="rua" placeholder="Insira rua" data-maxlength="50"  type="text" id="example-text-input" required>
-                        <span class="help-block">Maximo 50 caracteres</span>
+                        <input class="form-control" name="rua" placeholder="Insira rua"  type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -66,15 +65,15 @@
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Cidade:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="cidade" placeholder="Insira cidade" data-maxlength="100"  type="text"id="example-text-input" required>
-                        <span class="help-block">Maximo 100 caracteres</span>
+                        <input class="form-control" name="cidade" placeholder="Insira cidade" type="text"id="example-text-input" required>
+
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Bairro:</label>
                     <div class="controls col-md-5">
-                        <input required class="form-control" name="bairro" placeholder="Insira bairro" data-maxlength="50" type="text" id="example-text-input" required>
-                        <span class="help-block">Maximo 50 caracteres</span>
+                        <input required class="form-control" name="bairro" placeholder="Insira bairro" type="text" id="example-text-input" required>
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -96,13 +95,8 @@
                     </div>
                     <div class="help-block with-errors"></div>
                 </div>
-                <div class="form-group">
-                    <div class="aab controls col-md-4">
-                        <div class="controls col-md-8" >
-                            <button type="submit"><span class="">Cadastrar</span></button>
-                            <button type="reset"><span class="">Apagar Campos</span></button>
-                        </div>
-                    </div>
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary botao_g"><span class="">Cadastrar</span></button>
                 </div>
             </form>
         </div>

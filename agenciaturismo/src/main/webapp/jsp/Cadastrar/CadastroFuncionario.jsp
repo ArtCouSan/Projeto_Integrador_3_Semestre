@@ -114,13 +114,8 @@
                         <input class="form-control" placeholder="Insira filial" name="filial" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="aab controls col-md-4">
-                        <div class="controls col-md-8" >
-                            <button type="submit"><span class="">Cadastrar</span></button>
-                            <button type="reset"><span class="">Apagar Campos</span></button>
-                        </div>
-                    </div>
+                <div class="col-md-12 text-center">
+                    <button type="submit"><span class="">Cadastrar</span></button>
                 </div>
             </form>
         </div>
