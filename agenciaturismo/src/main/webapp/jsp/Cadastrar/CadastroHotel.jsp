@@ -13,36 +13,54 @@
         <div class="panel-body">
             <form name="cadastroh" action="${pageContext.request.contextPath}/CadastroHotel" method="post" class="form-horizontal">
                 <div class="form-group ">
+                    <c:if test="${erroNome_hotel}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Nome do Hotel:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="nome_hotel" placeholder="Insira o nome do hotel" type="text" id="example-text-input" required> 
                     </div>
                 </div>
                 <div class="form-group">
+                    <c:if test="${erroData_entrada}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de entrada:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_entrada" placeholder="Insira a data de entrada" type="date" id="example-date-input" required>
                     </div>
                 </div>
                 <div class="form-group">
+                    <c:if test="${erroData_saida}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de saida:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_saida" placeholder="Insira a data de saida" type="date" id="example-date-input" required>
                     </div>
                 </div>
                 <div class="form-group">
+                    <c:if test="${erroQuantidade_quartos}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Quantidade de Quartos:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="number" name="quantidade_quartos" placeholder="Insira a quantidade de quartos" id="example-number-input" required>
                     </div>
                 </div>
                 <div class="form-group">
+                    <c:if test="${erroQuantidade_hospedes}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Quantidade de Hospedes:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="number" name="quantidade_hospedes" placeholder="Insira a quantidade de hospedes" id="example-number-input" required>
                     </div>
                 </div>
                 <div class="form-group">
+                    <c:if test="${erroPreco}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Preco:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="number" name="preco" placeholder="Insira o preço" id="example-number-input" required>
