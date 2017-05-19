@@ -126,7 +126,7 @@ public class ClienteDAO {
             }
         } catch (SQLException e) {
         }
-        
+
         connection.close();
         return listaClientes;
     }
@@ -143,7 +143,7 @@ public class ClienteDAO {
         resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            
+
             cliente.setId_cliente(resultSet.getInt("id_cliente"));
             cliente.setNome(resultSet.getString("nome"));
             cliente.setCpf(resultSet.getString("cpf"));
@@ -200,7 +200,7 @@ public class ClienteDAO {
         preparedStatement.setString(7, busca);
         preparedStatement.setString(8, busca);
         preparedStatement.setString(10, busca);
-        
+
         int buscaN = 0;
         try {
             buscaN = Integer.parseInt(busca);
@@ -260,4 +260,39 @@ public class ClienteDAO {
         preparedStatement.execute();
 
     }
+
+    public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
+
+        connection = DbUtil.getConnection();
+
+        // Comando SQL.
+        String slq = "SELECT COUNT(*) FROM cliente where cpf = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setString(1, cpf);
+
+        // Executa.
+        resultSet = preparedStatement.executeQuery();
+
+        int numeroDeCounts = 0;
+
+        while (resultSet.next()) {
+
+            numeroDeCounts = resultSet.getInt("COUNT(*)");
+
+        }
+
+        connection.close();
+
+        if (numeroDeCounts < 1) {
+
+            return true;
+
+        }
+
+        return false;
+    }
+
 }

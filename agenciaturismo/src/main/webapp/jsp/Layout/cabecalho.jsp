@@ -10,6 +10,7 @@
             <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
+            <li ><a href="Venda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
         </ul>
     </div>
 </nav>
