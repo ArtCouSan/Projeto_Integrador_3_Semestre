@@ -30,7 +30,9 @@ public class CadastroFuncionarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = true;
+        FuncionarioDAO dao = new FuncionarioDAO();
+
+        boolean erro = true, verifica;
 
         String nome = request.getParameter("nome");
         if (nome == null || nome.length() < 1) {
@@ -39,7 +41,8 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         }
 
         String cpf = request.getParameter("cpf");
-        if (cpf == null || !"   .   .   -  ".equals(cpf)) {
+        verifica = dao.verificarCPF(cpf);
+        if (cpf == null || !"   .   .   -  ".equals(cpf) || verifica) {
             erro = true;
             request.setAttribute("erroCpf", true);
         }
@@ -133,7 +136,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                     numero, cep, rua, bairro, cidade, complemento,
                     celular, telefone, email, true, cargo, filial, departamento);
             try {
-                FuncionarioDAO dao = new FuncionarioDAO();
+
                 dao.inserir(funcHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoFuncionario", funcHumilde);

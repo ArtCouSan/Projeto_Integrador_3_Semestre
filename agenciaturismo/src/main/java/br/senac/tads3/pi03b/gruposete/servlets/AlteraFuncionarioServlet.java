@@ -1,5 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
+import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 
@@ -42,7 +43,9 @@ public class AlteraFuncionarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = true;
+        ClienteDAO dao = new ClienteDAO();
+
+        boolean erro = true, verificarCPF;
 
         String nome = request.getParameter("nome");
         if (nome == null || nome.length() < 1) {
@@ -51,6 +54,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         }
 
         String cpf = request.getParameter("cpf");
+        verificarCPF = dao.verificarCPF(cpf);
         if (cpf == null || !"   .   .   -  ".equals(cpf)) {
             erro = true;
             request.setAttribute("erroCpf", true);
@@ -148,7 +152,6 @@ public class AlteraFuncionarioServlet extends HttpServlet {
                     celular, telefone, email, true, cargo, filial, departamento);
             funcHumilde.setId_func(id);
             try {
-                FuncionarioDAO dao = new FuncionarioDAO();
                 dao.alterar(funcHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("editarFuncionario", funcHumilde);

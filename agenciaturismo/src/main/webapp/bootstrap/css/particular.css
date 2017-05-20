@@ -6,3 +6,40 @@
     border-width: 100px;
     background-color: hsl(35, 3%, 91%);
 }
+
+.toggle-header{
+    padding:10px 0;
+    margin:10px 0;
+    background-color:black;
+    color:white;
+}
+.txt-green{
+    color:green;
+}
+.txt-red{
+    color:red;
+}
+
+.toggle-header{
+    padding:10px 0;
+    margin:10px 0;
+    background-color:black;
+    color:white;
+}
+.txt-green{
+    color:green;
+}
+.txt-red{
+    color:red;
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    padding: 2px;
+    font-family: geneva;
+    color: initial;
+}

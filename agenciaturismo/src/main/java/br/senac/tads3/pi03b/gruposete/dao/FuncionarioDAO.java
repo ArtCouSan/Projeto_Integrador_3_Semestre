@@ -118,7 +118,7 @@ public class FuncionarioDAO {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                
+
                 Funcionario func = new Funcionario();
 
                 func.setId_func(resultSet.getInt("id_func"));
@@ -224,7 +224,7 @@ public class FuncionarioDAO {
         preparedStatement.setString(7, busca);
         preparedStatement.setString(8, busca);
         preparedStatement.setString(9, busca);
-        
+
         int n1 = 0;
         try {
             n1 = Integer.parseInt(busca);
@@ -289,4 +289,39 @@ public class FuncionarioDAO {
         // Executa.
         preparedStatement.execute();
     }
+
+    public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
+
+        connection = DbUtil.getConnection();
+
+        // Comando SQL.
+        String slq = "SELECT COUNT(*) FROM funcionario WHERE cpf = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setString(1, cpf);
+
+        // Executa.
+        resultSet = preparedStatement.executeQuery();
+
+        int numeroDeCounts = 0;
+
+        while (resultSet.next()) {
+
+            numeroDeCounts = resultSet.getInt("COUNT(*)");
+
+        }
+
+        connection.close();
+
+        if (numeroDeCounts < 1) {
+
+            return true;
+
+        }
+
+        return false;
+    }
+
 }

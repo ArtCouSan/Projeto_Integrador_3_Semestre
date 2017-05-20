@@ -1,6 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
+import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 
 import javax.servlet.RequestDispatcher;
@@ -41,7 +42,9 @@ public class AlteraClienteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = true;
+        FuncionarioDAO dao = new FuncionarioDAO();
+
+        boolean erro = true, verificarCPF;
 
         String nome = request.getParameter("nome");
         if (nome == null || nome.length() < 1) {
@@ -50,6 +53,7 @@ public class AlteraClienteServlet extends HttpServlet {
         }
 
         String cpf = request.getParameter("cpf");
+        verificarCPF = dao.verificarCPF(cpf);
         if (cpf == null || !"   .   .   -  ".equals(cpf)) {
             erro = true;
             request.setAttribute("erroCpf", true);
@@ -129,7 +133,6 @@ public class AlteraClienteServlet extends HttpServlet {
                     telefone, email, true);
             cliHumilde.setId_cliente(id);
             try {
-                ClienteDAO dao = new ClienteDAO();
                 dao.alterar(cliHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("editarCliente", cliHumilde);

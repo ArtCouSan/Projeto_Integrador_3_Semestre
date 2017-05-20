@@ -28,7 +28,9 @@ public class CadastroClienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        boolean erro = true;
+        ClienteDAO dao = new ClienteDAO();
+
+        boolean erro = true, verificarCPF;
 
         String nome = request.getParameter("nome");
         if (nome == null || nome.length() < 1) {
@@ -37,7 +39,8 @@ public class CadastroClienteServlet extends HttpServlet {
         }
 
         String cpf = request.getParameter("cpf");
-        if (cpf == null || !"   .   .   -  ".equals(cpf)) {
+        verificarCPF = dao.verificarCPF(cpf);
+        if (cpf == null || !"   .   .   -  ".equals(cpf) || verificarCPF) {
             erro = true;
             request.setAttribute("erroCpf", true);
         }
@@ -113,7 +116,6 @@ public class CadastroClienteServlet extends HttpServlet {
                     cep, rua, bairro, cidade, complemento, celular,
                     telefone, email, true);
             try {
-                ClienteDAO dao = new ClienteDAO();
                 dao.inserir(cliHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoCliente", cliHumilde);

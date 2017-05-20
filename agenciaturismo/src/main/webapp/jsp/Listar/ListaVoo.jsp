@@ -6,7 +6,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="teste.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
         <title>Listar Voos</title>
     </head>
     <body>
@@ -23,7 +24,8 @@
                     <th></th>
                     <th></th>
                 </tr>
-            </thead>
+                </t
+                head>
             <tbody>
                 <c:forEach var="voos" items="${encontrados}">
                     <tr>

@@ -266,7 +266,7 @@ public class ClienteDAO {
         connection = DbUtil.getConnection();
 
         // Comando SQL.
-        String slq = "SELECT COUNT(*) FROM cliente where cpf = ?";
+        String slq = "SELECT COUNT(*) FROM cliente WHERE cpf = ?";
 
         preparedStatement = connection.prepareStatement(slq);
 

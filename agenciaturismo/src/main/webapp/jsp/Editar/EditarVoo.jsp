@@ -6,7 +6,8 @@ bvbvb<%@page contentType="text/html" pageEncoding="UTF-8"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="jss/eventos.js" type="text/javascript" ></script>
+        <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
         <title>Editar Voo</title>
     </head>
     <body>
