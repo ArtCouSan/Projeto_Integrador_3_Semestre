@@ -15,7 +15,7 @@ public class VendaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<String> carrinho = (ArrayList) request.getServletContext().getAttribute("carrinho");
+       // ArrayList<String> carrinho = (ArrayList) request.getServletContext().getAttribute("carrinho");
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
 

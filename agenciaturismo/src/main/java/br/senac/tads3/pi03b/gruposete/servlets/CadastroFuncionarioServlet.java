@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +33,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
 
         FuncionarioDAO dao = new FuncionarioDAO();
 
-        boolean erro = true, verifica;
+        boolean erro = true, verifica = false;
 
         String nome = request.getParameter("nome");
         if (nome == null || nome.length() < 1) {
@@ -41,7 +42,16 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         }
 
         String cpf = request.getParameter("cpf");
-        verifica = dao.verificarCPF(cpf);
+        
+        try {
+            
+            verifica = dao.verificarCPF(cpf);
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            
+            Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
         if (cpf == null || !"   .   .   -  ".equals(cpf) || verifica) {
             erro = true;
             request.setAttribute("erroCpf", true);

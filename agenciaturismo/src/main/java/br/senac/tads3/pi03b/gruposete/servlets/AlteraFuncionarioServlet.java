@@ -42,9 +42,10 @@ public class AlteraFuncionarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+ 
 
-        ClienteDAO dao = new ClienteDAO();
-
+        FuncionarioDAO dao = new FuncionarioDAO();
+        
         boolean erro = true, verificarCPF;
 
         String nome = request.getParameter("nome");
@@ -54,7 +55,16 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         }
 
         String cpf = request.getParameter("cpf");
-        verificarCPF = dao.verificarCPF(cpf);
+        
+        try {
+            
+            verificarCPF = dao.verificarCPF(cpf);
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            
+            Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
         if (cpf == null || !"   .   .   -  ".equals(cpf)) {
             erro = true;
             request.setAttribute("erroCpf", true);
@@ -147,18 +157,23 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
         if (!erro) {
+            
             Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
                     numero, cep, rua, bairro, cidade, complemento,
                     celular, telefone, email, true, cargo, filial, departamento);
             funcHumilde.setId_func(id);
+            
             try {
+                
                 dao.alterar(funcHumilde);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("editarFuncionario", funcHumilde);
                 response.sendRedirect("index.jsp");
 
-            } catch (Exception ex) {
+            } catch (IOException ex) {
 
+            } catch (Exception ex) {
+                Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
 
