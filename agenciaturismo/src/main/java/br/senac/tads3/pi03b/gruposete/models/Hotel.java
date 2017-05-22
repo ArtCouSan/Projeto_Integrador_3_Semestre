@@ -34,11 +34,11 @@ public class Hotel {
         this.id_hotel = id_hotel;
     }
 
-    public String getNome_hotel() {
+    public String getNome() {
         return nome_hotel;
     }
 
-    public void setNome_hotel(String nome_hotel) {
+    public void setNome(String nome_hotel) {
         this.nome_hotel = nome_hotel;
     }
 

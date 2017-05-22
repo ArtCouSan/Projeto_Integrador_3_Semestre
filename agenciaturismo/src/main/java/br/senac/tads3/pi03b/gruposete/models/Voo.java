@@ -88,6 +88,5 @@ public class Voo {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
-    
+
 }

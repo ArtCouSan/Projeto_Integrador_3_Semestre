@@ -53,51 +53,32 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr class="info">
-                                            <th class="col-sm-6">Nome</th>
-                                            <th>Quantidade</th>
-                                            <th>Preco</th>
-                                            <th>Colocar</th>
+                                            <th>Origem</th>
+                                            <th>Destino</th>
+                                            <th>Dt.ida</th>
+                                            <th>Dt.volta</th>
+                                            <th>Qt. de passagens</th>
+                                            <th>Preço</th>
                                         </tr>
+                                        </t
                                     </thead>
                                     <tbody>
-                                        <tr >
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-sm-6 col-lg-push-1">
-                                <div id="custom-search-input">
-                                    <div class="input-group col-md-12">
-                                        <input type="text" class="form-control input-sm" placeholder="Buscar" />
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-info btn-sm" type="button">
-                                                <i class="glyphicon glyphicon-search"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <br/>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr class="info">
-                                            <th class="col-sm-6">Nome</th>
-                                            <th>Quantidade</th>
-                                            <th>Preco</th>
-                                            <th>Excluir</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr >
-
-                                        </tr>
+                                        <c:forEach var="voos" items="${encontrados}">
+                                            <tr>
+                                                <td name="origem"><c:out value="${voos.getOrigem()}"/></td>
+                                                <td name="destino"><c:out value="${voos.getDestino()}"/></td>
+                                                <td name="data_ida"><c:out value="${voos.getData_ida()}"/></td>
+                                                <td name="data_volta"><c:out value="${voos.getData_volta()}"/></td>
+                                                <td name="quantidade_passagens"><c:out value="${voos.getQuantidade_passagens()}"/></td>
+                                                <td name="preco"><c:out value="${voos.getPreco()}"/></td>
+                                                <td></td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -105,22 +86,5 @@
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
         <script src="./bootstrap/js/multiselect.min.js" type="text/javascript" ></script>
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                // make code pretty
-                window.prettyPrint && prettyPrint();
-
-                $('#search').multiselect({
-                    search: {
-                        left: '<input type="text" name="q" class="form-control" placeholder="Search..." />',
-                        right: '<input type="text" name="q" class="form-control" placeholder="Search..." />',
-                    },
-                    fireSearch: function (value) {
-                        return value.length > 3;
-                    }
-                });
-            });
-        </script>
     </body>
 </html>

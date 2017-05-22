@@ -25,7 +25,7 @@
                     <th></th>
                 </tr>
                 </t
-                head>
+                <thead>
             <tbody>
                 <c:forEach var="voos" items="${encontrados}">
                     <tr>

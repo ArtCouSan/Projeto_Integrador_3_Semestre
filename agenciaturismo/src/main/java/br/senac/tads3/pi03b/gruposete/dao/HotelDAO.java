@@ -23,7 +23,7 @@ public class HotelDAO {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, hotel.getNome_hotel());
+            preparedStatement.setString(1, hotel.getNome());
             preparedStatement.setString(2, hotel.getData_entrada());
             preparedStatement.setString(3, hotel.getData_saida());
             preparedStatement.setInt(4, hotel.getQuantidade_quartos());
@@ -53,7 +53,7 @@ public class HotelDAO {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, hotel.getNome_hotel());
+            preparedStatement.setString(1, hotel.getNome());
             preparedStatement.setString(2, hotel.getData_entrada());
             preparedStatement.setString(3, hotel.getData_saida());
             preparedStatement.setInt(4, hotel.getQuantidade_quartos());
@@ -85,7 +85,7 @@ public class HotelDAO {
                 Hotel hotel = new Hotel();
 
                 hotel.setId_hotel(resultSet.getInt("id_hotel"));
-                hotel.setNome_hotel(resultSet.getString("nome_hotel"));
+                hotel.setNome(resultSet.getString("nome_hotel"));
                 hotel.setData_entrada(resultSet.getString("data_entrada"));
                 hotel.setData_saida(resultSet.getString("data_saida"));
                 hotel.setQuantidade_quartos(resultSet.getInt("quantidade_quartos"));
@@ -114,7 +114,7 @@ public class HotelDAO {
 
             while (resultSet.next()) {
                 hotel.setId_hotel(resultSet.getInt("id_hotel"));
-                hotel.setNome_hotel(resultSet.getString("nome_hotel"));
+                hotel.setNome(resultSet.getString("nome_hotel"));
                 hotel.setData_entrada(resultSet.getString("data_entrada"));
                 hotel.setData_saida(resultSet.getString("data_saida"));
                 hotel.setQuantidade_quartos(resultSet.getInt("quantidade_quartos"));
@@ -188,7 +188,7 @@ public class HotelDAO {
                 hoteis.setQuantidade_hospedes(result.getInt("quantidade_hospedes"));
                 hoteis.setQuantidade_quartos(result.getInt("quantidade_quartos"));
                 hoteis.setPreco(result.getFloat("preco"));
-                hoteis.setNome_hotel(result.getString("nome_hotel"));
+                hoteis.setNome(result.getString("nome_hotel"));
 
                 // Insere na lista.
                 listaResultado.add(hoteis);
