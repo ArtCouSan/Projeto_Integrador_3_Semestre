@@ -14,7 +14,6 @@
 //        servletNames = {"AlteraClienteServlet", "AlteraFuncionarioServlet", "AlteraHotelServlet", "AlteraVooServlet",
 //                        "BuscaClienteServlet", "BuscaFuncionarioServlet", "BuscaHotelServlet", "BuscaVooServlet",
 //                        "CadastroClienteServlet", "CadastroFuncionarioServlet", "CadastroHotelServlet", "CadastroVooServlet",
-//                        "EditaClienteServlet", "EditaFuncionarioServlet", "EditaHotelServlet", "EditaVooServlet",
 //                        "ExcluiClienteServlet", "ExcluiFuncionarioServlet", "ExcluiHotelServlet", "ExcluiVooServlet",
 //                        "ListaClienteServlet", "ListaFuncionarioServlet", "ListaHotelServlet", "ListaVooServlet"},
 //        
