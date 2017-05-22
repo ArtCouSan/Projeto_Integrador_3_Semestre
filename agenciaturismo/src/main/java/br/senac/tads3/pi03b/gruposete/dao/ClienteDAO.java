@@ -266,7 +266,7 @@ public class ClienteDAO {
         connection = DbUtil.getConnection();
 
         // Comando SQL.
-        String slq = "SELECT COUNT(*) FROM cliente WHERE cpf = ?";
+        String slq = "SELECT COUNT(*) FROM cliente WHERE cpf = ? AND ativo = true";
 
         preparedStatement = connection.prepareStatement(slq);
 
@@ -286,7 +286,7 @@ public class ClienteDAO {
 
         connection.close();
 
-        if (numeroDeCounts < 1) {
+        if (numeroDeCounts == 1) {
 
             return true;
 

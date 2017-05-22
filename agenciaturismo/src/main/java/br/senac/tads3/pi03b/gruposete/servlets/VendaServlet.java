@@ -1,7 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +14,8 @@ public class VendaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-       // ArrayList<String> carrinho = (ArrayList) request.getServletContext().getAttribute("carrinho");
-
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Venda/Venda.jsp");
+        dispatcher.forward(request, response);
 
     }
 
@@ -32,6 +30,8 @@ public class VendaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Venda/Venda.jsp");
+        dispatcher.forward(request, response);
 
     }
 

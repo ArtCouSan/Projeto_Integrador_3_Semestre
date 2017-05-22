@@ -107,33 +107,23 @@
 
                     </div>
                 </div>
-                <div class="form-group">
-                    <c:if test="${erroCelular}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
+                <div class="form-group">                  
                     <label for="example-text-input" class="control-label col-md-4">Celular:</label>
                     <div class="controls col-md-5">
-                        <input required  class="form-control cel-sp-mask" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input" data-mask="(00) 0000-0000" data-mask-selectonfocus="true">
+                        <input class="form-control cel-sp-mask" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input" data-mask="(00) 0000-0000" data-mask-selectonfocus="true">
                     </div>
                 </div>
-                <div class="form-group">
-                    <c:if test="${erroTelefone}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
+                <div class="form-group">               
                     <label for="example-text-input" class="control-label col-md-4">Telefone:</label>
                     <div class="controls col-md-5">
-                        <input required  class="form-control phone-ddd-mask" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
+                        <input class="form-control phone-ddd-mask" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroEmail}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
                     <label for="example-email-input" class="control-label col-md-4">Email:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="email" name="email" placeholder="Insira email" id="example-email-input" data-error="Por favor, informe um e-mail correto." required>
                     </div>
-                    <div class="help-block with-errors"></div>
                 </div>
                 <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-primary botao_g"><span class="">Cadastrar</span></button>

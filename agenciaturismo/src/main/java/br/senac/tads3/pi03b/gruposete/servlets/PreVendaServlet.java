@@ -20,7 +20,7 @@ public class PreVendaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Venda/PreVenda.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Venda/PreVenda.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -29,38 +29,39 @@ public class PreVendaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = true;
+        boolean erro = false;
 
         ClienteDAO cliente = new ClienteDAO();
 
         String cpf = request.getParameter("cpf");
 
         boolean verificaCPF = false;
-        
+
         try {
-            
+
             verificaCPF = cliente.verificarCPF(cpf);
-            
+
         } catch (SQLException | ClassNotFoundException ex) {
-            
+
             Logger.getLogger(PreVendaServlet.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
 
-        if (cpf == null || !"   .   .   -  ".equals(cpf) || verificaCPF) {
+        if (verificaCPF) {
             erro = true;
+        } else {
             request.setAttribute("erroCpf", true);
         }
-
+        
         if (erro) {
-
-            HttpSession sessao = request.getSession();
-            sessao.setAttribute("cpf", cpf);
-            response.sendRedirect("/jsp/Venda/Venda.jsp");
+            System.out.println(cpf);
+            request.setAttribute("cpf", cpf);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Venda/Venda.jsp");
+            dispatcher.forward(request, response);
 
         } else {
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Venda/PreVenda.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
 
         }
