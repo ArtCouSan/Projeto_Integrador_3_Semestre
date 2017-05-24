@@ -1,8 +1,7 @@
 # Loja: Agência De Viagens
-- Cadastrar Okay
-- Buscar Okay
-- Excluir Okay
-- Alterar Okay
+- Venda
+- Verificacoes
+- Relatorios 
 --------------------------------------------
 Projeto do 3° Semestre da Universidade Senac
 Integrantes:
