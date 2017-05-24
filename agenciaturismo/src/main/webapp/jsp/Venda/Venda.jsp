@@ -75,7 +75,8 @@
                         <div class="row">
                             <div class="controls col-md-5">
                                 <input name="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
-                                <button type="submit" class="btn">Pesquisar</button>                    </div>
+                                <button type="submit" class="btn">Pesquisar</button>                    
+                            </div>
                             <table class="table table-striped">
                                 <thead>
                                     <tr class="info">
