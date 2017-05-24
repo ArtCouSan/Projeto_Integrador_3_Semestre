@@ -38,47 +38,72 @@
                 <div class="container-page">
                     <div id="wrap" class="container">
                         <div class="row">
-                            <div class="col-sm-5">
-                                <div id="custom-search-input">
-                                    <div class="input-group col-md-12">
-                                        <input type="text" class="form-control input-sm" placeholder="Buscar" />
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-info btn-sm" type="button">
-                                                <i class="glyphicon glyphicon-search"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <br/>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr class="info">
-                                            <th>Origem</th>
-                                            <th>Destino</th>
-                                            <th>Dt.ida</th>
-                                            <th>Dt.volta</th>
-                                            <th>Qt. de passagens</th>
-                                            <th>Preço</th>
-                                        </tr>
-                                        </t
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="voos" items="${encontrados}">
-                                            <tr>
-                                                <td name="origem"><c:out value="${voos.getOrigem()}"/></td>
-                                                <td name="destino"><c:out value="${voos.getDestino()}"/></td>
-                                                <td name="data_ida"><c:out value="${voos.getData_ida()}"/></td>
-                                                <td name="data_volta"><c:out value="${voos.getData_volta()}"/></td>
-                                                <td name="quantidade_passagens"><c:out value="${voos.getQuantidade_passagens()}"/></td>
-                                                <td name="preco"><c:out value="${voos.getPreco()}"/></td>
-                                                <td></td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+                            <div class="controls col-md-5">
+                                <input name="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
+                                <button type="submit" class="btn">Pesquisar</button>
                             </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr class="info">
+                                        <th>Origem</th>
+                                        <th>Destino</th>
+                                        <th>Dt.ida</th>
+                                        <th>Dt.volta</th>
+                                        <th>Qt. de passagens</th>
+                                        <th>Preço</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="voos" items="${encontrados}">
+                                        <tr>
+                                            <td name="origem"><c:out value="${voos.getOrigem()}"/></td>
+                                            <td name="destino"><c:out value="${voos.getDestino()}"/></td>
+                                            <td name="data_ida"><c:out value="${voos.getData_ida()}"/></td>
+                                            <td name="data_volta"><c:out value="${voos.getData_volta()}"/></td>
+                                            <td name="quantidade_passagens"><c:out value="${voos.getQuantidade_passagens()}"/></td>
+                                            <td name="preco"><c:out value="${voos.getPreco()}"/></td>
+                                            <td></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
+                <div class="container-page">
+                    <div id="wrap" class="container">
+                        <div class="row">
+                            <div class="controls col-md-5">
+                                <input name="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
+                                <button type="submit" class="btn">Pesquisar</button>                    </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr class="info">
+                                        <th>Nome</th>
+                                        <th>Data de entrada</th>
+                                        <th>Data de saida</th>
+                                        <th>Preco</th>
+                                        <th>Quantidade de quartos</th>
+                                        <th>Quantidade de hospedes</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="hoteis" items="${encontrados}">
+                                        <tr >
+                                            <td name="nome"><c:out value="${hoteis.getNome_hotel()}"/></td>
+                                            <td name="data_entrada"><c:out value="${hoteis.getData_entrada()}"/></td>
+                                            <td name="data_saida"><c:out value="${hoteis.getData_saida()}"/></td>
+                                            <td name="preco"><c:out value="${hoteis.getPreco()}"/></td>
+                                            <td name="quantidade_quartos"><c:out value="${hoteis.getQuantidade_quartos()}"/></td>
+                                            <td name="quantidade_hospedes"><c:out value="${hoteis.getQuantidade_hospedes()}"/></td>
+                                        </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

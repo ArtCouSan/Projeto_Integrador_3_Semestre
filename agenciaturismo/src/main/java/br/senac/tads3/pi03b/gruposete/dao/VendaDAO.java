@@ -1,6 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
 import br.senac.tads3.pi03b.gruposete.models.Carrinho;
+import br.senac.tads3.pi03b.gruposete.models.Hotel;
 import br.senac.tads3.pi03b.gruposete.models.Venda;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 
@@ -254,6 +255,77 @@ public class VendaDAO {
             preco = (result.getFloat("preco"));
 
             Carrinho carrinho = new Carrinho(id_produto, preco, quantidade);
+
+            listaResultado.add(carrinho);
+
+        }
+
+        // Fecha conexao.
+        connection.close();
+
+        // Retorna lista.
+        return listaResultado;
+
+    }
+
+    public ArrayList<Hotel> procurarHotel(String busca) throws SQLException, ClassNotFoundException {
+
+        // Conecta.
+        connection = DbUtil.getConnection();
+
+        ArrayList<Hotel> listaResultado = new ArrayList<>();
+
+        // Comando SQL.
+        String slq = "SELECT * FROM hotel WHERE ativo = true"
+                + " AND (nome_hotel LIKE = ?"
+                + " OR data_entrada LIKE = ?"
+                + " OR data_saida LIKE = ?"
+                + " OR preco LIKE = ?"
+                + " OR quantidade_quartos LIKE = ?"
+                + " OR quantidade_hospedes LIKE = ?) LIMIT 10";
+
+        PreparedStatement stmt = connection.prepareStatement(slq);
+
+        // Insercoes.
+        stmt.setString(1, busca);
+        stmt.setString(2, busca);
+        stmt.setString(3, busca);
+        stmt.setString(4, busca);
+        stmt.setString(5, busca);
+        stmt.setString(6, busca);
+
+        // Executa e recebe resultado.
+        ResultSet result = stmt.executeQuery();
+
+        // Declara variaveis.
+        int id_hotel;
+        String nome;
+        String data_entrada;
+        String data_saida;
+        int quantidade_quartos;
+        int quantidade_hospedes;
+        float preco;
+
+        // Loop com resultados.
+        while (result.next()) {
+
+            // Prenche.
+            id_hotel = (result.getInt("id_hotel"));
+            nome = (result.getString("nome"));
+            data_entrada = (result.getString("data_entrada"));
+            data_saida = (result.getString("data_saida"));
+            preco = (result.getFloat("data_saida"));
+            quantidade_quartos = (result.getInt("quantidade_quartos"));
+            quantidade_hospedes = (result.getInt("quantidade_hospedes"));
+
+            Hotel carrinho = new Hotel(
+                    nome,
+                    data_entrada,
+                    data_saida,
+                    quantidade_quartos,
+                    quantidade_hospedes,
+                    preco,
+                    true);
 
             listaResultado.add(carrinho);
 
