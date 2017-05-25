@@ -95,8 +95,14 @@ public class HotelDAO {
                 ListaHotel.add(hotel);
             }
         } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
-        connection.close();
         return ListaHotel;
     }
 
@@ -123,17 +129,20 @@ public class HotelDAO {
             }
 
         } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
 
-        preparedStatement.close();
-        connection.close();
         return hotel;
     }
 
     public List<Hotel> procurarHotel(String busca) throws ClassNotFoundException, SQLException {
         List<Hotel> listaResultado = new ArrayList<>();
-
-        connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM hotel WHERE"
                 + " (nome_hotel = ?"
@@ -143,6 +152,8 @@ public class HotelDAO {
                 + " OR quantidade_quartos = ?"
                 + " OR quantidade_hospedes = ?)"
                 + " AND ativo = ?";
+
+        connection = DbUtil.getConnection();
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -199,17 +210,25 @@ public class HotelDAO {
         }
     }
 
-    public void excluirHotel(int id) throws SQLException {
+    public void excluir(int id) throws SQLException {
         // Comando SQL.
         String slq = "UPDATE Hotel SET ativo = ? WHERE id_hotel = ?";
 
-        preparedStatement = connection.prepareStatement(slq);
+        try {
+            preparedStatement = connection.prepareStatement(slq);
+            // Insercoes.
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, id);
 
-        // Insercoes.
-        preparedStatement.setBoolean(1, false);
-        preparedStatement.setInt(2, id);
-
-        // Executa.
-        preparedStatement.execute();
+            // Executa.
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
     }
 }

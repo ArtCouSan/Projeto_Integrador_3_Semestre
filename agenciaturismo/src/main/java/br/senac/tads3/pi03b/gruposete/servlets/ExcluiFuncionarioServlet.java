@@ -28,7 +28,7 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
         if ("edit".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
-                query.excluirFuncionario(id);
+                query.excluir(id);
                 List<Funcionario> encontrados = query.procurarFuncionario(pesquisa);
                 request.setAttribute("encontrados", encontrados);
             } catch (ClassNotFoundException | SQLException ex) {

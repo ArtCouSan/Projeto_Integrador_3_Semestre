@@ -100,34 +100,47 @@ public class VooDAO {
                 ListaVoo.add(voo);
             }
         } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
-        connection.close();
         return ListaVoo;
     }
 
     public Voo getVooById(int id) throws SQLException, ClassNotFoundException {
         Voo voo = new Voo();
 
-        connection = DbUtil.getConnection();
-
         String query = "SELECT * FROM Voo WHERE id_voo = ? ";
 
-        preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        resultSet = preparedStatement.executeQuery();
+        try {
+            connection = DbUtil.getConnection();
 
-        while (resultSet.next()) {
-            voo.setId_voo(resultSet.getInt("id_voo"));
-            voo.setData_ida(resultSet.getString("data_ida"));
-            voo.setData_volta(resultSet.getString("data_volta"));
-            voo.setDestino(resultSet.getString("destino"));
-            voo.setOrigem(resultSet.getString("origem"));
-            voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-            voo.setPreco(resultSet.getFloat("preco"));
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                voo.setId_voo(resultSet.getInt("id_voo"));
+                voo.setData_ida(resultSet.getString("data_ida"));
+                voo.setData_volta(resultSet.getString("data_volta"));
+                voo.setDestino(resultSet.getString("destino"));
+                voo.setOrigem(resultSet.getString("origem"));
+                voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
+                voo.setPreco(resultSet.getFloat("preco"));
+            }
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
 
-        preparedStatement.close();
-        connection.close();
         return voo;
     }
 
@@ -190,6 +203,13 @@ public class VooDAO {
             }
             // Retorna lista.
             return listaResultado;
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
     }
 
@@ -197,13 +217,21 @@ public class VooDAO {
         // Comando SQL.
         String slq = "UPDATE Voo SET ativo = ? WHERE id_voo = ?";
 
-        preparedStatement = connection.prepareStatement(slq);
+        try {
+            preparedStatement = connection.prepareStatement(slq);
+            // Insercoes.
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, id);
 
-        // Insercoes.
-        preparedStatement.setBoolean(1, false);
-        preparedStatement.setInt(2, id);
-
-        // Executa.
-        preparedStatement.execute();
+            // Executa.
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
     }
 }

@@ -23,44 +23,52 @@ public class VendaDAO {
                 + "(id_cliente, id_produto, id_func, preco) "
                 + "VALUES (?, ?, ?, ?)";
 
-        preparedStatement = connection.prepareStatement(slq);
+        try {
+            preparedStatement = connection.prepareStatement(slq);
+            // Insercoes.
+            preparedStatement.setInt(1, venda.getId_cliente());
+            preparedStatement.setInt(2, venda.getId_produto());
+            preparedStatement.setInt(3, venda.getId_func());
+            preparedStatement.setDouble(4, venda.getPreco());
 
-        // Insercoes.
-        preparedStatement.setInt(1, venda.getId_cliente());
-        preparedStatement.setInt(2, venda.getId_produto());
-        preparedStatement.setInt(3, venda.getId_func());
-        preparedStatement.setDouble(4, venda.getPreco());
-
-        // Executa.
-        preparedStatement.execute();
-
-        // Fecha conexao.
-        preparedStatement.close();
+            // Executa.
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
     }
 
     public void inserirLista(int id_produto, int quantidade, float preco, int id_venda) throws SQLException, FileNotFoundException, ClassNotFoundException {
-        // Conecta.
-        connection = DbUtil.getConnection();
-
         // Comando SQL.
         String slq = "INSERT INTO itens_venda "
                 + "(Id_produto, quantidade, preco, id_venda) "
                 + "VALUES (? , ?, ?, ?)";
 
-        PreparedStatement stmt = connection.prepareStatement(slq);
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(slq);
 
-        // Insercoes.
-        stmt.setInt(1, id_produto);
-        stmt.setInt(2, quantidade);
-        stmt.setFloat(3, preco);
-        stmt.setInt(4, id_venda);
+            // Insercoes.
+            preparedStatement.setInt(1, id_produto);
+            preparedStatement.setInt(2, quantidade);
+            preparedStatement.setFloat(3, preco);
+            preparedStatement.setInt(4, id_venda);
 
-        // Executa.
-        stmt.execute();
-
-        // Fecha conexao.
-        connection.close();
-
+            // Executa.
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
     }
 
     public int maiorIdVenda() throws SQLException, ClassNotFoundException {
@@ -165,14 +173,6 @@ public class VendaDAO {
 
     }
 
-    /**
-     * Funcao que procura venda pelo id.
-     *
-     * @param id
-     * @return venda.
-     * @throws SQLException
-     * @throws java.lang.ClassNotFoundException
-     */
     public Venda procurarVenda(int id) throws SQLException, ClassNotFoundException {
 
         // Conecta.
@@ -214,14 +214,6 @@ public class VendaDAO {
 
     }
 
-    /**
-     * Funcao que procura lista de itens.
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     * @throws java.lang.ClassNotFoundException
-     */
     public ArrayList<Carrinho> procurarItens(int id) throws SQLException, ClassNotFoundException {
 
         // Conecta.
@@ -266,5 +258,4 @@ public class VendaDAO {
         return listaResultado;
 
     }
-
 }

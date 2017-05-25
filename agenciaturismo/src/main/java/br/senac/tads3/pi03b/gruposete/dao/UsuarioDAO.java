@@ -11,9 +11,10 @@ public class UsuarioDAO {
 
     private static Connection connection;
     private static PreparedStatement preparedStatement;
+    private static Statement statement;
+    private static ResultSet resultSet;
 
     public void inserir(Usuario usuario) throws SQLException, Exception {
-
         String sql = "INSERT INTO Usuario (nome, login, senha, acesso) "
                 + "VALUES (?, ?, ?, ?)";
 
@@ -37,9 +38,32 @@ public class UsuarioDAO {
             }
         }
     }
+    
+    public void alterar(Usuario usuario) throws SQLException, Exception {
 
-    public void excluirUsuario(int id) throws SQLException, Exception {
+        String sql = "UPDATE Usuario "
+                + "SET senha=? "
+                + "WHERE id_usuario=?";
 
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, usuario.getSenha());
+            preparedStatement.setInt(2, usuario.getId_usuario());
+
+            preparedStatement.executeUpdate();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+    }
+
+    public void excluir(int id) throws SQLException, Exception {
         String sql = "DELETE FROM Usuario WHERE id_usuario=?";
 
         try {
@@ -68,8 +92,8 @@ public class UsuarioDAO {
         String query = "SELECT * FROM Usuario ORDER BY nome";
 
         try {
-            Statement st = connection.createStatement();
-            ResultSet resultSet = st.executeQuery(query);
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Usuario usuario = new Usuario();
 
@@ -82,19 +106,24 @@ public class UsuarioDAO {
                 listaUsuario.add(usuario);
             }
         } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
-        connection.close();
         return listaUsuario;
     }
-    
+
     public List<Usuario> procurarUsuario(String busca) throws SQLException, ClassNotFoundException {
         // Cria lista de usuarios.
         List<Usuario> listaResultado = new ArrayList<>();
 
-        connection = DbUtil.getConnection();
-
         String sql = "SELECT * FROM usuario WHERE bairro = ?";
 
+        connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
@@ -118,42 +147,46 @@ public class UsuarioDAO {
                 // Insere na lista.
                 listaResultado.add(usuarios);
             }
+
             connection.close();
             preparedStatement.close();
             return listaResultado;
         }
     }
-    
-    public Usuario obterUsuario(String userLogin, String passwordLogin) {
-        
-        PreparedStatement stmt;
-        Connection conn;
+
+    public Usuario obterUsuario(String userLogin, String passwordLogin) throws SQLException {
         Usuario usuario = null;
-        
+
         String query = "SELECT * FROM usuario WHERE login = ? AND senha = ?";
-        
-        try{
-            conn = DbUtil.getConnection();
-            stmt = conn.prepareStatement(query);
-            stmt.setString(1, userLogin);
-            stmt.setString(2, passwordLogin);
-            
-            ResultSet result = stmt.executeQuery();
-            
-            while(result.next()){
-                String nome = result.getString("nome");
-                String login = result.getString("login");
-                String senha = result.getString("senha");
-                String acesso = result.getString("acesso");
-                
+
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, userLogin);
+            preparedStatement.setString(2, passwordLogin);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String nome = resultSet.getString("nome");
+                String login = resultSet.getString("login");
+                String senha = resultSet.getString("senha");
+                String acesso = resultSet.getString("acesso");
+
                 usuario = new Usuario(nome, login, senha, acesso);
                 break;
             }
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>ERRO NA HORA DE BUSCAR O USUARIO NO BANCO: " + e);
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
-        
         return usuario;
     }
 }

@@ -142,19 +142,24 @@ public class FuncionarioDAO {
                 listaFuncionario.add(func);
             }
         } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
-        connection.close();
         return listaFuncionario;
     }
 
     public Funcionario getFuncionarioById(int id) throws SQLException, ClassNotFoundException {
         Funcionario func = new Funcionario();
 
-        connection = DbUtil.getConnection();
-
         String query = "SELECT * FROM Funcionario WHERE id_func = ?";
 
         try {
+            connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
@@ -180,10 +185,15 @@ public class FuncionarioDAO {
             }
 
         } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
 
-        preparedStatement.close();
-        connection.close();
         return func;
     }
 
@@ -273,21 +283,37 @@ public class FuncionarioDAO {
             }
             // Retorna lista.
             return listaResultado;
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
     }
 
-    public void excluirFuncionario(int id) throws SQLException {
+    public void excluir(int id) throws SQLException {
         // Comando SQL.
         String slq = "UPDATE funcionario SET ativo = ? WHERE id_func = ?";
 
-        preparedStatement = connection.prepareStatement(slq);
+        try {
+            preparedStatement = connection.prepareStatement(slq);
+            // Insercoes.
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, id);
 
-        // Insercoes.
-        preparedStatement.setBoolean(1, false);
-        preparedStatement.setInt(2, id);
+            // Executa.
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
 
-        // Executa.
-        preparedStatement.execute();
     }
 
     public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
@@ -308,20 +334,14 @@ public class FuncionarioDAO {
         int numeroDeCounts = 0;
 
         while (resultSet.next()) {
-
             numeroDeCounts = resultSet.getInt("COUNT(*)");
-
         }
-
+        
         connection.close();
-
+        
         if (numeroDeCounts < 1) {
-
             return true;
-
         }
-
         return false;
     }
-
 }

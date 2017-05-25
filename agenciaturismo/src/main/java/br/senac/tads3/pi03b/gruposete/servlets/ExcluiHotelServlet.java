@@ -28,7 +28,7 @@ public class ExcluiHotelServlet extends HttpServlet {
         if ("edit".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
-                query.excluirHotel(id);
+                query.excluir(id);
                 List<Hotel> encontrados = query.procurarHotel(pesquisa);
                 request.setAttribute("encontrados", encontrados);
             } catch (SQLException | ClassNotFoundException ex) {

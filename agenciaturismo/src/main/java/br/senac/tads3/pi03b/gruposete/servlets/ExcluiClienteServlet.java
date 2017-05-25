@@ -28,7 +28,7 @@ public class ExcluiClienteServlet extends HttpServlet {
         if ("edit".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
-                query.excluirCliente(id);
+                query.excluir(id);
                 List<Cliente> encontrados = query.procurarCliente(pesquisa);
                 request.setAttribute("encontrados", encontrados);
             } catch (SQLException | ClassNotFoundException ex) {
