@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
-            response.sendRedirect(request.getContextPath() + "jsp/Login/erroLogin.jsp");
+            response.sendRedirect(request.getContextPath() + "/jsp/Login/erroLogin.jsp");
         }
     }
 }

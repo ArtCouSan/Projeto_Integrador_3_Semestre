@@ -46,7 +46,7 @@ public class AutorizacaoFilter implements Filter {
             chain.doFilter(request, response);
         } else {
             // Usuário não tem permissão de acesso a página.
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/LoginNaoAutorizado");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/jsp/Login/erroNaoAutorizado.jsp");
         }
     }
 

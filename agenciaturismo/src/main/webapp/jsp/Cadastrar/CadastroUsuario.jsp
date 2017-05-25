@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>TELA DE CADASTRO DE USUARIO</h1>
-        <form action="${pageContext.request.contextPath}/CadastroUsuario" method="POST">
+        <form action="${contextPath}/CadastroUsuario" method="POST">
             <label for="name">Nome</label>
             <input type="text" name="nome" id="nometxt" required/>
             
