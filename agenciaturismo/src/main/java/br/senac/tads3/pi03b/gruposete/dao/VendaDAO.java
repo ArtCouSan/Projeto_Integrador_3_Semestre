@@ -3,6 +3,7 @@ package br.senac.tads3.pi03b.gruposete.dao;
 import br.senac.tads3.pi03b.gruposete.models.Carrinho;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
 import br.senac.tads3.pi03b.gruposete.models.Venda;
+import br.senac.tads3.pi03b.gruposete.models.Voo;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 
 import java.io.FileNotFoundException;
@@ -277,12 +278,12 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "SELECT * FROM hotel WHERE ativo = true"
-                + " AND (nome_hotel LIKE = ?"
-                + " OR data_entrada LIKE = ?"
-                + " OR data_saida LIKE = ?"
-                + " OR preco LIKE = ?"
-                + " OR quantidade_quartos LIKE = ?"
-                + " OR quantidade_hospedes LIKE = ?) LIMIT 10";
+                + " AND (nome_hotel LIKE  ?"
+                + " OR data_entrada LIKE ?"
+                + " OR data_saida LIKE ?"
+                + " OR preco LIKE  ?"
+                + " OR quantidade_quartos LIKE ?"
+                + " OR quantidade_hospedes LIKE ?) LIMIT 10";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
 
@@ -311,10 +312,10 @@ public class VendaDAO {
 
             // Prenche.
             id_hotel = (result.getInt("id_hotel"));
-            nome = (result.getString("nome"));
+            nome = (result.getString("nome_hotel"));
             data_entrada = (result.getString("data_entrada"));
             data_saida = (result.getString("data_saida"));
-            preco = (result.getFloat("data_saida"));
+            preco = (result.getFloat("preco"));
             quantidade_quartos = (result.getInt("quantidade_quartos"));
             quantidade_hospedes = (result.getInt("quantidade_hospedes"));
 
@@ -328,6 +329,76 @@ public class VendaDAO {
                     true);
 
             listaResultado.add(carrinho);
+
+        }
+
+        // Fecha conexao.
+        connection.close();
+
+        // Retorna lista.
+        return listaResultado;
+
+    }
+
+    public ArrayList<Voo> procurarVoo(String busca) throws SQLException, ClassNotFoundException {
+
+        // Conecta.
+        connection = DbUtil.getConnection();
+
+        ArrayList<Voo> listaResultado = new ArrayList<>();
+
+        // Comando SQL.
+        String slq = "SELECT * FROM voo WHERE ativo = true"
+                + " AND (data_volta LIKE  ?"
+                + " OR data_ida LIKE ?"
+                + " OR destino LIKE ?"
+                + " OR origem LIKE  ?"
+                + " OR preco LIKE ?"
+                + " OR quantidade_passagens LIKE ?) LIMIT 10";
+
+        PreparedStatement stmt = connection.prepareStatement(slq);
+
+        // Insercoes.
+        stmt.setString(1, busca);
+        stmt.setString(2, busca);
+        stmt.setString(3, busca);
+        stmt.setString(4, busca);
+        stmt.setString(5, busca);
+        stmt.setString(6, busca);
+
+        // Executa e recebe resultado.
+        ResultSet result = stmt.executeQuery();
+
+        // Declara variaveis.
+        int id_voo;
+        String data_ida;
+        String data_volta;
+        String destino;
+        String origem;
+        float preco;
+        int quantidade_passagens;
+
+        // Loop com resultados.
+        while (result.next()) {
+
+            // Prenche.
+            id_voo = (result.getInt("id_voo"));
+            data_volta = (result.getString("data_volta"));
+            data_ida = (result.getString("data_ida"));
+            destino = (result.getString("destino"));
+            preco = (result.getFloat("preco"));
+            origem = (result.getString("origem"));
+            quantidade_passagens = (result.getInt("quantidade_passagens"));
+
+            Voo voo = new Voo(data_ida,
+                    data_volta,
+                    destino,
+                    origem,
+                    quantidade_passagens,
+                    preco,
+                    true);
+
+            listaResultado.add(voo);
 
         }
 
