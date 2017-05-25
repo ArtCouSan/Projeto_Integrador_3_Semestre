@@ -63,8 +63,8 @@ data_entrada VARCHAR(50),
 data_saida VARCHAR(50),
 ativo TINYINT(1) NOT NULL,
 preco FLOAT(3.2) NOT NULL,
-quantidade_quartos VARCHAR(50),
-quantidade_hospedes VARCHAR(50),
+quantidade_quartos INT(3),
+quantidade_hospedes INT(3),
 PRIMARY KEY (id_hotel)
 );
 
