@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession sessao = request.getSession(false);
         if (sessao != null && sessao.getAttribute("usuario") != null) {
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/index");
             return;
         }
 

@@ -9,26 +9,22 @@
         <servlet-name>BuscaClienteServlet</servlet-name>
         <servlet-class>br.senac.tads3.pi03b.gruposete.servlets.BuscaClienteServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>index</servlet-name>
-        <servlet-class>index</servlet-class>
-    </servlet>
+    
     <servlet>
         <servlet-name>CadastraUsuarioServlet</servlet-name>
         <servlet-class>br.senac.tads3.pi03b.gruposete.servlets.CadastroUsuarioServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>CadastroClienteServlet</servlet-name>
         <url-pattern>/CadastroCliente</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>BuscaClienteServlet</servlet-name>
         <url-pattern>/BuscaCliente</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>CadastraUsuarioServlet</servlet-name>
         <url-pattern>/CadastraUsuarioServlet</url-pattern>
