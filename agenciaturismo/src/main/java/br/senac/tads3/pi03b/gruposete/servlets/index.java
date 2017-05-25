@@ -12,7 +12,7 @@ public class index extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/Login/login.jsp").forward(request, response);
     }
 
     @Override

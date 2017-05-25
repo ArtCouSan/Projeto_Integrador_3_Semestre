@@ -18,8 +18,6 @@ import java.util.logging.Logger;
 
 @WebServlet(name = "AlteraClienteServlet", urlPatterns = {"/EditarCliente"})
 public class AlteraClienteServlet extends HttpServlet {
-    
-    //Teste de alteração
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

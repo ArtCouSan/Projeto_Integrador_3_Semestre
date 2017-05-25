@@ -123,4 +123,37 @@ public class UsuarioDAO {
             return listaResultado;
         }
     }
+    
+    public Usuario obterUsuario(String userLogin, String passwordLogin) {
+        
+        PreparedStatement stmt;
+        Connection conn;
+        Usuario usuario = null;
+        
+        String query = "SELECT * FROM usuario WHERE login = ? AND senha = ?";
+        
+        try{
+            conn = DbUtil.getConnection();
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, userLogin);
+            stmt.setString(2, passwordLogin);
+            
+            ResultSet result = stmt.executeQuery();
+            
+            while(result.next()){
+                String nome = result.getString("nome");
+                String login = result.getString("login");
+                String senha = result.getString("senha");
+                String acesso = result.getString("acesso");
+                
+                usuario = new Usuario(nome, login, senha, acesso);
+                break;
+            }
+            
+        }catch(Exception e){
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>ERRO NA HORA DE BUSCAR O USUARIO NO BANCO: " + e);
+        }
+        
+        return usuario;
+    }
 }

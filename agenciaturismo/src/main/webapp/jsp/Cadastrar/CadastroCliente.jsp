@@ -11,9 +11,14 @@
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:if test="${usuario.acesso == 'MASTER'}">
+            <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        </c:if>
+        <c:if test="${usuario.acesso != 'MASTER'}">
+            <c:import url="/jsp/Layout/CabecalhoBasico.jsp"/>
+        </c:if>
         <div class="panel-body">
-            <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" class="form-horizontal form_fundo">
+            <form action="${contextPath}/CadastroCliente" method="post" class="form-horizontal form_fundo">
                 <div class="form-group ">
                     <c:if test="${erroNome}">
                         <div class="erro">O nome é obrigatório</div>

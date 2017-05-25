@@ -7,5 +7,7 @@
   </head>
   <body>
     <h1>Você não tem permissão suficiente para acessar essa página!</h1>
+    </br>
+    <a role="button" href="index.jsp">Voltar para tela inicial</a>
   </body>
 </html>
