@@ -13,7 +13,7 @@
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
-            <form name="editah" action="${pageContext.request.contextPath}/EditarHotel" method="post" class="form-horizontal">
+            <form name="editah" action="${contextPath}/EditarHotel" method="post" class="form-horizontal">
                 <input type="hidden" name="identificacao" value="${hoteis.getId_hotel()}"/>
                 <div class="form-group ">
                     <c:if test="${erroNome_hotel}">

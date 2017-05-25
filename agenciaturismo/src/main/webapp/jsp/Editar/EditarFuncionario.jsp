@@ -13,7 +13,7 @@
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
-            <form name="editaf" action="${pageContext.request.contextPath}/EditarFuncionario" method="post" class="form-horizontal">
+            <form name="editaf" action="${contextPath}/EditarFuncionario" method="post" class="form-horizontal">
                 <input type="hidden" name="identificacao" value="${funcionarios.getId_func()}"/>
                 <div class="form-group ">
                     <c:if test="${erroNome}">
