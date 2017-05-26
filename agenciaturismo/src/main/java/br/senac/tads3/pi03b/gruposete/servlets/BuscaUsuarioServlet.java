@@ -1,9 +1,8 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
-import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
-import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.dao.UsuarioDAO;
+import br.senac.tads3.pi03b.gruposete.models.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "BuscaUsuarioServlet", urlPatterns = {"/BuscaUsuarioServlet"})
+@WebServlet(name = "BuscaUsuarioServlet", urlPatterns = {"/BuscaUsuario"})
 public class BuscaUsuarioServlet extends HttpServlet {
 
     @Override
@@ -35,17 +34,16 @@ public class BuscaUsuarioServlet extends HttpServlet {
         String pesquisa = request.getParameter("pesquisa");
 
         if (!erro) {
-
             try {
-                ClienteDAO dao = new ClienteDAO();
-                List<Cliente> encontrados = dao.procurarCliente(pesquisa);
+                UsuarioDAO dao = new UsuarioDAO();
+                List<Usuario> encontrados = dao.procurarUsuario(pesquisa);
                 request.setAttribute("encontrados", encontrados);
                 request.setAttribute("pesquisa", pesquisa);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaUsuario.jsp");
                 dispatcher.forward(request, response);
 
             } catch (IOException | SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(BuscaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BuscaUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListarUsuario.jsp");

@@ -10,11 +10,27 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(filterName = "AutorizacaoFilter",
-        servletNames = {"AlteraClienteServlet", "AlteraFuncionarioServlet", "AlteraHotelServlet", "AlteraVooServlet",
-            "BuscaClienteServlet", "BuscaFuncionarioServlet", "BuscaHotelServlet", "BuscaVooServlet",
-            "CadastroClienteServlet", "CadastroFuncionarioServlet", "CadastroHotelServlet", "CadastroVooServlet",
-            "ExcluiClienteServlet", "ExcluiFuncionarioServlet", "ExcluiHotelServlet", "ExcluiVooServlet",
-            "ListaClienteServlet", "ListaFuncionarioServlet", "ListaHotelServlet", "ListaVooServlet"},
+        servletNames = {
+            "AlteraClienteServlet", 
+            "AlteraFuncionarioServlet", 
+            "AlteraHotelServlet", 
+            "AlteraUsuarioServlet", 
+            "AlteraVooServlet",
+            "BuscaClienteServlet", 
+            "BuscaFuncionarioServlet", 
+            "BuscaHotelServlet", 
+            "BuscaUsuarioServlet", 
+            "BuscaVooServlet",
+            "CadastroClienteServlet", 
+            "CadastroFuncionarioServlet", 
+            "CadastroHotelServlet", 
+            "CadastroUsuarioServlet", 
+            "CadastroVooServlet",
+            "ExcluiClienteServlet", 
+            "ExcluiFuncionarioServlet", 
+            "ExcluiHotelServlet", 
+            "ExcluiUsuarioServlet", 
+            "ExcluiVooServlet"},
         urlPatterns = {"/protegido/*"}
 )
 public class AutorizacaoFilter implements Filter {
@@ -26,14 +42,14 @@ public class AutorizacaoFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-       
+        System.out.println("ENTROU NO DO FILTER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>1");
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         System.out.println("USUARIO ACESSO >>>>>>>>>>>>>>>>>>>>>>>>" + usuario.getAcesso());
-        
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>2");
         if (usuario == null) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
             return;
@@ -61,7 +77,6 @@ public class AutorizacaoFilter implements Filter {
             return true;
         } else if (pagina.contains("Cliente") || pagina.contains("BuscaVoo") || pagina.contains("BuscaHotel") && usuario.temPapel("BASICO")) {
             return true;
-
         }
         return false;
     }

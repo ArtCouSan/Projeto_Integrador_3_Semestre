@@ -24,14 +24,14 @@ public class ExcluiUsuarioServlet extends HttpServlet {
         String action = request.getParameter("action");
         String pesquisa = request.getParameter("pesquisa");
         UsuarioDAO query = new UsuarioDAO();
-        if ("edit".equalsIgnoreCase(action)) {
+        if ("remove".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 query.excluir(id);
                 List<Usuario> encontrados = query.procurarUsuario(pesquisa);
                 request.setAttribute("encontrados", encontrados);
             } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex); 
+                Logger.getLogger(ExcluiUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex); 
             } catch (Exception ex) {
                 Logger.getLogger(ExcluiUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

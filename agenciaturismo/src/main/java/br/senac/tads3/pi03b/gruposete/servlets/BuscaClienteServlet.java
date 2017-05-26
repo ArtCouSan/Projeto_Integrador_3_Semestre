@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +34,6 @@ public class BuscaClienteServlet extends HttpServlet {
         String pesquisa = request.getParameter("pesquisa");
 
         if (!erro) {
-
             try {
                 ClienteDAO dao = new ClienteDAO();
                 List<Cliente> encontrados = dao.procurarCliente(pesquisa);
@@ -45,18 +43,11 @@ public class BuscaClienteServlet extends HttpServlet {
                 dispatcher.forward(request, response);
 
             } catch (IOException | SQLException | ClassNotFoundException ex) {
-
                 Logger.getLogger(BuscaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-
             }
-
         } else {
-
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListarCliente.jsp");
-
             dispatcher.forward(request, response);
-
         }
     }
-
 }

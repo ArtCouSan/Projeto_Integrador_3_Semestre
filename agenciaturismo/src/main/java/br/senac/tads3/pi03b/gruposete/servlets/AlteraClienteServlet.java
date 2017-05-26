@@ -1,7 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
-import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 
 import javax.servlet.RequestDispatcher;

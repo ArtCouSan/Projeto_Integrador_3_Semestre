@@ -83,6 +83,37 @@ public class UsuarioDAO {
             }
         }
     }
+    
+    public Usuario getUsuarioById(int id) throws SQLException, ClassNotFoundException {
+        Usuario usuario = new Usuario();
+
+        String query = "SELECT * FROM usuario WHERE id_usuario = ?";
+
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                usuario.setId_usuario(resultSet.getInt("id_usuario"));
+                usuario.setNome(resultSet.getString("nome"));
+                usuario.setLogin(resultSet.getString("login"));
+                usuario.setSenha(resultSet.getString("senha"));
+                usuario.setAcesso(resultSet.getString("acesso"));
+            }
+        } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return usuario;
+    }
 
     public List<Usuario> ListaUsuario() throws SQLException, ClassNotFoundException {
         List<Usuario> listaUsuario = new ArrayList<>();

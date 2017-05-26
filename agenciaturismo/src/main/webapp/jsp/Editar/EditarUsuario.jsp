@@ -1,17 +1,29 @@
-<%-- 
-    Document   : EditarUsuario
-    Created on : 25/05/2017, 17:18:53
-    Author     : Rafael Ferreira
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Editar Usuário</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-    </body>
+    <c:import url="/jsp/Layout/cabecalho.jsp"/>
+    <form action="${contextPath}/EditarUsuario" method="post">
+        <input type="hidden" name="identificacao" value="${usuario.getId_usuario()}"/>
+
+        <label>Nome:</label>
+        <input name="nome" type="text" /> 
+        
+        <label>Login:</label>
+        <input name="login" type="text" /> 
+        
+        <label>Senha:</label>
+        <input name="senha" type="password" required /> 
+        
+        <label>Acesso:</label>
+        <input name="acesso" type="text"/> 
+
+        <button type="submit"><span class="">Alterar</span></button>
+
+    </form>
+</body>
 </html>
