@@ -29,25 +29,18 @@ public class BuscaClienteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = false;
-
         String pesquisa = request.getParameter("pesquisa");
 
-        if (!erro) {
-            try {
-                ClienteDAO dao = new ClienteDAO();
-                List<Cliente> encontrados = dao.procurarCliente(pesquisa);
-                request.setAttribute("encontrados", encontrados);
-                request.setAttribute("pesquisa", pesquisa);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaCliente.jsp");
-                dispatcher.forward(request, response);
-
-            } catch (IOException | SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(BuscaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListarCliente.jsp");
+        try {
+            ClienteDAO dao = new ClienteDAO();
+            List<Cliente> encontrados = dao.procurarCliente(pesquisa);
+            request.setAttribute("encontrados", encontrados);
+            request.setAttribute("pesquisa", pesquisa);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaCliente.jsp");
             dispatcher.forward(request, response);
+
+        } catch (IOException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

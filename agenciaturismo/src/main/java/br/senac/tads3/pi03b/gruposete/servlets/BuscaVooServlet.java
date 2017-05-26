@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,34 +30,18 @@ public class BuscaVooServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = false;
-
         String pesquisa = request.getParameter("pesquisa");
 
-        if (!erro) {
-
-            try {
-
-                List<Voo> encontrados;
-
-                VooDAO dao = new VooDAO();
-                encontrados = dao.procurarVoo(pesquisa);
-                HttpSession sessao = request.getSession();
-                sessao.setAttribute("encontrados", encontrados);
-                sessao.setAttribute("pesquisa", pesquisa);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
-                dispatcher.forward(request, response);
-
-            } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(BuscaVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else {
-
+        try {
+            VooDAO dao = new VooDAO();
+            List<Voo> encontrados = dao.procurarVoo(pesquisa);
+            request.setAttribute("encontrados", encontrados);
+            request.setAttribute("pesquisa", pesquisa);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
             dispatcher.forward(request, response);
 
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscaVooServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 }

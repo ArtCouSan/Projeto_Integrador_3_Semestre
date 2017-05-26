@@ -87,14 +87,12 @@ public class CadastroFuncionarioServlet extends HttpServlet {
 //            request.setAttribute("erroDepartamento", true);
 //        }
 
-        if (erro != true) {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> func");
+        if (erro == false) {
             Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                     numero, cep, rua, bairro, cidade, complemento,
                     celular, telefone, email, true, cargo, filial, departamento);
             try {
                 dao.inserir(func);
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> cadastrou");
                 response.sendRedirect("index.jsp");
             } catch (Exception ex) {
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);

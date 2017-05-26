@@ -24,30 +24,23 @@ public class BuscaUsuarioServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaUsuario.jsp");
         dispatcher.forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = false;
-
         String pesquisa = request.getParameter("pesquisa");
 
-        if (!erro) {
-            try {
-                UsuarioDAO dao = new UsuarioDAO();
-                List<Usuario> encontrados = dao.procurarUsuario(pesquisa);
-                request.setAttribute("encontrados", encontrados);
-                request.setAttribute("pesquisa", pesquisa);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaUsuario.jsp");
-                dispatcher.forward(request, response);
-
-            } catch (IOException | SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(BuscaUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListarUsuario.jsp");
+        try {
+            UsuarioDAO dao = new UsuarioDAO();
+            List<Usuario> encontrados = dao.procurarUsuario(pesquisa);
+            request.setAttribute("encontrados", encontrados);
+            request.setAttribute("pesquisa", pesquisa);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaUsuario.jsp");
             dispatcher.forward(request, response);
+
+        } catch (IOException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscaUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

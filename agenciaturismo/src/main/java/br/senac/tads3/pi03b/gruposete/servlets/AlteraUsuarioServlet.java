@@ -40,38 +40,33 @@ public class AlteraUsuarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            UsuarioDAO dao = new UsuarioDAO();
-            boolean erro = false;
-            String senha = request.getParameter("senha");
-            if (senha == null || senha.length() < 1) {
-                erro = true;
-                request.setAttribute("erroSenha", true);
+        UsuarioDAO dao = new UsuarioDAO();
+        boolean erro = false;
+        
+        String senha = request.getParameter("senha");
+        
+        if (senha == null || senha.length() < 1) {
+            erro = true;
+            request.setAttribute("erroSenha", true);
+        }
+        
+        int id = Integer.parseInt(request.getParameter("identificacao"));
+
+        if (erro == false) {
+            Usuario usuarioHumilde = new Usuario();
+            usuarioHumilde.setId_usuario(id);
+            usuarioHumilde.setSenha(senha);
+
+            try {
+                dao.alterar(usuarioHumilde);
+                response.sendRedirect("index.jsp");
+            } catch (Exception ex) {
+                Logger.getLogger(AlteraUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            int id = Integer.parseInt(request.getParameter("identificacao"));
             
-            if (!erro) {
-                Usuario usuarioHumilde = new Usuario();
-                usuarioHumilde.setId_usuario(id);
-                usuarioHumilde.setSenha(senha);
-                try {
-
-                    dao.alterar(usuarioHumilde);
-                    HttpSession sessao = request.getSession();
-                    sessao.setAttribute("editarUsuario", usuarioHumilde);
-                    response.sendRedirect("index.jsp");
-
-                } catch (IOException ex) {
-                    Logger.getLogger(AlteraUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(AlteraUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarUsuario.jsp");
-                dispatcher.forward(request, response);
-            }
-
-        }catch(IOException | NumberFormatException | ServletException e){
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarUsuario.jsp");
+            dispatcher.forward(request, response);
         }
     }
 }

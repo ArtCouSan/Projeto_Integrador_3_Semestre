@@ -31,24 +31,25 @@ public class CadastroUsuarioServlet extends HttpServlet {
         boolean erro = false;
 
         String nome = request.getParameter("nome");
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        String acesso = request.getParameter("acesso");
+
         if (nome == null || nome.length() < 1) {
             erro = true;
             request.setAttribute("erroNome", true);
         }
 
-        String login = request.getParameter("login");
         if (login == null || login.length() < 1) {
             erro = true;
             request.setAttribute("erroLogin", true);
         }
 
-        String senha = request.getParameter("senha");
         if (senha == null || senha.length() < 4) {
             erro = true;
             request.setAttribute("erroSenha", true);
         }
 
-        String acesso = request.getParameter("acesso");
         if (acesso == null || acesso.length() < 1) {
             erro = true;
             request.setAttribute("erroAcesso", true);
@@ -56,14 +57,14 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
         if (erro == false) {
             Usuario usuarioHumilde = new Usuario(nome, login, senha, acesso);
+            
             try {
                 dao.inserir(usuarioHumilde);
-                HttpSession sessao = request.getSession();
-                sessao.setAttribute("novoUsuario", usuarioHumilde);
                 response.sendRedirect("index.jsp");
             } catch (Exception ex) {
                 Logger.getLogger(CadastroUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroUsuario.jsp");
             dispatcher.forward(request, response);

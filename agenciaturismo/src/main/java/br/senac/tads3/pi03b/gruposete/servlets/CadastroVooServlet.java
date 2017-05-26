@@ -31,24 +31,32 @@ public class CadastroVooServlet extends HttpServlet {
         boolean erro = false;
 
         String origem = request.getParameter("origem");
+        String destino = request.getParameter("destino");
+        String data_ida = request.getParameter("data_ida");
+        String data_volta = request.getParameter("data_volta");
+        int quantidade_passagens;
+        float preco = Float.parseFloat(request.getParameter("preco"));
+
         if (origem == null || origem.length() < 1) {
             erro = true;
             request.setAttribute("erroOrigem", true);
         }
 
-        String destino = request.getParameter("destino");
         if (destino == null || destino.length() < 1) {
             erro = true;
             request.setAttribute("erroDestino", true);
         }
 
-        String data_ida = request.getParameter("data_ida");
-        
+        if (data_ida == null || !"  /  /    ".equals(data_ida)) {
+            erro = true;
+            request.setAttribute("erroData_ida", true);
+        }
 
-        String data_volta = request.getParameter("data_volta");
-        
+        if (data_volta == null || !"  /  /    ".equals(data_volta)) {
+            erro = true;
+            request.setAttribute("erroData_volta", true);
+        }
 
-        int quantidade_passagens;
         try {
             quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
             if (quantidade_passagens < 1) {
@@ -59,7 +67,6 @@ public class CadastroVooServlet extends HttpServlet {
             quantidade_passagens = 0;
         }
 
-        float preco = Float.parseFloat(request.getParameter("preco"));
         if (preco < 0) {
             erro = true;
             request.setAttribute("erroPreco", true);
@@ -67,15 +74,15 @@ public class CadastroVooServlet extends HttpServlet {
 
         if (erro == false) {
             Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
+            
             try {
                 VooDAO dao = new VooDAO();
                 dao.inserir(voo);
-                HttpSession sessao = request.getSession();
-                sessao.setAttribute("novoVoo", voo);
                 response.sendRedirect("index.jsp");
             } catch (Exception ex) {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroVoo.jsp");
             dispatcher.forward(request, response);
