@@ -15,7 +15,6 @@ public class HotelDAO {
     private static ResultSet resultSet;
 
     public void inserir(Hotel hotel) throws SQLException, Exception {
-
         String sql = "INSERT INTO Hotel (nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 

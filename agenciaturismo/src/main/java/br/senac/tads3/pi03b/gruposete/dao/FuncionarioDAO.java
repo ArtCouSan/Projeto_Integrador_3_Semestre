@@ -3,7 +3,6 @@ package br.senac.tads3.pi03b.gruposete.dao;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +43,8 @@ public class FuncionarioDAO {
             preparedStatement.executeUpdate();
 
         } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
+            preparedStatement.close();
+            connection.close();
         }
     }
 
@@ -197,7 +192,7 @@ public class FuncionarioDAO {
         return func;
     }
 
-    public List<Funcionario> procurarFuncionario(String busca) throws SQLException, IOException, ClassNotFoundException {
+    public List<Funcionario> procurarFuncionario(String busca) throws SQLException, ClassNotFoundException {
         // Cria lista de clientes.
         List<Funcionario> listaResultado = new ArrayList<>();
 
@@ -293,7 +288,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public void excluir(int id) throws SQLException {
+    public void excluir(int id) throws SQLException, ClassNotFoundException {
         // Comando SQL.
         String slq = "UPDATE funcionario SET ativo = ? WHERE id_func = ?";
 
@@ -336,9 +331,9 @@ public class FuncionarioDAO {
         while (resultSet.next()) {
             numeroDeCounts = resultSet.getInt("COUNT(*)");
         }
-        
+
         connection.close();
-        
+
         if (numeroDeCounts < 1) {
             return true;
         }

@@ -16,45 +16,43 @@
             <form name="cadastrof" action="CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
                 <div class="form-group ">
                     <c:if test="${erroNome}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite seu nome completo</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Nome:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="nome" type="text" placeholder="Insira nome" data-maxlength="100" id="example-text-input" required>
+                        <input class="form-control" name="nome" type="text" placeholder="Nome completo" data-maxlength="100" id="example-text-input" required>
                         <span class="help-block">Maximo 100 caracteres</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <c:if test="${erroCpf}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite o CPF</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CPF:</label>
                     <div class="controls col-md-5">
                         <input class="form-control cpf-mask" placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
-
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroSexo}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Sexo</label>
-                    <div class="controls col-md-5">
-                        <input class="form-control" placeholder="Genero" name="sexo" required>
-                    </div>
+                    <select name="sexo">
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                        <option value="O">Outros</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <c:if test="${erroNascimento}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Seleciona a data de nascimento</div>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Nascimento:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" placeholder="Insira nascimento" type="date" name="nascimento" id="example-date-input" required>
+                        <input class="form-control" type="date" name="nascimento" id="example-date-input" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <c:if test="${erroRua}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite sua rua</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Rua:</label>
                     <div class="controls col-md-5">
@@ -64,7 +62,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroNumero}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite o número da sua casa</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Numero:</label>
                     <div class="controls col-md-5">

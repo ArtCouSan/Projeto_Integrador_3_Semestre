@@ -5,7 +5,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
-                    <li ><i class="glyphicon glyphicon-user"><p>${usuario.nome}</p></i></li>
+                    <li ><i class="glyphicon glyphicon-user"><p style="color: white">${usuario.nome}</p></i></li>
                     <li ><a href="logout"><i class="glyphicon glyphicon-user">Sair</i></a></li>
                     <li ><a href="CadastroCliente"><i class="glyphicon glyphicon-user">Cadastrar Cliente</i></a></li>
                     <li ><a href="CadastroFuncionario"><i class="glyphicon glyphicon-user">Cadastrar Funcionario</i></a></li>
@@ -27,7 +27,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
-                    <li ><i class="glyphicon glyphicon-user"><p>${usuario.nome}</p></i></li>
+                    <li ><i class="glyphicon glyphicon-user"><p style="color: white">${usuario.nome}</p></i></li>
                     <li ><a href="logout"><i class="glyphicon glyphicon-user">Sair</i></a></li>
                     <li ><a href="CadastroCliente"><i class="glyphicon glyphicon-user">Cadastrar Cliente</i></a></li>
                     <li ><a href="BuscaCliente"><i class="glyphicon glyphicon-cog">Busca Cliente</i></a></li>

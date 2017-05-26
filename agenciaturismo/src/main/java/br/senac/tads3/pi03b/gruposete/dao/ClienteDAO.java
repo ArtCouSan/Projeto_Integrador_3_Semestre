@@ -3,7 +3,6 @@ package br.senac.tads3.pi03b.gruposete.dao;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -187,7 +186,7 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public List<Cliente> procurarCliente(String busca) throws SQLException, IOException, ClassNotFoundException {
+    public List<Cliente> procurarCliente(String busca) throws SQLException, ClassNotFoundException {
 
         // Cria lista de clientes.
         List<Cliente> listaResultado = new ArrayList<>();
@@ -278,7 +277,7 @@ public class ClienteDAO {
 
     public void excluir(int id) throws SQLException {
         // Comando SQL.
-        String slq = "UPDATE cliente SET ativo = ? WHERE  id_cliente = ?";
+        String slq = "UPDATE cliente SET ativo = ? WHERE id_cliente = ?";
 
         try {
             preparedStatement = connection.prepareStatement(slq);
