@@ -321,6 +321,8 @@ public class ClienteDAO {
 
         connection.close();
 
+        System.out.println(numeroDeCounts);
+
         if (numeroDeCounts == 1) {
             return true;
         }

@@ -7,7 +7,8 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <title>JSP Page</title>
+        <script src="./bootstrap/js/vendaEventosBusca.js"></script>
+        <title>Venda</title>
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
@@ -38,47 +39,28 @@
                 <div class="container-page">
                     <div id="wrap" class="container">
                         <div class="row">
-                            <div class="col-sm-5">
-                                <div id="custom-search-input">
-                                    <div class="input-group col-md-12">
-                                        <input type="text" class="form-control input-sm" placeholder="Buscar" />
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-info btn-sm" type="button">
-                                                <i class="glyphicon glyphicon-search"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <br/>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr class="info">
-                                            <th>Origem</th>
-                                            <th>Destino</th>
-                                            <th>Dt.ida</th>
-                                            <th>Dt.volta</th>
-                                            <th>Qt. de passagens</th>
-                                            <th>Preço</th>
-                                        </tr>
-                                        </t
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="voos" items="${encontrados}">
-                                            <tr>
-                                                <td name="origem"><c:out value="${voos.getOrigem()}"/></td>
-                                                <td name="destino"><c:out value="${voos.getDestino()}"/></td>
-                                                <td name="data_ida"><c:out value="${voos.getData_ida()}"/></td>
-                                                <td name="data_volta"><c:out value="${voos.getData_volta()}"/></td>
-                                                <td name="quantidade_passagens"><c:out value="${voos.getQuantidade_passagens()}"/></td>
-                                                <td name="preco"><c:out value="${voos.getPreco()}"/></td>
-                                                <td></td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+                            <div class="controls col-md-5">
+                                <input name="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
+                                <button onclick="pesquisaVoo()" type="submit" class="btn">Pesquisar Voo</button>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="container-page">
+                    <div id="wrap" class="container">
+                        <div class="row">
+                            <div class="controls col-md-5">
+                                <input name="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
+                                <button onclick="pesquisaHotel()" type="submit" class="btn">Pesquisar Hotel</button>                    
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+                <div class="container-page">
+                    <table class="table table-striped">
+                       
+                    </table>
+                </div>
             </section>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

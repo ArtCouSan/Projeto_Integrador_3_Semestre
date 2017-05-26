@@ -40,27 +40,22 @@ public class CadastroHotelServlet extends HttpServlet {
             erro = true;
             request.setAttribute("erroNome_hotel", true);
         }
-
         if (data_entrada == null || !"  /  /    ".equals(data_entrada)) {
             erro = true;
             request.setAttribute("erroData_entrada", true);
         }
-
         if (data_saida == null || !"  /  /    ".equals(data_saida)) {
             erro = true;
             request.setAttribute("erroData_saida", true);
         }
-
         if (quantidade_quartos < 1) {
             erro = true;
             request.setAttribute("erroQuantidade_quartos", true);
         }
-
         if (quantidade_hospedes < 1) {
             erro = true;
             request.setAttribute("erroQuantidade_hospedes", true);
         }
-
         if (preco < 0) {
             erro = true;
             request.setAttribute("erroPreco", true);

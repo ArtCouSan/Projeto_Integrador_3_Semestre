@@ -52,7 +52,7 @@ public class PreVendaServlet extends HttpServlet {
         } else {
             request.setAttribute("erroCpf", true);
         }
-        
+
         if (erro) {
             System.out.println(cpf);
             request.setAttribute("cpf", cpf);
