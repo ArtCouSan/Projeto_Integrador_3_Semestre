@@ -43,16 +43,10 @@ public class CadastroVooServlet extends HttpServlet {
         }
 
         String data_ida = request.getParameter("data_ida");
-        if (data_ida == null || !"  /  /    ".equals(data_ida)) {
-            erro = true;
-            request.setAttribute("erroData_ida", true);
-        }
+        
 
         String data_volta = request.getParameter("data_volta");
-        if (data_volta == null || !"  /  /    ".equals(data_volta)) {
-            erro = true;
-            request.setAttribute("erroData_volta", true);
-        }
+        
 
         int quantidade_passagens;
         try {
@@ -71,7 +65,7 @@ public class CadastroVooServlet extends HttpServlet {
             request.setAttribute("erroPreco", true);
         }
 
-        if (!erro) {
+        if (erro == false) {
             Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
             try {
                 VooDAO dao = new VooDAO();

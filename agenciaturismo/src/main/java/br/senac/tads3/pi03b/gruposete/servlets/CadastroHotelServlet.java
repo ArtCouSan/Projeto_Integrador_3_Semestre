@@ -37,16 +37,8 @@ public class CadastroHotelServlet extends HttpServlet {
         }
 
         String data_entrada = request.getParameter("data_entrada");
-        if (data_entrada == null || !"  /  /    ".equals(data_entrada)) {
-            erro = true;
-            request.setAttribute("erroData_entrada", true);
-        }
 
         String data_saida = request.getParameter("data_saida");
-        if (data_saida == null || !"  /  /    ".equals(data_saida)) {
-            erro = true;
-            request.setAttribute("erroData_saida", true);
-        }
 
         int quantidade_quartos = Integer.parseInt(request.getParameter("quantidade_quartos"));
         if (quantidade_quartos < 1) {
@@ -66,7 +58,7 @@ public class CadastroHotelServlet extends HttpServlet {
             request.setAttribute("erroPreco", true);
         }
 
-        if (!erro) {
+        if (erro == false) {
             Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
             try {
                 HotelDAO dao = new HotelDAO();

@@ -29,8 +29,6 @@
                     <th>Telefone</th>
                     <th>Email</th>
                     <th>Ativo ?</th>
-                    <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>

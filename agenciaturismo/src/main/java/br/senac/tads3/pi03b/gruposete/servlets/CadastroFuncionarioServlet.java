@@ -33,7 +33,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
 
         FuncionarioDAO dao = new FuncionarioDAO();
 
-        boolean erro = true, verifica = false;
+        boolean erro = false, verifica = false;
 
         String nome = request.getParameter("nome");
         if (nome == null || nome.length() < 1) {
@@ -42,20 +42,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         }
 
         String cpf = request.getParameter("cpf");
-        
-        try {
-            
-            verifica = dao.verificarCPF(cpf);
-            
-        } catch (SQLException | ClassNotFoundException ex) {
-            
-            Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
-        if (cpf == null || !"   .   .   -  ".equals(cpf) || verifica) {
-            erro = true;
-            request.setAttribute("erroCpf", true);
-        }
+
 
         String sexo = request.getParameter("sexo");
         if ("".equals(sexo)) {
@@ -64,19 +51,12 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         }
 
         String data_nasc = request.getParameter("nascimento");
-        if (data_nasc == null || !"  /  /    ".equals(data_nasc)) {
-            erro = true;
-            request.setAttribute("erroNascimento", true);
-        }
 
         String telefone = request.getParameter("telefone");
-      
 
         String celular = request.getParameter("celular");
-     
 
         String email = request.getParameter("email");
-        
 
         int numero = Integer.parseInt(request.getParameter("numero"));
         if (numero <= 0) {
@@ -85,10 +65,6 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         }
 
         String cep = request.getParameter("cep");
-        if (cep == null || !"     -   ".equals(cep)) {
-            erro = true;
-            request.setAttribute("erroCep", true);
-        }
 
         String rua = request.getParameter("rua");
         if (rua == null || rua.length() < 1) {
@@ -132,7 +108,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             request.setAttribute("erroDepartamento", true);
         }
 
-        if (!erro) {
+        if (erro == false) {
             Funcionario funcHumilde = new Funcionario(nome, cpf, sexo, data_nasc,
                     numero, cep, rua, bairro, cidade, complemento,
                     celular, telefone, email, true, cargo, filial, departamento);

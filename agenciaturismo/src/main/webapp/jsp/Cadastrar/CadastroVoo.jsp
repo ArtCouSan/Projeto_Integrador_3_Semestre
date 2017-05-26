@@ -13,7 +13,7 @@
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>s
         <div class="panel-body">
-            <form name="cadastrov" action="${contextPath}/CadastroVoo" method="post" class="form-horizontal">
+            <form name="cadastrov" action="CadastroVoo" method="post" class="form-horizontal">
                 <div class="form-group ">
                     <c:if test="${erroOrigem}">
                         <div class="erro">O nome é obrigatório</div>

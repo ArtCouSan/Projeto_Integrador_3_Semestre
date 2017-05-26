@@ -7,7 +7,7 @@
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form action="${contextPath}/BuscaUsuario" method="post" class="form-horizontal">
+        <form action="BuscaUsuario" method="post" class="form-horizontal">
             <h1 class="text-center"> Digite o campo(s) pela informação que gostaria de buscar</h1>
             <div class="controls col-md-5">
                 <input name="pesquisa" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
