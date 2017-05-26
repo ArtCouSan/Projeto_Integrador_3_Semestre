@@ -54,7 +54,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
             request.setAttribute("erroAcesso", true);
         }
 
-        if (!erro) {
+        if (erro == false) {
             Usuario usuarioHumilde = new Usuario(nome, login, senha, acesso);
             try {
                 dao.inserir(usuarioHumilde);

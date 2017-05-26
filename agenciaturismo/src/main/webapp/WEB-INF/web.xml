@@ -27,7 +27,7 @@
     
     <servlet-mapping>
         <servlet-name>CadastraUsuarioServlet</servlet-name>
-        <url-pattern>/CadastraUsuarioServlet</url-pattern>
+        <url-pattern>/CadastraUsuario</url-pattern>
     </servlet-mapping>
     
     <welcome-file-list>

@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +30,7 @@ public class CadastroClienteServlet extends HttpServlet {
 
         try {
             ClienteDAO dao = new ClienteDAO();
-            boolean erro = true, verificarCPF;
+            boolean erro = false, verificarCPF;
             String nome = request.getParameter("nome");
             if (nome == null || nome.length() < 1) {
                 erro = true;
@@ -89,7 +88,7 @@ public class CadastroClienteServlet extends HttpServlet {
                 erro = true;
                 request.setAttribute("erroComplemento", true);
             }
-            if (erro) {
+            if (!erro) {
                 Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
                         cep, rua, bairro, cidade, complemento, celular,
                         telefone, email, true);
@@ -100,22 +99,14 @@ public class CadastroClienteServlet extends HttpServlet {
                     response.sendRedirect("index.jsp");
                     
                 } catch (Exception ex) {
-                    
                     Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    
                 }
-                
             } else {
-                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroCliente.jsp");
                 dispatcher.forward(request, response);
-                
             }
-            
         } catch (SQLException | ClassNotFoundException ex) {
-            
             Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 }
