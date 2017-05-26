@@ -13,7 +13,7 @@
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
-            <form action="${contextPath}/PreVenda" method="post" class="form-horizontal">
+            <form action="PreVenda" method="post" class="form-horizontal">
                 <h1 class="text-center">Validação do cliente</h1>
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">CPF:</label>

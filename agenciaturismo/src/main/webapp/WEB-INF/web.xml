@@ -21,6 +21,14 @@
         <servlet-name>CadastroHotelServlet</servlet-name>
         <servlet-class>br.senac.tads3.pi03b.gruposete.servlets.CadastroHotelServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PreVendaServlet</servlet-name>
+        <servlet-class>br.senac.tads3.pi03b.gruposete.servlets.PreVendaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VendaServlet</servlet-name>
+        <servlet-class>br.senac.tads3.pi03b.gruposete.servlets.VendaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastroClienteServlet</servlet-name>
         <url-pattern>/CadastroCliente</url-pattern>
@@ -40,6 +48,14 @@
     <servlet-mapping>
         <servlet-name>CadastroHotelServlet</servlet-name>
         <url-pattern>/CadastroHotel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PreVendaServlet</servlet-name>
+        <url-pattern>/PreVenda</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VendaServlet</servlet-name>
+        <url-pattern>/Venda</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>
