@@ -342,6 +342,8 @@ public class VendaDAO {
 
     public ArrayList<Voo> procurarVoo(String busca) throws SQLException, ClassNotFoundException {
 
+        System.out.println(">>>> bd");
+        
         // Conecta.
         connection = DbUtil.getConnection();
 

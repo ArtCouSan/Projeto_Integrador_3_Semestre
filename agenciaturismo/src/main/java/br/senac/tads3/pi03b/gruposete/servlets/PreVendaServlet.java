@@ -54,7 +54,6 @@ public class PreVendaServlet extends HttpServlet {
         }
 
         if (erro) {
-            System.out.println(cpf);
             request.setAttribute("cpf", cpf);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Venda/Venda.jsp");
             dispatcher.forward(request, response);

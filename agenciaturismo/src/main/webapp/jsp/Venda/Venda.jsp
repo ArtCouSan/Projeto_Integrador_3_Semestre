@@ -40,7 +40,7 @@
                     <div id="wrap" class="container">
                         <div class="row">
                             <div class="controls col-md-5">
-                                <input name="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
+                                <input name="pesquisaVoo" id="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaVoo">
                                 <button onclick="pesquisaVoo()" type="submit" class="btn">Pesquisar Voo</button>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                     <div id="wrap" class="container">
                         <div class="row">
                             <div class="controls col-md-5">
-                                <input name="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
+                                <input name="pesquisaHotel" id="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaHotel">
                                 <button onclick="pesquisaHotel()" type="submit" class="btn">Pesquisar Hotel</button>                    
                             </div>                        
                         </div>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="container-page">
                     <table class="table table-striped">
-                       
+
                     </table>
                 </div>
             </section>

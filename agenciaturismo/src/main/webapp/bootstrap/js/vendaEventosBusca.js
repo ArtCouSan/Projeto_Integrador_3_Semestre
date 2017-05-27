@@ -1,11 +1,12 @@
 function pesquisaHotel() {
-    var busca = document.getElementsByName("pesquisaHotel").value;
+    var busca = document.querySelector(".pesquisaHotel").value;
     if (busca.length === 0) {
+        document.querySelector(".pesquisaHotel").innerHTML = "";
         return;
     } else {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.addEventListener("load", listarHotel());
         xmlhttp.open("GET", "BuscarHotelVenda?busca=" + busca);
+        xmlhttp.addEventListener("load", listarHotel);
         xmlhttp.send();
     }
 }
@@ -24,13 +25,13 @@ function listarHotel(evt) {
 }
 
 function pesquisaVoo() {
-    var busca = document.getElementsByName("pesquisaVoo").value;
+    var busca = document.querySelector(".pesquisaVoo").value;
     if (busca.length === 0) {
-        document.getElementById("pesquisaVoo").innerHTML = "";
+        document.querySelector(".pesquisaVoo").innerHTML = "";
         return;
     } else {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.addEventListener("load", listarVoo());
+        xmlhttp.addEventListener("load", listarVoo);
         xmlhttp.open("GET", "BuscarVooVenda?busca=" + busca);
         xmlhttp.send();
     }
@@ -38,36 +39,17 @@ function pesquisaVoo() {
 
 function listarVoo(evt) {
 
-    var texto = (evt.target.responseText);
+//    var texto = (evt.target.responseText);
+//
+//    var obj = JSON.parse(texto);
 
-    var obj = JSON.parse(texto);
+    var table = document.querySelector(".table .table-striped");
 
-    var table = document.getElementsByName("table");
 
-    table = "";
-
-    var html = '<thead>\n\
-    <tr class="info">\n\
-    <th>Origem</th>\n\
-    <th>Destino</th>\n\
-    <th>Data de ida</th>\n\
-    <th>Data de volta</th>\n\
-    <th>Quantidade de passagens</th>\n\
-    <th>Preco</th>\n\
-    <th></th>\n\
-    </tr>\n\
-    </thead>\n\
-    <tbody>';
-
-    for (var item in obj) {
-
-        //html += '<td name=' + item.
-
-    }
-
-    html += '</tbody>';
-
-    table.innerHTML += html;
+//    for (var item of obj) {
+//
+//        console.log(item);
+//    }
 
 }
 
