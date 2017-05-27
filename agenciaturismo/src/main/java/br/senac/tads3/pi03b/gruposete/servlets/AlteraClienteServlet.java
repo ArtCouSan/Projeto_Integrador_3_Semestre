@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -41,7 +40,8 @@ public class AlteraClienteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ClienteDAO dao = new ClienteDAO();
-        boolean erro = true, verifica = false;
+        boolean erro = false, verifica = false;
+        
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
@@ -119,7 +119,6 @@ public class AlteraClienteServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("identificacao"));
         
         if (erro == false) {
-
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, bairro, cidade, complemento, celular,
                     telefone, email, true);

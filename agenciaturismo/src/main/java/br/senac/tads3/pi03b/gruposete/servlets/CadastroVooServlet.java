@@ -2,14 +2,12 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +26,7 @@ public class CadastroVooServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        VooDAO dao = new VooDAO();
         boolean erro = false;
 
         String origem = request.getParameter("origem");
@@ -74,15 +73,14 @@ public class CadastroVooServlet extends HttpServlet {
 
         if (erro == false) {
             Voo voo = new Voo(data_ida, data_volta, destino, origem, quantidade_passagens, preco, true);
-            
+
             try {
-                VooDAO dao = new VooDAO();
                 dao.inserir(voo);
                 response.sendRedirect("index.jsp");
             } catch (Exception ex) {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroVoo.jsp");
             dispatcher.forward(request, response);

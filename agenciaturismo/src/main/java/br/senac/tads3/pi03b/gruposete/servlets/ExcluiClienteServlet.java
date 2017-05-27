@@ -21,14 +21,15 @@ public class ExcluiClienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         String action = request.getParameter("action");
         String pesquisa = request.getParameter("pesquisa");
         ClienteDAO query = new ClienteDAO();
-        if ("edit".equalsIgnoreCase(action)) {
+        if ("delete".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 query.excluir(id);
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>sdgsdgjfh");
                 List<Cliente> encontrados = query.procurarCliente(pesquisa);
                 request.setAttribute("encontrados", encontrados);
             } catch (SQLException | ClassNotFoundException ex) {

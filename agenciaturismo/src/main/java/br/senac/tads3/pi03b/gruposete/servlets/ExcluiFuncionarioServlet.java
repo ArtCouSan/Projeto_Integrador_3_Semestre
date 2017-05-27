@@ -25,7 +25,7 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
         String action = request.getParameter("action");
         String pesquisa = request.getParameter("pesquisa");
         FuncionarioDAO query = new FuncionarioDAO();
-        if ("edit".equalsIgnoreCase(action)) {
+        if ("delete".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 query.excluir(id);

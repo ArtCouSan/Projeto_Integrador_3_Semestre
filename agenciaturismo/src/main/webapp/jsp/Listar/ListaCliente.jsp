@@ -17,18 +17,10 @@
                 <tr class="info">
                     <th>Nome</th>
                     <th>CPF</th>
-                    <th>Sexo</th>
                     <th>Data de Nascimento</th>
-                    <th>Numero</th>
-                    <th>CEP</th>
-                    <th>Rua</th>
-                    <th>Bairro</th>
-                    <th>Cidade</th>
-                    <th>Complemento</th>
                     <th>Celular</th>
                     <th>Telefone</th>
                     <th>Email</th>
-                    <th>Ativo ?</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,19 +28,11 @@
                     <tr >
                         <td><c:out value="${clientes.getNome()}"/></td>
                         <td><c:out value="${clientes.getCpf()}"/></td>
-                        <td><c:out value="${clientes.getSexo()}"/></td>
                         <td><c:out value="${clientes.getData_nasc()}"/></td>
-                        <td><c:out value="${clientes.getNumero()}"/></td>
-                        <td><c:out value="${clientes.getCep()}"/></td>
-                        <td><c:out value="${clientes.getRua()}"/></td>
-                        <td><c:out value="${clientes.getBairro()}"/></td>
-                        <td><c:out value="${clientes.getCidade()}"/></td>
-                        <td><c:out value="${clientes.getComplemento()}"/></td>
                         <td><c:out value="${clientes.getCelular()}"/></td>
                         <td><c:out value="${clientes.getTelefone()}"/></td>
                         <td><c:out value="${clientes.getEmail()}"/></td>
-                        <td><c:out value="${true}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiClienteServlet?action=edit&id=${clientes.getId_cliente()}&pesquisa=${pesquisa}"/><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-danger" href="ExcluiClienteServlet?action=delete&id=${clientes.getId_cliente()}"/><i class="glyphicon glyphicon-trash">Remover</i></a></td>
                         <td><a class="btn btn-info" href="EditarCliente?action=edit&id=${clientes.getId_cliente()}"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>

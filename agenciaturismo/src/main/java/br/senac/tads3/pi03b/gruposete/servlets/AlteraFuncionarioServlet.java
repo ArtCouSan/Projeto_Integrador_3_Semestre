@@ -40,8 +40,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
             throws ServletException, IOException {
 
         FuncionarioDAO dao = new FuncionarioDAO();
-
-        boolean erro = true, verifica = false;
+        boolean erro = false, verifica = false;
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
@@ -142,7 +141,6 @@ public class AlteraFuncionarioServlet extends HttpServlet {
                     numero, cep, rua, bairro, cidade, complemento,
                     celular, telefone, email, true, cargo, filial, departamento);
             funcHumilde.setId_func(id);
-
             try {
                 dao.alterar(funcHumilde);
                 response.sendRedirect("index.jsp");

@@ -12,7 +12,7 @@
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
-        <form name="editac" action="${contextPath}/EditarCliente" method="post" class="form-horizontal">
+        <form name="editac" action="EditarCliente" method="post" class="form-horizontal">
             <input type="hidden" name="identificacao" value="${clientes.getId_cliente()}"/>
             <div class="form-group ">
                 <c:if test="${erroNome}">

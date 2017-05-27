@@ -29,10 +29,10 @@ public class BuscaFuncionarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        FuncionarioDAO dao = new FuncionarioDAO();
         String pesquisa = request.getParameter("pesquisa");
 
         try {
-            FuncionarioDAO dao = new FuncionarioDAO();
             List<Funcionario> encontrados = dao.procurarFuncionario(pesquisa);
             request.setAttribute("encontrados", encontrados);
             request.setAttribute("pesquisa", pesquisa);

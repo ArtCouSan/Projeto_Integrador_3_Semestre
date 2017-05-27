@@ -150,7 +150,7 @@ public class HotelDAO {
                 + " OR preco = ?"
                 + " OR quantidade_quartos = ?"
                 + " OR quantidade_hospedes = ?)"
-                + " AND ativo = ?";
+                + " AND ativo = true";
 
         connection = DbUtil.getConnection();
 
@@ -181,7 +181,6 @@ public class HotelDAO {
         preparedStatement.setDouble(4, n1);
         preparedStatement.setInt(5, n2);
         preparedStatement.setInt(6, n3);
-        preparedStatement.setBoolean(7, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -209,11 +208,12 @@ public class HotelDAO {
         }
     }
 
-    public void excluir(int id) throws SQLException {
+    public void excluir(int id) throws SQLException, ClassNotFoundException {
         // Comando SQL.
         String slq = "UPDATE Hotel SET ativo = ? WHERE id_hotel = ?";
 
         try {
+            connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
             // Insercoes.
             preparedStatement.setBoolean(1, false);

@@ -152,7 +152,7 @@ public class UsuarioDAO {
         // Cria lista de usuarios.
         List<Usuario> listaResultado = new ArrayList<>();
 
-        String sql = "SELECT * FROM usuario WHERE bairro = ?";
+        String sql = "SELECT * FROM usuario WHERE nome = ?";
 
         connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(sql);

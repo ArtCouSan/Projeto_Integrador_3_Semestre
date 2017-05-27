@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.HotelDAO;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +26,7 @@ public class CadastroHotelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HotelDAO dao = new HotelDAO();
         boolean erro = false;
 
         String nome_hotel = request.getParameter("nome_hotel");
@@ -65,7 +65,6 @@ public class CadastroHotelServlet extends HttpServlet {
             Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
             
             try {
-                HotelDAO dao = new HotelDAO();
                 dao.inserir(hotel);
                 response.sendRedirect("index.jsp");
             } catch (Exception ex) {

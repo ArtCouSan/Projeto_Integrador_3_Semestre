@@ -25,7 +25,7 @@ public class ExcluiHotelServlet extends HttpServlet {
         String action = request.getParameter("action");
         String pesquisa = request.getParameter("pesquisa");
         HotelDAO query = new HotelDAO();
-        if ("edit".equalsIgnoreCase(action)) {
+        if ("".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 query.excluir(id);

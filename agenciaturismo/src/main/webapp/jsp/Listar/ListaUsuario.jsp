@@ -21,7 +21,7 @@
                         <td><c:out value="${usuarios.getNome()}"/></td>
                         <td><c:out value="${usuarios.getLogin()}"/></td>
                         <td><c:out value="${usuarios.getAcesso()}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiUsuarioServlet?action=remove&id=${usuarios.getId_usuario()}&pesquisa=${pesquisa}"/><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-danger" href="ExcluiUsuarioServlet?action=delete&id=${usuarios.getId_usuario()}&pesquisa=${pesquisa}"/><i class="glyphicon glyphicon-trash">Remover</i></a></td>
                         <td><a class="btn btn-info" href="EditarUsuario?action=edit&id=${usuarios.getId_usuario()}"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>

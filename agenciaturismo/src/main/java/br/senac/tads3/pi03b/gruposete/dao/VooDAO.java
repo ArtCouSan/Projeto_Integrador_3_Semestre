@@ -156,7 +156,7 @@ public class VooDAO {
                 + " OR origem = ?"
                 + " OR quantidade_passagens = ?"
                 + " OR preco = ?)"
-                + " AND ativo = ?";
+                + " AND ativo = true";
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -179,7 +179,6 @@ public class VooDAO {
         }
         preparedStatement.setInt(5, n1);
         preparedStatement.setFloat(6, n2);
-        preparedStatement.setBoolean(7, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -213,11 +212,12 @@ public class VooDAO {
         }
     }
 
-    public void excluirVoo(int id) throws SQLException {
+    public void excluirVoo(int id) throws SQLException, ClassNotFoundException {
         // Comando SQL.
         String slq = "UPDATE Voo SET ativo = ? WHERE id_voo = ?";
 
         try {
+            connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
             // Insercoes.
             preparedStatement.setBoolean(1, false);

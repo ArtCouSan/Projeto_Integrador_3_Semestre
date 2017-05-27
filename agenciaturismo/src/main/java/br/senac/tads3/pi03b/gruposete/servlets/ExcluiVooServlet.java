@@ -25,7 +25,7 @@ public class ExcluiVooServlet extends HttpServlet {
         String action = request.getParameter("action");
         String pesquisa = request.getParameter("pesquisa");
         VooDAO query = new VooDAO();
-        if ("edit".equalsIgnoreCase(action)) {
+        if ("delete".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 query.excluirVoo(id);

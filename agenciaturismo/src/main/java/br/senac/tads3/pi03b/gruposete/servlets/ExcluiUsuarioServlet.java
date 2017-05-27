@@ -24,7 +24,7 @@ public class ExcluiUsuarioServlet extends HttpServlet {
         String action = request.getParameter("action");
         String pesquisa = request.getParameter("pesquisa");
         UsuarioDAO query = new UsuarioDAO();
-        if ("remove".equalsIgnoreCase(action)) {
+        if ("delete".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 query.excluir(id);

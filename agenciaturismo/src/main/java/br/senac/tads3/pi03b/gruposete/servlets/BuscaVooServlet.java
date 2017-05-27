@@ -30,10 +30,10 @@ public class BuscaVooServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        VooDAO dao = new VooDAO();
         String pesquisa = request.getParameter("pesquisa");
 
         try {
-            VooDAO dao = new VooDAO();
             List<Voo> encontrados = dao.procurarVoo(pesquisa);
             request.setAttribute("encontrados", encontrados);
             request.setAttribute("pesquisa", pesquisa);

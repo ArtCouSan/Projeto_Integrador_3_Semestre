@@ -7,7 +7,7 @@
     </head>
     <body>
     <c:import url="/jsp/Layout/cabecalho.jsp"/>
-    <form action="${contextPath}/EditarUsuario" method="post">
+    <form action="EditarUsuario" method="post">
         <input type="hidden" name="identificacao" value="${usuario.getId_usuario()}"/>
 
         <label>Nome:</label>

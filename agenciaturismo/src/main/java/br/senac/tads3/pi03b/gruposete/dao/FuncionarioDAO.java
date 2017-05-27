@@ -215,7 +215,7 @@ public class FuncionarioDAO {
                 + " OR cargo = ?"
                 + " OR filial = ?"
                 + " OR departamento = ?)"
-                + " AND ativo = ?";
+                + " AND ativo = true";
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -243,7 +243,6 @@ public class FuncionarioDAO {
         preparedStatement.setString(14, busca);
         preparedStatement.setString(15, busca);
         preparedStatement.setString(16, busca);
-        preparedStatement.setBoolean(17, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -291,8 +290,9 @@ public class FuncionarioDAO {
     public void excluir(int id) throws SQLException, ClassNotFoundException {
         // Comando SQL.
         String slq = "UPDATE funcionario SET ativo = ? WHERE id_func = ?";
-
+        
         try {
+            connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
             // Insercoes.
             preparedStatement.setBoolean(1, false);

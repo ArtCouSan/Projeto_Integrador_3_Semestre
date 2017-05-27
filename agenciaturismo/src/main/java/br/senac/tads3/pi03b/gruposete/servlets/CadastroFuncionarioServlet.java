@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +29,6 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             throws ServletException, IOException {
 
         FuncionarioDAO dao = new FuncionarioDAO();
-
         boolean erro = false, verifica = false;
 
         String nome = request.getParameter("nome");

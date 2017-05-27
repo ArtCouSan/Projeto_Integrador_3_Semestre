@@ -29,10 +29,10 @@ public class BuscaHotelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HotelDAO dao = new HotelDAO();
         String pesquisa = request.getParameter("pesquisa");
 
         try {
-            HotelDAO dao = new HotelDAO();
             List<Hotel> encontrados = dao.procurarHotel(pesquisa);
             request.setAttribute("encontrados", encontrados);
             request.setAttribute("pesquisa", pesquisa);

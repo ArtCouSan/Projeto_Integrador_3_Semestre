@@ -207,7 +207,7 @@ public class ClienteDAO {
                 + " OR sexo = ?"
                 + " OR telefone = ?"
                 + " OR cidade = ?)"
-                + " AND ativo = ?";
+                + " AND ativo = true";
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -232,7 +232,6 @@ public class ClienteDAO {
         preparedStatement.setString(11, busca);
         preparedStatement.setString(12, busca);
         preparedStatement.setString(13, busca);
-        preparedStatement.setBoolean(14, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -275,11 +274,12 @@ public class ClienteDAO {
         }
     }
 
-    public void excluir(int id) throws SQLException {
+    public void excluir(int id) throws SQLException, ClassNotFoundException {
         // Comando SQL.
         String slq = "UPDATE cliente SET ativo = ? WHERE id_cliente = ?";
-
+        
         try {
+            connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
             // Insercoes.
             preparedStatement.setBoolean(1, false);
