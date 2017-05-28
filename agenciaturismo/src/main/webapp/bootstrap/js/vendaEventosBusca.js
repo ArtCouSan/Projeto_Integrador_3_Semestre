@@ -98,48 +98,57 @@ function listarHotel(evt) {
         var tdN = document.createElement("td");
         var nomeD = document.createTextNode(obj[item].nome_hotel);
         tdN.appendChild(nomeD);
-	var id1 = document.createAttribute("id");
+        var id1 = document.createAttribute("id");
         id1.value = "nome" + obj[item].id_hotel;
         tdN.setAttributeNode(id1);
 
         var tdDe = document.createElement("td");
         var data_eD = document.createTextNode(obj[item].data_entrada);
         tdDe.appendChild(data_eD);
-	var id2 = document.createAttribute("id");
+        var id2 = document.createAttribute("id");
         id2.value = "data_entrada" + obj[item].id_hotel;
         tdDe.setAttributeNode(id2);
 
         var tdDs = document.createElement("td");
         var data_sD = document.createTextNode(obj[item].data_saida);
         tdDs.appendChild(data_sD);
-	var id3 = document.createAttribute("id");
+        var id3 = document.createAttribute("id");
         id3.value = "data_saida" + obj[item].id_hotel;
         tdDs.setAttributeNode(id3);
 
         var tdP = document.createElement("td");
         var precoD = document.createTextNode(obj[item].preco);
         tdP.appendChild(precoD);
-	var id4 = document.createAttribute("id");
+        var id4 = document.createAttribute("id");
         id4.value = "preco" + obj[item].id_hotel;
         tdP.setAttributeNode(id4);
 
         var tdQq = document.createElement("td");
-        var qtd_qD = document.createTextNode(obj[item].quantidade_quartos);
-        tdQq.appendChild(qtd_qD);
-	var id5 = document.createAttribute("id");
+        var inputQ = document.createElement("input");
+        var type = document.createAttribute("type");
+        var max = document.createAttribute("max");
+        var min = document.createAttribute("min");
+        type.value = "number";
+        max.value = obj[item].quantidade_quartos;
+        min.value = 1;
+        inputQ.setAttributeNode(max);
+        inputQ.setAttributeNode(min);
+        inputQ.setAttributeNode(type);
+        tdQq.appendChild(inputQ);
+        var id5 = document.createAttribute("id");
         id5.value = "qtd_quartos" + obj[item].id_hotel;
-        tdQq.setAttributeNode(id5);
+        inputQ.setAttributeNode(id5);
 
         var tdQh = document.createElement("td");
         var qtd_hD = document.createTextNode(obj[item].quantidade_hospedes);
         tdQh.appendChild(qtd_hD);
-	var id6 = document.createAttribute("id");
+        var id6 = document.createAttribute("id");
         id6.value = "qtd_hospedes" + obj[item].id_hotel;
         tdQh.setAttributeNode(id6);
 
         var buttonAd = document.createElement("button");
         var adicionar = document.createTextNode("Adicionar");
-	var action = document.createAttribute("onclick");
+        var action = document.createAttribute("onclick");
         action.value = "addCarrinhoHotel(" + obj[item].id_hotel + ")";
         buttonAd.setAttributeNode(action);
         buttonAd.appendChild(adicionar);
@@ -299,7 +308,7 @@ function addCarrinhoHotel(id) {
         var nome = document.getElementById("nome" + id).innerText;
         var data_entrada = document.getElementById("data_entrada" + id).innerText;
         var data_saida = document.getElementById("data_saida" + id).innerText;
-        var qtd_quartos = document.getElementById("qtd_quartos" + id).innerText;
+        var qtd_quartos = document.getElementById("qtd_quartos" + id).value;
         var qtd_hospedes = document.getElementById("qtd_hospedes" + id).innerText;
         var preco = document.getElementById("preco" + id).innerText;
 
@@ -307,7 +316,7 @@ function addCarrinhoHotel(id) {
 
         var totalConvertido = parseFloat(totalPreco.innerText);
 
-        totalPreco.innerText = totalConvertido + parseFloat(preco);
+        totalPreco.innerText = totalConvertido + (parseFloat(preco) * qtd_quartos);
 
         var carrinho = document.getElementById("carrinho");
 
@@ -341,9 +350,26 @@ function addCarrinhoHotel(id) {
         name3.value = "data_saida";
         tdDs.setAttributeNode(name3);
 
+        var tdP = document.createElement("td");
+        var precoD = document.createTextNode(preco);
+        tdP.appendChild(precoD);
+        var name6 = document.createAttribute("name");
+        name6.value = "preco";
+        tdP.setAttributeNode(name6);
+
         var tdQt = document.createElement("td");
-        var qtd_quartosD = document.createTextNode(qtd_quartos);
-        tdQt.appendChild(qtd_quartosD);
+        var inputQ = document.createElement("input");
+        var type = document.createAttribute("type");
+        var max = document.createAttribute("max");
+        var min = document.createAttribute("min");
+        type.value = "number";
+        max.value = document.getElementById("qtd_quartos" + id).max;
+        min.value = 1;
+        inputQ.setAttributeNode(max);
+        inputQ.setAttributeNode(min);
+        inputQ.setAttributeNode(type);
+        inputQ.value = (qtd_quartos);
+        tdQt.appendChild(inputQ);
         var name4 = document.createAttribute("name");
         name4.value = "qtd_quartos";
         tdQt.setAttributeNode(name4);
@@ -355,13 +381,6 @@ function addCarrinhoHotel(id) {
         name5.value = "qtd_hospedes";
         tdQh.setAttributeNode(name5);
 
-        var tdP = document.createElement("td");
-        var precoD = document.createTextNode(preco);
-        tdP.appendChild(precoD);
-        var name6 = document.createAttribute("name");
-        name6.value = "preco";
-        tdP.setAttributeNode(name6);
-
         var buttonR = document.createElement("button");
         var remover = document.createTextNode("Remover");
         var action = document.createAttribute("onclick");
@@ -372,9 +391,9 @@ function addCarrinhoHotel(id) {
         tr.appendChild(tdN);
         tr.appendChild(tdDe);
         tr.appendChild(tdDs);
+        tr.appendChild(tdP);
         tr.appendChild(tdQt);
         tr.appendChild(tdQh);
-        tr.appendChild(tdP);
         tr.appendChild(buttonR);
 
         carrinho.appendChild(tr);
@@ -554,7 +573,11 @@ function excluirCarrinhoHotel(id) {
 
         if (table.rows[i].id == id) {
 
-            totalPreco.innerText = totalConvertido - parseFloat(table.rows[i].children[3].innerText);
+            var preco = parseFloat(table.rows[i].children[3].innerText);
+
+            var quantidade = table.rows[i].children[4].firstChild.value;
+
+            totalPreco.innerText = totalConvertido - (preco * quantidade);
 
             table.deleteRow(i);
 
