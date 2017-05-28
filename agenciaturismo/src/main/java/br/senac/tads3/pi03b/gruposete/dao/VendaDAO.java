@@ -283,7 +283,7 @@ public class VendaDAO {
                 + " OR data_saida LIKE ?"
                 + " OR preco LIKE  ?"
                 + " OR quantidade_quartos LIKE ?"
-                + " OR quantidade_hospedes LIKE ?) LIMIT 10";
+                + " OR quantidade_hospedes LIKE ?) LIMIT 5";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
 
@@ -356,7 +356,7 @@ public class VendaDAO {
                 + " OR destino LIKE ?"
                 + " OR origem LIKE  ?"
                 + " OR preco LIKE ?"
-                + " OR quantidade_passagens LIKE ?) LIMIT 10";
+                + " OR quantidade_passagens LIKE ?) LIMIT 5";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
 

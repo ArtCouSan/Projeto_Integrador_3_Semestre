@@ -46,7 +46,7 @@ function listarHotel(evt) {
 
     var tr = document.createElement("tr");
     var info = document.createAttribute("class");
-    info.value = "info";
+    info.value = "danger";
     tr.setAttributeNode(info);
 
     var thN = document.createElement("th");
@@ -94,26 +94,54 @@ function listarHotel(evt) {
     for (var item in obj) {
 
         var tr2 = document.createElement("tr");
+
         var tdN = document.createElement("td");
         var nomeD = document.createTextNode(obj[item].nome_hotel);
         tdN.appendChild(nomeD);
+	var id1 = document.createAttribute("id");
+        id1.value = "nome" + obj[item].id_hotel;
+        tdN.setAttributeNode(id1);
+
         var tdDe = document.createElement("td");
         var data_eD = document.createTextNode(obj[item].data_entrada);
         tdDe.appendChild(data_eD);
+	var id2 = document.createAttribute("id");
+        id2.value = "data_entrada" + obj[item].id_hotel;
+        tdDe.setAttributeNode(id2);
+
         var tdDs = document.createElement("td");
         var data_sD = document.createTextNode(obj[item].data_saida);
         tdDs.appendChild(data_sD);
+	var id3 = document.createAttribute("id");
+        id3.value = "data_saida" + obj[item].id_hotel;
+        tdDs.setAttributeNode(id3);
+
         var tdP = document.createElement("td");
         var precoD = document.createTextNode(obj[item].preco);
         tdP.appendChild(precoD);
+	var id4 = document.createAttribute("id");
+        id4.value = "preco" + obj[item].id_hotel;
+        tdP.setAttributeNode(id4);
+
         var tdQq = document.createElement("td");
         var qtd_qD = document.createTextNode(obj[item].quantidade_quartos);
         tdQq.appendChild(qtd_qD);
+	var id5 = document.createAttribute("id");
+        id5.value = "qtd_quartos" + obj[item].id_hotel;
+        tdQq.setAttributeNode(id5);
+
         var tdQh = document.createElement("td");
         var qtd_hD = document.createTextNode(obj[item].quantidade_hospedes);
         tdQh.appendChild(qtd_hD);
+	var id6 = document.createAttribute("id");
+        id6.value = "qtd_hospedes" + obj[item].id_hotel;
+        tdQh.setAttributeNode(id6);
+
         var buttonAd = document.createElement("button");
         var adicionar = document.createTextNode("Adicionar");
+	var action = document.createAttribute("onclick");
+        action.value = "addCarrinhoHotel(" + obj[item].id_hotel + ")";
+        buttonAd.setAttributeNode(action);
         buttonAd.appendChild(adicionar);
 
         tr2.appendChild(tdN);
@@ -148,7 +176,7 @@ function listarVoo(evt) {
 
     var tr = document.createElement("tr");
     var info = document.createAttribute("class");
-    info.value = "info";
+    info.value = "danger";
     tr.setAttributeNode(info);
 
     var thO = document.createElement("th");
@@ -262,23 +290,117 @@ function listarVoo(evt) {
 
 }
 
+function addCarrinhoHotel(id) {
+
+    var verificarDuplicidade = percorrerCarrinhoHotel(id);
+
+    if (verificarDuplicidade === true) {
+
+        var nome = document.getElementById("nome" + id).innerText;
+        var data_entrada = document.getElementById("data_entrada" + id).innerText;
+        var data_saida = document.getElementById("data_saida" + id).innerText;
+        var qtd_quartos = document.getElementById("qtd_quartos" + id).innerText;
+        var qtd_hospedes = document.getElementById("qtd_hospedes" + id).innerText;
+        var preco = document.getElementById("preco" + id).innerText;
+
+        var totalPreco = document.getElementById("total");
+
+        var totalConvertido = parseFloat(totalPreco.innerText);
+
+        totalPreco.innerText = totalConvertido + parseFloat(preco);
+
+        var carrinho = document.getElementById("carrinho");
+
+        var tr = document.createElement("tr");
+        var name0 = document.createAttribute("name");
+        name0.value = id;
+        tr.setAttributeNode(name0);
+
+        var idTag = document.createAttribute("id");
+        idTag.value = id;
+        tr.setAttributeNode(idTag);
+
+        var tdN = document.createElement("td");
+        var nomeD = document.createTextNode(nome);
+        tdN.appendChild(nomeD);
+        var name1 = document.createAttribute("name");
+        name1.value = "nome";
+        tdN.setAttributeNode(name1);
+
+        var tdDe = document.createElement("td");
+        var data_entradaD = document.createTextNode(data_entrada);
+        tdDe.appendChild(data_entradaD);
+        var name2 = document.createAttribute("name");
+        name2.value = "data_entrada";
+        tdDe.setAttributeNode(name2);
+
+        var tdDs = document.createElement("td");
+        var data_saidaD = document.createTextNode(data_saida);
+        tdDs.appendChild(data_saidaD);
+        var name3 = document.createAttribute("name");
+        name3.value = "data_saida";
+        tdDs.setAttributeNode(name3);
+
+        var tdQt = document.createElement("td");
+        var qtd_quartosD = document.createTextNode(qtd_quartos);
+        tdQt.appendChild(qtd_quartosD);
+        var name4 = document.createAttribute("name");
+        name4.value = "qtd_quartos";
+        tdQt.setAttributeNode(name4);
+
+        var tdQh = document.createElement("td");
+        var qtd_qhD = document.createTextNode(qtd_hospedes);
+        tdQh.appendChild(qtd_qhD);
+        var name5 = document.createAttribute("name");
+        name5.value = "qtd_hospedes";
+        tdQh.setAttributeNode(name5);
+
+        var tdP = document.createElement("td");
+        var precoD = document.createTextNode(preco);
+        tdP.appendChild(precoD);
+        var name6 = document.createAttribute("name");
+        name6.value = "preco";
+        tdP.setAttributeNode(name6);
+
+        var buttonR = document.createElement("button");
+        var remover = document.createTextNode("Remover");
+        var action = document.createAttribute("onclick");
+        action.value = "excluirCarrinhoHotel(" + id + ")";
+        buttonR.setAttributeNode(action);
+        buttonR.appendChild(remover);
+
+        tr.appendChild(tdN);
+        tr.appendChild(tdDe);
+        tr.appendChild(tdDs);
+        tr.appendChild(tdQt);
+        tr.appendChild(tdQh);
+        tr.appendChild(tdP);
+        tr.appendChild(buttonR);
+
+        carrinho.appendChild(tr);
+
+    }
+
+}
+
 function addCarrinhoVoo(id) {
 
-    var verificarDuplicidade = percorrerCarrinho(id);
+    var verificarDuplicidade = percorrerCarrinhoVoo(id);
 
     if (verificarDuplicidade === true) {
 
         var origem = document.getElementById("origem" + id).innerText;
-
         var destino = document.getElementById("destino" + id).innerText;
-
         var data_ida = document.getElementById("data_i" + id).innerText;
-
         var data_volta = document.getElementById("data_v" + id).innerText;
-
         var quantidade_passagens = document.getElementById("qtd_p" + id).innerText;
-
         var preco = document.getElementById("preco" + id).innerText;
+
+        var totalPreco = document.getElementById("total");
+
+        var totalConvertido = parseFloat(totalPreco.innerText);
+
+        totalPreco.innerText = totalConvertido + parseFloat(preco);
 
         var carrinho = document.getElementById("carrinho2");
 
@@ -354,7 +476,7 @@ function addCarrinhoVoo(id) {
 
 }
 
-function percorrerCarrinho(id) {
+function percorrerCarrinhoVoo(id) {
 
     var table = document.getElementById("carrinho2");
 
@@ -374,7 +496,31 @@ function percorrerCarrinho(id) {
 
 }
 
+function percorrerCarrinhoHotel(id) {
+
+    var table = document.getElementById("carrinho");
+
+    var tamanho = table.rows.length;
+
+    for (var i = 0; i < tamanho; i++) {
+
+        if (table.rows[i].id == id) {
+
+            return false;
+
+        }
+
+    }
+
+    return true;
+
+}
+
 function excluirCarrinhoVoo(id) {
+
+    var totalPreco = document.getElementById("total");
+
+    var totalConvertido = parseFloat(totalPreco.innerText);
 
     var table = document.getElementById("carrinho2");
 
@@ -383,6 +529,32 @@ function excluirCarrinhoVoo(id) {
     for (var i = 0; i < tamanho; i++) {
 
         if (table.rows[i].id == id) {
+
+            totalPreco.innerText = totalConvertido - parseFloat(table.rows[i].children[5].innerText);
+
+            table.deleteRow(i);
+
+        }
+
+    }
+
+}
+
+function excluirCarrinhoHotel(id) {
+
+    var totalPreco = document.getElementById("total");
+
+    var totalConvertido = parseFloat(totalPreco.innerText);
+
+    var table = document.getElementById("carrinho");
+
+    var tamanho = table.rows.length;
+
+    for (var i = 0; i < tamanho; i++) {
+
+        if (table.rows[i].id == id) {
+
+            totalPreco.innerText = totalConvertido - parseFloat(table.rows[i].children[3].innerText);
 
             table.deleteRow(i);
 

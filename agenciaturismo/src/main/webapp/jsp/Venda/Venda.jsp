@@ -18,11 +18,11 @@
                     <div class="col-md-6">
                         <div class="form-group col-lg-10">
                             <label>Total</label>
-                            <label  name="total" class="form-control"></label>
+                            <label id="total" name="total" class="form-control">0</label>
                         </div>
                         <div class="form-group col-lg-10">
                             <label>Quantidade</label>
-                            <label  name="total" class="form-control"></label>
+                            <label  name="total" class="form-control">0</label>
                         </div>
                     </div>
                 </div>
@@ -37,30 +37,25 @@
                     </div>		
                 </div>
                 <div class="container-page">
-                    <div id="wrap" class="container">
-                        <div class="row">
-                            <div class="controls col-md-5">
-                                <input name="pesquisaVoo" id="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaVoo">
-                                <button onclick="pesquisaVoo()" type="submit" class="btn">Pesquisar Voo</button>
-                            </div>
-                        </div>
+                    <div class="form-group col-sm-4 col-lg-push-">
+                        <input name="pesquisaVoo" id="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaVoo">
+                        <button onclick="pesquisaVoo()" type="submit" class="btn ">Pesquisar Voo</button>
                     </div>
                 </div>
                 <div class="container-page">
-                    <div id="wrap" class="container">
-                        <div class="row">
-                            <div class="controls col-md-5">
-                                <input name="pesquisaHotel" id="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaHotel">
-                                <button onclick="pesquisaHotel()" type="submit" class="btn">Pesquisar Hotel</button>                    
-                            </div>                        
+                    <div class="form-group col-sm-4 col-lg-push-3">
+                        <div class="form-group">
+                            <input name="pesquisaHotel" id="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaHotel">
+                            <button onclick="pesquisaHotel()" type="submit" class="btn">Pesquisar Hotel</button>                    
                         </div>
                     </div>
                 </div>
-                <div class="container-page">
+                <div class="container-page" >
                     <table class="table table-striped" id="table">
 
                     </table>
                 </div>
+                <label class="h3">Carrinho - Hotel</label>
                 <div class="container-page">
                     <table class="table table-striped" >
                         <thead>
@@ -79,6 +74,7 @@
                         </tbody>
                     </table>
                 </div>
+                <label class="h3">Carrinho - Vôo</label>
                 <div class="container-page">
                     <table class="table table-striped">
                         <thead>
@@ -93,9 +89,18 @@
                             </tr>
                         <thead>
                         <tbody id="carrinho2">
-                            
+
                         </tbody>
                     </table>
+                </div>
+                <div class="container-page">
+                    <div id="wrap" class="container">
+                        <div class="row">
+                            <div class="controls col-md-5">
+                                <button type="submit" class="btn">Vender</button>                    
+                            </div>                        
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
