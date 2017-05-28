@@ -21,8 +21,6 @@ public class BuscaVooVendaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("2");
-        
         try {
 
             String busca = request.getParameter("busca");
@@ -46,11 +44,11 @@ public class BuscaVooVendaServlet extends HttpServlet {
                 json.put("destino", voos.getDestino());
                 jsonArray.add(json);
 
-                try (PrintWriter out = response.getWriter()) {
+            }
 
-                    out.println(jsonArray.toJSONString());
+            try (PrintWriter out = response.getWriter()) {
 
-                }
+                out.println(jsonArray.toJSONString());
 
             }
 

@@ -342,8 +342,6 @@ public class VendaDAO {
 
     public ArrayList<Voo> procurarVoo(String busca) throws SQLException, ClassNotFoundException {
 
-        System.out.println(">>>> bd");
-        
         // Conecta.
         connection = DbUtil.getConnection();
 
@@ -365,7 +363,12 @@ public class VendaDAO {
         stmt.setString(2, busca);
         stmt.setString(3, busca);
         stmt.setString(4, busca);
-        stmt.setString(5, busca);
+        try {
+            float buscaN = Float.parseFloat(busca);
+            stmt.setFloat(5, buscaN);
+        } catch (NumberFormatException e) {
+            stmt.setString(5, busca);
+        }
         stmt.setString(6, busca);
 
         // Executa e recebe resultado.
@@ -401,7 +404,7 @@ public class VendaDAO {
                     true);
 
             listaResultado.add(voo);
-
+            
         }
 
         // Fecha conexao.

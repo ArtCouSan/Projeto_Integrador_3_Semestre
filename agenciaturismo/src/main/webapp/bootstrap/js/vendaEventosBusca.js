@@ -39,15 +39,15 @@ function pesquisaVoo() {
 
 function listarVoo(evt) {
 
+    var table = document.getElementById("table");
+
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
+    }
+
     var texto = (evt.target.responseText);
 
     var obj = JSON.parse(texto);
-
-    var table = document.getElementById("table");
-
-    if (table.hasChildNodes()) {
-        table.removeChild(table.childNodes[0]);
-    }
 
     var thead = document.createElement("thead");
 
@@ -78,7 +78,7 @@ function listarVoo(evt) {
     thP.appendChild(preco);
 
     tr.appendChild(thO);
-    tr.appendChild(thDi);
+    tr.appendChild(thDe);
     tr.appendChild(thDi);
     tr.appendChild(thDv);
     tr.appendChild(thQp);
@@ -91,34 +91,37 @@ function listarVoo(evt) {
     var tbody = document.createElement("tbody");
 
     for (var item of obj) {
+        console.log(item);
+    }
+
+    for (var item in obj) {
 
         var tr2 = document.createElement("tr");
         var tdO = document.createElement("td");
-        var nomeD = obj;
-        console.log(item);
-        tdN.appendChild(nomeD);
+        var origemD = document.createTextNode(obj[item].origem);
+        tdO.appendChild(origemD);
         var tdD = document.createElement("td");
-        var data_eD;
-        tdDe.appendChild(data_eD);
+        var destinoD = document.createTextNode(obj[item].destino);
+        tdD.appendChild(destinoD);
         var tdDi = document.createElement("td");
-        var data_sD;
-        tdDs.appendChild(data_sD);
+        var data_iD = document.createTextNode(obj[item].data_ida);
+        tdDi.appendChild(data_iD);
         var tdDv = document.createElement("td");
-        var precoD;
-        tdP.appendChild(precoD);
+        var data_vD = document.createTextNode(obj[item].data_volta);
+        tdDv.appendChild(data_vD);
         var tdQp = document.createElement("td");
-        var qtd_qD;
-        tdQq.appendChild(qtd_qD);
+        var qtd_pD = document.createTextNode(obj[item].quantidade_passagens);
+        tdQp.appendChild(qtd_pD);
         var tdP = document.createElement("td");
-        var qtd_hD;
-        tdQh.appendChild(qtd_hD);
+        var precoD = document.createTextNode(obj[item].preco);
+        tdP.appendChild(precoD);
 
-        tr2.appendChild(tdN);
-        tr2.appendChild(tdDe);
-        tr2.appendChild(tdDs);
+        tr2.appendChild(tdO);
+        tr2.appendChild(tdD);
+        tr2.appendChild(tdDi);
+        tr2.appendChild(tdDv);
+        tr2.appendChild(tdQp);
         tr2.appendChild(tdP);
-        tr2.appendChild(tdQq);
-        tr2.appendChild(tdQh);
 
         tbody.appendChild(tr2);
 
