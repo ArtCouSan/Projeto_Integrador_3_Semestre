@@ -335,7 +335,9 @@ function addCarrinhoVoo(id) {
 
         var buttonR = document.createElement("button");
         var remover = document.createTextNode("Remover");
-
+        var action = document.createAttribute("onclick");
+        action.value = "excluirCarrinhoVoo(" + id + ")";
+        buttonR.setAttributeNode(action);
         buttonR.appendChild(remover);
 
         tr.appendChild(tdO);
@@ -364,10 +366,28 @@ function percorrerCarrinho(id) {
 
             return false;
 
-        } 
+        }
 
     }
 
     return true;
+
+}
+
+function excluirCarrinhoVoo(id) {
+
+    var table = document.getElementById("carrinho2");
+
+    var tamanho = table.rows.length;
+
+    for (var i = 0; i < tamanho; i++) {
+
+        if (table.rows[i].id == id) {
+
+            table.deleteRow(i);
+
+        }
+
+    }
 
 }
