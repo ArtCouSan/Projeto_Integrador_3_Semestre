@@ -319,7 +319,7 @@ public class VendaDAO {
             quantidade_quartos = (result.getInt("quantidade_quartos"));
             quantidade_hospedes = (result.getInt("quantidade_hospedes"));
 
-            Hotel carrinho = new Hotel(
+            Hotel hotel = new Hotel(
                     nome,
                     data_entrada,
                     data_saida,
@@ -327,8 +327,10 @@ public class VendaDAO {
                     quantidade_hospedes,
                     preco,
                     true);
+            
+            hotel.setId_hotel(id_hotel);
 
-            listaResultado.add(carrinho);
+            listaResultado.add(hotel);
 
         }
 
@@ -403,6 +405,8 @@ public class VendaDAO {
                     preco,
                     true);
 
+            voo.setId_voo(id_voo);
+            
             listaResultado.add(voo);
             
         }

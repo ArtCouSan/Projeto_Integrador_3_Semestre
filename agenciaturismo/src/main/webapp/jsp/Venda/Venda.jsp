@@ -61,6 +61,42 @@
 
                     </table>
                 </div>
+                <div class="container-page">
+                    <table class="table table-striped" >
+                        <thead>
+                            <tr class="info">
+                                <th>Nome</th>
+                                <th>Data de entrada</th>
+                                <th>Data de saida</th>
+                                <th>Preco</th>
+                                <th>Quantidade de quartos</th>
+                                <th>Quantidade de hospedes</th>
+                                <th>Remover</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carrinho">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container-page">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="info">
+                                <th>Origem</th>
+                                <th>Destino</th>
+                                <th>Data de ida</th>
+                                <th>Data de volta</th>
+                                <th>Quantidade de passagens</th>
+                                <th>Preco</th>
+                                <th>Remover</th>
+                            </tr>
+                        <thead>
+                        <tbody id="carrinho2">
+                            
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
