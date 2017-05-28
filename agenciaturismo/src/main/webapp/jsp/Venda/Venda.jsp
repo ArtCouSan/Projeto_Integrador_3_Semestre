@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="container-page">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="table">
 
                     </table>
                 </div>
