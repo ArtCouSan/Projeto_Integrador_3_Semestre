@@ -717,3 +717,22 @@ function atualizarPreco_Voo(id, quantidade) {
     }
 
 }
+
+function venda() {
+
+    var carrinho_hotel = document.getElementById("carrinho");
+    var carrinho_voo = document.getElementById("carrinho2");
+
+    var tamanho_hotel = carrinho_hotel.rows.length;
+    var tamanho_voo = carrinho_voo.rows.length;
+
+    for (var i = 0; i < tamanho_hotel; i++) {
+
+    }
+
+    for (var i = 0; i < tamanho_voo; i++) {
+
+    }
+
+
+}
