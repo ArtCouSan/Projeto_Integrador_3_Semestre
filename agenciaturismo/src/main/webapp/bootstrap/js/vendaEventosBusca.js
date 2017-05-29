@@ -362,9 +362,12 @@ function addCarrinhoHotel(id) {
         var type = document.createAttribute("type");
         var max = document.createAttribute("max");
         var min = document.createAttribute("min");
+        var actionPreco = document.createAttribute("onclick");
+        actionPreco.value = "atualizarPreco_Hotel(" + id + "," + qtd_quartos + ")";
         type.value = "number";
         max.value = document.getElementById("qtd_quartos" + id).max;
         min.value = 1;
+        inputQ.setAttributeNode(actionPreco);
         inputQ.setAttributeNode(max);
         inputQ.setAttributeNode(min);
         inputQ.setAttributeNode(type);
@@ -580,6 +583,57 @@ function excluirCarrinhoHotel(id) {
             totalPreco.innerText = totalConvertido - (preco * quantidade);
 
             table.deleteRow(i);
+
+        }
+
+    }
+
+}
+
+function atualizarPreco_Hotel(id, quantidade) {
+
+    var totalPreco = document.getElementById("total");
+
+    var totalConvertido = parseFloat(totalPreco.innerText);
+
+    var table = document.getElementById("carrinho");
+
+    var tamanho = table.rows.length;
+
+    for (var i = 0; i < tamanho; i++) {
+
+        if (table.rows[i].id == id) {
+
+            var preco = parseFloat(table.rows[i].children[3].innerText);
+
+            var quantidadeAtualizada = table.rows[i].children[4].firstChild.value;
+
+            totalPreco.innerText = totalConvertido - (preco * quantidade);
+
+            totalPreco.innerText = totalConvertido + (preco * quantidadeAtualizada);
+
+            var maximo = table.rows[i].children[4].firstChild.max;
+
+            table.rows[i].children[4].removeChild(table.rows[i].children[4].firstChild);
+
+            var inputQ = document.createElement("input");
+            var type = document.createAttribute("type");
+            var max = document.createAttribute("max");
+            var min = document.createAttribute("min");
+            var actionPreco = document.createAttribute("onclick");
+            actionPreco.value = "atualizarPreco_Hotel(" + id + "," + quantidadeAtualizada + ")";
+            type.value = "number";
+            max.value = maximo;
+            min.value = 1;
+            inputQ.setAttributeNode(actionPreco);
+            inputQ.setAttributeNode(max);
+            inputQ.setAttributeNode(min);
+            inputQ.setAttributeNode(type);
+            inputQ.value = (quantidadeAtualizada);
+            table.rows[i].children[4].appendChild(inputQ);
+            var id5 = document.createAttribute("id");
+            id5.value = "qtd_quartos" + id;
+            inputQ.setAttributeNode(id5);
 
         }
 
