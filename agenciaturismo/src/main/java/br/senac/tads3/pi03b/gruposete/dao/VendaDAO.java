@@ -22,16 +22,15 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "INSERT INTO venda "
-                + "(id_cliente, id_produto, id_func, preco) "
+                + "(id_cliente, id_funcionario, total_preco) "
                 + "VALUES (?, ?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
         preparedStatement.setInt(1, venda.getId_cliente());
-        preparedStatement.setInt(2, venda.getId_produto());
-        preparedStatement.setInt(3, venda.getId_func());
-        preparedStatement.setDouble(4, venda.getPreco());
+        preparedStatement.setInt(2, venda.getId_func());
+        preparedStatement.setDouble(3, venda.getPreco());
 
         // Executa.
         preparedStatement.execute();
@@ -46,7 +45,7 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "INSERT INTO itens_venda "
-                + "(Id_produto, quantidade, preco, id_venda) "
+                + "(id_produto, quantidade, preco, id_venda) "
                 + "VALUES (? , ?, ?, ?)";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
@@ -152,7 +151,7 @@ public class VendaDAO {
             venda.setId_venda(resultSet.getInt("id_venda"));
             venda.setId_cliente(resultSet.getInt("id_cliente"));
             venda.setPreco(resultSet.getFloat("total"));
-            venda.setTotal_quantidade(resultSet.getInt("total_quantidade"));
+            //venda.setTotal_quantidade(resultSet.getInt("total_quantidade"));
 
             // Adiciona a lista.
             listaResultado.add(venda);
@@ -200,7 +199,7 @@ public class VendaDAO {
             venda.setId_venda(result.getInt("id_venda"));
             venda.setId_cliente(result.getInt("id_cliente"));
             venda.setPreco(result.getFloat("total"));
-            venda.setTotal_quantidade(result.getInt("total_quantidade"));
+            // venda.setTotal_quantidade(result.getInt("total_quantidade"));
 
             // Fecha conexao.
             connection.close();
@@ -247,7 +246,7 @@ public class VendaDAO {
         int quantidade;
         float preco;
 
-        // Loop com resultados.
+        // Loop com re///sultados.
         while (result.next()) {
 
             // Prenche.
@@ -255,10 +254,8 @@ public class VendaDAO {
             quantidade = (result.getInt("quantidade"));
             preco = (result.getFloat("preco"));
 
-            Carrinho carrinho = new Carrinho(id_produto, preco, quantidade);
-
-            listaResultado.add(carrinho);
-
+            // Carrinho carrinho = new Carrinho(id_produto, preco, quantidade);
+            //listaResultado.add(carrinho);
         }
 
         // Fecha conexao.
@@ -327,7 +324,7 @@ public class VendaDAO {
                     quantidade_hospedes,
                     preco,
                     true);
-            
+
             hotel.setId_hotel(id_hotel);
 
             listaResultado.add(hotel);
@@ -406,9 +403,9 @@ public class VendaDAO {
                     true);
 
             voo.setId_voo(id_voo);
-            
+
             listaResultado.add(voo);
-            
+
         }
 
         // Fecha conexao.

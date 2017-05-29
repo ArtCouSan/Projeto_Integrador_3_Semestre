@@ -735,4 +735,19 @@ function venda() {
     }
 
 
+    window.location.href = "VendaServlet?"
+            + "idsVoos="
+            + idsVoo
+            + "&idsHoteis="
+            + idsHotel
+            + "&precosVoos="
+            + precosVoo
+            + "&precosHoteis="
+            + precosHotel
+            + "&quantidadeVoos="
+            + quantidadeVoo
+            + "&quantidadeHoteis="
+            + quantidadeHotel;
+    
+    
 }

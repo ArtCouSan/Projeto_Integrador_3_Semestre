@@ -8,7 +8,7 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
+        <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
@@ -20,7 +20,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Nome:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="nome" type="text" placeholder="Insira nome"  id="example-text-input" required>
+                        <input maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome"  id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -29,7 +29,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CPF:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control cpf-mask" placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
+                        <input maxlength="15"  class="form-control" onkeypress="mascara(this, '###.###.###-##')"  placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
 
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Rua:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="rua" placeholder="Insira rua"  type="text" id="example-text-input" required>
+                        <input maxlength="50" class="form-control" name="rua" placeholder="Insira rua"  type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -66,7 +66,7 @@
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Numero:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" type="number" name="numero" placeholder="Insira numero"  id="example-number-input" required>
+                        <input maxlength="3" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="example-number-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -84,7 +84,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CEP:</label>
                     <div class="controls col-md-5">
-                        <input required class="form-control cep-mask form-control" placeholder="00000-000"  name="cep"  type="text" id="example-text-input" required>
+                        <input required class="form-control form-control" onkeypress="mascara(this, '#####-###')" placeholder="00000-000"  name="cep"  type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -110,13 +110,13 @@
                 <div class="form-group">                  
                     <label for="example-text-input" class="control-label col-md-4">Celular:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control cel-sp-mask" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input" data-mask="(00) 0000-0000" data-mask-selectonfocus="true">
+                        <input class="form-control cel-sp-mask" onkeypress="mascara(this, '(##) #####-####')" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input" data-mask="(00) 0000-0000" data-mask-selectonfocus="true">
                     </div>
                 </div>
                 <div class="form-group">               
                     <label for="example-text-input" class="control-label col-md-4">Telefone:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control phone-ddd-mask" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
+                        <input class="form-control" onkeypress="mascara(this, '(##) ####-####')" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
                     </div>
                 </div>
                 <div class="form-group">
