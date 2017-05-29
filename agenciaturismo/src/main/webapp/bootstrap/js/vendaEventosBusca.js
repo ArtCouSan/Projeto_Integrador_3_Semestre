@@ -262,8 +262,17 @@ function listarVoo(evt) {
         tdDv.setAttributeNode(id4);
 
         var tdQp = document.createElement("td");
-        var qtd_pD = document.createTextNode(obj[item].quantidade_passagens);
-        tdQp.appendChild(qtd_pD);
+        var inputQ = document.createElement("input");
+        var type = document.createAttribute("type");
+        var max = document.createAttribute("max");
+        var min = document.createAttribute("min");
+        type.value = "number";
+        max.value = obj[item].quantidade_passagens;
+        min.value = 1;
+        inputQ.setAttributeNode(max);
+        inputQ.setAttributeNode(min);
+        inputQ.setAttributeNode(type);
+        tdQp.appendChild(inputQ);
         var id5 = document.createAttribute("id");
         id5.value = "qtd_p" + obj[item].id_voo;
         tdQp.setAttributeNode(id5);
@@ -415,7 +424,7 @@ function addCarrinhoVoo(id) {
         var destino = document.getElementById("destino" + id).innerText;
         var data_ida = document.getElementById("data_i" + id).innerText;
         var data_volta = document.getElementById("data_v" + id).innerText;
-        var quantidade_passagens = document.getElementById("qtd_p" + id).innerText;
+        var quantidade_passagens = document.getElementById("qtd_p" + id).firstChild.value;
         var preco = document.getElementById("preco" + id).innerText;
 
         var totalPreco = document.getElementById("total");
@@ -464,8 +473,21 @@ function addCarrinhoVoo(id) {
         tdDv.setAttributeNode(name4);
 
         var tdQp = document.createElement("td");
-        var qtd_pD = document.createTextNode(quantidade_passagens);
-        tdQp.appendChild(qtd_pD);
+        var inputQ = document.createElement("input");
+        var type = document.createAttribute("type");
+        var max = document.createAttribute("max");
+        var min = document.createAttribute("min");
+        var actionPreco = document.createAttribute("onclick");
+        actionPreco.value = "atualizarPreco_Voo(" + id + "," + quantidade_passagens + ")";
+        type.value = "number";
+        max.value = document.getElementById("qtd_p" + id).max;
+        min.value = 1;
+        inputQ.setAttributeNode(actionPreco);
+        inputQ.setAttributeNode(max);
+        inputQ.setAttributeNode(min);
+        inputQ.setAttributeNode(type);
+        inputQ.value = (quantidade_passagens);
+        tdQp.appendChild(inputQ);
         var name5 = document.createAttribute("name");
         name5.value = "qtd_p";
         tdQp.setAttributeNode(name5);
@@ -552,7 +574,11 @@ function excluirCarrinhoVoo(id) {
 
         if (table.rows[i].id == id) {
 
-            totalPreco.innerText = totalConvertido - parseFloat(table.rows[i].children[5].innerText);
+            var preco = parseFloat(table.rows[i].children[5].innerText);
+
+            var quantidade = table.rows[i].children[4].firstChild.value;
+
+            totalPreco.innerText = totalConvertido - (preco * quantidade);
 
             table.deleteRow(i);
 
@@ -608,9 +634,9 @@ function atualizarPreco_Hotel(id, quantidade) {
 
             var quantidadeAtualizada = table.rows[i].children[4].firstChild.value;
 
-            totalPreco.innerText = totalConvertido - (preco * quantidade);
+            var preCalculo = totalConvertido - (preco * quantidade);
 
-            totalPreco.innerText = totalConvertido + (preco * quantidadeAtualizada);
+            totalPreco.innerText = preCalculo + (preco * quantidadeAtualizada);
 
             var maximo = table.rows[i].children[4].firstChild.max;
 
@@ -633,6 +659,57 @@ function atualizarPreco_Hotel(id, quantidade) {
             table.rows[i].children[4].appendChild(inputQ);
             var id5 = document.createAttribute("id");
             id5.value = "qtd_quartos" + id;
+            inputQ.setAttributeNode(id5);
+
+        }
+
+    }
+
+}
+
+function atualizarPreco_Voo(id, quantidade) {
+
+    var totalPreco = document.getElementById("total");
+
+    var totalConvertido = parseFloat(totalPreco.innerText);
+
+    var table = document.getElementById("carrinho2");
+
+    var tamanho = table.rows.length;
+
+    for (var i = 0; i < tamanho; i++) {
+
+        if (table.rows[i].id == id) {
+
+            var preco = parseFloat(table.rows[i].children[5].innerText);
+
+            var quantidadeAtualizada = table.rows[i].children[4].firstChild.value;
+
+            var preCalculo = totalConvertido - (preco * quantidade);
+
+            totalPreco.innerText = preCalculo + (preco * quantidadeAtualizada);
+
+            var maximo = table.rows[i].children[4].firstChild.max;
+
+            table.rows[i].children[4].removeChild(table.rows[i].children[4].firstChild);
+
+            var inputQ = document.createElement("input");
+            var type = document.createAttribute("type");
+            var max = document.createAttribute("max");
+            var min = document.createAttribute("min");
+            var actionPreco = document.createAttribute("onclick");
+            actionPreco.value = "atualizarPreco_Voo(" + id + "," + quantidadeAtualizada + ")";
+            type.value = "number";
+            max.value = maximo;
+            min.value = 1;
+            inputQ.setAttributeNode(actionPreco);
+            inputQ.setAttributeNode(max);
+            inputQ.setAttributeNode(min);
+            inputQ.setAttributeNode(type);
+            inputQ.value = (quantidadeAtualizada);
+            table.rows[i].children[4].appendChild(inputQ);
+            var id5 = document.createAttribute("id");
+            id5.value = "qtd_p" + id;
             inputQ.setAttributeNode(id5);
 
         }

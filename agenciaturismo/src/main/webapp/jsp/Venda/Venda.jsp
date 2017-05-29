@@ -83,7 +83,7 @@
                                 <th>Destino</th>
                                 <th>Data de ida</th>
                                 <th>Data de volta</th>
-                                <th>Quantidade de passagens</th>
+                                <th>Qtd. de passagens</th>
                                 <th>Preco</th>
                                 <th>Remover</th>
                             </tr>
