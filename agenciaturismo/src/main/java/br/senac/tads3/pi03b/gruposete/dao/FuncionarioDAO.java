@@ -56,7 +56,6 @@ public class FuncionarioDAO {
     public void alterar(Funcionario func) throws SQLException, Exception {
         String sql = "UPDATE funcionario "
                 + "SET nome = ?, "
-                + "cpf = ?, "
                 + "sexo = ?, "
                 + "data_nasc = ?, "
                 + "numero = ?, "
@@ -73,31 +72,31 @@ public class FuncionarioDAO {
                 + "departamento = ?, "
                 + "senha = ?, "
                 + "acesso = ? "
-                + "WHERE id_func = ?";
+                + "WHERE cpf = ?";
 
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, func.getNome());
-            preparedStatement.setString(2, func.getCpf());
-            preparedStatement.setString(3, func.getSexo());
-            preparedStatement.setString(4, func.getData_nasc());
-            preparedStatement.setInt(5, func.getNumero());
-            preparedStatement.setString(6, func.getCep());
-            preparedStatement.setString(7, func.getRua());
-            preparedStatement.setString(8, func.getBairro());
-            preparedStatement.setString(9, func.getCidade());
-            preparedStatement.setString(10, func.getComplemento());
-            preparedStatement.setString(11, func.getCelular());
-            preparedStatement.setString(12, func.getTelefone());
-            preparedStatement.setString(13, func.getEmail());
-            preparedStatement.setString(14, func.getCargo());
-            preparedStatement.setString(15, func.getFilial());
-            preparedStatement.setString(16, func.getDepartamento());
-            preparedStatement.setString(17, func.getSenha());
-            preparedStatement.setString(18, func.getAcesso());
-            preparedStatement.setInt(19, func.getId_func());
+            
+            preparedStatement.setString(2, func.getSexo());
+            preparedStatement.setString(3, func.getData_nasc());
+            preparedStatement.setInt(4, func.getNumero());
+            preparedStatement.setString(5, func.getCep());
+            preparedStatement.setString(6, func.getRua());
+            preparedStatement.setString(7, func.getBairro());
+            preparedStatement.setString(8, func.getCidade());
+            preparedStatement.setString(9, func.getComplemento());
+            preparedStatement.setString(10, func.getCelular());
+            preparedStatement.setString(11, func.getTelefone());
+            preparedStatement.setString(12, func.getEmail());
+            preparedStatement.setString(13, func.getCargo());
+            preparedStatement.setString(14, func.getFilial());
+            preparedStatement.setString(15, func.getDepartamento());
+            preparedStatement.setString(16, func.getSenha());
+            preparedStatement.setString(17, func.getAcesso());
+            preparedStatement.setString(18, func.getCpf());
 
             preparedStatement.executeUpdate();
 
@@ -125,9 +124,8 @@ public class FuncionarioDAO {
 
                 Funcionario func = new Funcionario();
 
-                func.setId_func(resultSet.getInt("id_func"));
-                func.setNome(resultSet.getString("nome"));
                 func.setCpf(resultSet.getString("cpf"));
+                func.setNome(resultSet.getString("nome"));
                 func.setSexo(resultSet.getString("sexo"));
                 func.setData_nasc(resultSet.getString("data_nasc"));
                 func.setNumero(resultSet.getInt("numero"));
@@ -158,7 +156,7 @@ public class FuncionarioDAO {
         return listaFuncionario;
     }
 
-    public Funcionario getFuncionarioById(int id) throws SQLException, ClassNotFoundException {
+    public Funcionario getFuncionarioByCPF(String cpf) throws SQLException, ClassNotFoundException {
         Funcionario func = new Funcionario();
 
         String query = "SELECT * FROM Funcionario WHERE id_func = ?";
@@ -166,11 +164,10 @@ public class FuncionarioDAO {
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, cpf);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                func.setId_func(resultSet.getInt("id_func"));
                 func.setNome(resultSet.getString("nome"));
                 func.setCpf(resultSet.getString("cpf"));
                 func.setSexo(resultSet.getString("sexo"));
@@ -269,7 +266,6 @@ public class FuncionarioDAO {
                 Funcionario func = new Funcionario();
 
                 // Insere informacoes.
-                func.setId_func(result.getInt("id_func"));
                 func.setBairro(result.getString("bairro"));
                 func.setCelular(result.getString("celular"));
                 func.setCep(result.getString("cep"));
@@ -303,16 +299,16 @@ public class FuncionarioDAO {
         }
     }
 
-    public void excluir(int id) throws SQLException, ClassNotFoundException {
+    public void excluir(String cpf) throws SQLException, ClassNotFoundException {
         // Comando SQL.
-        String slq = "UPDATE funcionario SET ativo = ? WHERE id_func = ?";
+        String slq = "UPDATE funcionario SET ativo = ? WHERE cpf = ?";
         
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
             // Insercoes.
             preparedStatement.setBoolean(1, false);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setString(2, cpf);
 
             // Executa.
             preparedStatement.execute();

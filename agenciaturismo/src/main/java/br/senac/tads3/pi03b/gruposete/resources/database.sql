@@ -2,7 +2,6 @@ CREATE DATABASE Agencia;
 USE Agencia;
 
 CREATE TABLE Funcionario(
-id_func INT(3) NOT NULL AUTO_INCREMENT,
 cargo VARCHAR(100) NOT NULL,
 departamento VARCHAR(100) NOT NULL,
 filial VARCHAR(100) NOT NULL,
@@ -23,8 +22,8 @@ data_nasc VARCHAR(10) NOT NULL,
 login VARCHAR(20) NOT NULL,
 senha VARCHAR(20) NOT NULL,
 acesso VARCHAR(100) NOT NULL,
-PRIMARY KEY (id_func),
-UNIQUE KEY id_func (id_func)  
+PRIMARY KEY (cpf),
+UNIQUE KEY cpf (cpf)  
 );
 
 CREATE TABLE Cliente(

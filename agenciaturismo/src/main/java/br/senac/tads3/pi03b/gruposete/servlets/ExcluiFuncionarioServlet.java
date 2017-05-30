@@ -26,9 +26,9 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
         String pesquisa = request.getParameter("pesquisa");
         FuncionarioDAO query = new FuncionarioDAO();
         if ("delete".equalsIgnoreCase(action)) {
-            int id = Integer.parseInt(request.getParameter("id"));
+            String cpf = request.getParameter("cpf");
             try {
-                query.excluir(id);
+                query.excluir(cpf);
                 List<Funcionario> encontrados = query.procurarFuncionario(pesquisa);
                 request.setAttribute("encontrados", encontrados);
             } catch (ClassNotFoundException | SQLException ex) {

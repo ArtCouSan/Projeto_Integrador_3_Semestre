@@ -20,12 +20,12 @@ public class AlteraFuncionarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        String cpf = request.getParameter("id");
         FuncionarioDAO dao = new FuncionarioDAO();
         String action = request.getParameter("action");
         if ("edit".equalsIgnoreCase(action)) {
             try {
-                Funcionario funcionarios = dao.getFuncionarioById(id);
+                Funcionario funcionarios = dao.getFuncionarioByCPF(cpf);
                 request.setAttribute("funcionarios", funcionarios);
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -137,13 +137,10 @@ public class AlteraFuncionarioServlet extends HttpServlet {
 //            request.setAttribute("erroCep", true);
 //        }
 
-        int id = Integer.parseInt(request.getParameter("identificacao"));
-
         if (erro == false) {
             Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                     numero, cep, rua, bairro, cidade, complemento,
                     celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
-            func.setId_func(id);
             try {
                 dao.alterar(func);
                 response.sendRedirect("index.jsp");

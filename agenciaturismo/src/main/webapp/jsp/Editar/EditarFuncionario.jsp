@@ -14,7 +14,7 @@
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
             <form name="editaf" action="EditarFuncionario" method="post" class="form-horizontal">
-                <input type="hidden" name="identificacao" value="${funcionarios.getId_func()}"/>
+                <input type="hidden" name="cpf" value="${funcionarios.getCpf()}"/>
 
                 <div class="form-group ">
                     <c:if test="${erroNome}">
@@ -24,16 +24,6 @@
                     <div class="controls col-md-5">
                         <input class="form-control" name="nome" type="text" value="${funcionarios.getNome()}" data-maxlength="100" id="example-text-input" required>
                         <span class="help-block">Maximo 100 caracteres</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroCpf}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">CPF:</label>
-                    <div class="controls col-md-5">
-                        <input class="form-control cpf-mask"  value="${funcionarios.getCpf()}" name="cpf" type="text" id="example-text-input" required>
                     </div>
                 </div>
 
