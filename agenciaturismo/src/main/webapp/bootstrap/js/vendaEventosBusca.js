@@ -788,5 +788,5 @@ function venda() {
             + cpf
             + "&totalP="
             + total;
-
+    
 }

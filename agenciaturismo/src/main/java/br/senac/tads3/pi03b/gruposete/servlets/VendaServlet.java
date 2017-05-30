@@ -94,10 +94,19 @@ public class VendaServlet extends HttpServlet {
             }
 
         }
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/index.jsp");
+        
+        System.out.println("Chegou");
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index");
         dispatcher.forward(request, response);
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index");
+        dispatcher.forward(request, response);
     }
 
 }

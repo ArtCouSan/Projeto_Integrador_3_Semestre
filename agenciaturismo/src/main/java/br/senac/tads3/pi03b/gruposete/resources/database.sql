@@ -72,13 +72,12 @@ PRIMARY KEY (id_hotel)
 CREATE TABLE Venda(
 id_venda INT(3) NOT NULL AUTO_INCREMENT,
 id_cliente INT(3) NOT NULL,
-id_funcionario INT(3) NOT NULL,
+id_funcionario INT(3) NULL,
 ativo TINYINT(1) NOT NULL,
 total_preco FLOAT(3.2) NOT NULL,
-data_venda DATE NOT NULL,    
+data_venda DATE NULL,    
 PRIMARY KEY (id_venda),
 FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),
-FOREIGN KEY id_funcionario (id_funcionario) REFERENCES Funcionario(id_func),
 UNIQUE KEY id_venda (id_venda)
 );
 
@@ -88,8 +87,7 @@ id_venda INT(5) NOT NULL,
 id_produto INT(5) NOT NULL,
 quantidade INT(50) NOT NULL,
 preco FLOAT(3.2) NOT NULL,
-PRIMARY KEY  (id_lista),
-FOREIGN KEY id_venda(id_venda) REFERENCES Venda(id_venda)
+PRIMARY KEY  (id_lista)
 );
 
 CREATE TABLE Usuario(
