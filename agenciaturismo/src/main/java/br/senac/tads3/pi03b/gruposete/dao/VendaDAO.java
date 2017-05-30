@@ -22,16 +22,15 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "INSERT INTO venda "
-                + "(id_cliente, id_produto, id_func, preco) "
-                + "VALUES (?, ?, ?, ?)";
+                + "(id_cliente, id_funcionario, total_preco, data_venda, ativo) "
+                + "VALUES (?, ?, ?, now(), true)";
 
         preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
         preparedStatement.setInt(1, venda.getId_cliente());
-        preparedStatement.setInt(2, venda.getId_produto());
-        preparedStatement.setInt(3, venda.getId_func());
-        preparedStatement.setDouble(4, venda.getPreco());
+        preparedStatement.setInt(2, venda.getId_func());
+        preparedStatement.setDouble(3, venda.getPreco());
 
         // Executa.
         preparedStatement.execute();
@@ -46,7 +45,7 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "INSERT INTO itens_venda "
-                + "(Id_produto, quantidade, preco, id_venda) "
+                + "(id_produto, quantidade, preco, id_venda) "
                 + "VALUES (? , ?, ?, ?)";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
@@ -97,7 +96,7 @@ public class VendaDAO {
 
     }
 
-    public ArrayList<Venda> procurarVendas(String Dinicio, String Afim) throws SQLException, ClassNotFoundException {
+    public ArrayList<Venda> procurarVendas(String inicio, String fim) throws SQLException, ClassNotFoundException {
 
         // Conecta.
         connection = DbUtil.getConnection();
@@ -105,38 +104,14 @@ public class VendaDAO {
         // Lista que ira receber vendas.
         ArrayList<Venda> listaResultado = new ArrayList<>();
 
-        // Variavel recebe dia inicial.
-        CharSequence diaI = Dinicio.subSequence(0, 2);
-
-        // Variavel recebe mes inicial.
-        CharSequence mesI = Dinicio.subSequence(3, 5);
-
-        // Variavel recebe ano inicial.
-        CharSequence anoI = Dinicio.subSequence(6, 10);
-
-        // Variavel concatena a data no formato desejado.
-        String dataI = anoI + "-" + mesI + "-" + diaI;
-
-        // Variavel recebe dia final.
-        CharSequence diaF = Afim.subSequence(0, 2);
-
-        // Variavel recebe mes final.
-        CharSequence mesF = Afim.subSequence(3, 5);
-
-        // Variavel recebe ano final.
-        CharSequence anoF = Afim.subSequence(6, 10);
-
-        // Variavel concatena a data no formato desejado.
-        String dataF = anoF + "-" + mesF + "-" + diaF;
-
         // Comando SQL.
         String slq = "SELECT * FROM venda WHERE DATA BETWEEN ? AND ? AND ATIVO = ?";
 
         preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
-        preparedStatement.setString(1, dataI);
-        preparedStatement.setString(2, dataF);
+        preparedStatement.setString(1, inicio);
+        preparedStatement.setString(2, fim);
         preparedStatement.setBoolean(3, true);
 
         // Executa e recebe resultado.
@@ -151,9 +126,9 @@ public class VendaDAO {
             // Prenche.
             venda.setId_venda(resultSet.getInt("id_venda"));
             venda.setId_cliente(resultSet.getInt("id_cliente"));
+            venda.setId_func(resultSet.getInt("id_funcionario"));
             venda.setPreco(resultSet.getFloat("total"));
-            venda.setTotal_quantidade(resultSet.getInt("total_quantidade"));
-
+               
             // Adiciona a lista.
             listaResultado.add(venda);
 
@@ -200,7 +175,7 @@ public class VendaDAO {
             venda.setId_venda(result.getInt("id_venda"));
             venda.setId_cliente(result.getInt("id_cliente"));
             venda.setPreco(result.getFloat("total"));
-            venda.setTotal_quantidade(result.getInt("total_quantidade"));
+            // venda.setTotal_quantidade(result.getInt("total_quantidade"));
 
             // Fecha conexao.
             connection.close();
@@ -216,14 +191,60 @@ public class VendaDAO {
 
     }
 
-    /**
-     * Funcao que procura lista de itens.
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     * @throws java.lang.ClassNotFoundException
-     */
+    public void removerEstoqueVoo(int id, int qtd) throws SQLException, ClassNotFoundException {
+
+        connection = DbUtil.getConnection();
+
+        String sql = " ";
+
+        if (qtd == 0) {
+
+            sql = "UPDATE Voo SET quantidade_passagens = ? and ativo = false WHERE id_voo = ?";
+
+        } else {
+
+            sql = "UPDATE Voo SET quantidade_passagens = ? WHERE id_voo = ?";
+
+        }
+
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, qtd);
+        preparedStatement.setInt(2, id);
+
+        preparedStatement.execute();
+
+        preparedStatement.close();
+        connection.close();
+
+    }
+
+    public void removerEstoqueHotel(int id, int qtd) throws SQLException, ClassNotFoundException {
+
+        connection = DbUtil.getConnection();
+
+        String sql = " ";
+
+        if (qtd == 0) {
+
+            sql = "UPDATE Hotel SET quantidade_quartos = ? and ativo = false WHERE id_hotel = ?";
+
+        } else {
+
+            sql = "UPDATE Hotel SET quantidade_quartos = ? WHERE id_hotel = ?";
+
+        }
+
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, qtd);
+        preparedStatement.setInt(2, id);
+
+        preparedStatement.execute();
+
+        preparedStatement.close();
+        connection.close();
+
+    }
+
     public ArrayList<Carrinho> procurarItens(int id) throws SQLException, ClassNotFoundException {
 
         // Conecta.
@@ -247,7 +268,7 @@ public class VendaDAO {
         int quantidade;
         float preco;
 
-        // Loop com resultados.
+        // Loop com re///sultados.
         while (result.next()) {
 
             // Prenche.
@@ -255,10 +276,8 @@ public class VendaDAO {
             quantidade = (result.getInt("quantidade"));
             preco = (result.getFloat("preco"));
 
-            Carrinho carrinho = new Carrinho(id_produto, preco, quantidade);
-
-            listaResultado.add(carrinho);
-
+            // Carrinho carrinho = new Carrinho(id_produto, preco, quantidade);
+            //listaResultado.add(carrinho);
         }
 
         // Fecha conexao.
@@ -327,7 +346,7 @@ public class VendaDAO {
                     quantidade_hospedes,
                     preco,
                     true);
-            
+
             hotel.setId_hotel(id_hotel);
 
             listaResultado.add(hotel);
@@ -406,9 +425,9 @@ public class VendaDAO {
                     true);
 
             voo.setId_voo(id_voo);
-            
+
             listaResultado.add(voo);
-            
+
         }
 
         // Fecha conexao.

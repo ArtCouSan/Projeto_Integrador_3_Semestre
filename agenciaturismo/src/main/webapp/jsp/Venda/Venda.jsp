@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <div class="form-group col-lg-10">
                             <label>Total</label>
-                            <label id="total" name="total" class="form-control">0</label>
+                            <label id="total" name="totalP" class="form-control">0</label>
                         </div>
                         <div class="form-group col-lg-10">
                             <label>Quantidade</label>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group col-sm-4 col-lg-push-1">
                         <label>CPF:</label>
-                        <label name="cpf" class="form-control">${cpf}</label>
+                        <label name="cpf" id="cpf" class="form-control">${cpf}</label>
                     </div>		
                 </div>
                 <div class="container-page">
@@ -97,7 +97,7 @@
                     <div id="wrap" class="container">
                         <div class="row">
                             <div class="controls col-md-5">
-                                <button type="submit" onclick="venda()" class="btn">Vender</button>                    
+                                <button onclick="venda()" class="btn">Vender</button>                    
                             </div>                        
                         </div>
                     </div>

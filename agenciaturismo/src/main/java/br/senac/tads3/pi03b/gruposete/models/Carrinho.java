@@ -1,26 +1,25 @@
 package br.senac.tads3.pi03b.gruposete.models;
-/**
- * Classe que cria lista de produto escolhidos pelo cliente.
- *
- * @author Grupo 07
- */
+
 public class Carrinho {
-    
+
     // Declara atributos.
-    private int id_produto;    
-    private float preco; 
+    private int id_venda;
+    private int id_produto;
+    private float preco;
     private int quantidade;
 
-    public Carrinho(int id_produto, float preco, int quantidade) {
+    public Carrinho(int id_produto, float preco, int quantidade, int id_venda) {
         this.id_produto = id_produto;
         this.preco = preco;
         this.quantidade = quantidade;
+        this.id_venda = id_venda;
     }
-    
+
     // Get e Set do id do produto.
     public int getId_produto() {
         return id_produto;
     }
+
     public void setId_produto(int id_produto) {
         this.id_produto = id_produto;
     }
@@ -29,6 +28,7 @@ public class Carrinho {
     public float getPreco() {
         return preco;
     }
+
     public void setPreco(float preco) {
         this.preco = preco;
     }
@@ -37,8 +37,17 @@ public class Carrinho {
     public int getQuantidade() {
         return quantidade;
     }
+
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    } 
-    
+    }
+
+    public int getId_venda() {
+        return id_venda;
+    }
+
+    public void setId_venda(int id_venda) {
+        this.id_venda = id_venda;
+    }
+
 }

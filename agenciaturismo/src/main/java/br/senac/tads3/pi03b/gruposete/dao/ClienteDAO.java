@@ -165,6 +165,41 @@ public class ClienteDAO {
         return cliente;
     }
 
+    public Cliente getClienteByCPF(String cpf) throws SQLException, ClassNotFoundException {
+        
+        Cliente cliente = new Cliente();
+
+        connection = DbUtil.getConnection();
+
+        String query = "SELECT * FROM cliente WHERE cpf  = ?";
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, cpf);
+        resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+
+            cliente.setId_cliente(resultSet.getInt("id_cliente"));
+            cliente.setNome(resultSet.getString("nome"));
+            cliente.setCpf(resultSet.getString("cpf"));
+            cliente.setSexo(resultSet.getString("sexo"));
+            cliente.setData_nasc(resultSet.getString("data_nasc"));
+            cliente.setNumero(resultSet.getInt("numero"));
+            cliente.setCep(resultSet.getString("cep"));
+            cliente.setRua(resultSet.getString("rua"));
+            cliente.setBairro(resultSet.getString("bairro"));
+            cliente.setCidade(resultSet.getString("cidade"));
+            cliente.setComplemento(resultSet.getString("complemento"));
+            cliente.setCelular(resultSet.getString("celular"));
+            cliente.setTelefone(resultSet.getString("telefone"));
+            cliente.setEmail(resultSet.getString("email"));
+        }
+
+        preparedStatement.close();
+        connection.close();
+        return cliente;
+    }
+
     public List<Cliente> procurarCliente(String busca) throws SQLException, IOException, ClassNotFoundException {
 
         // Cria lista de clientes.

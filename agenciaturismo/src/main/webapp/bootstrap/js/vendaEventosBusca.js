@@ -722,17 +722,71 @@ function venda() {
 
     var carrinho_hotel = document.getElementById("carrinho");
     var carrinho_voo = document.getElementById("carrinho2");
+    var cpf = document.getElementById("cpf").innerText;
+    var total = document.getElementById("total").innerText;
 
     var tamanho_hotel = carrinho_hotel.rows.length;
     var tamanho_voo = carrinho_voo.rows.length;
 
+    var precoV = "";
+    var precoH = "";
+    var quantidadeVoo = "";
+    var quantidadeHotel = "";
+    var idsVoo = "";
+    var idsHotel = "";
+
     for (var i = 0; i < tamanho_hotel; i++) {
+
+        if (i + 1 != tamanho_hotel) {
+
+            idsVoo += carrinho_hotel.rows[i].id + ",";
+            precoH += carrinho_hotel.rows[i].children[3].innerText + ",";
+            quantidadeHotel += carrinho_hotel.rows[i].children[4].firstChild.value + ",";
+
+        } else {
+
+            idsVoo += carrinho_hotel.rows[i].id;
+            precoH += carrinho_hotel.rows[i].children[3].innerText;
+            quantidadeHotel += carrinho_hotel.rows[i].children[4].firstChild.value;
+
+        }
 
     }
 
     for (var i = 0; i < tamanho_voo; i++) {
 
+        if (i + 1 != tamanho_voo) {
+
+            idsHotel += carrinho_voo.rows[i].id + ",";
+            precoV += carrinho_voo.rows[i].children[5].innerText + ",";
+            quantidadeVoo += carrinho_voo.rows[i].children[4].firstChild.value + ",";
+
+        } else {
+
+            idsHotel += carrinho_voo.rows[i].id;
+            precoV += carrinho_voo.rows[i].children[5].innerText;
+            quantidadeVoo += carrinho_voo.rows[i].children[4].firstChild.value;
+
+        }
+
     }
 
-
+    window.location.href = "VendaServlet?"
+            + "idsVoos="
+            + idsVoo
+            + "&idsHoteis="
+            + idsHotel
+            + "&precosVoos="
+            + precoV
+            + "&precosHoteis="
+            + precoH
+            + "&quantidadeVoos="
+            + quantidadeVoo
+            + "&quantidadeHoteis="
+            + quantidadeHotel
+            + "&cpf="
+            + cpf
+            + "&totalP="
+            + total;
+    
 }

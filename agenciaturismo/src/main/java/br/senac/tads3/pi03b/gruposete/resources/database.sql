@@ -6,20 +6,20 @@ id_func INT(3) NOT NULL AUTO_INCREMENT,
 cargo VARCHAR(100) NOT NULL,
 departamento VARCHAR(100) NOT NULL,
 filial VARCHAR(100) NOT NULL,
-celular VARCHAR(9),
-telefone VARCHAR(8),
+celular VARCHAR(15),
+telefone VARCHAR(14),
 email VARCHAR(50),
 numero INT(3),
-cep VARCHAR(10),
+cep VARCHAR(9),
 rua VARCHAR(50), 
 bairro VARCHAR(50), 
 cidade VARCHAR(100), 
 complemento VARCHAR(20),
 nome VARCHAR(100) NOT NULL,
-cpf VARCHAR(11) NOT NULL,
+cpf VARCHAR(14) NOT NULL,
 sexo CHAR(1),
 ativo TINYINT(1) NOT NULL,    
-data_nasc VARCHAR(11) NOT NULL,
+data_nasc VARCHAR(10) NOT NULL,
 PRIMARY KEY (id_func),
 UNIQUE KEY id_func (id_func)  
 );
@@ -36,7 +36,7 @@ rua VARCHAR(50),
 bairro VARCHAR(50),  
 complemento VARCHAR(20),
 nome VARCHAR(100) NOT NULL,
-cpf VARCHAR(11) NOT NULL,
+cpf VARCHAR(15) NOT NULL,
 sexo CHAR(1),
 ativo TINYINT(1) NOT NULL,
 data_nasc VARCHAR(11) NOT NULL,
@@ -68,26 +68,16 @@ quantidade_hospedes VARCHAR(50),
 PRIMARY KEY (id_hotel)
 );
 
-CREATE TABLE Produto(
-id_produto INT(3) NOT NULL AUTO_INCREMENT,   
-id_voo INT(3),
-id_hotel INT(3),
-ativo TINYINT(1) NOT NULL,
-PRIMARY KEY (id_produto),
-FOREIGN KEY id_voo (id_voo) REFERENCES Voo(id_voo),
-FOREIGN KEY id_hotel (id_hotel) REFERENCES Hotel(id_hotel),
-UNIQUE KEY id_produto (id_produto)
-);
 
 CREATE TABLE Venda(
 id_venda INT(3) NOT NULL AUTO_INCREMENT,
 id_cliente INT(3) NOT NULL,
-id_funcionario INT(3) NOT NULL,
+id_funcionario INT(3) NULL,
 ativo TINYINT(1) NOT NULL,
-total_preco FLOAT(3.2) NOT NULL,    
+total_preco FLOAT(3.2) NOT NULL,
+data_venda DATE NOT NULL,    
 PRIMARY KEY (id_venda),
 FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),
-FOREIGN KEY id_funcionario (id_funcionario) REFERENCES Funcionario(id_func),
 UNIQUE KEY id_venda (id_venda)
 );
 
@@ -97,9 +87,7 @@ id_venda INT(5) NOT NULL,
 id_produto INT(5) NOT NULL,
 quantidade INT(50) NOT NULL,
 preco FLOAT(3.2) NOT NULL,
-PRIMARY KEY  (id_lista),
-FOREIGN KEY id_venda(id_venda) REFERENCES Venda(id_venda),
-FOREIGN KEY id_produto(id_produto) REFERENCES PRODUTO(id_produto)
+PRIMARY KEY  (id_lista)
 );
 
 CREATE TABLE Usuario(
