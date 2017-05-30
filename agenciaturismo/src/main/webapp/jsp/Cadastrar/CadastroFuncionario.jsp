@@ -7,7 +7,7 @@
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
+        <script src="./bootstrap/js/campos_Funcionario.js" type="text/javascript" ></script>
         <title>Cadastro de Funcionario</title>
     </head>
     <body>
@@ -20,8 +20,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Nome:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="nome" type="text" placeholder="Nome completo" data-maxlength="100" id="example-text-input" required>
-                        <span class="help-block">Maximo 100 caracteres</span>
+                        <input maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" data-maxlength="100" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -30,7 +29,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CPF:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control cpf-mask" placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
+                        <input maxlength="15" class="form-control" onkeypress="mascara(this, '###.###.###-##')" placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,7 +46,7 @@
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Nascimento:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" type="date" name="nascimento" id="example-date-input" required>
+                        <input maxlength="10" class="form-control" placeholder="Insira nascimento" type="date" name="nascimento" id="example-date-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -56,8 +55,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Rua:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="rua" placeholder="Insira rua" data-maxlength="50"  type="text" id="example-text-input" required>
-                        <span class="help-block">Maximo 50 caracteres</span>
+                        <input maxlength="50" class="form-control" name="rua" placeholder="Insira rua" data-maxlength="50"  type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -66,7 +64,7 @@
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Numero:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" type="number" name="numero" placeholder="Insira numero"  id="example-number-input" required>
+                        <input maxlength="3" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="example-number-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -75,7 +73,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Complemento:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="example-text-input" required>
+                        <input  maxlength="20" class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -84,7 +82,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CEP:</label>
                     <div class="controls col-md-5">
-                        <input required class="form-control cep-mask form-control" placeholder="00000-000"  name="cep"  type="text" id="example-text-input" required>
+                        <input maxlength="9" required class="form-control" onkeypress="mascara(this, '#####-###')" placeholder="00000-000"  name="cep"  type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -93,8 +91,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Cidade:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="cidade" placeholder="Insira cidade" data-maxlength="100"  type="text"id="example-text-input" required>
-                        <span class="help-block">Maximo 100 caracteres</span>
+                        <input maxlength="100" class="form-control" name="cidade" placeholder="Insira cidade" data-maxlength="100"  type="text"id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -103,26 +100,25 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Bairro:</label>
                     <div class="controls col-md-5">
-                        <input required class="form-control" name="bairro" placeholder="Insira bairro" data-maxlength="50" type="text" id="example-text-input" required>
-                        <span class="help-block">Maximo 50 caracteres</span>
+                        <input maxlength="50" class="form-control" name="bairro" placeholder="Insira bairro" data-maxlength="50" type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Celular:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control cel-sp-mask" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input">
+                        <input maxlength="15" class="form-control" onkeypress="mascara(this, '(##) #####-####')" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Telefone:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control phone-ddd-mask" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
+                        <input maxlength="14"  class="form-control" onkeypress="mascara(this, '(##) ####-####')" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="example-email-input" class="control-label col-md-4">Email:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" type="email" name="email" placeholder="Insira email" id="example-email-input" data-error="Por favor, informe um e-mail correto." required>
+                        <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="example-email-input" data-error="Por favor, informe um e-mail correto." required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -131,7 +127,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Departamento:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" placeholder="Insira departamento" name="departamento" required>
+                        <input maxlength="100" class="form-control" placeholder="Insira departamento" name="departamento" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -140,7 +136,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Cargo:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" placeholder="Insira cargo" name="cargo" required>
+                        <input maxlength="100" class="form-control" placeholder="Insira cargo" name="cargo" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -149,7 +145,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Filial</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" placeholder="Insira filial" name="filial" required>
+                        <input maxlength="100" class="form-control" placeholder="Insira filial" name="filial" required>
                     </div>
                 </div>
                 <div class="col-md-12 text-center">

@@ -8,65 +8,64 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
+
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
-            <form action="CadastroCliente" method="post" class="form-horizontal form_fundo">
+            <form action="${pageContext.request.contextPath}/CadastroCliente" method="post" class="form-horizontal">
                 <div class="form-group ">
                     <c:if test="${erroNome}">
-                        <div class="erro">Digite seu nome completo</div>
+                        <div class="erro">O nome é obrigatório</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Nome:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="nome" type="text" placeholder="Nome completo" data-maxlength="100" id="example-text-input" required>
-                        <span class="help-block">Maximo 100 caracteres</span>
+                        <input maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome"  id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <c:if test="${erroCpf}">
-                        <div class="erro">Digite o CPF</div>
+                        <div class="erro">O nome é obrigatório</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CPF:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control cpf-mask" placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
+                        <input maxlength="14"  class="form-control" onkeypress="mascara(this, '###.###.###-##')"  placeholder="000.000.000-00" name="cpf" type="text" required>
                     </div>
                 </div>
                 <div class="form-group">
+                    <c:if test="${erroSexo}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Sexo</label>
-                    <select name="sexo">
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                        <option value="O">Outros</option>
-                    </select>
+                    <div class="controls col-md-5">
+                        <input class="form-control" placeholder="Genero" name="sexo" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <c:if test="${erroNascimento}">
-                        <div class="erro">Seleciona a data de nascimento</div>
+                        <div class="erro">O nome é obrigatório</div>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Nascimento:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" type="date" name="nascimento" id="example-date-input" required>
+                        <input class="form-control" placeholder="Insira nascimento" type="date" name="nascimento" id="example-date-input" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <c:if test="${erroRua}">
-                        <div class="erro">Digite sua rua</div>
+                        <div class="erro">O nome é obrigatório</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Rua:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="rua" placeholder="Insira rua" data-maxlength="50"  type="text" id="example-text-input" required>
-                        <span class="help-block">Maximo 50 caracteres</span>
+                        <input maxlength="50" class="form-control" name="rua" placeholder="Insira rua"  type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <c:if test="${erroNumero}">
-                        <div class="erro">Digite o número da sua casa</div>
+                        <div class="erro">O nome é obrigatório</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Numero:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" type="number" name="numero" placeholder="Insira numero"  id="example-number-input" required>
+                        <input maxlength="3" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="example-number-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -84,7 +83,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CEP:</label>
                     <div class="controls col-md-5">
-                        <input required class="form-control cep-mask form-control" placeholder="00000-000"  name="cep"  type="text" id="example-text-input" required>
+                        <input required class="form-control form-control" onkeypress="mascara(this, '#####-###')" placeholder="00000-000"  name="cep"  type="text" id="example-text-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -93,8 +92,8 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Cidade:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="cidade" placeholder="Insira cidade" data-maxlength="100"  type="text"id="example-text-input" required>
-                        <span class="help-block">Maximo 100 caracteres</span>
+                        <input class="form-control" name="cidade" placeholder="Insira cidade" type="text"id="example-text-input" required>
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -103,20 +102,20 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Bairro:</label>
                     <div class="controls col-md-5">
-                        <input required class="form-control" name="bairro" placeholder="Insira bairro" data-maxlength="50" type="text" id="example-text-input" required>
-                        <span class="help-block">Maximo 50 caracteres</span>
+                        <input required class="form-control" name="bairro" placeholder="Insira bairro" type="text" id="example-text-input" required>
+
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group">                  
                     <label for="example-text-input" class="control-label col-md-4">Celular:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control cel-sp-mask" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input">
+                        <input class="form-control cel-sp-mask" onkeypress="mascara(this, '(##) #####-####')" placeholder="(00) 00000-0000" name="celular" type="text" id="example-text-input" data-mask="(00) 0000-0000" data-mask-selectonfocus="true">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group">               
                     <label for="example-text-input" class="control-label col-md-4">Telefone:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control phone-ddd-mask" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
+                        <input class="form-control" onkeypress="mascara(this, '(##) ####-####')" placeholder="(00) 0000-0000"  name="telefone" type="text" id="example-text-input">
                     </div>
                 </div>
                 <div class="form-group">
@@ -130,7 +129,9 @@
                 </div>
             </form>
         </div>
+        <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
+>>>>>>> master

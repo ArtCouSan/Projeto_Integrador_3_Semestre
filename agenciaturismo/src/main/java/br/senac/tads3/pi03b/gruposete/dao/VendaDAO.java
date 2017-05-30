@@ -22,8 +22,8 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "INSERT INTO venda "
-                + "(id_cliente, id_produto, id_func, preco) "
-                + "VALUES (?, ?, ?, ?)";
+                + "(id_cliente, id_funcionario, total_preco) "
+                + "VALUES (?, ?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(slq);
@@ -43,12 +43,24 @@ public class VendaDAO {
                 connection.close();
             }
         }
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setInt(1, venda.getId_cliente());
+        preparedStatement.setInt(2, venda.getId_func());
+        preparedStatement.setDouble(3, venda.getPreco());
+
+        // Executa.
+        preparedStatement.execute();
+
+        // Fecha conexao.
+        preparedStatement.close();
     }
 
     public void inserirLista(int id_produto, int quantidade, float preco, int id_venda) throws SQLException, FileNotFoundException, ClassNotFoundException {
         // Comando SQL.
         String slq = "INSERT INTO itens_venda "
-                + "(Id_produto, quantidade, preco, id_venda) "
+                + "(id_produto, quantidade, preco, id_venda) "
                 + "VALUES (? , ?, ?, ?)";
 
         try {
@@ -160,7 +172,7 @@ public class VendaDAO {
             venda.setId_venda(resultSet.getInt("id_venda"));
             venda.setId_cliente(resultSet.getInt("id_cliente"));
             venda.setPreco(resultSet.getFloat("total"));
-            venda.setTotal_quantidade(resultSet.getInt("total_quantidade"));
+            //venda.setTotal_quantidade(resultSet.getInt("total_quantidade"));
 
             // Adiciona a lista.
             listaResultado.add(venda);
@@ -200,7 +212,7 @@ public class VendaDAO {
             venda.setId_venda(result.getInt("id_venda"));
             venda.setId_cliente(result.getInt("id_cliente"));
             venda.setPreco(result.getFloat("total"));
-            venda.setTotal_quantidade(result.getInt("total_quantidade"));
+            // venda.setTotal_quantidade(result.getInt("total_quantidade"));
 
             // Fecha conexao.
             connection.close();
@@ -239,7 +251,7 @@ public class VendaDAO {
         int quantidade;
         float preco;
 
-        // Loop com resultados.
+        // Loop com re///sultados.
         while (result.next()) {
 
             // Prenche.
@@ -247,10 +259,8 @@ public class VendaDAO {
             quantidade = (result.getInt("quantidade"));
             preco = (result.getFloat("preco"));
 
-            Carrinho carrinho = new Carrinho(id_produto, preco, quantidade);
-
-            listaResultado.add(carrinho);
-
+            // Carrinho carrinho = new Carrinho(id_produto, preco, quantidade);
+            //listaResultado.add(carrinho);
         }
 
         // Fecha conexao.
@@ -275,7 +285,7 @@ public class VendaDAO {
                 + " OR data_saida LIKE ?"
                 + " OR preco LIKE  ?"
                 + " OR quantidade_quartos LIKE ?"
-                + " OR quantidade_hospedes LIKE ?) LIMIT 10";
+                + " OR quantidade_hospedes LIKE ?) LIMIT 5";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
 
@@ -311,7 +321,7 @@ public class VendaDAO {
             quantidade_quartos = (result.getInt("quantidade_quartos"));
             quantidade_hospedes = (result.getInt("quantidade_hospedes"));
 
-            Hotel carrinho = new Hotel(
+            Hotel hotel = new Hotel(
                     nome,
                     data_entrada,
                     data_saida,
@@ -320,7 +330,9 @@ public class VendaDAO {
                     preco,
                     true);
 
-            listaResultado.add(carrinho);
+            hotel.setId_hotel(id_hotel);
+
+            listaResultado.add(hotel);
 
         }
 
@@ -346,7 +358,7 @@ public class VendaDAO {
                 + " OR destino LIKE ?"
                 + " OR origem LIKE  ?"
                 + " OR preco LIKE ?"
-                + " OR quantidade_passagens LIKE ?) LIMIT 10";
+                + " OR quantidade_passagens LIKE ?) LIMIT 5";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
 
@@ -355,7 +367,12 @@ public class VendaDAO {
         stmt.setString(2, busca);
         stmt.setString(3, busca);
         stmt.setString(4, busca);
-        stmt.setString(5, busca);
+        try {
+            float buscaN = Float.parseFloat(busca);
+            stmt.setFloat(5, buscaN);
+        } catch (NumberFormatException e) {
+            stmt.setString(5, busca);
+        }
         stmt.setString(6, busca);
 
         // Executa e recebe resultado.
@@ -389,6 +406,8 @@ public class VendaDAO {
                     quantidade_passagens,
                     preco,
                     true);
+
+            voo.setId_voo(id_voo);
 
             listaResultado.add(voo);
 
