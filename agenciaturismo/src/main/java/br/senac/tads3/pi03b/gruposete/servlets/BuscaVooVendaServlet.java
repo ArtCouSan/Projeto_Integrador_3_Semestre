@@ -14,13 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-@WebServlet(name = "BuscaVooVendaServlet", urlPatterns = {"/BuscaVooVenda"})
+@WebServlet(name = "BuscaVooVendaServlet", urlPatterns = {"/BuscarVooVenda"})
 public class BuscaVooVendaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
         try {
 
@@ -45,11 +44,11 @@ public class BuscaVooVendaServlet extends HttpServlet {
                 json.put("destino", voos.getDestino());
                 jsonArray.add(json);
 
-                try (PrintWriter out = response.getWriter()) {
+            }
 
-                    out.println(jsonArray.toJSONString());
+            try (PrintWriter out = response.getWriter()) {
 
-                }
+                out.println(jsonArray.toJSONString());
 
             }
 

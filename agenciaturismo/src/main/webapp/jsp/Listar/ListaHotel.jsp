@@ -28,7 +28,7 @@
             <tbody>
                 <c:forEach var="hoteis" items="${encontrados}">
                     <tr >
-                        <td name="nome"><c:out value="${hoteis.getNome_hotel()}"/></td>
+                        <td name="nome"><c:out value="${hoteis.getNome()}"/></td>
                         <td name="data_entrada"><c:out value="${hoteis.getData_entrada()}"/></td>
                         <td name="data_saida"><c:out value="${hoteis.getData_saida()}"/></td>
                         <td name="preco"><c:out value="${hoteis.getPreco()}"/></td>
