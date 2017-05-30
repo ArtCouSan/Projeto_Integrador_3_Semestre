@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.senac.tads3.pi03b.gruposete.dao.VendaDAO;
 import br.senac.tads3.pi03b.gruposete.models.Venda;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.simple.JSONArray;
 
 @WebServlet(name = "BuscaVendaSerlvet", urlPatterns = {"/BuscaVenda"})
 public class BuscaVendaServlet extends HttpServlet {
@@ -28,7 +32,11 @@ public class BuscaVendaServlet extends HttpServlet {
 
         VendaDAO dao = new VendaDAO();
 
-        ArrayList<Venda> vendas = dao.procurarVendas(inicio, fim);
+        try {
+            ArrayList<Venda> vendas = dao.procurarVendas(inicio, fim);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscaVendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         JSONArray jsonArray = new JSONArray();
 
