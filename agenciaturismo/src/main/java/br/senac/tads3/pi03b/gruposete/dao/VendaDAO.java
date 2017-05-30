@@ -29,7 +29,6 @@ public class VendaDAO {
             preparedStatement = connection.prepareStatement(slq);
             // Insercoes.
             preparedStatement.setInt(1, venda.getId_cliente());
-            preparedStatement.setInt(2, venda.getId_produto());
             preparedStatement.setInt(3, venda.getId_func());
             preparedStatement.setDouble(4, venda.getPreco());
 

@@ -1,7 +1,7 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
-import br.senac.tads3.pi03b.gruposete.models.Usuario;
-import br.senac.tads3.pi03b.gruposete.dao.UsuarioDAO;
+import br.senac.tads3.pi03b.gruposete.models.Funcionario;
+import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,18 +32,18 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String usuario = request.getParameter("usuario");
+        String login = request.getParameter("usuario");
         String senha = request.getParameter("senha");
-        UsuarioDAO uDAO = new UsuarioDAO();
+        FuncionarioDAO funcDAO = new FuncionarioDAO();
 
-        Usuario user = null;
+        Funcionario func = null;
         try {
-            user = uDAO.obterUsuario(usuario, senha);
+            func = funcDAO.obterFuncionario(login, senha);
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if (user != null) {
+        if (func != null) {
             
             HttpSession sessao = request.getSession(false);
             
@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
             }
             
             sessao = request.getSession(true);
-            sessao.setAttribute("usuario", user);
+            sessao.setAttribute("funcionario", func);
 
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {

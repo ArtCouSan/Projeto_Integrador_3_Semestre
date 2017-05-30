@@ -1,6 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
-import br.senac.tads3.pi03b.gruposete.models.Usuario;
+import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -49,17 +49,17 @@ public class AutorizacaoFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>1");
         HttpSession sessao = httpRequest.getSession();
-        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
-        System.out.println("USUARIO ACESSO >>>>>>>>>>>>>>>>>>>>>>>>" + usuario.getAcesso());
+        Funcionario func = (Funcionario) sessao.getAttribute("usuario");
+        System.out.println("USUARIO ACESSO >>>>>>>>>>>>>>>>>>>>>>>>" + func.getAcesso());
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>2");
-        if (usuario == null) {
+        if (func == null) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
             return;
         }
 
         // 3) Usuario está logado, então verifica se tem permissão
         // para acessar a página.
-        if (verificarAcesso(usuario, httpRequest, httpResponse)) {
+        if (verificarAcesso(func, httpRequest, httpResponse)) {
             // Acesso a página está liberado.
             chain.doFilter(request, response);
         } else {
@@ -68,16 +68,16 @@ public class AutorizacaoFilter implements Filter {
         }
     }
 
-    private static boolean verificarAcesso(Usuario usuario, HttpServletRequest request, HttpServletResponse response) {
+    private static boolean verificarAcesso(Funcionario func, HttpServletRequest request, HttpServletResponse response) {
         System.out.println("ENTROU BVERIFICACAO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         String paginaAcessada = request.getRequestURI();
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
         System.out.println("ENTROU BVERIFICACAO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>1");
-        System.out.println("ENTROU BVERIFICACAO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + usuario.getAcesso());
+        System.out.println("ENTROU BVERIFICACAO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + func.getAcesso());
         System.out.println("ENTROU BVERIFICACAO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + pagina);
-        if (pagina.endsWith("") && usuario.temPapel("MASTER")) {
+        if (pagina.endsWith("") && func.temPapel("MASTER")) {
             return true;
-        } else if (pagina.contains("Cliente") || pagina.contains("BuscaVoo") || pagina.contains("BuscaHotel") && usuario.temPapel("BASICO")) {
+        } else if (pagina.contains("Cliente") || pagina.contains("BuscaVoo") || pagina.contains("BuscaHotel") && func.temPapel("BASICO")) {
             return true;
         }
         return false;

@@ -20,6 +20,9 @@ cpf VARCHAR(14) NOT NULL,
 sexo CHAR(1),
 ativo TINYINT(1) NOT NULL,    
 data_nasc VARCHAR(10) NOT NULL,
+login VARCHAR(20) NOT NULL,
+senha VARCHAR(20) NOT NULL,
+acesso VARCHAR(100) NOT NULL,
 PRIMARY KEY (id_func),
 UNIQUE KEY id_func (id_func)  
 );
@@ -88,13 +91,4 @@ id_produto INT(5) NOT NULL,
 quantidade INT(50) NOT NULL,
 preco FLOAT(3.2) NOT NULL,
 PRIMARY KEY  (id_lista)
-);
-
-CREATE TABLE Usuario(
-id_usuario INT(3) NOT NULL AUTO_INCREMENT,
-nome VARCHAR(255) NOT NULL,
-login VARCHAR(20) NOT NULL,
-senha VARCHAR(20) NOT NULL,
-acesso VARCHAR(100) NOT NULL,
-PRIMARY KEY(id_usuario)
 );

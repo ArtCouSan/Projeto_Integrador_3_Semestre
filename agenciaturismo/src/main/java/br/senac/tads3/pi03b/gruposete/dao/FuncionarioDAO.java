@@ -15,8 +15,10 @@ public class FuncionarioDAO {
     private static ResultSet resultSet;
 
     public void inserir(Funcionario funcionario) throws SQLException, Exception {
-        String sql = "INSERT INTO Funcionario (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, complemento, celular, telefone, email, cargo, filial, departamento, ativo) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Funcionario (nome, cpf, sexo, data_nasc, numero, "
+                + "cep, rua, bairro, cidade, complemento, celular, telefone, email, "
+                + "cargo, filial, departamento, ativo, login, senha, acesso) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DbUtil.getConnection();
@@ -39,6 +41,9 @@ public class FuncionarioDAO {
             preparedStatement.setString(15, funcionario.getFilial());
             preparedStatement.setString(16, funcionario.getDepartamento());
             preparedStatement.setBoolean(17, true);
+            preparedStatement.setString(18, funcionario.getLogin());
+            preparedStatement.setString(19, funcionario.getSenha());
+            preparedStatement.setString(20, funcionario.getAcesso());
 
             preparedStatement.executeUpdate();
 
@@ -48,7 +53,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public void alterar(Funcionario funcionario) throws SQLException, Exception {
+    public void alterar(Funcionario func) throws SQLException, Exception {
         String sql = "UPDATE funcionario "
                 + "SET nome = ?, "
                 + "cpf = ?, "
@@ -65,30 +70,34 @@ public class FuncionarioDAO {
                 + "email = ?, "
                 + "cargo = ?, "
                 + "filial = ?, "
-                + "departamento = ? "
-                + "WHERE id_func=?";
+                + "departamento = ?, "
+                + "senha = ?, "
+                + "acesso = ? "
+                + "WHERE id_func = ?";
 
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, funcionario.getNome());
-            preparedStatement.setString(2, funcionario.getCpf());
-            preparedStatement.setString(3, funcionario.getSexo());
-            preparedStatement.setString(4, funcionario.getData_nasc());
-            preparedStatement.setInt(5, funcionario.getNumero());
-            preparedStatement.setString(6, funcionario.getCep());
-            preparedStatement.setString(7, funcionario.getRua());
-            preparedStatement.setString(8, funcionario.getBairro());
-            preparedStatement.setString(9, funcionario.getCidade());
-            preparedStatement.setString(10, funcionario.getComplemento());
-            preparedStatement.setString(11, funcionario.getCelular());
-            preparedStatement.setString(12, funcionario.getTelefone());
-            preparedStatement.setString(13, funcionario.getEmail());
-            preparedStatement.setString(14, funcionario.getCargo());
-            preparedStatement.setString(15, funcionario.getFilial());
-            preparedStatement.setString(16, funcionario.getDepartamento());
-            preparedStatement.setInt(17, funcionario.getId_func());
+            preparedStatement.setString(1, func.getNome());
+            preparedStatement.setString(2, func.getCpf());
+            preparedStatement.setString(3, func.getSexo());
+            preparedStatement.setString(4, func.getData_nasc());
+            preparedStatement.setInt(5, func.getNumero());
+            preparedStatement.setString(6, func.getCep());
+            preparedStatement.setString(7, func.getRua());
+            preparedStatement.setString(8, func.getBairro());
+            preparedStatement.setString(9, func.getCidade());
+            preparedStatement.setString(10, func.getComplemento());
+            preparedStatement.setString(11, func.getCelular());
+            preparedStatement.setString(12, func.getTelefone());
+            preparedStatement.setString(13, func.getEmail());
+            preparedStatement.setString(14, func.getCargo());
+            preparedStatement.setString(15, func.getFilial());
+            preparedStatement.setString(16, func.getDepartamento());
+            preparedStatement.setString(17, func.getSenha());
+            preparedStatement.setString(18, func.getAcesso());
+            preparedStatement.setInt(19, func.getId_func());
 
             preparedStatement.executeUpdate();
 
@@ -107,7 +116,7 @@ public class FuncionarioDAO {
 
         connection = DbUtil.getConnection();
 
-        String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo = true";
+        String query = "SELECT * FROM Funcionario ORDER BY nome WHERE ativo = true";
 
         try {
             statement = connection.createStatement();
@@ -133,6 +142,7 @@ public class FuncionarioDAO {
                 func.setCargo(resultSet.getString("cargo"));
                 func.setFilial(resultSet.getString("filial"));
                 func.setDepartamento(resultSet.getString("departamento"));
+                func.setLogin(resultSet.getString("login"));
 
                 listaFuncionario.add(func);
             }
@@ -177,6 +187,7 @@ public class FuncionarioDAO {
                 func.setCargo(resultSet.getString("cargo"));
                 func.setFilial(resultSet.getString("filial"));
                 func.setDepartamento(resultSet.getString("departamento"));
+                func.setLogin(resultSet.getString("login"));
             }
 
         } catch (SQLException e) {
@@ -214,7 +225,9 @@ public class FuncionarioDAO {
                 + " OR cidade = ?"
                 + " OR cargo = ?"
                 + " OR filial = ?"
-                + " OR departamento = ?)"
+                + " OR departamento = ?"
+                + " OR login = ?"
+                + " OR acesso = ?)"
                 + " AND ativo = true";
 
         preparedStatement = connection.prepareStatement(sql);
@@ -243,6 +256,8 @@ public class FuncionarioDAO {
         preparedStatement.setString(14, busca);
         preparedStatement.setString(15, busca);
         preparedStatement.setString(16, busca);
+        preparedStatement.setString(17, busca);
+        preparedStatement.setString(18, busca);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -251,29 +266,30 @@ public class FuncionarioDAO {
             while (result.next()) {
 
                 // Cria cliente.
-                Funcionario funcionarios = new Funcionario();
+                Funcionario func = new Funcionario();
 
                 // Insere informacoes.
-                funcionarios.setId_func(result.getInt("id_func"));
-                funcionarios.setBairro(result.getString("bairro"));
-                funcionarios.setCelular(result.getString("celular"));
-                funcionarios.setCep(result.getString("cep"));
-                funcionarios.setComplemento(result.getString("complemento"));
-                funcionarios.setCpf(result.getString("cpf"));
-                funcionarios.setData_nasc(result.getString("data_nasc"));
-                funcionarios.setEmail(result.getString("email"));
-                funcionarios.setNome(result.getString("nome"));
-                funcionarios.setNumero(result.getInt("numero"));
-                funcionarios.setRua(result.getString("rua"));
-                funcionarios.setSexo(result.getString("sexo"));
-                funcionarios.setTelefone(result.getString("telefone"));
-                funcionarios.setCidade(result.getString("cidade"));
-                funcionarios.setCargo(result.getString("cargo"));
-                funcionarios.setFilial(result.getString("filial"));
-                funcionarios.setDepartamento(result.getString("departamento"));
+                func.setId_func(result.getInt("id_func"));
+                func.setBairro(result.getString("bairro"));
+                func.setCelular(result.getString("celular"));
+                func.setCep(result.getString("cep"));
+                func.setComplemento(result.getString("complemento"));
+                func.setCpf(result.getString("cpf"));
+                func.setData_nasc(result.getString("data_nasc"));
+                func.setEmail(result.getString("email"));
+                func.setNome(result.getString("nome"));
+                func.setNumero(result.getInt("numero"));
+                func.setRua(result.getString("rua"));
+                func.setSexo(result.getString("sexo"));
+                func.setTelefone(result.getString("telefone"));
+                func.setCidade(result.getString("cidade"));
+                func.setCargo(result.getString("cargo"));
+                func.setFilial(result.getString("filial"));
+                func.setDepartamento(result.getString("departamento"));
+                func.setLogin(result.getString("login"));
 
                 // Insere na lista.
-                listaResultado.add(funcionarios);
+                listaResultado.add(func);
             }
             // Retorna lista.
             return listaResultado;
@@ -338,5 +354,45 @@ public class FuncionarioDAO {
             return true;
         }
         return false;
+    }
+    
+    public Funcionario obterFuncionario(String userLogin, String passwordLogin) throws SQLException {
+        Funcionario func = new Funcionario();
+
+        String query = "SELECT * FROM Funcionario WHERE login = ? AND senha = ? AND ativo = true";
+
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, userLogin);
+            preparedStatement.setString(2, passwordLogin);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String nome = resultSet.getString("nome");
+                String login = resultSet.getString("login");
+                String senha = resultSet.getString("senha");
+                String acesso = resultSet.getString("acesso");
+                
+                func.setNome(nome);
+                func.setLogin(login);
+                func.setSenha(senha);
+                func.setAcesso(acesso);
+
+                break;
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>ERRO NA HORA DE BUSCAR O USUARIO NO BANCO: " + e);
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return func;
     }
 }

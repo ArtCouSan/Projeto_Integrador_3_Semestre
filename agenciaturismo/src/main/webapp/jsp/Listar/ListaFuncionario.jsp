@@ -24,8 +24,8 @@
                     <th>Cargo</th>
                     <th>Filial</th>
                     <th>Departamento</th>
-                    <th></th>
-                    <th></th>
+                    <th>Login</th>
+                    <th>Acesso</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +40,8 @@
                         <td name="cargo"><c:out value="${funcionarios.getCargo()}"/></td>
                         <td name="filial"><c:out value="${funcionarios.getFilial()}"/></td>
                         <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
+                        <td name="login"><c:out value="${funcionarios.getLogin()}"/></td>
+                        <td name="acesso"><c:out value="${funcionarios.getAcesso()}"/></td>
                         <td><a class="btn btn-danger" href="ExcluiFuncionarioServlet?action=delete&id=<c:out value="${funcionarios.getId_func()}"/>&pesquisa=<c:out value="${pesquisa}"/>"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
                         <td><a class="btn btn-info" href="EditarFuncionario?action=edit&id=<c:out value="${funcionarios.getId_func()}"/>"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>

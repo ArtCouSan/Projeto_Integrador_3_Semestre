@@ -47,6 +47,9 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         String cargo = request.getParameter("cargo");
         String filial = request.getParameter("filial");
         String departamento = request.getParameter("departamento");
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        String acesso = request.getParameter("acesso");
         
 //        if (nome == null || nome.length() < 1) {
 //            erro = true;
@@ -88,7 +91,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         if (erro == false) {
             Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                     numero, cep, rua, bairro, cidade, complemento,
-                    celular, telefone, email, true, cargo, filial, departamento);
+                    celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
             try {
                 dao.inserir(func);
                 response.sendRedirect("index.jsp");

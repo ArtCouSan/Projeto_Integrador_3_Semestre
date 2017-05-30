@@ -148,6 +148,33 @@
                         <input maxlength="100" class="form-control" placeholder="Insira filial" name="filial" required>
                     </div>
                 </div>
+                <div class="form-group">
+                    <c:if test="${erroLogin}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Login</label>
+                    <div class="controls col-md-5">
+                        <input maxlength="100" class="form-control" placeholder="login" name="login" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <c:if test="${erroSenha}">
+                        <div class="erro">O nome é obrigatório</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Senha</label>
+                    <div class="controls col-md-5">
+                        <input type="password" maxlength="100" class="form-control" placeholder="senha" name="senha" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Acesso</label>
+                    <div class="controls col-md-5">
+                        <select name="acesso">
+                            <option value="MASTER">MASTER</option>
+                            <option value="BASICO">BASICO</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="col-md-12 text-center">
                     <button type="submit"><span class="">Cadastrar</span></button>
                 </div>
