@@ -8,7 +8,7 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
+
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
@@ -29,8 +29,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CPF:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="15"  class="form-control" onkeypress="mascara(this, '###.###.###-##')"  placeholder="000.000.000-00" name="cpf" type="text" id="example-text-input" required>
-
+                        <input maxlength="14"  class="form-control" onkeypress="mascara(this, '###.###.###-##')"  placeholder="000.000.000-00" name="cpf" type="text" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -130,6 +129,7 @@
                 </div>
             </form>
         </div>
+        <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>

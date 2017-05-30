@@ -23,7 +23,7 @@ public class VendaDAO {
         // Comando SQL.
         String slq = "INSERT INTO venda "
                 + "(id_cliente, id_funcionario, total_preco) "
-                + "VALUES (?, ?, ?, ?)";
+                + "VALUES (?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(slq);
 

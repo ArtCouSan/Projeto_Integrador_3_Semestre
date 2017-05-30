@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group col-sm-4 col-lg-push-1">
                         <label>CPF:</label>
-                        <label name="cpf" class="form-control">${cpf}</label>
+                        <label name="cpf" id="cpf" class="form-control">${cpf}</label>
                     </div>		
                 </div>
                 <div class="container-page">
