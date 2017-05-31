@@ -18,7 +18,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>GET PARA APRESENTAR TELA");
         RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Cadastrar/CadastroFuncionario.jsp");
         dispatcher.forward(request, response);
 

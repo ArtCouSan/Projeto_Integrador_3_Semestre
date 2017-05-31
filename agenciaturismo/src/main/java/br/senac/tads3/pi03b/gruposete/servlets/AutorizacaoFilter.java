@@ -49,7 +49,7 @@ public class AutorizacaoFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>1");
         HttpSession sessao = httpRequest.getSession();
-        Funcionario func = (Funcionario) sessao.getAttribute("usuario");
+        Funcionario func = (Funcionario) sessao.getAttribute("funcionario");
         System.out.println("USUARIO ACESSO >>>>>>>>>>>>>>>>>>>>>>>>" + func.getAcesso());
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>2");
         if (func == null) {
