@@ -81,7 +81,7 @@ public class VendaServlet extends HttpServlet {
                 int novaQtdVoo = qtd_encontradaV - quantidadeV;
 
                 vendaData.inserirLista(idV, quantidadeV, precoV, idLista);
-
+                
                 vendaData.removerEstoqueVoo(idV, novaQtdVoo);
 
             } catch (SQLException | ClassNotFoundException ex) {

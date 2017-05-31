@@ -22,8 +22,8 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "INSERT INTO venda "
-                + "(id_cliente, id_funcionario, total_preco, data_venda, ativo) "
-                + "VALUES (?, ?, ?, now(), true)";
+                + "(id_cliente, id_funcionario, total_preco, ativo) "
+                + "VALUES (?, ?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(slq);
 
@@ -31,6 +31,7 @@ public class VendaDAO {
         preparedStatement.setInt(1, venda.getId_cliente());
         preparedStatement.setInt(2, venda.getId_func());
         preparedStatement.setDouble(3, venda.getPreco());
+        preparedStatement.setBoolean(4, true);
 
         // Executa.
         preparedStatement.execute();
@@ -128,7 +129,7 @@ public class VendaDAO {
             venda.setId_cliente(resultSet.getInt("id_cliente"));
             venda.setId_func(resultSet.getInt("id_funcionario"));
             venda.setPreco(resultSet.getFloat("total"));
-               
+
             // Adiciona a lista.
             listaResultado.add(venda);
 
@@ -142,14 +143,6 @@ public class VendaDAO {
 
     }
 
-    /**
-     * Funcao que procura venda pelo id.
-     *
-     * @param id
-     * @return venda.
-     * @throws SQLException
-     * @throws java.lang.ClassNotFoundException
-     */
     public Venda procurarVenda(int id) throws SQLException, ClassNotFoundException {
 
         // Conecta.
@@ -199,7 +192,7 @@ public class VendaDAO {
 
         if (qtd == 0) {
 
-            sql = "UPDATE Voo SET quantidade_passagens = ? and ativo = false WHERE id_voo = ?";
+            sql = "UPDATE Voo SET quantidade_passagens = ?, ativo = false WHERE id_voo = ?";
 
         } else {
 
@@ -226,7 +219,7 @@ public class VendaDAO {
 
         if (qtd == 0) {
 
-            sql = "UPDATE Hotel SET quantidade_quartos = ? and ativo = false WHERE id_hotel = ?";
+            sql = "UPDATE Hotel SET quantidade_quartos = ?, ativo = false WHERE id_hotel = ?";
 
         } else {
 

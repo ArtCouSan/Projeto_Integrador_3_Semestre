@@ -424,7 +424,7 @@ function addCarrinhoVoo(id) {
         var destino = document.getElementById("destino" + id).innerText;
         var data_ida = document.getElementById("data_i" + id).innerText;
         var data_volta = document.getElementById("data_v" + id).innerText;
-        var quantidade_passagens = document.getElementById("qtd_p" + id).firstChild.value;
+        var quantidade_passagens = document.getElementById("qtd_p" + id).fisrtChild.value;
         var preco = document.getElementById("preco" + id).innerText;
 
         var totalPreco = document.getElementById("total");
@@ -480,7 +480,7 @@ function addCarrinhoVoo(id) {
         var actionPreco = document.createAttribute("onclick");
         actionPreco.value = "atualizarPreco_Voo(" + id + "," + quantidade_passagens + ")";
         type.value = "number";
-        max.value = document.getElementById("qtd_p" + id).max;
+        max.value = document.getElementById("qtd_p" + id).firstChild.max;
         min.value = 1;
         inputQ.setAttributeNode(actionPreco);
         inputQ.setAttributeNode(max);
@@ -676,7 +676,6 @@ function atualizarPreco_Voo(id, quantidade) {
     var table = document.getElementById("carrinho2");
 
     var tamanho = table.rows.length;
-
     for (var i = 0; i < tamanho; i++) {
 
         if (table.rows[i].id == id) {
@@ -788,5 +787,5 @@ function venda() {
             + cpf
             + "&totalP="
             + total;
-    
+
 }
