@@ -370,12 +370,13 @@ public class FuncionarioDAO {
                 String login = resultSet.getString("login");
                 String senha = resultSet.getString("senha");
                 String acesso = resultSet.getString("acesso");
+                String cpf = resultSet.getString("cpf");
                 
                 func.setNome(nome);
                 func.setLogin(login);
                 func.setSenha(senha);
                 func.setAcesso(acesso);
-
+                func.setCpf(cpf);
                 break;
             }
 
