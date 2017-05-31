@@ -77,7 +77,7 @@ id_cliente INT(3) NOT NULL,
 id_funcionario INT(3) NULL,
 ativo TINYINT(1) NOT NULL,
 total_preco FLOAT(3.2) NOT NULL,
-data_venda DATE NULL,    
+data_venda VARCHAR (10) NOT NULL,    
 PRIMARY KEY (id_venda),
 FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),
 UNIQUE KEY id_venda (id_venda)
