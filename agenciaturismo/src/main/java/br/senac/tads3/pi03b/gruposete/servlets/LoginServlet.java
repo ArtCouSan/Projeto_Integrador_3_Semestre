@@ -52,9 +52,7 @@ public class LoginServlet extends HttpServlet {
             }
             
             sessao = request.getSession(true);
-            System.out.println("VAI SETAR SESSAO");
             sessao.setAttribute("funcionario", func);
-            System.out.println("SETOU");
 
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
