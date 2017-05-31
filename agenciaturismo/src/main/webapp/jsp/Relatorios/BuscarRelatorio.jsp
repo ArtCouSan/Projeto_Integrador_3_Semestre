@@ -31,7 +31,7 @@
                         <th>Data</th>
                         <th>Total de lucro</th>
                     </tr>
-                <thead>
+                </thead>
                 <tbody id="resultado">
 
                 </tbody>

@@ -12,15 +12,11 @@ import br.senac.tads3.pi03b.gruposete.models.Venda;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import org.json.simple.JSONArray;
 
-@WebServlet(name = "BuscaVendaSerlvet", urlPatterns = {"/BuscaVenda"})
+@WebServlet(name = "BuscaVendaSerlvet", urlPatterns = {"/BuscarRelatorio"})
 public class BuscaVendaServlet extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +35,16 @@ public class BuscaVendaServlet extends HttpServlet {
         }
 
         JSONArray jsonArray = new JSONArray();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Relatorios/BuscarRelatorio.jsp");
+        dispatcher.forward(request, response);
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Relatorios/BuscarRelatorio.jsp");
+        dispatcher.forward(request, response);
     }
 
 }

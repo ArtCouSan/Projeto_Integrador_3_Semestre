@@ -424,7 +424,7 @@ function addCarrinhoVoo(id) {
         var destino = document.getElementById("destino" + id).innerText;
         var data_ida = document.getElementById("data_i" + id).innerText;
         var data_volta = document.getElementById("data_v" + id).innerText;
-        var quantidade_passagens = document.getElementById("qtd_p" + id).fisrtChild.value;
+        var quantidade_passagens = document.getElementById("qtd_p" + id).firstChild.value;
         var preco = document.getElementById("preco" + id).innerText;
 
         var totalPreco = document.getElementById("total");
