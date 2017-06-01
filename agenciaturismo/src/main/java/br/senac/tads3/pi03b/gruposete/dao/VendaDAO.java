@@ -22,8 +22,8 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "INSERT INTO venda "
-                + "(id_cliente, id_funcionario, total_preco) "
-                + "VALUES (?, ?, ?)";
+                + "(id_cliente, id_funcionario, total_preco, ativo) "
+                + "VALUES (?, ?, ?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(slq);
@@ -48,6 +48,7 @@ public class VendaDAO {
         preparedStatement.setInt(1, venda.getId_cliente());
         preparedStatement.setInt(2, venda.getId_func());
         preparedStatement.setDouble(3, venda.getPreco());
+        preparedStatement.setBoolean(4, true);
 
         // Executa.
         preparedStatement.execute();
@@ -116,7 +117,7 @@ public class VendaDAO {
 
     }
 
-    public ArrayList<Venda> procurarVendas(String Dinicio, String Afim) throws SQLException, ClassNotFoundException {
+    public ArrayList<Venda> procurarVendas(String inicio, String fim) throws SQLException, ClassNotFoundException {
 
         // Conecta.
         connection = DbUtil.getConnection();
@@ -124,38 +125,14 @@ public class VendaDAO {
         // Lista que ira receber vendas.
         ArrayList<Venda> listaResultado = new ArrayList<>();
 
-        // Variavel recebe dia inicial.
-        CharSequence diaI = Dinicio.subSequence(0, 2);
-
-        // Variavel recebe mes inicial.
-        CharSequence mesI = Dinicio.subSequence(3, 5);
-
-        // Variavel recebe ano inicial.
-        CharSequence anoI = Dinicio.subSequence(6, 10);
-
-        // Variavel concatena a data no formato desejado.
-        String dataI = anoI + "-" + mesI + "-" + diaI;
-
-        // Variavel recebe dia final.
-        CharSequence diaF = Afim.subSequence(0, 2);
-
-        // Variavel recebe mes final.
-        CharSequence mesF = Afim.subSequence(3, 5);
-
-        // Variavel recebe ano final.
-        CharSequence anoF = Afim.subSequence(6, 10);
-
-        // Variavel concatena a data no formato desejado.
-        String dataF = anoF + "-" + mesF + "-" + diaF;
-
         // Comando SQL.
         String slq = "SELECT * FROM venda WHERE DATA BETWEEN ? AND ? AND ATIVO = ?";
 
         preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
-        preparedStatement.setString(1, dataI);
-        preparedStatement.setString(2, dataF);
+        preparedStatement.setString(1, inicio);
+        preparedStatement.setString(2, fim);
         preparedStatement.setBoolean(3, true);
 
         // Executa e recebe resultado.
@@ -170,8 +147,8 @@ public class VendaDAO {
             // Prenche.
             venda.setId_venda(resultSet.getInt("id_venda"));
             venda.setId_cliente(resultSet.getInt("id_cliente"));
+            venda.setId_func(resultSet.getInt("id_funcionario"));
             venda.setPreco(resultSet.getFloat("total"));
-            //venda.setTotal_quantidade(resultSet.getInt("total_quantidade"));
 
             // Adiciona a lista.
             listaResultado.add(venda);
@@ -227,6 +204,63 @@ public class VendaDAO {
 
     }
 
+<<<<<<< HEAD
+=======
+    public void removerEstoqueVoo(int id, int qtd) throws SQLException, ClassNotFoundException {
+
+        connection = DbUtil.getConnection();
+
+        String sql = " ";
+
+        if (qtd == 0) {
+
+            sql = "UPDATE Voo SET quantidade_passagens = ?, ativo = false WHERE id_voo = ?";
+
+        } else {
+
+            sql = "UPDATE Voo SET quantidade_passagens = ? WHERE id_voo = ?";
+
+        }
+
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, qtd);
+        preparedStatement.setInt(2, id);
+
+        preparedStatement.execute();
+
+        preparedStatement.close();
+        connection.close();
+
+    }
+
+    public void removerEstoqueHotel(int id, int qtd) throws SQLException, ClassNotFoundException {
+
+        connection = DbUtil.getConnection();
+
+        String sql = " ";
+
+        if (qtd == 0) {
+
+            sql = "UPDATE Hotel SET quantidade_quartos = ?, ativo = false WHERE id_hotel = ?";
+
+        } else {
+
+            sql = "UPDATE Hotel SET quantidade_quartos = ? WHERE id_hotel = ?";
+
+        }
+
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, qtd);
+        preparedStatement.setInt(2, id);
+
+        preparedStatement.execute();
+
+        preparedStatement.close();
+        connection.close();
+
+    }
+
+>>>>>>> refs/remotes/origin/master
     public ArrayList<Carrinho> procurarItens(int id) throws SQLException, ClassNotFoundException {
 
         // Conecta.

@@ -1,8 +1,12 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
+import br.senac.tads3.pi03b.gruposete.dao.HotelDAO;
 import br.senac.tads3.pi03b.gruposete.dao.VendaDAO;
+import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.models.Hotel;
+import br.senac.tads3.pi03b.gruposete.models.Voo;
 import br.senac.tads3.pi03b.gruposete.models.Venda;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -64,11 +68,21 @@ public class VendaServlet extends HttpServlet {
 
             try {
 
+                VooDAO voo = new VooDAO();
+
                 int idV = Integer.parseInt(idsV[i]);
+
+                Voo vooEncontrado = voo.getVooById(idV);
+                int qtd_encontradaV = vooEncontrado.getQuantidade_passagens();
+
                 int quantidadeV = Integer.parseInt(quantidadesV[i]);
                 float precoV = Float.parseFloat(precosV[i]);
 
+                int novaQtdVoo = qtd_encontradaV - quantidadeV;
+
                 vendaData.inserirLista(idV, quantidadeV, precoV, idLista);
+                
+                vendaData.removerEstoqueVoo(idV, novaQtdVoo);
 
             } catch (SQLException | ClassNotFoundException ex) {
 
@@ -81,11 +95,21 @@ public class VendaServlet extends HttpServlet {
 
             try {
 
+                HotelDAO hotel = new HotelDAO();
+
                 int idH = Integer.parseInt(idsH[i]);
+
+                Hotel hotelEncontrado = hotel.getHotelById(idH);
+                int qtd_encontradaH = hotelEncontrado.getQuantidade_quartos();
+
                 int quantidadeH = Integer.parseInt(quantidadesH[i]);
                 float precoH = Float.parseFloat(precosH[i]);
 
+                int novaQtdHotel = qtd_encontradaH - quantidadeH;
+
                 vendaData.inserirLista(idH, quantidadeH, precoH, idLista);
+
+                vendaData.removerEstoqueHotel(idH, novaQtdHotel);
 
             } catch (SQLException | ClassNotFoundException ex) {
 
@@ -94,9 +118,7 @@ public class VendaServlet extends HttpServlet {
             }
 
         }
-        
-        System.out.println("Chegou");
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index");
         dispatcher.forward(request, response);
 
