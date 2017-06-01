@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,9 +37,9 @@ public class BuscaHotelVendaServlet extends HttpServlet {
 
                 JSONObject json = new JSONObject();
 
-                json.put("nome_hotel", object.getNome());
-                json.put("id_hotel", object.getId_hotel());
-                json.put("data_entrada", object.getData_entrada());
+                json.put("id_venda", object.getNome());
+                json.put("id_cliente", object.getId_hotel());
+                json.put("id_funcionario", object.getData_entrada());
                 json.put("data_saida", object.getData_saida());
                 json.put("preco", object.getPreco());
                 json.put("quantidade_quartos", object.getQuantidade_quartos());

@@ -33,4 +33,5 @@
         <servlet-name>CadastraUsuarioServlet</servlet-name>
         <url-pattern>/CadastraUsuarioServlet</url-pattern>
     </servlet-mapping>
+   
 </web-app>

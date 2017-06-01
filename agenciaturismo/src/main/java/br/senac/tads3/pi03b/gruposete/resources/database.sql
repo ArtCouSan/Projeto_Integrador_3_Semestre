@@ -85,6 +85,7 @@ CREATE TABLE Itens_Venda (
 id_lista INT(5) NOT NULL AUTO_INCREMENT,
 id_venda INT(5) NOT NULL,
 id_produto INT(5) NOT NULL,
+tipo VARCHAR(1),
 quantidade INT(50) NOT NULL,
 preco FLOAT(3.2) NOT NULL,
 PRIMARY KEY  (id_lista)

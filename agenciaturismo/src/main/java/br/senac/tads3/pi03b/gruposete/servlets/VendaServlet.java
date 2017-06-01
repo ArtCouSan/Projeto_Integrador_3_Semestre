@@ -80,7 +80,7 @@ public class VendaServlet extends HttpServlet {
 
                 int novaQtdVoo = qtd_encontradaV - quantidadeV;
 
-                vendaData.inserirLista(idV, quantidadeV, precoV, idLista);
+                vendaData.inserirLista(idV, quantidadeV, precoV, idLista, "V");
                 
                 vendaData.removerEstoqueVoo(idV, novaQtdVoo);
 
@@ -107,7 +107,7 @@ public class VendaServlet extends HttpServlet {
 
                 int novaQtdHotel = qtd_encontradaH - quantidadeH;
 
-                vendaData.inserirLista(idH, quantidadeH, precoH, idLista);
+                vendaData.inserirLista(idH, quantidadeH, precoH, idLista, "H");
 
                 vendaData.removerEstoqueHotel(idH, novaQtdHotel);
 
@@ -119,7 +119,7 @@ public class VendaServlet extends HttpServlet {
 
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
 
     }

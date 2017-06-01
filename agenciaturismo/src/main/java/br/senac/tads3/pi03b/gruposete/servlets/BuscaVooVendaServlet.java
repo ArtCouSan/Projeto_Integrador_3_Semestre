@@ -18,8 +18,7 @@ import org.json.simple.JSONObject;
 public class BuscaVooVendaServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
 
@@ -56,5 +55,7 @@ public class BuscaVooVendaServlet extends HttpServlet {
         }
 
     }
+
+   
 
 }
