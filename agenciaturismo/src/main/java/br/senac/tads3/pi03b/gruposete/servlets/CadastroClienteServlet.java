@@ -39,37 +39,43 @@ public class CadastroClienteServlet extends HttpServlet {
         int numero = Integer.parseInt(request.getParameter("numero"));
         String cep = request.getParameter("cep");
         String rua = request.getParameter("rua");
-        String bairro = request.getParameter("bairro");
+        String estado = request.getParameter("estado");
         String cidade = request.getParameter("cidade");
         String complemento = request.getParameter("complemento");
 
-//        if (nome == null || nome.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroNome", true);
-//        }
-//        if (numero <= 0) {
-//            erro = true;
-//            request.setAttribute("erroNumero", true);
-//        }
-//        if (rua == null || rua.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroRua", true);
-//        }
-//        if (bairro == null || bairro.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroBairro", true);
-//        }
-//        if (cidade == null || cidade.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroCidade", true);
-//        }
-//        if (complemento == null || complemento.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroComplemento", true);
-//        }
+        if (nome == null || nome.length() < 1) {
+            erro = true;
+            request.setAttribute("erroNome", true);
+        }
+        
+        if (numero <= 0) {
+            erro = true;
+            request.setAttribute("erroNumero", true);
+        }
+        
+        if (rua == null || rua.length() < 1) {
+            erro = true;
+            request.setAttribute("erroRua", true);
+        }
+        
+        if (estado == null || estado.length() < 1) {
+            erro = true;
+            request.setAttribute("erroEstado", true);
+        }
+        
+        if (cidade == null || cidade.length() < 1) {
+            erro = true;
+            request.setAttribute("erroCidade", true);
+        }
+        
+        if (complemento == null || complemento.length() < 1) {
+            erro = true;
+            request.setAttribute("erroComplemento", true);
+        }
+        
         if (erro == false) {
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                    cep, rua, bairro, cidade, complemento, celular,
+                    cep, rua, estado, cidade, complemento, celular,
                     telefone, email, true);
             try {
                 dao.inserir(cliHumilde);

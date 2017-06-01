@@ -16,7 +16,7 @@
             <form name="cadastroh" action="CadastroHotel" method="post" class="form-horizontal">
                 <div class="form-group ">
                     <c:if test="${erroNome_hotel}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite o nome do hotel</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Nome do Hotel:</label>
                     <div class="controls col-md-5">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroData_entrada}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Seleciona a data da entrada</div>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de entrada:</label>
                     <div class="controls col-md-5">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroData_saida}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Seleciona a data da saida</div>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de saida:</label>
                     <div class="controls col-md-5">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroQuantidade_quartos}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite a quantidade de quartos</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Quantidade de Quartos:</label>
                     <div class="controls col-md-5">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroQuantidade_hospedes}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite a quantidade de hospedes</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Quantidade de Hospedes:</label>
                     <div class="controls col-md-5">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroPreco}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite o valor</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Preco:</label>
                     <div class="controls col-md-5">

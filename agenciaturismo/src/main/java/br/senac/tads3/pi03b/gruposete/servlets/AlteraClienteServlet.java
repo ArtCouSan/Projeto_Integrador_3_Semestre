@@ -52,7 +52,7 @@ public class AlteraClienteServlet extends HttpServlet {
         int numero = Integer.parseInt(request.getParameter("numero"));
         String cep = request.getParameter("cep");
         String rua = request.getParameter("rua");
-        String bairro = request.getParameter("bairro");
+        String estado = request.getParameter("estado");
         String cidade = request.getParameter("cidade");
         String complemento = request.getParameter("complemento");
 
@@ -71,9 +71,9 @@ public class AlteraClienteServlet extends HttpServlet {
 //            request.setAttribute("erroRua", true);
 //        }
 //
-//        if (bairro == null || bairro.length() < 1) {
+//        if (estado == null || estado.length() < 1) {
 //            erro = true;
-//            request.setAttribute("erroBairro", true);
+//            request.setAttribute("erroEstado", true);
 //        }
 //
 //        if (cidade == null || cidade.length() < 1) {
@@ -120,7 +120,7 @@ public class AlteraClienteServlet extends HttpServlet {
         
         if (erro == false) {
             Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                    cep, rua, bairro, cidade, complemento, celular,
+                    cep, rua, estado, cidade, complemento, celular,
                     telefone, email, true);
             cliHumilde.setId_cliente(id);
             

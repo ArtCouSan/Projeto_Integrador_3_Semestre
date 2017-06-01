@@ -14,7 +14,7 @@ public class ClienteDAO {
     private static ResultSet resultSet;
 
     public void inserir(Cliente cliente) throws SQLException, Exception {
-        String sql = "INSERT INTO Cliente (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, complemento, celular, telefone, email, ativo) "
+        String sql = "INSERT INTO Cliente (nome, cpf, sexo, data_nasc, numero, cep, rua, estado, cidade, complemento, celular, telefone, email, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -28,7 +28,7 @@ public class ClienteDAO {
             preparedStatement.setInt(5, cliente.getNumero());
             preparedStatement.setString(6, cliente.getCep());
             preparedStatement.setString(7, cliente.getRua());
-            preparedStatement.setString(8, cliente.getBairro());
+            preparedStatement.setString(8, cliente.getEstado());
             preparedStatement.setString(9, cliente.getCidade());
             preparedStatement.setString(10, cliente.getComplemento());
             preparedStatement.setString(11, cliente.getCelular());
@@ -61,7 +61,7 @@ public class ClienteDAO {
                 + "numero = ?, "
                 + "cep = ?, "
                 + "rua = ?, "
-                + "bairro = ?, "
+                + "estado = ?, "
                 + "cidade = ?, "
                 + "complemento = ?, "
                 + "celular = ?, "
@@ -80,7 +80,7 @@ public class ClienteDAO {
             preparedStatement.setInt(5, cliente.getNumero());
             preparedStatement.setString(6, cliente.getCep());
             preparedStatement.setString(7, cliente.getRua());
-            preparedStatement.setString(8, cliente.getBairro());
+            preparedStatement.setString(8, cliente.getEstado());
             preparedStatement.setString(9, cliente.getCidade());
             preparedStatement.setString(10, cliente.getComplemento());
             preparedStatement.setString(11, cliente.getCelular());
@@ -124,7 +124,7 @@ public class ClienteDAO {
                 cliente.setNumero(resultSet.getInt("numero"));
                 cliente.setCep(resultSet.getString("cep"));
                 cliente.setRua(resultSet.getString("rua"));
-                cliente.setBairro(resultSet.getString("bairro"));
+                cliente.setEstado(resultSet.getString("estado"));
                 cliente.setCidade(resultSet.getString("cidade"));
                 cliente.setComplemento(resultSet.getString("complemento"));
                 cliente.setCelular(resultSet.getString("celular"));
@@ -167,7 +167,7 @@ public class ClienteDAO {
                 cliente.setNumero(resultSet.getInt("numero"));
                 cliente.setCep(resultSet.getString("cep"));
                 cliente.setRua(resultSet.getString("rua"));
-                cliente.setBairro(resultSet.getString("bairro"));
+                cliente.setEstado(resultSet.getString("estado"));
                 cliente.setCidade(resultSet.getString("cidade"));
                 cliente.setComplemento(resultSet.getString("complemento"));
                 cliente.setCelular(resultSet.getString("celular"));
@@ -208,7 +208,7 @@ public class ClienteDAO {
             cliente.setNumero(resultSet.getInt("numero"));
             cliente.setCep(resultSet.getString("cep"));
             cliente.setRua(resultSet.getString("rua"));
-            cliente.setBairro(resultSet.getString("bairro"));
+            cliente.setEstado(resultSet.getString("estado"));
             cliente.setCidade(resultSet.getString("cidade"));
             cliente.setComplemento(resultSet.getString("complemento"));
             cliente.setCelular(resultSet.getString("celular"));
@@ -229,7 +229,7 @@ public class ClienteDAO {
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM cliente WHERE"
-                + " (bairro = ?"
+                + " (estado = ?"
                 + " OR celular = ?"
                 + " OR cep = ?"
                 + " OR complemento = ?"
@@ -279,7 +279,7 @@ public class ClienteDAO {
 
                 // Insere informacoes.
                 clientes.setId_cliente(result.getInt("id_cliente"));
-                clientes.setBairro(result.getString("bairro"));
+                clientes.setEstado(result.getString("estado"));
                 clientes.setCelular(result.getString("celular"));
                 clientes.setCep(result.getString("cep"));
                 clientes.setComplemento(result.getString("complemento"));

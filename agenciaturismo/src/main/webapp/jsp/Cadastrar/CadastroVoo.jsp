@@ -16,7 +16,7 @@
             <form name="cadastrov" action="CadastroVoo" method="post" class="form-horizontal">
                 <div class="form-group ">
                     <c:if test="${erroOrigem}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite a origem</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Origem:</label>
                     <div class="controls col-md-5">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group ">
                     <c:if test="${erroDestino}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite o destino</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Destino:</label>
                     <div class="controls col-md-5">
@@ -35,7 +35,7 @@
                 <div class="form-group ">
 
                     <c:if test="${erroQuantidade_passagens}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite a quantidade de passagens</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Quantidade de passagens:</label>
                     <div class="controls col-md-5">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroData_ida}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Seleciona a data da ida</div>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de ida:</label>
                     <div class="controls col-md-5">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroData_volta}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Seleciona a data da volta</div>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de volta:</label>
                     <div class="controls col-md-5">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroPreco}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite o preço</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Preco:</label>
                     <div class="controls col-md-5">

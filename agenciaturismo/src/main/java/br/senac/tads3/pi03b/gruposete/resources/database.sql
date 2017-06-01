@@ -11,7 +11,7 @@ email VARCHAR(50),
 numero INT(3),
 cep VARCHAR(9),
 rua VARCHAR(50), 
-bairro VARCHAR(50), 
+estado VARCHAR(2), 
 cidade VARCHAR(100), 
 complemento VARCHAR(20),
 nome VARCHAR(100) NOT NULL,
@@ -28,19 +28,14 @@ UNIQUE KEY cpf (cpf)
 
 CREATE TABLE Cliente(
 id_cliente INT(3) NOT NULL AUTO_INCREMENT, 
-<<<<<<< HEAD
-celular VARCHAR(14),
-telefone VARCHAR(13),
-=======
 celular VARCHAR(15),
 telefone VARCHAR(14),
->>>>>>> refs/remotes/origin/master
 email VARCHAR(50),
 numero INT(3),
 cep VARCHAR(10),
 cidade VARCHAR(100),
 rua VARCHAR(50), 
-bairro VARCHAR(50),  
+estado VARCHAR(2),  
 complemento VARCHAR(20),
 nome VARCHAR(100) NOT NULL,
 cpf VARCHAR(14) NOT NULL,
@@ -82,11 +77,7 @@ id_cliente INT(3) NOT NULL,
 id_funcionario INT(3) NULL,
 ativo TINYINT(1) NOT NULL,
 total_preco FLOAT(3.2) NOT NULL,
-<<<<<<< HEAD
-data_venda VARCHAR (10) NOT NULL,    
-=======
 data_venda TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,    
->>>>>>> refs/remotes/origin/master
 PRIMARY KEY (id_venda),
 FOREIGN KEY id_cliente (id_cliente) REFERENCES Cliente(id_cliente),
 UNIQUE KEY id_venda (id_venda)
@@ -108,14 +99,14 @@ INSERT INTO Hotel (nome_hotel, data_entrada, data_saida, quantidade_quartos, qua
 VALUES ('five stars', '10/10/1010', '10/10/1011', 10, 1, 123.45, true);
 
 INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
-rua, bairro, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
+rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
 VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'jardim', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '12/12/1212', 'admin', 'admin', 'MASTER');
+'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '12/12/1212', 'admin', 'admin', 'MASTER');
 
 INSERT INTO Cliente (celular, telefone, email, numero, cep, rua, 
-bairro, cidade, complemento, nome, cpf, sexo, ativo, data_nasc) 
+estado, cidade, complemento, nome, cpf, sexo, ativo, data_nasc) 
 VALUES ('(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'jardim', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '12/12/1212');
+'rua tal de sp', 'SP', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '12/12/1212');
 
 INSERT INTO Venda (id_cliente, id_funcionario, ativo, total_preco, data_venda) 
 VALUES (1, 1, true, 100.10, '10/10/1010');
