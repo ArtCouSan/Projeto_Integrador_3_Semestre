@@ -57,11 +57,14 @@ public class VendaDAO {
         preparedStatement.close();
     }
 
-    public void inserirLista(int id_produto, int quantidade, float preco, int id_venda) throws SQLException, FileNotFoundException, ClassNotFoundException {
+    public void inserirLista(int id_produto, int quantidade, float preco, int id_venda, String tipo) throws SQLException, FileNotFoundException, ClassNotFoundException {
+        // Conecta.
+        connection = DbUtil.getConnection();
+
         // Comando SQL.
         String slq = "INSERT INTO itens_venda "
-                + "(id_produto, quantidade, preco, id_venda) "
-                + "VALUES (? , ?, ?, ?)";
+                + "(id_produto, quantidade, preco, id_venda, tipo) "
+                + "VALUES (? , ?, ?, ?, ?)";
 
         try {
             connection = DbUtil.getConnection();
@@ -83,6 +86,21 @@ public class VendaDAO {
                 connection.close();
             }
         }
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setInt(1, id_produto);
+        preparedStatement.setInt(2, quantidade);
+        preparedStatement.setFloat(3, preco);
+        preparedStatement.setInt(4, id_venda);
+        preparedStatement.setString(5, tipo);
+
+        // Executa.
+        preparedStatement.execute();
+
+        // Fecha conexao.
+        connection.close();
+        preparedStatement.close();
     }
 
     public int maiorIdVenda() throws SQLException, ClassNotFoundException {
@@ -126,7 +144,7 @@ public class VendaDAO {
         ArrayList<Venda> listaResultado = new ArrayList<>();
 
         // Comando SQL.
-        String slq = "SELECT * FROM venda WHERE DATA BETWEEN ? AND ? AND ATIVO = ?";
+        String slq = "SELECT * FROM venda WHERE data_venda BETWEEN ? AND ? AND ATIVO = ?";
 
         preparedStatement = connection.prepareStatement(slq);
 
@@ -148,7 +166,7 @@ public class VendaDAO {
             venda.setId_venda(resultSet.getInt("id_venda"));
             venda.setId_cliente(resultSet.getInt("id_cliente"));
             venda.setId_func(resultSet.getInt("id_funcionario"));
-            venda.setPreco(resultSet.getFloat("total"));
+            venda.setPreco(resultSet.getFloat("total_preco"));
 
             // Adiciona a lista.
             listaResultado.add(venda);

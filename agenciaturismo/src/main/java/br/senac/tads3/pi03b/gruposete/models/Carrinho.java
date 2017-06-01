@@ -7,12 +7,14 @@ public class Carrinho {
     private int id_produto;
     private float preco;
     private int quantidade;
+    private String tipo;
 
-    public Carrinho(int id_produto, float preco, int quantidade, int id_venda) {
+    public Carrinho(int id_produto, float preco, int quantidade, int id_venda, String tipo) {
         this.id_produto = id_produto;
         this.preco = preco;
         this.quantidade = quantidade;
         this.id_venda = id_venda;
+        this.tipo = tipo;
     }
 
     // Get e Set do id do produto.
