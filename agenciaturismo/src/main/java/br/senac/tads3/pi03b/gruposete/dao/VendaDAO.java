@@ -204,8 +204,6 @@ public class VendaDAO {
 
     }
 
-<<<<<<< HEAD
-=======
     public void removerEstoqueVoo(int id, int qtd) throws SQLException, ClassNotFoundException {
 
         connection = DbUtil.getConnection();
@@ -260,7 +258,6 @@ public class VendaDAO {
 
     }
 
->>>>>>> refs/remotes/origin/master
     public ArrayList<Carrinho> procurarItens(int id) throws SQLException, ClassNotFoundException {
 
         // Conecta.
