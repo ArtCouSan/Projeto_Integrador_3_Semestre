@@ -21,7 +21,7 @@ public class BuscaVooServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Buscar/BuscaVoo.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscaVoo.jsp");
         dispatcher.forward(request, response);
     }
 

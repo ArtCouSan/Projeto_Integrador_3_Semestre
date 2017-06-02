@@ -30,7 +30,7 @@ public class AlteraClienteServlet extends HttpServlet {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
             dispatcher.forward(request, response);
         }
     }

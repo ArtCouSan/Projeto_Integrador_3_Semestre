@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Login/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
         dispatcher.forward(request, response);
     }
 

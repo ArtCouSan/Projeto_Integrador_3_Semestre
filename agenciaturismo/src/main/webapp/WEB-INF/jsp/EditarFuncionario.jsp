@@ -2,46 +2,38 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
-    <head> 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-        <title>Cadastro de Cliente</title>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
         <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
+        <title>Editar Funcionario</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            <form action="CadastroCliente" method="post" class="form-horizontal">
-                
+            <form name="editaf" action="EditarFuncionario" method="post" class="form-horizontal">
+                <input type="hidden" name="cpf" value="${funcionarios.getCpf()}"/>
+
                 <div class="form-group ">
                     <c:if test="${erroNome}">
                         <div class="erro">Digite seu nome completo</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Nome:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroCpf}">
-                        <div class="erro">Digite o CPF</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">CPF:</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="14" class="form-control" name="cpf" type="text" id="cpf" required>
+                        <input value="${funcionarios.getNome()}" maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Sexo</label>
                     <div class="controls col-md-5">
-                        <select name="sexo">
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
-                            <option value="O">Outros</option>
+                        <select name="sexo" value="${funcionarios.getSexo()}" >
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Outros">Outros</option>
                         </select>
                     </div>
                 </div>
@@ -49,7 +41,7 @@
                 <div class="form-group">
                     <label for="example-date-input" class="control-label col-md-4">Nascimento:</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" type="date" name="nascimento" id="datanasc" required>
+                        <input value="${funcionarios.getData_nasc()}" class="form-control" type="date" name="nascimento" id="datanasc" required>
                     </div>
                 </div>
 
@@ -59,7 +51,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Rua:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="50" class="form-control" name="rua" placeholder="Insira rua" type="text" id="rua" required>
+                        <input value="${funcionarios.getRua()}" maxlength="50" class="form-control" name="rua" placeholder="Insira rua" type="text" id="rua" required>
                     </div>
                 </div>
 
@@ -69,14 +61,14 @@
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Numero:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
+                        <input value="${funcionarios.getNumero()}" maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Complemento:</label>
                     <div class="controls col-md-5">
-                        <input  maxlength="20" class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="complemento">
+                        <input value="${funcionarios.getComplemento()}" maxlength="20" class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="complemento">
                     </div>
                 </div>
 
@@ -86,7 +78,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">CEP:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="9" required class="form-control" name="cep"  type="text" id="cep" required>
+                        <input value="${funcionarios.getCep()}" maxlength="9" required class="form-control" name="cep"  type="text" id="cep" required>
                     </div>
                 </div>
 
@@ -96,14 +88,14 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Cidade:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="100" class="form-control" name="cidade" placeholder="Insira cidade" type="text" id="cidade" required>
+                        <input value="${funcionarios.getCidade()}" maxlength="100" class="form-control" name="cidade" placeholder="Insira cidade" type="text" id="cidade" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Estado:</label>
                     <div class="controls col-md-5">
-                        <select name="estado">
+                        <select name="estado" value="${funcionarios.getEstado()}" >
                             <option value="AC">AC</option>
                             <option value="AL">AL</option>
                             <option value="AP">AP</option>
@@ -138,32 +130,94 @@
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Celular:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="14" class="form-control" name="celular" type="text" id="celular">
+                        <input value="${funcionarios.getCelular()}" maxlength="14" class="form-control" name="celular" type="text" id="celular">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Telefone:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="13" class="form-control" name="telefone" type="text" id="telefone">
+                        <input value="${funcionarios.getTelefone()}" maxlength="13" class="form-control" name="telefone" type="text" id="telefone">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="example-email-input" class="control-label col-md-4">Email:</label>
                     <div class="controls col-md-5">
-                        <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
+                        <input value="${funcionarios.getEmail()}" maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
                     </div>
                 </div>
-                
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary botao_g"><span class="">Cadastrar</span></button>
+
+                <div class="form-group">
+                    <c:if test="${erroDepartamento}">
+                        <div class="erro">Digite o Departamento</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Departamento:</label>
+                    <div class="controls col-md-5">
+                        <input value="${funcionarios.getDepartamento()}" maxlength="100" class="form-control" placeholder="Insira departamento" name="departamento" id="departamento" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <c:if test="${erroCargo}">
+                        <div class="erro">Digite o cargo</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Cargo:</label>
+                    <div class="controls col-md-5">
+                        <input value="${funcionarios.getCargo()}" maxlength="100" class="form-control" placeholder="Insira cargo" name="cargo" id="cargo" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <c:if test="${erroFilial}">
+                        <div class="erro">Digite a filial</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Filial</label>
+                    <div class="controls col-md-5">
+                        <input value="${funcionarios.getFilial()}" maxlength="100" class="form-control" placeholder="Insira filial" name="filial" id="filial" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <c:if test="${erroLogin}">
+                        <div class="erro">Digite o login</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Login</label>
+                    <div class="controls col-md-5">
+                        <input value="${funcionarios.getLogin()}" maxlength="100" class="form-control" placeholder="login" name="login" id="login" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <c:if test="${erroSenha}">
+                        <div class="erro">Digite sua senha</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Senha</label>
+                    <div class="controls col-md-5">
+                        <input value="${funcionarios.getSenha()}" type="password" maxlength="100" class="form-control" placeholder="senha" name="senha" id="senha" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="example-text-input" class="control-label col-md-4">Acesso</label>
+                    <div class="controls col-md-5">
+                        <select name="acesso" value="${funcionarios.getAcesso()}" >
+                            <option value="MASTER">MASTER</option>
+                            <option value="BASICO">BASICO</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="aab controls col-md-4">
+                        <div class="controls col-md-8" >
+                            <button type="submit"><span class="">Alterar</span></button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
-        <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
->>>>>>> master

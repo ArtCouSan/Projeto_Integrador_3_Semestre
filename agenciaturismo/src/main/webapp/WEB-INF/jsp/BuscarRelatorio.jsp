@@ -7,20 +7,18 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
-
-        <title>Buscar Hotel</title>
+        <script src="./bootstrap/js/relatoriosVenda.js" type="text/javascript" ></script>
+        <title>Buscar Venda</title>
     </head>
     <body>
-        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
-        <form action="BuscaHotel" method="post" class="form-horizontal">
-            <h1 class="text-center"> Digite o campo(s) pela informação que gostaria de buscar</h1>
-            <div class="controls col-md-5">
-                <input name="pesquisa" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
-                <button type="submit" class="btn">Pesquisar</button>
-                <button type="reset" class="btn">Apagar</button>
-            </div>
-        </form>
+        <c:import url="./cabecalho.jsp"/>
+        <h1 class="text-center"> Digite os campos pela data da venda</h1>
+        <div class="controls col-md-5">
+            <input name="inicio" type="text" id="inicio" placeholder="Insira o inicio" class="input-medium search-query">
+            <input name="fim" type="text" id="fim" placeholder="Insira o fim" class="input-medium search-query">
+            <button onclick="pesquisar()" class="btn">Pesquisar</button>
+            <button type="reset" class="btn">Apagar</button>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>

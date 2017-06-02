@@ -28,7 +28,7 @@ public class ExcluiClienteServlet extends HttpServlet {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex); 
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaCliente.jsp");
             dispatcher.forward(request, response);
         }
     }

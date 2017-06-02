@@ -12,7 +12,7 @@
         <title>Editar Cliente</title>
     </head>
     <body>
-        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="./cabecalho.jsp"/>
         <form name="editac" action="EditarCliente" method="post" class="form-horizontal">
             <input type="hidden" name="identificacao" value="${clientes.getId_cliente()}"/>
 

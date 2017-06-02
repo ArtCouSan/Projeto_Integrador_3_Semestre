@@ -11,7 +11,7 @@
         <title>Cadastro de Funcionario</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form name="cadastrof" action="CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
 

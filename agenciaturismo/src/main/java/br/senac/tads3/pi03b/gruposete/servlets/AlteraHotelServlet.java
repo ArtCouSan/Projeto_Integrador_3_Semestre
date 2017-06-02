@@ -30,7 +30,7 @@ public class AlteraHotelServlet extends HttpServlet {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(AlteraHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarHotel.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarHotel.jsp");
             dispatcher.forward(request, response);
         }
     }

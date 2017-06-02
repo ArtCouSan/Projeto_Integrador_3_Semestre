@@ -11,7 +11,7 @@
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
     </head>
     <body>
-        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form action="PreVenda" method="post" class="form-horizontal">
                 <h1 class="text-center">Validação do cliente</h1>

@@ -14,7 +14,7 @@
     <body>
         <h1>RELATORIO DE VENDAS</h1>
         
-        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="./cabecalho.jsp"/>
         <table class="table table-striped">
             <thead>
                 <tr class="info">

@@ -12,7 +12,7 @@
     </head>
     <body>
         <div class="panel-body">
-            <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
+            <c:import url="./cabecalho.jsp"/>
             <form name="editav" action="EditarVoo" method="post" class="form-horizontal">
                 <input type="hidden" name="identificacao" value="${voos.getId_voo()}"/>
                 <div class="form-group ">

@@ -28,7 +28,7 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
         }
     }

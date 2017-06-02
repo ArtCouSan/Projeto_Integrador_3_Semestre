@@ -7,13 +7,15 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <title>Buscar Voo</title>
+        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
+
+        <title>Buscar Hotel</title>
     </head>
     <body>
-        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
-        <form action="BuscaVoo" method="post" class="form-horizontal">
+        <c:import url="./cabecalho.jsp"/>
+        <form action="BuscaHotel" method="post" class="form-horizontal">
             <h1 class="text-center"> Digite o campo(s) pela informação que gostaria de buscar</h1>
-            <div class="controls col-md-5">        
+            <div class="controls col-md-5">
                 <input name="pesquisa" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
                 <button type="submit" class="btn">Pesquisar</button>
                 <button type="reset" class="btn">Apagar</button>

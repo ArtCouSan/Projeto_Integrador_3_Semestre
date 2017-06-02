@@ -11,7 +11,7 @@
         <title>Editar Hotel</title>
     </head>
     <body>
-        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form name="editah" action="EditarHotel" method="post" class="form-horizontal">
                 <input type="hidden" name="identificacao" value="${hoteis.getId_hotel()}"/>

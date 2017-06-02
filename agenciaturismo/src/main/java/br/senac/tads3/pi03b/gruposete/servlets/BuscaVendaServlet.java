@@ -1,7 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,7 @@ public class BuscaVendaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Relatorios/BuscarRelatorio.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarRelatorio.jsp");
         dispatcher.forward(request, response);
 
     }

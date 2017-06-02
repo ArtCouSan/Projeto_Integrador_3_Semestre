@@ -11,7 +11,7 @@
         <title>Cadastro de Voo</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>s
+        <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form name="cadastrov" action="CadastroVoo" method="post" class="form-horizontal">
                 <div class="form-group ">

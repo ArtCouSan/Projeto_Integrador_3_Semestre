@@ -12,7 +12,7 @@ public class ErroLoginServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/jsp/Login/erroLogin.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/jsp/erroLogin.jsp").forward(request, response);
     }
     
     @Override

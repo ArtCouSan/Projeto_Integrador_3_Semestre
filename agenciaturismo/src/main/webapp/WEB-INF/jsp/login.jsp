@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Agência Turismo</h1>
-        <form action="${pageContext.request.contextPath}/login" method="post">
+        <form action="login" method="post">
             <div>
                 <label for="txtusuario">Login</label>
                 <input type="text" name="usuario" id="txtusuario" placeholder="user" required/>
