@@ -2,7 +2,10 @@
 
 <html>
     <head>
-        <title>Bem Vindo</title>>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
+        <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <title>Bem Vindo</title>
     </head>
     <body>
         <c:choose>
