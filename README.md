@@ -1,6 +1,6 @@
 # Loja: Agência De Viagens
-- Venda
-- Verificacoes
+- Venda - Okay (falta testes)
+- Verificacoes (Rafael e Daniel)
 - Relatorios 
 --------------------------------------------
 Projeto do 3° Semestre da Universidade Senac
