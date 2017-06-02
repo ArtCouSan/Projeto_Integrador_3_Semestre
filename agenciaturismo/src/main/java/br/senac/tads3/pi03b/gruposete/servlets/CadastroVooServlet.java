@@ -18,7 +18,7 @@ public class CadastroVooServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Cadastrar/CadastroVoo.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroVoo.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -76,13 +76,14 @@ public class CadastroVooServlet extends HttpServlet {
 
             try {
                 dao.inserir(voo);
-                response.sendRedirect("index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroVoo.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroVoo.jsp");
             dispatcher.forward(request, response);
         }
     }

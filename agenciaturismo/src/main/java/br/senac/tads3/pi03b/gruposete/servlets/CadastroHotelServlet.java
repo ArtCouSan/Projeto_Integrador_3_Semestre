@@ -18,12 +18,13 @@ public class CadastroHotelServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Cadastrar/CadastroHotel.jsp");
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroHotel.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
         HotelDAO dao = new HotelDAO();
@@ -66,13 +67,14 @@ public class CadastroHotelServlet extends HttpServlet {
             
             try {
                 dao.inserir(hotel);
-                response.sendRedirect("index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(CadastroHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroHotel.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroHotel.jsp");
             dispatcher.forward(request, response);
         }
     }

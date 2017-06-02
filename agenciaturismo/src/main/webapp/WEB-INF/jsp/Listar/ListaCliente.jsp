@@ -11,7 +11,7 @@
         <title>Listar Cliente</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
         <table class="table table-striped">
             <thead>
                 <tr class="info">

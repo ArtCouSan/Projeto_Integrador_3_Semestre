@@ -19,12 +19,13 @@ public class CadastroClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Cadastrar/CadastroCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroCliente.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
 
         ClienteDAO dao = new ClienteDAO();
         boolean erro = false, verifica = false;
@@ -74,18 +75,18 @@ public class CadastroClienteServlet extends HttpServlet {
         }
         
         if (erro == false) {
-            Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
+            Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, estado, cidade, complemento, celular,
                     telefone, email, true);
             try {
-                dao.inserir(cliHumilde);
-                response.sendRedirect("index.jsp");
-
+                dao.inserir(cliente);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroCliente.jsp");
             dispatcher.forward(request, response);
         }
     }

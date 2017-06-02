@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/login")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     @Override
@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Login/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Login/login.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -44,9 +44,7 @@ public class LoginServlet extends HttpServlet {
         }
         
         if (func != null) {
-            
             HttpSession sessao = request.getSession(false);
-            
             if (sessao != null) {
                 sessao.invalidate();
             }
@@ -54,9 +52,9 @@ public class LoginServlet extends HttpServlet {
             sessao = request.getSession(true);
             sessao.setAttribute("funcionario", func);
 
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/inicio");
         } else {
-            response.sendRedirect(request.getContextPath() + "/jsp/Login/erroLogin.jsp");
+            response.sendRedirect(request.getContextPath() + "/errologin");
         }
     }
 }

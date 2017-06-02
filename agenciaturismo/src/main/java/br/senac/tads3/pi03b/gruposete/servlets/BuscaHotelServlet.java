@@ -21,7 +21,7 @@ public class BuscaHotelServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaHotel.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Buscar/BuscaHotel.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -35,8 +35,7 @@ public class BuscaHotelServlet extends HttpServlet {
         try {
             List<Hotel> encontrados = dao.procurarHotel(pesquisa);
             request.setAttribute("encontrados", encontrados);
-            request.setAttribute("pesquisa", pesquisa);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaHotel.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaHotel.jsp");
             dispatcher.forward(request, response);
 
         } catch (IOException | ServletException | ClassNotFoundException | SQLException ex) {

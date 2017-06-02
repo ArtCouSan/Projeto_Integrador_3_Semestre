@@ -11,7 +11,7 @@
         <title>Buscar Funcionario</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
         <form action="BuscaFuncionario" method="post" class="form-horizontal">
             <h1 class="text-center"> Digite o campo(s) pela informação que gostaria de buscar</h1>
             <div class="controls col-md-5">

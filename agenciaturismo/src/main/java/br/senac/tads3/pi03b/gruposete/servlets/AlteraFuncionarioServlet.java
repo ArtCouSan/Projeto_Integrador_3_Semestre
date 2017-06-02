@@ -30,7 +30,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarFuncionario.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -143,13 +143,14 @@ public class AlteraFuncionarioServlet extends HttpServlet {
                     celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
             try {
                 dao.alterar(func);
-                response.sendRedirect("index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarFuncionario.jsp");
             dispatcher.forward(request, response);
         }
     }

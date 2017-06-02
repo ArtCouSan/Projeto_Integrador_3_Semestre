@@ -8,11 +8,11 @@
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
-        <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
+        <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
         <title>Editar Cliente</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
         <form name="editac" action="EditarCliente" method="post" class="form-horizontal">
             <input type="hidden" name="identificacao" value="${clientes.getId_cliente()}"/>
 

@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,6 @@ public class AlteraVooServlet extends HttpServlet {
             throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
-
         VooDAO dao = new VooDAO();
         String action = request.getParameter("action");
         if ("edit".equalsIgnoreCase(action)) {
@@ -32,7 +30,7 @@ public class AlteraVooServlet extends HttpServlet {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarVoo.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -94,13 +92,14 @@ public class AlteraVooServlet extends HttpServlet {
 
             try {
                 dao.alterar(voo);
-                response.sendRedirect("index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarVoo.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarVoo.jsp");
             dispatcher.forward(request, response);
         }
     }

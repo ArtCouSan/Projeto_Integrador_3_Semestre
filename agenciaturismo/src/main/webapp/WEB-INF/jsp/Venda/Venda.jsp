@@ -11,7 +11,7 @@
         <title>Venda</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
         <div class="container-fluid">
             <section class="container">
                 <div class="container-page">				

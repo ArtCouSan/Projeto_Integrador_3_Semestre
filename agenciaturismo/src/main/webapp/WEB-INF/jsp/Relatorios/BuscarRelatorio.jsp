@@ -11,7 +11,7 @@
         <title>Buscar Venda</title>
     </head>
     <body>
-        <c:import url="/jsp/Layout/cabecalho.jsp"/>
+        <c:import url="WEB-INF/jsp/Layout/cabecalho.jsp"/>
         <h1 class="text-center"> Digite os campos pela data da venda</h1>
         <div class="controls col-md-5">
             <input name="inicio" type="text" id="inicio" placeholder="Insira o inicio" class="input-medium search-query">

@@ -30,7 +30,7 @@ public class AlteraClienteServlet extends HttpServlet {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarCliente.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -41,7 +41,7 @@ public class AlteraClienteServlet extends HttpServlet {
 
         ClienteDAO dao = new ClienteDAO();
         boolean erro = false, verifica = false;
-        
+
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
@@ -117,22 +117,23 @@ public class AlteraClienteServlet extends HttpServlet {
 //        }
 
         int id = Integer.parseInt(request.getParameter("identificacao"));
-        
+
         if (erro == false) {
-            Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
+            Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, estado, cidade, complemento, celular,
                     telefone, email, true);
-            cliHumilde.setId_cliente(id);
-            
+            cliente.setId_cliente(id);
+
             try {
-                dao.alterar(cliHumilde);
-                response.sendRedirect("index.jsp");
+                dao.alterar(cliente);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarCliente.jsp");
             dispatcher.forward(request, response);
         }
     }

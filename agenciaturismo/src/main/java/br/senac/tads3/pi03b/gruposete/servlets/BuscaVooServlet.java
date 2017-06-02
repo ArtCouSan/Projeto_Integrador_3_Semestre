@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,7 +21,7 @@ public class BuscaVooServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaVoo.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Buscar/BuscaVoo.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -36,8 +35,7 @@ public class BuscaVooServlet extends HttpServlet {
         try {
             List<Voo> encontrados = dao.procurarVoo(pesquisa);
             request.setAttribute("encontrados", encontrados);
-            request.setAttribute("pesquisa", pesquisa);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaVoo.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaVoo.jsp");
             dispatcher.forward(request, response);
 
         } catch (SQLException | ClassNotFoundException ex) {

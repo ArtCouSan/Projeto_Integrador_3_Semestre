@@ -21,7 +21,7 @@ public class BuscaFuncionarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Buscar/BuscaFuncionario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Buscar/BuscaFuncionario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -35,8 +35,7 @@ public class BuscaFuncionarioServlet extends HttpServlet {
         try {
             List<Funcionario> encontrados = dao.procurarFuncionario(pesquisa);
             request.setAttribute("encontrados", encontrados);
-            request.setAttribute("pesquisa", pesquisa);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
 
         } catch (IOException | ClassNotFoundException | SQLException ex) {

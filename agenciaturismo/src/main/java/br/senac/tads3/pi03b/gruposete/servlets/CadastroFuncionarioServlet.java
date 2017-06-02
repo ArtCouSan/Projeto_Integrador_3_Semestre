@@ -18,7 +18,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Cadastrar/CadastroFuncionario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroFuncionario.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -93,12 +93,13 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                     celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
             try {
                 dao.inserir(func);
-                response.sendRedirect("index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Cadastrar/CadastroFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroFuncionario.jsp");
             dispatcher.forward(request, response);
         }
     }

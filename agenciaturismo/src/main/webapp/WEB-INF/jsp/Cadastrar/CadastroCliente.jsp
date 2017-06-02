@@ -2,19 +2,19 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+        <title>Cadastro de Cliente</title>
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="./bootstrap/js/campos_Funcionario.js" type="text/javascript" ></script>
-        <title>Cadastro de Funcionario</title>
+        <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+        <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
     </head>
     <body>
         <c:import url="/jsp/Layout/cabecalho.jsp"/>
         <div class="panel-body">
-            <form name="cadastrof" action="CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
-
+            <form action="CadastroCliente" method="post" class="form-horizontal">
+                
                 <div class="form-group ">
                     <c:if test="${erroNome}">
                         <div class="erro">Digite seu nome completo</div>
@@ -155,73 +155,15 @@
                         <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <c:if test="${erroDepartamento}">
-                        <div class="erro">Digite o Departamento</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Departamento:</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="100" class="form-control" placeholder="Insira departamento" name="departamento" id="departamento" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroCargo}">
-                        <div class="erro">Digite o cargo</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Cargo:</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="100" class="form-control" placeholder="Insira cargo" name="cargo" id="cargo" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroFilial}">
-                        <div class="erro">Digite a filial</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Filial</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="100" class="form-control" placeholder="Insira filial" name="filial" id="filial" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroLogin}">
-                        <div class="erro">Digite o login</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Login</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="100" class="form-control" placeholder="login" name="login" id="login" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroSenha}">
-                        <div class="erro">Digite sua senha</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Senha</label>
-                    <div class="controls col-md-5">
-                        <input type="password" maxlength="100" class="form-control" placeholder="senha" name="senha" id="senha" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="example-text-input" class="control-label col-md-4">Acesso</label>
-                    <div class="controls col-md-5">
-                        <select name="acesso">
-                            <option value="MASTER">MASTER</option>
-                            <option value="BASICO">BASICO</option>
-                        </select>
-                    </div>
-                </div>
-
+                
                 <div class="col-md-12 text-center">
-                    <button type="submit"><span class="">Cadastrar</span></button>
+                    <button type="submit" class="btn btn-primary botao_g"><span class="">Cadastrar</span></button>
                 </div>
             </form>
         </div>
+        <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
+>>>>>>> master
