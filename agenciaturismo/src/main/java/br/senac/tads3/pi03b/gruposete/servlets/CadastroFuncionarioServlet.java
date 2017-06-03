@@ -57,7 +57,6 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         request.setAttribute("erroCidade", service.validaCidade(cidade));
         request.setAttribute("erroCep", service.validaCep(cep));
         request.setAttribute("erroCpf", service.validaCpf(cpf));
-        request.setAttribute("erroEmail", service.validaEmail(email));
         request.setAttribute("erroCargo", service.validaCargo(cargo));
         request.setAttribute("erroFilial", service.validaFilial(filial));
         request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
@@ -70,7 +69,7 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
 
         if (service.validaFuncionarioCadastro(nome, numero, rua, cidade, cep, 
-                cpf, email, cargo, filial, departamento, login, senha, acesso)) {
+                cpf, cargo, filial, departamento, login, senha, acesso)) {
             try {
                 dao.inserir(func);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");

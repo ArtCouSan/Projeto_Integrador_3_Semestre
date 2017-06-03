@@ -6,14 +6,13 @@ public class ClienteService {
     }
 
     public boolean validaCliente(String nome, int numero, String rua, 
-            String cidade, String cep, String cpf, String email) {
+            String cidade, String cep, String cpf) {
         return validaNome(nome)
                 && validaNumero(numero)
                 && validaRua(rua)
                 && validaCidade(cidade)
                 && validaCep(cep)
-                && validaCpf(cpf)
-                && validaEmail(email);
+                && validaCpf(cpf);
     }
 
     public boolean validaNome(String nome) {
@@ -38,10 +37,6 @@ public class ClienteService {
 
     public boolean validaCpf(String cpf) {
         return false;
-    }
-
-    public boolean validaEmail(String email) {
-        return "".equals(email);
     }
 
 }

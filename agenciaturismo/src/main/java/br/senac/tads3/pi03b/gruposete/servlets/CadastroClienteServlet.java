@@ -51,13 +51,12 @@ public class CadastroClienteServlet extends HttpServlet {
         request.setAttribute("erroCidade", service.validaCidade(cidade));
         request.setAttribute("erroCep", service.validaCep(cep));
         request.setAttribute("erroCpf", service.validaCpf(cpf));
-        request.setAttribute("erroEmail", service.validaEmail(email));
 
         Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
         
-        if (service.validaCliente(nome, numero, rua, cidade, cep, cpf, email)) {
+        if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
             try {
                 dao.inserir(cliente);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");

@@ -68,7 +68,6 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         request.setAttribute("erroRua", service.validaRua(rua));
         request.setAttribute("erroCidade", service.validaCidade(cidade));
         request.setAttribute("erroCep", service.validaCep(cep));
-        request.setAttribute("erroEmail", service.validaEmail(email));
         request.setAttribute("erroCargo", service.validaCargo(cargo));
         request.setAttribute("erroFilial", service.validaFilial(filial));
         request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
@@ -79,7 +78,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
 
         if (service.validaFuncionarioAlteracao(nome, numero, rua, cidade, cep,
-                email, cargo, filial, departamento, login, senha, acesso)) {
+                cargo, filial, departamento, login, senha, acesso)) {
             try {
                 dao.alterar(func);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");

@@ -6,7 +6,7 @@ public class FuncionarioService {
     }
 
     public boolean validaFuncionarioCadastro(String nome, int numero, String rua,
-            String cidade, String cep, String cpf, String email, String cargo, 
+            String cidade, String cep, String cpf, String cargo, 
             String filial, String departamento, String login, String senha, String acesso) {
         return validaNome(nome)
                 && validaNumero(numero)
@@ -14,7 +14,6 @@ public class FuncionarioService {
                 && validaCidade(cidade)
                 && validaCep(cep)
                 && validaCpf(cpf)
-                && validaEmail(email)
                 && validaCargo(cargo)
                 && validaFilial(filial)
                 && validaDepartamento(departamento)
@@ -24,14 +23,13 @@ public class FuncionarioService {
     }
     
     public boolean validaFuncionarioAlteracao(String nome, int numero, String rua,
-            String cidade, String cep, String email, String cargo, String filial, 
+            String cidade, String cep, String cargo, String filial, 
             String departamento, String login, String senha, String acesso) {
         return validaNome(nome)
                 && validaNumero(numero)
                 && validaRua(rua)
                 && validaCidade(cidade)
                 && validaCep(cep)
-                && validaEmail(email)
                 && validaCargo(cargo)
                 && validaFilial(filial)
                 && validaDepartamento(departamento)
@@ -62,10 +60,6 @@ public class FuncionarioService {
 
     public boolean validaCpf(String cpf) {
         return false;
-    }
-
-    public boolean validaEmail(String email) {
-        return "".equals(email) && !email.contains("@") && !email.contains(".com") || !email.contains(".com");
     }
 
     public boolean validaCargo(String cargo) {
