@@ -750,13 +750,13 @@ function venda() {
 
         if (i + 1 != tamanho_hotel) {
 
-            idsVoo += carrinho_hotel.rows[i].id + ",";
+            idsHotel += carrinho_hotel.rows[i].id + ",";
             precoH += carrinho_hotel.rows[i].children[3].innerText + ",";
             quantidadeHotel += carrinho_hotel.rows[i].children[4].firstChild.value + ",";
 
         } else {
 
-            idsVoo += carrinho_hotel.rows[i].id;
+            idsHotel += carrinho_hotel.rows[i].id;
             precoH += carrinho_hotel.rows[i].children[3].innerText;
             quantidadeHotel += carrinho_hotel.rows[i].children[4].firstChild.value;
 
@@ -768,13 +768,13 @@ function venda() {
 
         if (i + 1 != tamanho_voo) {
 
-            idsHotel += carrinho_voo.rows[i].id + ",";
+            idsVoo += carrinho_voo.rows[i].id + ",";
             precoV += carrinho_voo.rows[i].children[5].innerText + ",";
             quantidadeVoo += carrinho_voo.rows[i].children[4].firstChild.value + ",";
 
         } else {
 
-            idsHotel += carrinho_voo.rows[i].id;
+            idsVoo += carrinho_voo.rows[i].id;
             precoV += carrinho_voo.rows[i].children[5].innerText;
             quantidadeVoo += carrinho_voo.rows[i].children[4].firstChild.value;
 
