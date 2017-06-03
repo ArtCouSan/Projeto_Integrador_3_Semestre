@@ -43,24 +43,28 @@ public class VendaDAO {
     }
 
     public void inserirLista(int id_produto, int quantidade, float preco, int id_venda, String tipo) throws SQLException, FileNotFoundException, ClassNotFoundException {
-
         // Conecta.
         connection = DbUtil.getConnection();
 
         // Comando SQL.
         String slq = "INSERT INTO itens_venda "
                 + "(id_produto, quantidade, preco, id_venda, tipo) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "VALUES (? , ?, ?, ?, ?)";
+
+        PreparedStatement stmt = connection.prepareStatement(slq);
 
         // Insercoes.
-        preparedStatement.setInt(1, id_produto);
-        preparedStatement.setInt(2, quantidade);
-        preparedStatement.setFloat(3, preco);
-        preparedStatement.setInt(4, id_venda);
-        preparedStatement.setString(5, tipo);
+        stmt.setInt(1, id_produto);
+        stmt.setInt(2, quantidade);
+        stmt.setFloat(3, preco);
+        stmt.setInt(4, id_venda);
+        stmt.setString(5, tipo);
 
-        // Executa
-        preparedStatement.execute();
+        // Executa.
+        stmt.execute();
+
+        // Fecha conexao.
+        connection.close();
 
     }
 
@@ -184,7 +188,7 @@ public class VendaDAO {
     }
 
     public void removerEstoqueVoo(int id, int qtd) throws SQLException, ClassNotFoundException {
-
+       
         connection = DbUtil.getConnection();
 
         String sql = " ";
@@ -205,7 +209,6 @@ public class VendaDAO {
 
         preparedStatement.execute();
 
-        preparedStatement.close();
         connection.close();
 
     }
@@ -232,7 +235,6 @@ public class VendaDAO {
 
         preparedStatement.execute();
 
-        preparedStatement.close();
         connection.close();
 
     }
