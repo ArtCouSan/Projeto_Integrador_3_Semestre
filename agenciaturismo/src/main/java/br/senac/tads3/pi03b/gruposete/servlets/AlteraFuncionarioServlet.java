@@ -80,21 +80,21 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         if (service.validaFuncionarioAlteracao(nome, numero, rua, cidade, cep,
                 cargo, filial, departamento, login, senha, acesso)) {
             try {
+                Funcionario funcionarios = dao.getFuncionarioByCPF(cpf);
+                request.setAttribute("funcionarios", funcionarios);
+            } catch (ClassNotFoundException | SQLException e) {
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarFuncionario.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            try {
                 dao.alterar(func);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } else {
-            try {
-                Funcionario funcionarios = dao.getFuncionarioByCPF(cpf);
-                request.setAttribute("funcionarios", funcionarios);
-            } catch (Exception e) {
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarFuncionario.jsp");
-            dispatcher.forward(request, response);
+            
         }
     }
 }

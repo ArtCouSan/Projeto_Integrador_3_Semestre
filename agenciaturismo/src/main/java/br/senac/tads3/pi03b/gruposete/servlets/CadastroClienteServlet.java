@@ -57,6 +57,9 @@ public class CadastroClienteServlet extends HttpServlet {
                 telefone, email, true);
         
         if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
+            dispatcher.forward(request, response);
+        } else {
             try {
                 dao.inserir(cliente);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -64,9 +67,6 @@ public class CadastroClienteServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
-            dispatcher.forward(request, response);
         }
     }
 }

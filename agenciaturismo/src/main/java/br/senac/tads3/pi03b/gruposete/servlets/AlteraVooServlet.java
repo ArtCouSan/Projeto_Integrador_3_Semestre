@@ -62,20 +62,20 @@ public class AlteraVooServlet extends HttpServlet {
 
         if (service.validaVoo(origem, destino, quantidade_passagens, preco)) {
             try {
+                Voo voos = dao.getVooById(id);
+                request.setAttribute("voos", voos);
+            } catch (ClassNotFoundException | SQLException e) {
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarVoo.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            try {
                 dao.alterar(voo);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            try {
-                Voo voos = dao.getVooById(id);
-                request.setAttribute("voos", voos);
-            } catch (Exception e) {
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarVoo.jsp");
-            dispatcher.forward(request, response);
         }
     }
 }

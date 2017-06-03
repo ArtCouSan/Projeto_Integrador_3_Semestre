@@ -47,6 +47,9 @@ public class CadastroVooServlet extends HttpServlet {
                 origem, quantidade_passagens, preco, true);
 
         if (service.validaVoo(origem, destino, quantidade_passagens, preco)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroVoo.jsp");
+            dispatcher.forward(request, response);
+        } else {
             try {
                 dao.inserir(voo);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -54,9 +57,6 @@ public class CadastroVooServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroVoo.jsp");
-            dispatcher.forward(request, response);
         }
     }
 }

@@ -47,6 +47,9 @@ public class CadastroHotelServlet extends HttpServlet {
                 quantidade_quartos, quantidade_hospedes, preco, true);
 
         if (service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroHotel.jsp");
+            dispatcher.forward(request, response);
+        } else {
             try {
                 dao.inserir(hotel);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -54,9 +57,6 @@ public class CadastroHotelServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(CadastroHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroHotel.jsp");
-            dispatcher.forward(request, response);
         }
     }
 }

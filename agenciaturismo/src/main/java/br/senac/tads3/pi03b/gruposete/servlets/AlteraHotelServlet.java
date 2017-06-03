@@ -61,21 +61,21 @@ public class AlteraHotelServlet extends HttpServlet {
 
         if (service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco)) {
             try {
+                Hotel hoteis = dao.getHotelById(id);
+                request.setAttribute("hoteis", hoteis);
+            } catch (ClassNotFoundException | SQLException e) {
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarHotel.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            try {
                 dao.alterar(hotel);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } else {
-            try {
-                Hotel hoteis = dao.getHotelById(id);
-                request.setAttribute("hoteis", hoteis);
-            } catch (Exception e) {
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarHotel.jsp");
-            dispatcher.forward(request, response);
+            
         }
     }
 }

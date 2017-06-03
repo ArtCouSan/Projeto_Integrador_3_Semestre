@@ -70,6 +70,9 @@ public class CadastroFuncionarioServlet extends HttpServlet {
 
         if (service.validaFuncionarioCadastro(nome, numero, rua, cidade, cep, 
                 cpf, cargo, filial, departamento, login, senha, acesso)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
+            dispatcher.forward(request, response);
+        } else {
             try {
                 dao.inserir(func);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -77,9 +80,6 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
-            dispatcher.forward(request, response);
         }
     }
 }

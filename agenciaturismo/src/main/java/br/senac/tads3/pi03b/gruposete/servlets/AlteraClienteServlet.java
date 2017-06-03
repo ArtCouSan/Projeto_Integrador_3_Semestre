@@ -72,21 +72,21 @@ public class AlteraClienteServlet extends HttpServlet {
 
         if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
             try {
+                Cliente clientes = dao.getClienteById(id);
+                request.setAttribute("clientes", clientes);
+            } catch (ClassNotFoundException | SQLException e) {
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            try {
                 dao.alterar(cliente);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } else {
-            try {
-                Cliente clientes = dao.getClienteById(id);
-                request.setAttribute("clientes", clientes);
-            } catch (Exception e) {
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
-            dispatcher.forward(request, response);
+            
         }
     }
 }
