@@ -19,7 +19,7 @@ public class PreVendaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Venda/PreVenda.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/PreVenda.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -54,12 +54,12 @@ public class PreVendaServlet extends HttpServlet {
 
         if (erro) {
             request.setAttribute("cpf", cpf);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Venda/Venda.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Venda.jsp");
             dispatcher.forward(request, response);
 
         } else {
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
             dispatcher.forward(request, response);
 
         }

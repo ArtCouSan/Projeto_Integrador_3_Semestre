@@ -6,8 +6,8 @@ import br.senac.tads3.pi03b.gruposete.dao.VendaDAO;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
-import br.senac.tads3.pi03b.gruposete.models.Voo;
 import br.senac.tads3.pi03b.gruposete.models.Venda;
+import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,23 +31,41 @@ public class VendaServlet extends HttpServlet {
         ClienteDAO clienteData = new ClienteDAO();
         Cliente cliente = null;
         try {
+
             cliente = clienteData.getClienteByCPF(cpf);
+
         } catch (SQLException | ClassNotFoundException ex) {
+
             Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+
         double totalP = Double.parseDouble(request.getParameter("totalP"));
+
         Venda venda = new Venda(cliente.getId_cliente(), 2, totalP);
+
         VendaDAO vendaData = new VendaDAO();
+
         try {
+
             vendaData.inserir(venda);
+
         } catch (SQLException | ClassNotFoundException ex) {
+
             Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+
         int idLista = 0;
+
         try {
+
             idLista = vendaData.maiorIdVenda();
+
         } catch (SQLException | ClassNotFoundException ex) {
+
             Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
         String idsVoos = request.getParameter("idsVoos");
@@ -81,7 +99,7 @@ public class VendaServlet extends HttpServlet {
                 int novaQtdVoo = qtd_encontradaV - quantidadeV;
 
                 vendaData.inserirLista(idV, quantidadeV, precoV, idLista, "V");
-                
+
                 vendaData.removerEstoqueVoo(idV, novaQtdVoo);
 
             } catch (SQLException | ClassNotFoundException ex) {
@@ -119,7 +137,7 @@ public class VendaServlet extends HttpServlet {
 
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
         dispatcher.forward(request, response);
 
     }

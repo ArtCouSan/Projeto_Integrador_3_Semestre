@@ -578,7 +578,9 @@ function excluirCarrinhoVoo(id) {
 
             var quantidade = table.rows[i].children[4].firstChild.value;
 
-            totalPreco.innerText = totalConvertido - (preco * quantidade);
+            var c = totalConvertido - (preco * quantidade);
+
+            totalPreco.innerText = parseFloat(c.toFixed(2));
 
             table.deleteRow(i);
 
@@ -606,7 +608,9 @@ function excluirCarrinhoHotel(id) {
 
             var quantidade = table.rows[i].children[4].firstChild.value;
 
-            totalPreco.innerText = totalConvertido - (preco * quantidade);
+            var c = totalConvertido - (preco * quantidade);
+
+            totalPreco.innerText = parseFloat(c.toFixed(2));
 
             table.deleteRow(i);
 
@@ -634,9 +638,13 @@ function atualizarPreco_Hotel(id, quantidade) {
 
             var quantidadeAtualizada = table.rows[i].children[4].firstChild.value;
 
-            var preCalculo = totalConvertido - (preco * quantidade);
+            var c = totalConvertido - (preco * quantidade);
 
-            totalPreco.innerText = preCalculo + (preco * quantidadeAtualizada);
+            var preCalculo = parseFloat(c.toFixed(2));
+
+            var c2 = preCalculo + (preco * quantidadeAtualizada);
+
+            totalPreco.innerText = parseFloat(c2.toFixed(2));
 
             var maximo = table.rows[i].children[4].firstChild.max;
 
@@ -684,9 +692,13 @@ function atualizarPreco_Voo(id, quantidade) {
 
             var quantidadeAtualizada = table.rows[i].children[4].firstChild.value;
 
-            var preCalculo = totalConvertido - (preco * quantidade);
+            var c = totalConvertido - (preco * quantidade);
 
-            totalPreco.innerText = preCalculo + (preco * quantidadeAtualizada);
+            var preCalculo = parseFloat(c.toFixed(2));
+
+            var c2 = preCalculo + (preco * quantidadeAtualizada);
+
+            totalPreco.innerText = parseFloat(c2.toFixed(2));
 
             var maximo = table.rows[i].children[4].firstChild.max;
 
