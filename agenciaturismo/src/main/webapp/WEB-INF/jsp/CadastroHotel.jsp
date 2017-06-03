@@ -62,9 +62,11 @@
                         <input class="form-control" type="number" name="preco" placeholder="Insira o preço" id="example-number-input" required>
                     </div>
                 </div>
+                
                 <div class="col-md-12 text-center">
-                    <button type="submit"><span class="">Cadastrar</span></button>
+                    <button type="submit" class="btn btn-primary botao_g"><span class="">Cadastrar</span></button>
                 </div>
+                
             </form>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

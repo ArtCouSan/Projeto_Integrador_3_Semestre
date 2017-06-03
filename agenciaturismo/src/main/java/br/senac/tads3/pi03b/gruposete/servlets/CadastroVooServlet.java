@@ -19,7 +19,7 @@ public class CadastroVooServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroVoo.jsp");
         dispatcher.forward(request, response);
     }
@@ -38,10 +38,15 @@ public class CadastroVooServlet extends HttpServlet {
         int quantidade_passagens = Integer.parseInt(request.getParameter("quantidade_passagens"));
         float preco = Float.parseFloat(request.getParameter("preco"));
 
+        request.setAttribute("erroOrigem", service.validaOrigem(origem));
+        request.setAttribute("erroDestino", service.validaDestino(destino));
+        request.setAttribute("erroQuantidade_passagens", service.validaQuantidade_passagens(quantidade_passagens));
+        request.setAttribute("erroPreco", service.validaPreco(preco));
+
         Voo voo = new Voo(data_ida, data_volta, destino,
                 origem, quantidade_passagens, preco, true);
 
-        if (service.validaVoo(voo)) {
+        if (service.validaVoo(origem, destino, quantidade_passagens, preco)) {
             try {
                 dao.inserir(voo);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -50,10 +55,6 @@ public class CadastroVooServlet extends HttpServlet {
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            request.setAttribute("erroOrigem", service.validaOrigem(origem));
-            request.setAttribute("erroDestino", service.validaDestino(destino));
-            request.setAttribute("erroQuantidade_passagens", service.validaQuantidade_passagens(quantidade_passagens));
-            request.setAttribute("erroPreco", service.validaPreco(preco));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroVoo.jsp");
             dispatcher.forward(request, response);
         }

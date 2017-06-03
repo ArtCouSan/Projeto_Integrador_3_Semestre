@@ -19,13 +19,13 @@ public class CadastroHotelServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroHotel.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HotelService service = new HotelService();
@@ -38,10 +38,15 @@ public class CadastroHotelServlet extends HttpServlet {
         int quantidade_hospedes = Integer.parseInt(request.getParameter("quantidade_hospedes"));
         float preco = Float.parseFloat(request.getParameter("preco"));
 
-        Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, 
+        request.setAttribute("erroNome_hotel", service.validaNome(nome_hotel));
+        request.setAttribute("erroQuantidade_quartos", service.validaQuantidade_quartos(quantidade_quartos));
+        request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
+        request.setAttribute("erroPreco", service.validaPreco(preco));
+
+        Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida,
                 quantidade_quartos, quantidade_hospedes, preco, true);
 
-        if (service.validaHotel(hotel)) {
+        if (service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco)) {
             try {
                 dao.inserir(hotel);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -49,13 +54,8 @@ public class CadastroHotelServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(CadastroHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         } else {
-            request.setAttribute("erroNome_hotel", service.validaNome_hotel(nome_hotel));
-            request.setAttribute("erroQuantidade_quartos", service.validaQuantidade_quartos(quantidade_quartos));
-            request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
-            request.setAttribute("erroPreco", service.validaPreco(preco));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroHotel.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroHotel.jsp");
             dispatcher.forward(request, response);
         }
     }

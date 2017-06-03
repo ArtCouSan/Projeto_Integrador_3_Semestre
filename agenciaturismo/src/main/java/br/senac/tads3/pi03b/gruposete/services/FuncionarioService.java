@@ -1,45 +1,47 @@
 package br.senac.tads3.pi03b.gruposete.services;
 
-import br.senac.tads3.pi03b.gruposete.models.Funcionario;
-
 public class FuncionarioService {
 
     public FuncionarioService() {
     }
 
-    public boolean validaFuncionarioCadastro(Funcionario func) {
-        return !(validaNome(func.getNome())
-                && validaNumero(func.getNumero())
-                && validaRua(func.getRua())
-                && validaCidade(func.getCidade())
-                && validaCep(func.getCep())
-                && validaCpf(func.getCpf())
-                && validaEmail(func.getEmail())
-                && validaCargo(func.getCargo())
-                && validaFilial(func.getFilial())
-                && validaDepartamento(func.getDepartamento())
-                && validaLogin(func.getLogin())
-                && validaSenha(func.getSenha())
-                && validaAcesso(func.getAcesso()));
+    public boolean validaFuncionarioCadastro(String nome, int numero, String rua,
+            String cidade, String cep, String cpf, String email, String cargo, 
+            String filial, String departamento, String login, String senha, String acesso) {
+        return validaNome(nome)
+                && validaNumero(numero)
+                && validaRua(rua)
+                && validaCidade(cidade)
+                && validaCep(cep)
+                && validaCpf(cpf)
+                && validaEmail(email)
+                && validaCargo(cargo)
+                && validaFilial(filial)
+                && validaDepartamento(departamento)
+                && validaLogin(login)
+                && validaSenha(senha)
+                && validaAcesso(acesso);
     }
-
-    public boolean validaFuncionarioAlteracao(Funcionario func) {
-        return !(validaNome(func.getNome())
-                && validaNumero(func.getNumero())
-                && validaRua(func.getRua())
-                && validaCidade(func.getCidade())
-                && validaCep(func.getCep())
-                && validaEmail(func.getEmail())
-                && validaCargo(func.getCargo())
-                && validaFilial(func.getFilial())
-                && validaDepartamento(func.getDepartamento())
-                && validaLogin(func.getLogin())
-                && validaSenha(func.getSenha())
-                && validaAcesso(func.getAcesso()));
+    
+    public boolean validaFuncionarioAlteracao(String nome, int numero, String rua,
+            String cidade, String cep, String email, String cargo, String filial, 
+            String departamento, String login, String senha, String acesso) {
+        return validaNome(nome)
+                && validaNumero(numero)
+                && validaRua(rua)
+                && validaCidade(cidade)
+                && validaCep(cep)
+                && validaEmail(email)
+                && validaCargo(cargo)
+                && validaFilial(filial)
+                && validaDepartamento(departamento)
+                && validaLogin(login)
+                && validaSenha(senha)
+                && validaAcesso(acesso);
     }
 
     public boolean validaNome(String nome) {
-        return nome == null || nome.length() < 1;
+        return "".equals(nome);
     }
 
     public boolean validaNumero(int numero) {
@@ -47,15 +49,15 @@ public class FuncionarioService {
     }
 
     public boolean validaRua(String rua) {
-        return rua == null || rua.length() < 1;
+        return "".equals(rua);
     }
 
     public boolean validaCidade(String cidade) {
-        return cidade == null || cidade.length() < 1;
+        return "".equals(cidade);
     }
 
     public boolean validaCep(String cep) {
-        return cep == null || cep.length() < 1;
+        return "".equals(cep);
     }
 
     public boolean validaCpf(String cpf) {
@@ -63,37 +65,31 @@ public class FuncionarioService {
     }
 
     public boolean validaEmail(String email) {
-        if (email != null) {
-            if (!email.contains("@") && !email.contains(".com")
-                    || !email.contains(".com.br")) {
-                return true;
-            }
-        }
-        return false;
+        return "".equals(email) && !email.contains("@") && !email.contains(".com") || !email.contains(".com");
     }
 
     public boolean validaCargo(String cargo) {
-        return cargo == null || cargo.length() < 1;
+        return "".equals(cargo);
     }
-    
+
     public boolean validaFilial(String filial) {
-        return filial == null || filial.length() < 1;
+        return "".equals(filial);
     }
-    
+
     public boolean validaDepartamento(String departamento) {
-        return departamento == null || departamento.length() < 1;
+        return "".equals(departamento);
     }
-    
+
     public boolean validaLogin(String login) {
-        return login == null || login.length() < 1;
+        return "".equals(login);
     }
-    
+
     public boolean validaSenha(String senha) {
-        return senha == null || senha.length() < 4 && senha.length() > 8;
+        return "".equals(senha) || senha.length() < 4 && senha.length() > 8;
     }
-    
+
     public boolean validaAcesso(String acesso) {
-        return acesso == null || acesso.length() < 1;
+        return "".equals(acesso);
     }
-    
+
 }

@@ -15,7 +15,9 @@
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form name="editaf" action="EditarFuncionario" method="post" class="form-horizontal">
+                <input type="hidden" name="login" value="${funcionarios.getLogin()}"/>
                 <input type="hidden" name="cpf" value="${funcionarios.getCpf()}"/>
+                <input type="hidden" name="senha" value="${funcionarios.getSenha()}"/>
 
                 <div class="form-group ">
                     <c:if test="${erroNome}">
@@ -182,26 +184,6 @@
                 </div>
 
                 <div class="form-group">
-                    <c:if test="${erroLogin}">
-                        <div class="erro">Digite o login</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Login</label>
-                    <div class="controls col-md-5">
-                        <input value="${funcionarios.getLogin()}" maxlength="100" class="form-control" placeholder="login" name="login" id="login" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroSenha}">
-                        <div class="erro">Digite sua senha</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Senha</label>
-                    <div class="controls col-md-5">
-                        <input value="${funcionarios.getSenha()}" type="password" maxlength="100" class="form-control" placeholder="senha" name="senha" id="senha" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <c:if test="${erroAcesso}">
                         <div class="erro">Acesso invalido</div>
                     </c:if>
@@ -214,13 +196,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="aab controls col-md-4">
-                        <div class="controls col-md-8" >
-                            <button type="submit"><span class="">Alterar</span></button>
-                        </div>
-                    </div>
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary botao_g"><span class="">Alterar</span></button>
                 </div>
+
             </form>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

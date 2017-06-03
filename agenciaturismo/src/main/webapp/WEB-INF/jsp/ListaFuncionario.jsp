@@ -24,8 +24,6 @@
                     <th>Cargo</th>
                     <th>Filial</th>
                     <th>Departamento</th>
-                    <th>Login</th>
-                    <th>Acesso</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,10 +38,8 @@
                         <td name="cargo"><c:out value="${funcionarios.getCargo()}"/></td>
                         <td name="filial"><c:out value="${funcionarios.getFilial()}"/></td>
                         <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
-                        <td name="login"><c:out value="${funcionarios.getLogin()}"/></td>
-                        <td name="acesso"><c:out value="${funcionarios.getAcesso()}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiFuncionarioServlet?action=delete&cpf=<c:out value="${funcionarios.getCpf()}"/>&pesquisa=<c:out value="${pesquisa}"/>"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
-                        <td><a class="btn btn-info" href="EditarFuncionario?action=edit&cpf=<c:out value="${funcionarios.getCpf()}"/>"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
+                        <td><a class="btn btn-danger" href="ExcluiFuncionarioServlet?action=delete&cpf=${funcionarios.getCpf()}&pesquisa=${pesquisa}"/><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-info" href="EditarFuncionario?action=edit&cpf=${funcionarios.getCpf()}"/><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>

@@ -51,11 +51,16 @@ public class AlteraVooServlet extends HttpServlet {
         float preco = Float.parseFloat(request.getParameter("preco"));
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
-        Voo voo = new Voo(data_ida, data_volta, destino, origem, 
+        request.setAttribute("erroOrigem", service.validaOrigem(origem));
+        request.setAttribute("erroDestino", service.validaDestino(destino));
+        request.setAttribute("erroQuantidade_passagens", service.validaQuantidade_passagens(quantidade_passagens));
+        request.setAttribute("erroPreco", service.validaPreco(preco));
+
+        Voo voo = new Voo(data_ida, data_volta, destino, origem,
                 quantidade_passagens, preco, true);
         voo.setId_voo(id);
 
-        if (service.validaVoo(voo)) {
+        if (service.validaVoo(origem, destino, quantidade_passagens, preco)) {
             try {
                 dao.alterar(voo);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -63,12 +68,12 @@ public class AlteraVooServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } else {
-            request.setAttribute("erroOrigem", service.validaOrigem(origem));
-            request.setAttribute("erroDestino", service.validaDestino(destino));
-            request.setAttribute("erroQuantidade_passagens", service.validaQuantidade_passagens(quantidade_passagens));
-            request.setAttribute("erroPreco", service.validaPreco(preco));
+            try {
+                Voo voos = dao.getVooById(id);
+                request.setAttribute("voos", voos);
+            } catch (Exception e) {
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarVoo.jsp");
             dispatcher.forward(request, response);
         }

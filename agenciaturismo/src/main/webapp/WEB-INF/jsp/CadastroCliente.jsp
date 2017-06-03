@@ -14,7 +14,7 @@
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form action="CadastroCliente" method="post" class="form-horizontal">
-                
+
                 <div class="form-group ">
                     <c:if test="${erroNome}">
                         <div class="erro">Digite seu nome completo</div>
@@ -158,10 +158,11 @@
                         <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
                     </div>
                 </div>
-                
+
                 <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-primary botao_g"><span class="">Cadastrar</span></button>
                 </div>
+
             </form>
         </div>
         <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>

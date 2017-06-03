@@ -21,7 +21,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cpf = request.getParameter("id");
+        String cpf = request.getParameter("cpf");
         FuncionarioDAO dao = new FuncionarioDAO();
         String action = request.getParameter("action");
         if ("edit".equalsIgnoreCase(action)) {
@@ -62,12 +62,24 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         String acesso = request.getParameter("acesso");
-        
-        Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
-                    numero, cep, rua, estado, cidade, complemento,
-                    celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
 
-        if (service.validaFuncionarioAlteracao(func)) {
+        request.setAttribute("erroNome", service.validaNome(nome));
+        request.setAttribute("erroNumero", service.validaNumero(numero));
+        request.setAttribute("erroRua", service.validaRua(rua));
+        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroCep", service.validaCep(cep));
+        request.setAttribute("erroEmail", service.validaEmail(email));
+        request.setAttribute("erroCargo", service.validaCargo(cargo));
+        request.setAttribute("erroFilial", service.validaFilial(filial));
+        request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
+        request.setAttribute("erroAcesso", service.validaAcesso(acesso));
+
+        Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
+                numero, cep, rua, estado, cidade, complemento,
+                celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
+
+        if (service.validaFuncionarioAlteracao(nome, numero, rua, cidade, cep,
+                email, cargo, filial, departamento, login, senha, acesso)) {
             try {
                 dao.alterar(func);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -75,20 +87,13 @@ public class AlteraFuncionarioServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         } else {
-            request.setAttribute("erroNome", service.validaNome(nome));
-            request.setAttribute("erroNumero", service.validaNumero(numero));
-            request.setAttribute("erroRua", service.validaRua(rua));
-            request.setAttribute("erroCidade", service.validaCidade(cidade));
-            request.setAttribute("erroCep", service.validaCep(cep));
-            request.setAttribute("erroEmail", service.validaEmail(email));
-            request.setAttribute("erroCargo", service.validaCargo(cargo));
-            request.setAttribute("erroFilial", service.validaFilial(filial));
-            request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
-            request.setAttribute("erroLogin", service.validaLogin(login));
-            request.setAttribute("erroSenha", service.validaSenha(senha));
-            request.setAttribute("erroAcesso", service.validaAcesso(acesso));
+            try {
+                Funcionario funcionarios = dao.getFuncionarioByCPF(cpf);
+                request.setAttribute("funcionarios", funcionarios);
+            } catch (Exception e) {
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarFuncionario.jsp");
             dispatcher.forward(request, response);
         }

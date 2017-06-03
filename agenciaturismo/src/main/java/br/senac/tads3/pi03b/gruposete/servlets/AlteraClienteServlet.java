@@ -42,7 +42,7 @@ public class AlteraClienteServlet extends HttpServlet {
 
         ClienteService service = new ClienteService();
         ClienteDAO dao = new ClienteDAO();
-        
+
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
@@ -57,13 +57,21 @@ public class AlteraClienteServlet extends HttpServlet {
         String cidade = request.getParameter("cidade");
         String complemento = request.getParameter("complemento");
         int id = Integer.parseInt(request.getParameter("identificacao"));
-        
-        Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                    cep, rua, estado, cidade, complemento, celular,
-                    telefone, email, true);
-            cliente.setId_cliente(id);
 
-        if (service.validaCliente(cliente)) {
+        request.setAttribute("erroNome", service.validaNome(nome));
+        request.setAttribute("erroNumero", service.validaNumero(numero));
+        request.setAttribute("erroRua", service.validaRua(rua));
+        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroCep", service.validaCep(cep));
+        request.setAttribute("erroCpf", service.validaCpf(cpf));
+        request.setAttribute("erroEmail", service.validaEmail(email));
+
+        Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
+                cep, rua, estado, cidade, complemento, celular,
+                telefone, email, true);
+        cliente.setId_cliente(id);
+
+        if (service.validaCliente(nome, numero, rua, cidade, cep, cpf, email)) {
             try {
                 dao.alterar(cliente);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -73,13 +81,11 @@ public class AlteraClienteServlet extends HttpServlet {
             }
 
         } else {
-            request.setAttribute("erroNome", service.validaNome(nome));
-            request.setAttribute("erroNumero", service.validaNumero(numero));
-            request.setAttribute("erroRua", service.validaRua(rua));
-            request.setAttribute("erroCidade", service.validaCidade(cidade));
-            request.setAttribute("erroCep", service.validaCep(cep));
-            request.setAttribute("erroCpf", service.validaCpf(cpf));
-            request.setAttribute("erroEmail", service.validaEmail(email));
+            try {
+                Cliente clientes = dao.getClienteById(id);
+                request.setAttribute("clientes", clientes);
+            } catch (Exception e) {
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
             dispatcher.forward(request, response);
         }

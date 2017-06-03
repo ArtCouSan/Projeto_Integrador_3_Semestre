@@ -50,11 +50,16 @@ public class AlteraHotelServlet extends HttpServlet {
         int quantidade_hospedes = Integer.parseInt(request.getParameter("quantidade_hospedes"));
         float preco = Float.parseFloat(request.getParameter("preco"));
         int id = Integer.parseInt(request.getParameter("identificacao"));
-        
-        Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
-            hotel.setId_hotel(id);
 
-        if (service.validaHotel(hotel)) {
+        request.setAttribute("erroNome_hotel", service.validaNome(nome_hotel));
+        request.setAttribute("erroQuantidade_quartos", service.validaQuantidade_quartos(quantidade_quartos));
+        request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
+        request.setAttribute("erroPreco", service.validaPreco(preco));
+
+        Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
+        hotel.setId_hotel(id);
+
+        if (service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco)) {
             try {
                 dao.alterar(hotel);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -64,10 +69,11 @@ public class AlteraHotelServlet extends HttpServlet {
             }
 
         } else {
-            request.setAttribute("erroNome_hotel", service.validaNome_hotel(nome_hotel));
-            request.setAttribute("erroQuantidade_quartos", service.validaQuantidade_quartos(quantidade_quartos));
-            request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
-            request.setAttribute("erroPreco", service.validaPreco(preco));
+            try {
+                Hotel hoteis = dao.getHotelById(id);
+                request.setAttribute("hoteis", hoteis);
+            } catch (Exception e) {
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarHotel.jsp");
             dispatcher.forward(request, response);
         }

@@ -70,7 +70,6 @@ public class FuncionarioDAO {
                 + "cargo = ?, "
                 + "filial = ?, "
                 + "departamento = ?, "
-                + "senha = ?, "
                 + "acesso = ? "
                 + "WHERE cpf = ?";
 
@@ -94,9 +93,8 @@ public class FuncionarioDAO {
             preparedStatement.setString(13, func.getCargo());
             preparedStatement.setString(14, func.getFilial());
             preparedStatement.setString(15, func.getDepartamento());
-            preparedStatement.setString(16, func.getSenha());
-            preparedStatement.setString(17, func.getAcesso());
-            preparedStatement.setString(18, func.getCpf());
+            preparedStatement.setString(16, func.getAcesso());
+            preparedStatement.setString(17, func.getCpf());
 
             preparedStatement.executeUpdate();
 
@@ -140,7 +138,6 @@ public class FuncionarioDAO {
                 func.setCargo(resultSet.getString("cargo"));
                 func.setFilial(resultSet.getString("filial"));
                 func.setDepartamento(resultSet.getString("departamento"));
-                func.setLogin(resultSet.getString("login"));
 
                 listaFuncionario.add(func);
             }
@@ -159,7 +156,7 @@ public class FuncionarioDAO {
     public Funcionario getFuncionarioByCPF(String cpf) throws SQLException, ClassNotFoundException {
         Funcionario func = new Funcionario();
 
-        String query = "SELECT * FROM Funcionario WHERE id_func = ?";
+        String query = "SELECT * FROM Funcionario WHERE cpf = ?";
 
         try {
             connection = DbUtil.getConnection();
@@ -184,7 +181,6 @@ public class FuncionarioDAO {
                 func.setCargo(resultSet.getString("cargo"));
                 func.setFilial(resultSet.getString("filial"));
                 func.setDepartamento(resultSet.getString("departamento"));
-                func.setLogin(resultSet.getString("login"));
             }
 
         } catch (SQLException e) {
@@ -222,9 +218,7 @@ public class FuncionarioDAO {
                 + " OR cidade = ?"
                 + " OR cargo = ?"
                 + " OR filial = ?"
-                + " OR departamento = ?"
-                + " OR login = ?"
-                + " OR acesso = ?)"
+                + " OR departamento = ?)"
                 + " AND ativo = true";
 
         preparedStatement = connection.prepareStatement(sql);
@@ -253,8 +247,6 @@ public class FuncionarioDAO {
         preparedStatement.setString(14, busca);
         preparedStatement.setString(15, busca);
         preparedStatement.setString(16, busca);
-        preparedStatement.setString(17, busca);
-        preparedStatement.setString(18, busca);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -282,7 +274,6 @@ public class FuncionarioDAO {
                 func.setCargo(result.getString("cargo"));
                 func.setFilial(result.getString("filial"));
                 func.setDepartamento(result.getString("departamento"));
-                func.setLogin(result.getString("login"));
 
                 // Insere na lista.
                 listaResultado.add(func);
@@ -381,7 +372,6 @@ public class FuncionarioDAO {
             }
 
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>ERRO NA HORA DE BUSCAR O USUARIO NO BANCO: " + e);
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();

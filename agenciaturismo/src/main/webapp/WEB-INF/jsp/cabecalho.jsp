@@ -46,5 +46,5 @@
                 </nav>
             </c:when>
         </c:choose>
-    </body>>
+    </body>
 </html>

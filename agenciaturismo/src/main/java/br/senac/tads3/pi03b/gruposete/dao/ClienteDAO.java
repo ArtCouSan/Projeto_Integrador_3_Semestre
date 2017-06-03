@@ -51,10 +51,9 @@ public class ClienteDAO {
     }
 
     public void alterar(Cliente cliente) throws SQLException, Exception {
-
+        
         String sql = "UPDATE cliente "
-                + "SET "
-                + "nome = ?, "
+                + "SET nome = ?, "
                 + "cpf = ?, "
                 + "sexo = ?, "
                 + "data_nasc = ?, "
@@ -187,7 +186,7 @@ public class ClienteDAO {
     }
 
     public Cliente getClienteByCPF(String cpf) throws SQLException, ClassNotFoundException {
-        
+
         Cliente cliente = new Cliente();
 
         connection = DbUtil.getConnection();
@@ -312,7 +311,7 @@ public class ClienteDAO {
     public void excluir(int id) throws SQLException, ClassNotFoundException {
         // Comando SQL.
         String slq = "UPDATE cliente SET ativo = ? WHERE id_cliente = ?";
-        
+
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
@@ -334,7 +333,7 @@ public class ClienteDAO {
 
     public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
 
-         // Comando SQL.
+        // Comando SQL.
         String slq = "SELECT COUNT(*) FROM cliente WHERE cpf = ? AND ativo = true";
 
         connection = DbUtil.getConnection();

@@ -19,6 +19,7 @@ public class CadastroClienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
         dispatcher.forward(request, response);
     }
@@ -44,10 +45,19 @@ public class CadastroClienteServlet extends HttpServlet {
         String cidade = request.getParameter("cidade");
         String complemento = request.getParameter("complemento");
 
+        request.setAttribute("erroNome", service.validaNome(nome));
+        request.setAttribute("erroNumero", service.validaNumero(numero));
+        request.setAttribute("erroRua", service.validaRua(rua));
+        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroCep", service.validaCep(cep));
+        request.setAttribute("erroCpf", service.validaCpf(cpf));
+        request.setAttribute("erroEmail", service.validaEmail(email));
+
         Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
-        if (service.validaCliente(cliente)) {
+        
+        if (service.validaCliente(nome, numero, rua, cidade, cep, cpf, email)) {
             try {
                 dao.inserir(cliente);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -56,13 +66,6 @@ public class CadastroClienteServlet extends HttpServlet {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            request.setAttribute("erroNome", service.validaNome(nome));
-            request.setAttribute("erroNumero", service.validaNumero(numero));
-            request.setAttribute("erroRua", service.validaRua(rua));
-            request.setAttribute("erroCidade", service.validaCidade(cidade));
-            request.setAttribute("erroCep", service.validaCep(cep));
-            request.setAttribute("erroCpf", service.validaCpf(cpf));
-            request.setAttribute("erroEmail", service.validaEmail(email));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
             dispatcher.forward(request, response);
         }

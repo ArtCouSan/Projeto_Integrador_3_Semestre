@@ -160,14 +160,10 @@
                 </div>
             </div>
 
-
-            <div class="form-group">
-                <div class="aab controls col-md-4">
-                    <div class="controls col-md-8" >
-                        <input type="submit" value="Alterar" />
-                    </div>
-                </div>
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary botao_g"><span class="">Alterar</span></button>
             </div>
+                
         </form>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
