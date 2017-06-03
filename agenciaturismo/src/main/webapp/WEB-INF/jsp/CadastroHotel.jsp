@@ -24,18 +24,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroData_entrada}">
-                        <div class="erro">Seleciona a data da entrada</div>
-                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de entrada:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_entrada" placeholder="Insira a data de entrada" type="date" id="example-date-input" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroData_saida}">
-                        <div class="erro">Seleciona a data da saida</div>
-                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de saida:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_saida" placeholder="Insira a data de saida" type="date" id="example-date-input" required>

@@ -43,18 +43,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroData_ida}">
-                        <div class="erro">Seleciona a data da ida</div>
-                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de ida:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_ida" placeholder="Insira data de ida" type="date" id="example-date-input" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroData_volta}">
-                        <div class="erro">Seleciona a data da volta</div>
-                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de volta:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_volta" placeholder="Insira data de volta" type="date" id="example-date-input" required>

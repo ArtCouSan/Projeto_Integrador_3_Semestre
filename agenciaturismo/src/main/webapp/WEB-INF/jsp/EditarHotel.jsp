@@ -25,18 +25,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroData_entrada}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de entrada:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_entrada" value="${hoteis.getData_entrada()}" type="date" id="example-date-input" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroData_saida}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de saida:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_saida" value="${hoteis.getData_saida()}" type="date" id="example-date-input" required>
@@ -44,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroQuantidade_quartos}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Quantidade de quartos é obrigatório</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Quantidade de Quartos:</label>
                     <div class="controls col-md-5">
@@ -53,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroQuantidade_hospedes}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Quantidade de hospedes é obrigatório</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Quantidade de Hospedes:</label>
                     <div class="controls col-md-5">
@@ -61,6 +55,9 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <c:if test="${erroPreco}">
+                        <div class="erro">O preco é obrigatorio</div>
+                    </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Preco:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="number" name="preco" value="${hoteis.getPreco()}" id="example-number-input" required>

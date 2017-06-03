@@ -35,7 +35,7 @@ public class BuscaVooServlet extends HttpServlet {
         try {
             List<Voo> encontrados = dao.procurarVoo(pesquisa);
             request.setAttribute("encontrados", encontrados);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaVoo.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaVoo.jsp");
             dispatcher.forward(request, response);
 
         } catch (SQLException | ClassNotFoundException ex) {

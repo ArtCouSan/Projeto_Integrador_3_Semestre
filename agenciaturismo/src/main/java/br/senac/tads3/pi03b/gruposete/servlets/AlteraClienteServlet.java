@@ -66,7 +66,7 @@ public class AlteraClienteServlet extends HttpServlet {
         if (service.validaCliente(cliente)) {
             try {
                 dao.alterar(cliente);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,7 +80,7 @@ public class AlteraClienteServlet extends HttpServlet {
             request.setAttribute("erroCep", service.validaCep(cep));
             request.setAttribute("erroCpf", service.validaCpf(cpf));
             request.setAttribute("erroEmail", service.validaEmail(email));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
             dispatcher.forward(request, response);
         }
     }

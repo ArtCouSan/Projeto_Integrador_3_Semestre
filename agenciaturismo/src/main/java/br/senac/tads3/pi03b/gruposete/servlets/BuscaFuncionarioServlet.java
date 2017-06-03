@@ -35,7 +35,7 @@ public class BuscaFuncionarioServlet extends HttpServlet {
         try {
             List<Funcionario> encontrados = dao.procurarFuncionario(pesquisa);
             request.setAttribute("encontrados", encontrados);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
 
         } catch (IOException | ClassNotFoundException | SQLException ex) {

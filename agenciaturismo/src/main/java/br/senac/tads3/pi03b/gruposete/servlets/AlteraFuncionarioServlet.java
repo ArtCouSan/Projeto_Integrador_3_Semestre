@@ -70,7 +70,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         if (service.validaFuncionarioAlteracao(func)) {
             try {
                 dao.alterar(func);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,7 +89,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
             request.setAttribute("erroLogin", service.validaLogin(login));
             request.setAttribute("erroSenha", service.validaSenha(senha));
             request.setAttribute("erroAcesso", service.validaAcesso(acesso));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarFuncionario.jsp");
             dispatcher.forward(request, response);
         }
     }

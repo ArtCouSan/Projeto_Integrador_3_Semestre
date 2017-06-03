@@ -17,7 +17,7 @@
                 <input type="hidden" name="identificacao" value="${voos.getId_voo()}"/>
                 <div class="form-group ">
                     <c:if test="${erroOrigem}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite a origem</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Origem:</label>
                     <div class="controls col-md-5">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group ">
                     <c:if test="${erroDestino}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite o destino</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Destino:</label>
                     <div class="controls col-md-5">
@@ -34,8 +34,8 @@
                     </div>
                 </div>
                 <div class="form-group ">
-                    <c:if test="${erroData_ida}">
-                        <div class="erro">O nome é obrigatório</div>
+                    <c:if test="${erroQuantidade_passagens}">
+                        <div class="erro">Digite a quantidade de passagens</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Quantidade de passagens:</label>
                     <div class="controls col-md-5">
@@ -43,9 +43,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <c:if test="${erroData_volta}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">Data de ida:</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_ida" value="${voos.getData_ida()}" type="date" id="example-date-input" required>
@@ -62,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroPreco}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Digite um valor</div>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">Preco:</label>
                     <div class="controls col-md-5">

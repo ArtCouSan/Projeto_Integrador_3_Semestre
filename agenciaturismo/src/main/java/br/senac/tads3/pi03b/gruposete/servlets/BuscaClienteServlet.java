@@ -35,7 +35,7 @@ public class BuscaClienteServlet extends HttpServlet {
         try {
             List<Cliente> encontrados = dao.procurarCliente(pesquisa);
             request.setAttribute("encontrados", encontrados);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Listar/ListaCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaCliente.jsp");
             dispatcher.forward(request, response);
 
         } catch (IOException | SQLException | ClassNotFoundException ex) {

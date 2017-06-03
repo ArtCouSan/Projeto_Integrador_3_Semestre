@@ -19,7 +19,6 @@ public class CadastroClienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
         dispatcher.forward(request, response);
     }
@@ -48,11 +47,10 @@ public class CadastroClienteServlet extends HttpServlet {
         Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
-
         if (service.validaCliente(cliente)) {
             try {
                 dao.inserir(cliente);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,7 +63,7 @@ public class CadastroClienteServlet extends HttpServlet {
             request.setAttribute("erroCep", service.validaCep(cep));
             request.setAttribute("erroCpf", service.validaCpf(cpf));
             request.setAttribute("erroEmail", service.validaEmail(email));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
             dispatcher.forward(request, response);
         }
     }

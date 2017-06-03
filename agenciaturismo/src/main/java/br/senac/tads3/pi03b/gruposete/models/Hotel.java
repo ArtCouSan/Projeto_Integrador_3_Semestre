@@ -74,7 +74,7 @@ public class Hotel {
         this.quantidade_hospedes = quantidade_hospedes;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return preco;
     }
 
