@@ -2,6 +2,7 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.services.ClienteService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,9 +40,9 @@ public class AlteraClienteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        ClienteService service = new ClienteService();
         ClienteDAO dao = new ClienteDAO();
-        boolean erro = false, verifica = false;
-
+        
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
@@ -55,75 +56,14 @@ public class AlteraClienteServlet extends HttpServlet {
         String estado = request.getParameter("estado");
         String cidade = request.getParameter("cidade");
         String complemento = request.getParameter("complemento");
-
-//        if (nome == null || nome.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroNome", true);
-//        }
-//
-//        if (numero <= 0) {
-//            erro = true;
-//            request.setAttribute("erroNumero", true);
-//        }
-//
-//        if (rua == null || rua.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroRua", true);
-//        }
-//
-//        if (estado == null || estado.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroEstado", true);
-//        }
-//
-//        if (cidade == null || cidade.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroCidade", true);
-//        }
-//
-//        if (complemento == null || complemento.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroComplemento", true);
-//        }
-//
-//        if (telefone == null || !"(  )    -    ".equals(telefone)) {
-//            erro = true;
-//            request.setAttribute("erroTelefone", true);
-//        }
-//
-//        if (celular == null || !"(  )     -    ".equals(celular)) {
-//            erro = true;
-//            request.setAttribute("erroCelular", true);
-//        }
-//
-//        if (email == null || !email.contains("@") && !email.contains(".com") || !email.contains(".com.br")) {
-//            erro = true;
-//            request.setAttribute("erroEmail", true);
-//        }
-//        
-//        try {
-//            verifica = dao.verificarCPF(cpf);
-//        } catch (SQLException | ClassNotFoundException ex) {
-//            Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        if (cpf == null || !"   .   .   -  ".equals(cpf)) {
-//            erro = true;
-//            request.setAttribute("erroCpf", true);
-//        }
-//
-//        if (cep == null || !"     -   ".equals(cep)) {
-//            erro = true;
-//            request.setAttribute("erroCep", true);
-//        }
-
         int id = Integer.parseInt(request.getParameter("identificacao"));
-
-        if (erro == false) {
-            Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
+        
+        Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                     cep, rua, estado, cidade, complemento, celular,
                     telefone, email, true);
             cliente.setId_cliente(id);
 
+        if (service.validaCliente(cliente)) {
             try {
                 dao.alterar(cliente);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
@@ -133,6 +73,13 @@ public class AlteraClienteServlet extends HttpServlet {
             }
 
         } else {
+            request.setAttribute("erroNome", service.validaNome(nome));
+            request.setAttribute("erroNumero", service.validaNumero(numero));
+            request.setAttribute("erroRua", service.validaRua(rua));
+            request.setAttribute("erroCidade", service.validaCidade(cidade));
+            request.setAttribute("erroCep", service.validaCep(cep));
+            request.setAttribute("erroCpf", service.validaCpf(cpf));
+            request.setAttribute("erroEmail", service.validaEmail(email));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarCliente.jsp");
             dispatcher.forward(request, response);
         }

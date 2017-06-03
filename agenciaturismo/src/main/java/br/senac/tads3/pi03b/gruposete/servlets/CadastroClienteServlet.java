@@ -2,6 +2,7 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.services.ClienteService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,11 +25,11 @@ public class CadastroClienteServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        ClienteService service = new ClienteService();
         ClienteDAO dao = new ClienteDAO();
-        boolean erro = false, verifica = false;
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
@@ -44,40 +45,11 @@ public class CadastroClienteServlet extends HttpServlet {
         String cidade = request.getParameter("cidade");
         String complemento = request.getParameter("complemento");
 
-        if (nome == null || nome.length() < 1) {
-            erro = true;
-            request.setAttribute("erroNome", true);
-        }
-        
-        if (numero <= 0) {
-            erro = true;
-            request.setAttribute("erroNumero", true);
-        }
-        
-        if (rua == null || rua.length() < 1) {
-            erro = true;
-            request.setAttribute("erroRua", true);
-        }
-        
-        if (estado == null || estado.length() < 1) {
-            erro = true;
-            request.setAttribute("erroEstado", true);
-        }
-        
-        if (cidade == null || cidade.length() < 1) {
-            erro = true;
-            request.setAttribute("erroCidade", true);
-        }
-        
-        if (complemento == null || complemento.length() < 1) {
-            erro = true;
-            request.setAttribute("erroComplemento", true);
-        }
-        
-        if (erro == false) {
-            Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                    cep, rua, estado, cidade, complemento, celular,
-                    telefone, email, true);
+        Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
+                cep, rua, estado, cidade, complemento, celular,
+                telefone, email, true);
+
+        if (service.validaCliente(cliente)) {
             try {
                 dao.inserir(cliente);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
@@ -86,6 +58,13 @@ public class CadastroClienteServlet extends HttpServlet {
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
+            request.setAttribute("erroNome", service.validaNome(nome));
+            request.setAttribute("erroNumero", service.validaNumero(numero));
+            request.setAttribute("erroRua", service.validaRua(rua));
+            request.setAttribute("erroCidade", service.validaCidade(cidade));
+            request.setAttribute("erroCep", service.validaCep(cep));
+            request.setAttribute("erroCpf", service.validaCpf(cpf));
+            request.setAttribute("erroEmail", service.validaEmail(email));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroCliente.jsp");
             dispatcher.forward(request, response);
         }

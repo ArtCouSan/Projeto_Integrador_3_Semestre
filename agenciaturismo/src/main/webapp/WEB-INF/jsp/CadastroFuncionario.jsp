@@ -150,6 +150,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroEmail}">
+                        <div class="erro">Digite um email válido</div>
+                    </c:if>
                     <label for="example-email-input" class="control-label col-md-4">Email:</label>
                     <div class="controls col-md-5">
                         <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
@@ -207,6 +210,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroAcesso}">
+                        <div class="erro">Acesso invalido</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">Acesso</label>
                     <div class="controls col-md-5">
                         <select name="acesso">

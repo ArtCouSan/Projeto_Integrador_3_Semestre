@@ -2,6 +2,7 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
+import br.senac.tads3.pi03b.gruposete.services.FuncionarioService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,8 +40,8 @@ public class AlteraFuncionarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        FuncionarioService service = new FuncionarioService();
         FuncionarioDAO dao = new FuncionarioDAO();
-        boolean erro = false, verifica = false;
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
@@ -61,86 +62,12 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         String acesso = request.getParameter("acesso");
-
-//        if (nome == null || nome.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroNome", true);
-//        }
-//
-//        if (numero <= 0) {
-//            erro = true;
-//            request.setAttribute("erroNumero", true);
-//        }
-//
-//        if (rua == null || rua.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroRua", true);
-//        }
-//
-//        if (estado == null || estado.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroEstado", true);
-//        }
-//
-//        if (cidade == null || cidade.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroCidade", true);
-//        }
-//
-//        if (complemento == null || complemento.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroComplemento", true);
-//        }
-//
-//        if (cargo == null || cargo.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroCargo", true);
-//        }
-//
-//        if (filial == null || filial.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroFilial", true);
-//        }
-//
-//        if (departamento == null || departamento.length() < 1) {
-//            erro = true;
-//            request.setAttribute("erroDepartamento", true);
-//        }
-//
-//        if (telefone == null || !"(  )    -    ".equals(telefone)) {
-//            erro = true;
-//            request.setAttribute("erroTelefone", true);
-//        }
-//
-//        if (celular == null || !"(  )     -    ".equals(celular)) {
-//            erro = true;
-//            request.setAttribute("erroCelular", true);
-//        }
-//
-//        if (email == null || !email.contains("@") && !email.contains(".com") || !email.contains(".com.br")) {
-//            erro = true;
-//            request.setAttribute("erroEmail", true);
-//        }
-//        
-//        try {
-//            verifica = dao.verificarCPF(cpf);
-//        } catch (SQLException | ClassNotFoundException ex) {
-//            Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        if (cpf == null || !"   .   .   -  ".equals(cpf)) {
-//            erro = true;
-//            request.setAttribute("erroCpf", true);
-//        }
-//
-//        if (cep == null || !"     -   ".equals(cep)) {
-//            erro = true;
-//            request.setAttribute("erroCep", true);
-//        }
-
-        if (erro == false) {
-            Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
+        
+        Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                     numero, cep, rua, estado, cidade, complemento,
                     celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
+
+        if (service.validaFuncionarioAlteracao(func)) {
             try {
                 dao.alterar(func);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Layout/index.jsp");
@@ -150,6 +77,18 @@ public class AlteraFuncionarioServlet extends HttpServlet {
             }
             
         } else {
+            request.setAttribute("erroNome", service.validaNome(nome));
+            request.setAttribute("erroNumero", service.validaNumero(numero));
+            request.setAttribute("erroRua", service.validaRua(rua));
+            request.setAttribute("erroCidade", service.validaCidade(cidade));
+            request.setAttribute("erroCep", service.validaCep(cep));
+            request.setAttribute("erroEmail", service.validaEmail(email));
+            request.setAttribute("erroCargo", service.validaCargo(cargo));
+            request.setAttribute("erroFilial", service.validaFilial(filial));
+            request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
+            request.setAttribute("erroLogin", service.validaLogin(login));
+            request.setAttribute("erroSenha", service.validaSenha(senha));
+            request.setAttribute("erroAcesso", service.validaAcesso(acesso));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Editar/EditarFuncionario.jsp");
             dispatcher.forward(request, response);
         }
