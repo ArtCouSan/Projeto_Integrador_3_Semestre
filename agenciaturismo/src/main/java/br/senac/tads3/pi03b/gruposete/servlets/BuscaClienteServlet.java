@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ public class BuscaClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Buscar/BuscaCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscaCliente.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -30,33 +29,17 @@ public class BuscaClienteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean erro = false;
-
+        ClienteDAO dao = new ClienteDAO();
         String pesquisa = request.getParameter("pesquisa");
 
-        if (!erro) {
-
-            try {
-                ClienteDAO dao = new ClienteDAO();
-                List<Cliente> encontrados = dao.procurarCliente(pesquisa);
-                request.setAttribute("encontrados", encontrados);
-                request.setAttribute("pesquisa", pesquisa);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListaCliente.jsp");
-                dispatcher.forward(request, response);
-
-            } catch (IOException | SQLException | ClassNotFoundException ex) {
-
-                Logger.getLogger(BuscaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-            }
-
-        } else {
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Listar/ListarCliente.jsp");
-
+        try {
+            List<Cliente> encontrados = dao.procurarCliente(pesquisa);
+            request.setAttribute("encontrados", encontrados);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaCliente.jsp");
             dispatcher.forward(request, response);
 
+        } catch (IOException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

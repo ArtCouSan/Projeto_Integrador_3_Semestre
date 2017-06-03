@@ -25,6 +25,23 @@ public class VendaDAO {
                 + "(id_cliente, id_funcionario, total_preco, ativo) "
                 + "VALUES (?, ?, ?, ?)";
 
+        try {
+            preparedStatement = connection.prepareStatement(slq);
+            // Insercoes.
+            preparedStatement.setInt(1, venda.getId_cliente());
+            preparedStatement.setInt(3, venda.getId_func());
+            preparedStatement.setDouble(4, venda.getPreco());
+
+            // Executa.
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
         preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
@@ -49,21 +66,41 @@ public class VendaDAO {
                 + "(id_produto, quantidade, preco, id_venda, tipo) "
                 + "VALUES (? , ?, ?, ?, ?)";
 
-        PreparedStatement stmt = connection.prepareStatement(slq);
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(slq);
+
+            // Insercoes.
+            preparedStatement.setInt(1, id_produto);
+            preparedStatement.setInt(2, quantidade);
+            preparedStatement.setFloat(3, preco);
+            preparedStatement.setInt(4, id_venda);
+
+            // Executa.
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
-        stmt.setInt(1, id_produto);
-        stmt.setInt(2, quantidade);
-        stmt.setFloat(3, preco);
-        stmt.setInt(4, id_venda);
-        stmt.setString(5, tipo);
+        preparedStatement.setInt(1, id_produto);
+        preparedStatement.setInt(2, quantidade);
+        preparedStatement.setFloat(3, preco);
+        preparedStatement.setInt(4, id_venda);
+        preparedStatement.setString(5, tipo);
 
         // Executa.
-        stmt.execute();
+        preparedStatement.execute();
 
         // Fecha conexao.
         connection.close();
-
+        preparedStatement.close();
     }
 
     public int maiorIdVenda() throws SQLException, ClassNotFoundException {

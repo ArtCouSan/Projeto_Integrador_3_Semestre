@@ -3,7 +3,6 @@ package br.senac.tads3.pi03b.gruposete.dao;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class ClienteDAO {
     private static ResultSet resultSet;
 
     public void inserir(Cliente cliente) throws SQLException, Exception {
-        String sql = "INSERT INTO Cliente (nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, complemento, celular, telefone, email, ativo) "
+        String sql = "INSERT INTO Cliente (nome, cpf, sexo, data_nasc, numero, cep, rua, estado, cidade, complemento, celular, telefone, email, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -29,7 +28,7 @@ public class ClienteDAO {
             preparedStatement.setInt(5, cliente.getNumero());
             preparedStatement.setString(6, cliente.getCep());
             preparedStatement.setString(7, cliente.getRua());
-            preparedStatement.setString(8, cliente.getBairro());
+            preparedStatement.setString(8, cliente.getEstado());
             preparedStatement.setString(9, cliente.getCidade());
             preparedStatement.setString(10, cliente.getComplemento());
             preparedStatement.setString(11, cliente.getCelular());
@@ -39,6 +38,7 @@ public class ClienteDAO {
 
             preparedStatement.executeUpdate();
 
+        } catch (SQLException e) {
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -47,6 +47,7 @@ public class ClienteDAO {
                 connection.close();
             }
         }
+
     }
 
     public void alterar(Cliente cliente) throws SQLException, Exception {
@@ -60,7 +61,7 @@ public class ClienteDAO {
                 + "numero = ?, "
                 + "cep = ?, "
                 + "rua = ?, "
-                + "bairro = ?, "
+                + "estado = ?, "
                 + "cidade = ?, "
                 + "complemento = ?, "
                 + "celular = ?, "
@@ -68,27 +69,35 @@ public class ClienteDAO {
                 + "email = ? "
                 + "WHERE id_cliente = ?";
 
-        connection = DbUtil.getConnection();
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
 
-        preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, cliente.getNome());
+            preparedStatement.setString(2, cliente.getCpf());
+            preparedStatement.setString(3, cliente.getSexo());
+            preparedStatement.setString(4, cliente.getData_nasc());
+            preparedStatement.setInt(5, cliente.getNumero());
+            preparedStatement.setString(6, cliente.getCep());
+            preparedStatement.setString(7, cliente.getRua());
+            preparedStatement.setString(8, cliente.getEstado());
+            preparedStatement.setString(9, cliente.getCidade());
+            preparedStatement.setString(10, cliente.getComplemento());
+            preparedStatement.setString(11, cliente.getCelular());
+            preparedStatement.setString(12, cliente.getTelefone());
+            preparedStatement.setString(13, cliente.getEmail());
+            preparedStatement.setInt(14, cliente.getId_cliente());
 
-        preparedStatement.setString(1, cliente.getNome());
-        preparedStatement.setString(2, cliente.getCpf());
-        preparedStatement.setString(3, cliente.getSexo());
-        preparedStatement.setString(4, cliente.getData_nasc());
-        preparedStatement.setInt(5, cliente.getNumero());
-        preparedStatement.setString(6, cliente.getCep());
-        preparedStatement.setString(7, cliente.getRua());
-        preparedStatement.setString(8, cliente.getBairro());
-        preparedStatement.setString(9, cliente.getCidade());
-        preparedStatement.setString(10, cliente.getComplemento());
-        preparedStatement.setString(11, cliente.getCelular());
-        preparedStatement.setString(12, cliente.getTelefone());
-        preparedStatement.setString(13, cliente.getEmail());
-        preparedStatement.setInt(14, cliente.getId_cliente());
-
-        preparedStatement.executeUpdate();
-
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
     }
 
     public List<Cliente> ListaCliente() throws SQLException, ClassNotFoundException {
@@ -115,7 +124,7 @@ public class ClienteDAO {
                 cliente.setNumero(resultSet.getInt("numero"));
                 cliente.setCep(resultSet.getString("cep"));
                 cliente.setRua(resultSet.getString("rua"));
-                cliente.setBairro(resultSet.getString("bairro"));
+                cliente.setEstado(resultSet.getString("estado"));
                 cliente.setCidade(resultSet.getString("cidade"));
                 cliente.setComplemento(resultSet.getString("complemento"));
                 cliente.setCelular(resultSet.getString("celular"));
@@ -125,43 +134,55 @@ public class ClienteDAO {
                 listaClientes.add(cliente);
             }
         } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
 
-        connection.close();
         return listaClientes;
     }
 
     public Cliente getClienteById(int id) throws SQLException, ClassNotFoundException {
         Cliente cliente = new Cliente();
 
-        connection = DbUtil.getConnection();
-
         String query = "SELECT * FROM cliente WHERE id_cliente = ?";
 
-        preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        resultSet = preparedStatement.executeQuery();
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
+            while (resultSet.next()) {
 
-            cliente.setId_cliente(resultSet.getInt("id_cliente"));
-            cliente.setNome(resultSet.getString("nome"));
-            cliente.setCpf(resultSet.getString("cpf"));
-            cliente.setSexo(resultSet.getString("sexo"));
-            cliente.setData_nasc(resultSet.getString("data_nasc"));
-            cliente.setNumero(resultSet.getInt("numero"));
-            cliente.setCep(resultSet.getString("cep"));
-            cliente.setRua(resultSet.getString("rua"));
-            cliente.setBairro(resultSet.getString("bairro"));
-            cliente.setCidade(resultSet.getString("cidade"));
-            cliente.setComplemento(resultSet.getString("complemento"));
-            cliente.setCelular(resultSet.getString("celular"));
-            cliente.setTelefone(resultSet.getString("telefone"));
-            cliente.setEmail(resultSet.getString("email"));
+                cliente.setId_cliente(resultSet.getInt("id_cliente"));
+                cliente.setNome(resultSet.getString("nome"));
+                cliente.setCpf(resultSet.getString("cpf"));
+                cliente.setSexo(resultSet.getString("sexo"));
+                cliente.setData_nasc(resultSet.getString("data_nasc"));
+                cliente.setNumero(resultSet.getInt("numero"));
+                cliente.setCep(resultSet.getString("cep"));
+                cliente.setRua(resultSet.getString("rua"));
+                cliente.setEstado(resultSet.getString("estado"));
+                cliente.setCidade(resultSet.getString("cidade"));
+                cliente.setComplemento(resultSet.getString("complemento"));
+                cliente.setCelular(resultSet.getString("celular"));
+                cliente.setTelefone(resultSet.getString("telefone"));
+                cliente.setEmail(resultSet.getString("email"));
+            }
+        } catch (SQLException e) {
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
-
-        preparedStatement.close();
-        connection.close();
         return cliente;
     }
 
@@ -187,7 +208,7 @@ public class ClienteDAO {
             cliente.setNumero(resultSet.getInt("numero"));
             cliente.setCep(resultSet.getString("cep"));
             cliente.setRua(resultSet.getString("rua"));
-            cliente.setBairro(resultSet.getString("bairro"));
+            cliente.setEstado(resultSet.getString("estado"));
             cliente.setCidade(resultSet.getString("cidade"));
             cliente.setComplemento(resultSet.getString("complemento"));
             cliente.setCelular(resultSet.getString("celular"));
@@ -200,7 +221,7 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public List<Cliente> procurarCliente(String busca) throws SQLException, IOException, ClassNotFoundException {
+    public List<Cliente> procurarCliente(String busca) throws SQLException, ClassNotFoundException {
 
         // Cria lista de clientes.
         List<Cliente> listaResultado = new ArrayList<>();
@@ -208,7 +229,7 @@ public class ClienteDAO {
         connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM cliente WHERE"
-                + " (bairro = ?"
+                + " (estado = ?"
                 + " OR celular = ?"
                 + " OR cep = ?"
                 + " OR complemento = ?"
@@ -221,7 +242,7 @@ public class ClienteDAO {
                 + " OR sexo = ?"
                 + " OR telefone = ?"
                 + " OR cidade = ?)"
-                + " AND ativo = ?";
+                + " AND ativo = true";
 
         preparedStatement = connection.prepareStatement(sql);
 
@@ -246,7 +267,6 @@ public class ClienteDAO {
         preparedStatement.setString(11, busca);
         preparedStatement.setString(12, busca);
         preparedStatement.setString(13, busca);
-        preparedStatement.setBoolean(14, true);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -259,7 +279,7 @@ public class ClienteDAO {
 
                 // Insere informacoes.
                 clientes.setId_cliente(result.getInt("id_cliente"));
-                clientes.setBairro(result.getString("bairro"));
+                clientes.setEstado(result.getString("estado"));
                 clientes.setCelular(result.getString("celular"));
                 clientes.setCep(result.getString("cep"));
                 clientes.setComplemento(result.getString("complemento"));
@@ -278,31 +298,46 @@ public class ClienteDAO {
             }
             // Retorna lista.
             return listaResultado;
+
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         }
     }
 
-    public void excluirCliente(int id) throws SQLException {
+    public void excluir(int id) throws SQLException, ClassNotFoundException {
         // Comando SQL.
-        String slq = "UPDATE cliente SET ativo = ? WHERE  id_cliente = ?";
-
-        preparedStatement = connection.prepareStatement(slq);
-
-        // Insercoes.
-        preparedStatement.setBoolean(1, false);
-        preparedStatement.setInt(2, id);
-
-        // Executa.
-        preparedStatement.execute();
+        String slq = "UPDATE cliente SET ativo = ? WHERE id_cliente = ?";
+        
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(slq);
+            // Insercoes.
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, id);
+            // Executa.
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
 
     }
 
     public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
 
-        connection = DbUtil.getConnection();
-
-        // Comando SQL.
+         // Comando SQL.
         String slq = "SELECT COUNT(*) FROM cliente WHERE cpf = ? AND ativo = true";
 
+        connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
@@ -324,12 +359,8 @@ public class ClienteDAO {
         System.out.println(numeroDeCounts);
 
         if (numeroDeCounts == 1) {
-
             return true;
-
         }
-
         return false;
     }
-
 }

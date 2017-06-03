@@ -1,16 +1,14 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
-import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
-
+import br.senac.tads3.pi03b.gruposete.services.ClienteService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -33,7 +31,7 @@ public class AlteraClienteServlet extends HttpServlet {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -42,104 +40,48 @@ public class AlteraClienteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            ClienteDAO dao = new ClienteDAO();
-            boolean erro = true, verificarCPF;
-            String nome = request.getParameter("nome");
-            if (nome == null || nome.length() < 1) {
-                erro = true;
-                request.setAttribute("erroNome", true);
-            }
-            String cpf = request.getParameter("cpf");
-            verificarCPF = dao.verificarCPF(cpf);
-            if (cpf == null || !"   .   .   -  ".equals(cpf)) {
-                erro = true;
-                request.setAttribute("erroCpf", true);
-            }
-            String sexo = request.getParameter("sexo");
-            if ("".equals(sexo)) {
-                erro = true;
-                request.setAttribute("erroSexo", true);
-            }
-            String data_nasc = request.getParameter("nascimento");
-            if (data_nasc == null || !"  /  /    ".equals(data_nasc)) {
-                erro = true;
-                request.setAttribute("erroNascimento", true);
-            }
-            String telefone = request.getParameter("telefone");
-            if (telefone == null || !"(  )    -    ".equals(telefone)) {
-                erro = true;
-                request.setAttribute("erroTelefone", true);
-            }
-            String celular = request.getParameter("celular");
-            if (celular == null || !"(  )     -    ".equals(celular)) {
-                erro = true;
-                request.setAttribute("erroCelular", true);
-            }
-            String email = request.getParameter("email");
-            if (email == null || !email.contains("@") && !email.contains(".com") || !email.contains(".com.br")) {
-                erro = true;
-                request.setAttribute("erroEmail", true);
-            }
-            int numero = Integer.parseInt(request.getParameter("numero"));
-            if (numero <= 0) {
-                erro = true;
-                request.setAttribute("erroNumero", true);
-            }
-            String cep = request.getParameter("cep");
-            if (cep == null || !"     -   ".equals(cep)) {
-                erro = true;
-                request.setAttribute("erroCep", true);
-            }
-            String rua = request.getParameter("rua");
-            if (rua == null || rua.length() < 1) {
-                erro = true;
-                request.setAttribute("erroRua", true);
-            }
-            String bairro = request.getParameter("bairro");
-            if (bairro == null || bairro.length() < 1) {
-                erro = true;
-                request.setAttribute("erroBairro", true);
-            }
-            String cidade = request.getParameter("cidade");
-            if (cidade == null || cidade.length() < 1) {
-                erro = true;
-                request.setAttribute("erroCidade", true);
-            }
-            String complemento = request.getParameter("complemento");
-            if (complemento == null || complemento.length() < 1) {
-                erro = true;
-                request.setAttribute("erroComplemento", true);
-            }
-            int id = Integer.parseInt(request.getParameter("identificacao"));
-            if (!erro) {
+        ClienteService service = new ClienteService();
+        ClienteDAO dao = new ClienteDAO();
+        
+        String nome = request.getParameter("nome");
+        String cpf = request.getParameter("cpf");
+        String sexo = request.getParameter("sexo");
+        String data_nasc = request.getParameter("nascimento");
+        String telefone = request.getParameter("telefone");
+        String celular = request.getParameter("celular");
+        String email = request.getParameter("email");
+        int numero = Integer.parseInt(request.getParameter("numero"));
+        String cep = request.getParameter("cep");
+        String rua = request.getParameter("rua");
+        String estado = request.getParameter("estado");
+        String cidade = request.getParameter("cidade");
+        String complemento = request.getParameter("complemento");
+        int id = Integer.parseInt(request.getParameter("identificacao"));
+        
+        Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
+                    cep, rua, estado, cidade, complemento, celular,
+                    telefone, email, true);
+            cliente.setId_cliente(id);
 
-                Cliente cliHumilde = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                        cep, rua, bairro, cidade, complemento, celular,
-                        telefone, email, true);
-                cliHumilde.setId_cliente(id);
-                try {
-
-                    dao.alterar(cliHumilde);
-                    HttpSession sessao = request.getSession();
-                    sessao.setAttribute("editarCliente", cliHumilde);
-                    response.sendRedirect("index.jsp");
-
-                } catch (IOException ex) {
-
-                    Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Editar/EditarCliente.jsp");
+        if (service.validaCliente(cliente)) {
+            try {
+                dao.alterar(cliente);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } catch (SQLException | ClassNotFoundException ex) {
-
-            Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-
+        } else {
+            request.setAttribute("erroNome", service.validaNome(nome));
+            request.setAttribute("erroNumero", service.validaNumero(numero));
+            request.setAttribute("erroRua", service.validaRua(rua));
+            request.setAttribute("erroCidade", service.validaCidade(cidade));
+            request.setAttribute("erroCep", service.validaCep(cep));
+            request.setAttribute("erroCpf", service.validaCpf(cpf));
+            request.setAttribute("erroEmail", service.validaEmail(email));
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
+            dispatcher.forward(request, response);
         }
     }
 }

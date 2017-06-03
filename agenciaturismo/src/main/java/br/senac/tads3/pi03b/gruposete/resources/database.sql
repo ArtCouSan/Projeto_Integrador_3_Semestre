@@ -2,26 +2,28 @@ CREATE DATABASE Agencia;
 USE Agencia;
 
 CREATE TABLE Funcionario(
-id_func INT(3) NOT NULL AUTO_INCREMENT,
 cargo VARCHAR(100) NOT NULL,
 departamento VARCHAR(100) NOT NULL,
 filial VARCHAR(100) NOT NULL,
 celular VARCHAR(15),
 telefone VARCHAR(14),
 email VARCHAR(50),
-numero INT(3),
-cep VARCHAR(9),
-rua VARCHAR(50), 
-bairro VARCHAR(50), 
-cidade VARCHAR(100), 
+numero INT(3) NOT NULL,
+cep VARCHAR(10) NOT NULL,
+cidade VARCHAR(100) NOT NULL,
+rua VARCHAR(50) NOT NULL,
+estado VARCHAR(2) NOT NULL,
 complemento VARCHAR(20),
 nome VARCHAR(100) NOT NULL,
 cpf VARCHAR(14) NOT NULL,
-sexo CHAR(1),
-ativo TINYINT(1) NOT NULL,    
-data_nasc VARCHAR(10) NOT NULL,
-PRIMARY KEY (id_func),
-UNIQUE KEY id_func (id_func)  
+sexo CHAR(1) NOT NULL,
+ativo TINYINT(1) NOT NULL,
+data_nasc VARCHAR(11) NOT NULL,
+login VARCHAR(20) NOT NULL,
+senha VARCHAR(20) NOT NULL,
+acesso VARCHAR(100) NOT NULL,
+PRIMARY KEY (cpf),
+UNIQUE KEY cpf (cpf)  
 );
 
 CREATE TABLE Cliente(
@@ -29,15 +31,15 @@ id_cliente INT(3) NOT NULL AUTO_INCREMENT,
 celular VARCHAR(15),
 telefone VARCHAR(14),
 email VARCHAR(50),
-numero INT(3),
-cep VARCHAR(10),
-cidade VARCHAR(100),
-rua VARCHAR(50), 
-bairro VARCHAR(50),  
+numero INT(3) NOT NULL,
+cep VARCHAR(10) NOT NULL,
+cidade VARCHAR(100) NOT NULL,
+rua VARCHAR(50) NOT NULL,
+estado VARCHAR(2) NOT NULL,
 complemento VARCHAR(20),
 nome VARCHAR(100) NOT NULL,
-cpf VARCHAR(15) NOT NULL,
-sexo CHAR(1),
+cpf VARCHAR(14) NOT NULL,
+sexo CHAR(1) NOT NULL,
 ativo TINYINT(1) NOT NULL,
 data_nasc VARCHAR(11) NOT NULL,
 PRIMARY KEY (id_cliente),
@@ -63,8 +65,8 @@ data_entrada VARCHAR(50),
 data_saida VARCHAR(50),
 ativo TINYINT(1) NOT NULL,
 preco FLOAT(3.2) NOT NULL,
-quantidade_quartos VARCHAR(50),
-quantidade_hospedes VARCHAR(50),
+quantidade_quartos INT(3),
+quantidade_hospedes INT(3),
 PRIMARY KEY (id_hotel)
 );
 
@@ -91,13 +93,21 @@ preco FLOAT(3.2) NOT NULL,
 PRIMARY KEY  (id_lista)
 );
 
-CREATE TABLE Usuario(
-id_usuario INT(3) NOT NULL AUTO_INCREMENT,
-nome VARCHAR(255) NOT NULL,
-login VARCHAR(20) NOT NULL,
-senha VARCHAR(20) NOT NULL,
-acesso VARCHAR(100) NOT NULL,
-caminhos VARCHAR(50) NOT NULL,
-icones  VARCHAR(50) NOT NULL,
-PRIMARY KEY(id_usuario)
-);
+INSERT INTO Voo (data_ida, data_volta, destino, origem, preco, ativo) 
+VALUES ('10/10/1010', '10/10/1111', 'são paulo', 'chile', 123.45, true);
+
+INSERT INTO Hotel (nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, ativo) 
+VALUES ('five stars', '10/10/1010', '10/10/1011', 10, 1, 123.45, true);
+
+INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
+rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
+VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '12/12/1212', 'admin', 'admin', 'MASTER');
+
+INSERT INTO Cliente (celular, telefone, email, numero, cep, rua, 
+estado, cidade, complemento, nome, cpf, sexo, ativo, data_nasc) 
+VALUES ('(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal de sp', 'SP', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '12/12/1212');
+
+INSERT INTO Venda (id_cliente, id_funcionario, ativo, total_preco, data_venda) 
+VALUES (1, 1, true, 100.10, '10/10/1010');
