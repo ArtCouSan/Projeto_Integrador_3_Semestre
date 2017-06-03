@@ -18,6 +18,7 @@ public class VendaDAO {
     private static ResultSet resultSet;
 
     public void inserir(Venda venda) throws SQLException, FileNotFoundException, ClassNotFoundException {
+
         connection = DbUtil.getConnection();
 
         // Comando SQL.
@@ -25,23 +26,6 @@ public class VendaDAO {
                 + "(id_cliente, id_funcionario, total_preco, ativo) "
                 + "VALUES (?, ?, ?, ?)";
 
-        try {
-            preparedStatement = connection.prepareStatement(slq);
-            // Insercoes.
-            preparedStatement.setInt(1, venda.getId_cliente());
-            preparedStatement.setInt(3, venda.getId_func());
-            preparedStatement.setDouble(4, venda.getPreco());
-
-            // Executa.
-            preparedStatement.execute();
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
         preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
@@ -55,38 +39,18 @@ public class VendaDAO {
 
         // Fecha conexao.
         preparedStatement.close();
+
     }
 
     public void inserirLista(int id_produto, int quantidade, float preco, int id_venda, String tipo) throws SQLException, FileNotFoundException, ClassNotFoundException {
+
         // Conecta.
         connection = DbUtil.getConnection();
 
         // Comando SQL.
         String slq = "INSERT INTO itens_venda "
                 + "(id_produto, quantidade, preco, id_venda, tipo) "
-                + "VALUES (? , ?, ?, ?, ?)";
-
-        try {
-            connection = DbUtil.getConnection();
-            preparedStatement = connection.prepareStatement(slq);
-
-            // Insercoes.
-            preparedStatement.setInt(1, id_produto);
-            preparedStatement.setInt(2, quantidade);
-            preparedStatement.setFloat(3, preco);
-            preparedStatement.setInt(4, id_venda);
-
-            // Executa.
-            preparedStatement.execute();
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-        preparedStatement = connection.prepareStatement(slq);
+                + "VALUES (?, ?, ?, ?, ?)";
 
         // Insercoes.
         preparedStatement.setInt(1, id_produto);
@@ -95,12 +59,9 @@ public class VendaDAO {
         preparedStatement.setInt(4, id_venda);
         preparedStatement.setString(5, tipo);
 
-        // Executa.
+        // Executa
         preparedStatement.execute();
 
-        // Fecha conexao.
-        connection.close();
-        preparedStatement.close();
     }
 
     public int maiorIdVenda() throws SQLException, ClassNotFoundException {

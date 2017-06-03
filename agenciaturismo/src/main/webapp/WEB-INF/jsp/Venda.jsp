@@ -21,15 +21,15 @@
                             <label id="total" name="totalP" class="form-control">0</label>
                         </div>
                         <div class="form-group col-lg-10">
-                            <label>Quantidade</label>
-                            <label  name="total" class="form-control">0</label>
+                            <label>Filial</label>
+                            <label  name="filial" class="form-control">${funcionario.filial}</label>
                         </div>
                     </div>
                 </div>
                 <div class="container-page ">	
                     <div class="form-group col-sm-4 col-lg-push-1">
                         <label>Usuário:</label>
-                        <label  name="usuario" class="form-control">${user}</label>
+                        <label  name="usuario" class="form-control">${funcionario.nome}</label>
                     </div>
                     <div class="form-group col-sm-4 col-lg-push-1">
                         <label>CPF:</label>

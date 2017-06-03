@@ -367,11 +367,13 @@ public class FuncionarioDAO {
 
             while (resultSet.next()) {
                 String nome = resultSet.getString("nome");
+                String filial = resultSet.getString("filial");
                 String login = resultSet.getString("login");
                 String senha = resultSet.getString("senha");
                 String acesso = resultSet.getString("acesso");
                 String cpf = resultSet.getString("cpf");
                 
+                func.setFilial(filial);
                 func.setNome(nome);
                 func.setLogin(login);
                 func.setSenha(senha);
