@@ -15,7 +15,7 @@ public class ApresentaVendaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Relatorios/BuscarRelatorio.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarRelatorio.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -24,7 +24,7 @@ public class ApresentaVendaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Relatorios/BuscarRelatorio.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarRelatorio.jsp");
         dispatcher.forward(request, response);
 
     }
