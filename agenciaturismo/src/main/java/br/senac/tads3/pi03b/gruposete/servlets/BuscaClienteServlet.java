@@ -35,6 +35,7 @@ public class BuscaClienteServlet extends HttpServlet {
         try {
             List<Cliente> encontrados = dao.procurarCliente(pesquisa);
             request.setAttribute("encontrados", encontrados);
+            request.setAttribute("pesquisa", pesquisa);
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaCliente.jsp");
             dispatcher.forward(request, response);
 

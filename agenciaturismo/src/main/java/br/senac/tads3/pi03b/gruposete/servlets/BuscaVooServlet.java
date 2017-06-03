@@ -35,6 +35,7 @@ public class BuscaVooServlet extends HttpServlet {
         try {
             List<Voo> encontrados = dao.procurarVoo(pesquisa);
             request.setAttribute("encontrados", encontrados);
+            request.setAttribute("pesquisa", pesquisa);
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaVoo.jsp");
             dispatcher.forward(request, response);
 

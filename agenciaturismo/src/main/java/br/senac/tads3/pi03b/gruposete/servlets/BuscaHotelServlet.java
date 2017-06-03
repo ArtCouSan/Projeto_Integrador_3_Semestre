@@ -35,6 +35,7 @@ public class BuscaHotelServlet extends HttpServlet {
         try {
             List<Hotel> encontrados = dao.procurarHotel(pesquisa);
             request.setAttribute("encontrados", encontrados);
+            request.setAttribute("pesquisa", pesquisa);
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaHotel.jsp");
             dispatcher.forward(request, response);
 
