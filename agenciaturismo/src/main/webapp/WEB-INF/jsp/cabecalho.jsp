@@ -22,8 +22,8 @@
                             <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
-                            <li ><a href="BuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
-                            <li ><a href="logout"><i class="glyphicon glyphicon-user"> Sair</i></a></li>
+                            <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
+                            <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
                 </nav>

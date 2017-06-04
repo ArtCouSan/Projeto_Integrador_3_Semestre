@@ -8,6 +8,9 @@ import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class VendaDAO {
@@ -17,22 +20,27 @@ public class VendaDAO {
     private static Statement statement;
     private static ResultSet resultSet;
 
-    public void inserir(Venda venda) throws SQLException, FileNotFoundException, ClassNotFoundException {
+    public void inserir(Venda venda) throws SQLException, FileNotFoundException, ClassNotFoundException, ParseException {
 
         connection = DbUtil.getConnection();
 
         // Comando SQL.
         String slq = "INSERT INTO venda "
-                + "(id_cliente, id_funcionario, total_preco, ativo) "
-                + "VALUES (?, ?, ?, ?)";
+                + "(id_cliente, id_funcionario, total_preco, ativo, data_venda) "
+                + "VALUES (?, ?, ?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(slq);
+
+        Date data = new Date(System.currentTimeMillis());
+        SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd");
+        String formatado = formatarDate.format(data);
 
         // Insercoes.
         preparedStatement.setInt(1, venda.getId_cliente());
         preparedStatement.setInt(2, venda.getId_func());
         preparedStatement.setDouble(3, venda.getPreco());
         preparedStatement.setBoolean(4, true);
+        preparedStatement.setString(5, formatado);
 
         // Executa.
         preparedStatement.execute();
@@ -132,6 +140,7 @@ public class VendaDAO {
             venda.setId_cliente(resultSet.getInt("id_cliente"));
             venda.setId_func(resultSet.getInt("id_funcionario"));
             venda.setPreco(resultSet.getFloat("total_preco"));
+            venda.setData(resultSet.getString("data_venda"));
 
             // Adiciona a lista.
             listaResultado.add(venda);
@@ -146,49 +155,99 @@ public class VendaDAO {
 
     }
 
-    public Venda procurarVenda(int id) throws SQLException, ClassNotFoundException {
+    public ArrayList<Venda> procurarVendas2(String inicio) throws SQLException, ClassNotFoundException {
 
         // Conecta.
         connection = DbUtil.getConnection();
 
-        Venda venda = new Venda();
+        // Lista que ira receber vendas.
+        ArrayList<Venda> listaResultado = new ArrayList<>();
 
         // Comando SQL.
-        String slq = "SELECT * FROM venda WHERE id_venda = ?";
+        String slq = "SELECT * FROM venda WHERE data_venda = ? AND ATIVO = ?";
 
-        PreparedStatement stmt = connection.prepareStatement(slq);
+        preparedStatement = connection.prepareStatement(slq);
 
         // Insercoes.
-        stmt.setInt(1, id);
+        preparedStatement.setString(1, inicio);
+        preparedStatement.setBoolean(2, true);
 
         // Executa e recebe resultado.
-        ResultSet result = stmt.executeQuery();
+        resultSet = preparedStatement.executeQuery();
 
         // Loop com resultados.
-        while (result.next()) {
+        while (resultSet.next()) {
+
+            // Declara objeto.
+            Venda venda = new Venda();
 
             // Prenche.
-            venda.setId_venda(result.getInt("id_venda"));
-            venda.setId_cliente(result.getInt("id_cliente"));
-            venda.setPreco(result.getFloat("total"));
-            // venda.setTotal_quantidade(result.getInt("total_quantidade"));
+            venda.setId_venda(resultSet.getInt("id_venda"));
+            venda.setId_cliente(resultSet.getInt("id_cliente"));
+            venda.setId_func(resultSet.getInt("id_funcionario"));
+            venda.setPreco(resultSet.getFloat("total_preco"));
+            venda.setData(resultSet.getString("data_venda"));
 
-            // Fecha conexao.
-            connection.close();
-
-            return venda;
+            // Adiciona a lista.
+            listaResultado.add(venda);
 
         }
 
         // Fecha conexao.
         connection.close();
 
-        return null;
+        // Retorna lista.
+        return listaResultado;
+
+    }
+
+    public ArrayList<Venda> procurarVendas3() throws SQLException, ClassNotFoundException {
+
+        // Conecta.
+        connection = DbUtil.getConnection();
+
+        // Lista que ira receber vendas.
+        ArrayList<Venda> listaResultado = new ArrayList<>();
+
+        // Comando SQL.
+        String slq = "SELECT * FROM venda WHERE ATIVO = ?";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Insercoes.
+        preparedStatement.setBoolean(1, true);
+
+        // Executa e recebe resultado.
+        resultSet = preparedStatement.executeQuery();
+
+        // Loop com resultados.
+        while (resultSet.next()) {
+
+            // Declara objeto.
+            Venda venda = new Venda();
+
+            // Prenche.
+            venda.setId_venda(resultSet.getInt("id_venda"));
+            venda.setId_cliente(resultSet.getInt("id_cliente"));
+            venda.setId_func(resultSet.getInt("id_funcionario"));
+            venda.setPreco(resultSet.getFloat("total_preco"));
+            venda.setData(resultSet.getString("data_venda"));
+
+            // Adiciona a lista.
+            listaResultado.add(venda);
+
+        }
+
+        // Fecha conexao.
+        connection.close();
+
+        // Retorna lista.
+        return listaResultado;
 
     }
 
     public void removerEstoqueVoo(int id, int qtd) throws SQLException, ClassNotFoundException {
-       
+
         connection = DbUtil.getConnection();
 
         String sql = " ";

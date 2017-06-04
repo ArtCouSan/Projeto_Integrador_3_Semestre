@@ -21,8 +21,8 @@
                     <th>Data de volta</th>
                     <th>Quantidade de passagens</th>
                     <th>Preco</th>
-                    <th></th>
-                    <th></th>
+                    <th>Remover</th>
+                    <th>Editar</th>
                 </tr>
             <thead>
             <tbody>

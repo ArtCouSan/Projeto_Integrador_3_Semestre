@@ -27,107 +27,17 @@ public class VendaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, FileNotFoundException {
 
-        String cpf = request.getParameter("cpf");
-        ClienteDAO clienteData = new ClienteDAO();
-        Cliente cliente = null;
-        try {
-
-            cliente = clienteData.getClienteByCPF(cpf);
-
-        } catch (SQLException | ClassNotFoundException ex) {
-
-            Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-
         double totalP = Double.parseDouble(request.getParameter("totalP"));
 
-        Venda venda = new Venda(cliente.getId_cliente(), 2, totalP);
+        if (totalP != 0) {
 
-        VendaDAO vendaData = new VendaDAO();
-
-        try {
-
-            vendaData.inserir(venda);
-
-        } catch (SQLException | ClassNotFoundException ex) {
-
-            Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-
-        int idLista = 0;
-
-        try {
-
-            idLista = vendaData.maiorIdVenda();
-
-        } catch (SQLException | ClassNotFoundException ex) {
-
-            Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-
-        String idsVoos = request.getParameter("idsVoos");
-        String idsHoteis = request.getParameter("idsHoteis");
-        String precosVoos = request.getParameter("precosVoos");
-        String precosHoteis = request.getParameter("precosHoteis");
-        String quantidadeVoos = request.getParameter("quantidadeVoos");
-        String quantidadeHoteis = request.getParameter("quantidadeHoteis");
-
-        String[] idsV = idsVoos.split(",");
-        String[] precosV = precosVoos.split(",");
-        String[] quantidadesV = quantidadeVoos.split(",");
-        String[] idsH = idsHoteis.split(",");
-        String[] precosH = precosHoteis.split(",");
-        String[] quantidadesH = quantidadeHoteis.split(",");
-
-        for (int i = 0; i < idsV.length; i++) {
+            String cpf = request.getParameter("cpf");
+            ClienteDAO clienteData = new ClienteDAO();
+            Cliente cliente = null;
 
             try {
 
-                VooDAO voo = new VooDAO();
-
-                int idV = Integer.parseInt(idsV[i]);
-
-                Voo vooEncontrado = voo.getVooById(idV);
-                int qtd_encontradaV = vooEncontrado.getQuantidade_passagens();
-
-                int quantidadeV = Integer.parseInt(quantidadesV[i]);
-                float precoV = Float.parseFloat(precosV[i]);
-
-                int novaQtdVoo = qtd_encontradaV - quantidadeV;
-
-                vendaData.inserirLista(idV, quantidadeV, precoV, idLista, "V");
-
-                vendaData.removerEstoqueVoo(idV, novaQtdVoo);
-
-            } catch (SQLException | ClassNotFoundException ex) {
-
-                Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-
-        for (int i = 0; i < idsH.length; i++) {
-
-            try {
-
-                HotelDAO hotel = new HotelDAO();
-
-                int idH = Integer.parseInt(idsH[i]);
-
-                Hotel hotelEncontrado = hotel.getHotelById(idH);
-                int qtd_encontradaH = hotelEncontrado.getQuantidade_quartos();
-
-                int quantidadeH = Integer.parseInt(quantidadesH[i]);
-                float precoH = Float.parseFloat(precosH[i]);
-
-                int novaQtdHotel = qtd_encontradaH - quantidadeH;
-
-                vendaData.inserirLista(idH, quantidadeH, precoH, idLista, "H");
-
-                vendaData.removerEstoqueHotel(idH, novaQtdHotel);
+                cliente = clienteData.getClienteByCPF(cpf);
 
             } catch (SQLException | ClassNotFoundException ex) {
 
@@ -135,10 +45,119 @@ public class VendaServlet extends HttpServlet {
 
             }
 
-        }
+            Venda venda = new Venda(cliente.getId_cliente(), 2, totalP);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-        dispatcher.forward(request, response);
+            VendaDAO vendaData = new VendaDAO();
+
+            try {
+
+                vendaData.inserir(venda);
+
+            } catch (SQLException | ClassNotFoundException ex) {
+
+                Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+            int idLista = 0;
+
+            try {
+
+                idLista = vendaData.maiorIdVenda();
+
+            } catch (SQLException | ClassNotFoundException ex) {
+
+                Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+            String idsVoos = request.getParameter("idsVoos");
+            String idsHoteis = request.getParameter("idsHoteis");
+            String precosVoos = request.getParameter("precosVoos");
+            String precosHoteis = request.getParameter("precosHoteis");
+            String quantidadeVoos = request.getParameter("quantidadeVoos");
+            String quantidadeHoteis = request.getParameter("quantidadeHoteis");
+
+            if (idsVoos.length() != 0) {
+
+                String[] idsV = idsVoos.split(",");
+                String[] precosV = precosVoos.split(",");
+                String[] quantidadesV = quantidadeVoos.split(",");
+
+                for (int i = 0; i < idsV.length; i++) {
+
+                    try {
+
+                        VooDAO voo = new VooDAO();
+
+                        int idV = Integer.parseInt(idsV[i]);
+
+                        Voo vooEncontrado = voo.getVooById(idV);
+                        int qtd_encontradaV = vooEncontrado.getQuantidade_passagens();
+
+                        int quantidadeV = Integer.parseInt(quantidadesV[i]);
+                        float precoV = Float.parseFloat(precosV[i]);
+
+                        int novaQtdVoo = qtd_encontradaV - quantidadeV;
+
+                        vendaData.inserirLista(idV, quantidadeV, precoV, idLista, "V");
+
+                        vendaData.removerEstoqueVoo(idV, novaQtdVoo);
+
+                    } catch (SQLException | ClassNotFoundException ex) {
+
+                        Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            }
+
+            if (idsHoteis.length() != 0) {
+
+                String[] idsH = idsHoteis.split(",");
+                String[] precosH = precosHoteis.split(",");
+                String[] quantidadesH = quantidadeHoteis.split(",");
+
+                for (int i = 0; i < idsH.length; i++) {
+
+                    try {
+
+                        HotelDAO hotel = new HotelDAO();
+
+                        int idH = Integer.parseInt(idsH[i]);
+
+                        Hotel hotelEncontrado = hotel.getHotelById(idH);
+                        int qtd_encontradaH = hotelEncontrado.getQuantidade_quartos();
+
+                        int quantidadeH = Integer.parseInt(quantidadesH[i]);
+                        float precoH = Float.parseFloat(precosH[i]);
+
+                        int novaQtdHotel = qtd_encontradaH - quantidadeH;
+
+                        vendaData.inserirLista(idH, quantidadeH, precoH, idLista, "H");
+
+                        vendaData.removerEstoqueHotel(idH, novaQtdHotel);
+
+                    } catch (SQLException | ClassNotFoundException ex) {
+
+                        Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+                    }
+
+                }
+
+            }
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+            dispatcher.forward(request, response);
+
+        } else {
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+            dispatcher.forward(request, response);
+            
+        }
 
     }
 

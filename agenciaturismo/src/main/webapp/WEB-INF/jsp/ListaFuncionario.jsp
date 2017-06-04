@@ -24,6 +24,8 @@
                     <th>Cargo</th>
                     <th>Filial</th>
                     <th>Departamento</th>
+                    <th>Remover</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
