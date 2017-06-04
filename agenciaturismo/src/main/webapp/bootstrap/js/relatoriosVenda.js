@@ -67,8 +67,8 @@ function listar(evt) {
         tr2.appendChild(tdF);
         tr2.appendChild(tdT);
 
-    }
+        table.appendChild(tr2);
 
-    table.appendChild(tr2);
+    }
 
 }

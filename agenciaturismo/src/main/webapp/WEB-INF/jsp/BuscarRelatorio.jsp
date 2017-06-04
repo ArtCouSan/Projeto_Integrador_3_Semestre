@@ -12,13 +12,13 @@
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
-        
-        <h1 class="text-center"> Digite os campos pela data da venda</h1>
-        <div class="controls col-md-5">
-            <input name="inicio" type="text" id="inicio" placeholder="Insira o inicio" class="input-medium search-query">
-            <input name="fim" type="text" id="fim" placeholder="Insira o fim" class="input-medium search-query">
-            <button onclick="pesquisar()" class="btn">Pesquisar</button>
-            <button type="reset" class="btn">Apagar</button>
+        <h1 class="text-center"> Digite os campos pela data da venda - Campos vazios, todas as vendas</h1>
+        <div class="input-group col-lg-offset-4">
+            <label>Inicio: </label>
+            <input name="inicio" type="text" id="inicio" placeholder="yyyy-mm-dd" class="search-query">
+            <label>Fim: </label>
+            <input name="fim" type="text" id="fim" placeholder="yyyy-mm-dd" class="search-query">
+            <button onclick="pesquisar()" class="btn bg-success">Pesquisar</button>
         </div>
         <br />
         <br />

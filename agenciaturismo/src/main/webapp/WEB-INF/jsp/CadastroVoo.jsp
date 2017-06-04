@@ -13,7 +13,7 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            <form name="cadastrov" action="CadastroVoo" method="post" class="form-horizontal">
+            <form onsubmit="return confirmar('cadastrar')" name="cadastrov" action="CadastroVoo" method="post" class="form-horizontal">
                 <div class="form-group ">
                     <c:if test="${erroOrigem}">
                         <div class="erro">Digite a origem</div>

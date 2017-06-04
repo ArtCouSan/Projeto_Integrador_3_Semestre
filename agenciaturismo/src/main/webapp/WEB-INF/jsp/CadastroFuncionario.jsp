@@ -14,7 +14,7 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            <form name="cadastrof" action="CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
+            <form name="cadastrof" onsubmit="return confirmar('cadastrar')" action="CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
 
                 <div class="form-group ">
                     <c:if test="${erroNome}">

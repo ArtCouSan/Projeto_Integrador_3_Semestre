@@ -4,6 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html">
+        <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
@@ -17,22 +18,22 @@
                 <div class="container-page">				
                     <div class="col-md-6">
                         <div class="form-group col-lg-10">
-                            <label>Total</label>
+                            <label>Total <span class="glyphicon glyphicon-usd"></span> :</label>
                             <label id="total" name="totalP" class="form-control">0</label>
                         </div>
                         <div class="form-group col-lg-10">
-                            <label>Filial</label>
+                            <label>Filial <span class="fa fa-rss"></span> :</label>
                             <label  name="filial" class="form-control">${funcionario.filial}</label>
                         </div>
                     </div>
                 </div>
                 <div class="container-page ">	
                     <div class="form-group col-sm-4 col-lg-push-1">
-                        <label>Usuário:</label>
+                        <label>Usuário <span class="fa fa-id-card"></span> :</label>
                         <label  name="usuario" class="form-control">${funcionario.nome}</label>
                     </div>
                     <div class="form-group col-sm-4 col-lg-push-1">
-                        <label>CPF:</label>
+                        <label>CPF <span class="glyphicon glyphicon-book"></span> :</label>
                         <label name="cpf" id="cpf" class="form-control">${cpf}</label>
                     </div>		
                 </div>
@@ -53,7 +54,7 @@
 
                     </table>
                 </div>
-                <label class="h3">Carrinho - Hotel</label>
+                <label class="h3">Carrinho - Hotel <span class="fa fa-shopping-basket"> :</label>
                 <div class="container-page">
                     <table class="table table-striped" >
                         <thead>
@@ -72,7 +73,7 @@
                         </tbody>
                     </table>
                 </div>
-                <label class="h3">Carrinho - Vôo</label>
+                <label class="h3">Carrinho - Vôo <span class="fa fa-shopping-basket"> :</span></label>
                 <div class="container-page">
                     <table class="table table-striped">
                         <thead>
