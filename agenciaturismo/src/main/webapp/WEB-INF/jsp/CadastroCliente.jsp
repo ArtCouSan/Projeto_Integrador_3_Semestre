@@ -8,6 +8,7 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+        <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
     </head>
     <body>
@@ -19,7 +20,7 @@
                     <c:if test="${erroNome}">
                         <div class="erro">Digite seu nome completo</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Nome:</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Nome <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
                     </div>
@@ -67,19 +68,18 @@
                     <c:if test="${erroNumero}">
                         <div class="erro">Digite o número da sua casa</div>
                     </c:if>
-                    <label for="example-number-input" class="control-label col-md-4">* Numero :</label>
+                    <label for="example-number-input" class="control-label col-md-4">* Numero <span class="fa fa-sort-numeric-desc"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="example-text-input" class="control-label col-md-4">Complemento :</label>
+                    <label for="example-text-input" class="control-label col-md-4">Complemento <span class="fa fa-flag"></span> :</label>
                     <div class="controls col-md-5">
                         <input  maxlength="20" class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="complemento">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <c:if test="${erroCep}">
                         <div class="erro">Digite seu CEP</div>

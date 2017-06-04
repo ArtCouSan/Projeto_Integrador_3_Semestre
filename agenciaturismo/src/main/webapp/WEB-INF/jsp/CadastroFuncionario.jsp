@@ -7,6 +7,7 @@
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
         <title>Cadastro de Funcionario</title>
     </head>
@@ -19,7 +20,7 @@
                     <c:if test="${erroNome}">
                         <div class="erro">Digite seu nome completo</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Nome:</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Nome <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
                     </div>
@@ -29,7 +30,7 @@
                     <c:if test="${erroCpf}">
                         <div class="erro">Digite o CPF</div>
                     </c:if>
-                        <label for="example-text-input" class="control-label col-md-4">* CPF <span class="glyphicon glyphicon-book"></span> :</label>
+                    <label for="example-text-input" class="control-label col-md-4">* CPF <span class="glyphicon glyphicon-book"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="14" class="form-control" name="cpf" type="text" id="cpf" required>
                     </div>
@@ -67,14 +68,14 @@
                     <c:if test="${erroNumero}">
                         <div class="erro">Digite o número da sua casa</div>
                     </c:if>
-                    <label for="example-number-input" class="control-label col-md-4">* Numero :</label>
+                    <label for="example-number-input" class="control-label col-md-4">* Numero <span class="fa fa-sort-numeric-desc"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="example-text-input" class="control-label col-md-4">Complemento :</label>
+                    <label for="example-text-input" class="control-label col-md-4">Complemento <span class="fa fa-flag"></span> :</label>
                     <div class="controls col-md-5">
                         <input  maxlength="20" class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="complemento">
                     </div>
@@ -153,8 +154,8 @@
                     <c:if test="${erroEmail}">
                         <div class="erro">Digite um email válido</div>
                     </c:if>
-                        <label for="example-email-input" class="control-label col-md-4">* Email <span class="glyphicon glyphicon-envelope"></span> :</label>
-                        <div class="controls col-md-5">
+                    <label for="example-email-input" class="control-label col-md-4">* Email <span class="glyphicon glyphicon-envelope"></span> :</label>
+                    <div class="controls col-md-5">
                         <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
                     </div>
                 </div>
@@ -163,7 +164,7 @@
                     <c:if test="${erroDepartamento}">
                         <div class="erro">Digite o Departamento</div>
                     </c:if>
-                        <label for="example-text-input" class="control-label col-md-4">* Departamento <span class="glyphicon glyphicon-inbox"></span> :</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Departamento <span class="glyphicon glyphicon-inbox"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="100" class="form-control" placeholder="Insira departamento" name="departamento" id="departamento" required>
                     </div>
@@ -173,7 +174,7 @@
                     <c:if test="${erroCargo}">
                         <div class="erro">Digite o cargo</div>
                     </c:if>
-                        <label for="example-text-input" class="control-label col-md-4">* Cargo <span class="glyphicon glyphicon-lock"></span> :</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Cargo <span class="glyphicon glyphicon-lock"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="100" class="form-control" placeholder="Insira cargo" name="cargo" id="cargo" required>
                     </div>
@@ -183,7 +184,7 @@
                     <c:if test="${erroFilial}">
                         <div class="erro">Digite a filial</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Filial :</label>
+                        <label for="example-text-input" class="control-label col-md-4">* Filial <span class="fa fa-rss"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="100" class="form-control" placeholder="Insira filial" name="filial" id="filial" required>
                     </div>
@@ -193,7 +194,7 @@
                     <c:if test="${erroLogin}">
                         <div class="erro">Digite o login</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Login :</label>
+                        <label for="example-text-input" class="control-label col-md-4">* Login <span class="fa fa-sign-in"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="100" class="form-control" placeholder="login" name="login" id="login" required>
                     </div>
@@ -203,7 +204,7 @@
                     <c:if test="${erroSenha}">
                         <div class="erro">Digite sua senha</div>
                     </c:if>
-                        <label for="example-text-input" class="control-label col-md-4">* Senha <span class="glyphicon glyphicon-th"></span> :</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Senha <span class="glyphicon glyphicon-th"></span> :</label>
                     <div class="controls col-md-5">
                         <input type="password" maxlength="100" class="form-control" placeholder="senha" name="senha" id="senha" required>
                     </div>
@@ -213,7 +214,7 @@
                     <c:if test="${erroAcesso}">
                         <div class="erro">Acesso invalido</div>
                     </c:if>
-                        <label for="example-text-input" class="control-label col-md-4">* Acesso <span class="glyphicon glyphicon-eye-open"></span> :</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Acesso <span class="glyphicon glyphicon-eye-open"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="acesso">
                             <option value="MASTER">MASTER</option>

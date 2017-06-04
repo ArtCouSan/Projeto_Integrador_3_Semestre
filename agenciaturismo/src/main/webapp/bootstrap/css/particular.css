@@ -34,6 +34,10 @@
     width: 200px;
 }
 
+.bmedium{
+    width: 50px;
+}
+
 .form_fundo{
     border-width: 100px;
     background-color: hsl(35, 3%, 91%);
