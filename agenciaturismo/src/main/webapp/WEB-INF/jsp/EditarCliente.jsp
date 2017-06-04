@@ -14,7 +14,7 @@
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
-        <form name="editac" action="EditarCliente" method="post" class="form-horizontal">
+        <form name="editac" onsubmit="return confirmar('alterar')" action="EditarCliente" method="post" class="form-horizontal">
             <input type="hidden" name="identificacao" value="${clientes.getId_cliente()}"/>
             <div class="form-group ">
                 <c:if test="${erroNome}">

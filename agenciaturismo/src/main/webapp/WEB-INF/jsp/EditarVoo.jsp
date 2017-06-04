@@ -13,7 +13,7 @@
     <body>
         <div class="panel-body">
             <c:import url="./cabecalho.jsp"/>
-            <form name="editav" action="EditarVoo" method="post" class="form-horizontal">
+            <form name="editav" onsubmit="return confirmar('alterar')" action="EditarVoo" method="post" class="form-horizontal">
                 <input type="hidden" name="identificacao" value="${voos.getId_voo()}"/>
                 <div class="form-group ">
                     <c:if test="${erroOrigem}">
