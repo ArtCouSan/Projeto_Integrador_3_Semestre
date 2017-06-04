@@ -78,39 +78,6 @@ public class VooDAO {
         }
     }
 
-    public List<Voo> ListaVoo() throws SQLException, ClassNotFoundException {
-        List<Voo> ListaVoo = new ArrayList<>();
-        connection = DbUtil.getConnection();
-        String query = "SELECT * FROM Voo ORDER BY origem WHERE ativo=true";
-
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                Voo voo = new Voo();
-
-                voo.setId_voo(resultSet.getInt("id_voo"));
-                voo.setData_ida(resultSet.getString("data_ida"));
-                voo.setData_volta(resultSet.getString("data_volta"));
-                voo.setDestino(resultSet.getString("destino"));
-                voo.setOrigem(resultSet.getString("origem"));
-                voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-                voo.setPreco(resultSet.getFloat("preco"));
-
-                ListaVoo.add(voo);
-            }
-        } catch (SQLException e) {
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-        return ListaVoo;
-    }
-
     public Voo getVooById(int id) throws SQLException, ClassNotFoundException {
         Voo voo = new Voo();
 
@@ -145,40 +112,53 @@ public class VooDAO {
     }
 
     public List<Voo> procurarVoo(String busca) throws SQLException, IOException, ClassNotFoundException {
+
         List<Voo> listaResultado = new ArrayList<>();
 
         connection = DbUtil.getConnection();
 
-        String sql = "SELECT * FROM voo WHERE"
-                + " (data_volta = ?"
-                + " OR data_ida = ?"
-                + " OR destino = ?"
-                + " OR origem = ?"
-                + " OR quantidade_passagens = ?"
-                + " OR preco = ?)"
-                + " AND ativo = true";
+        String sql;
 
-        preparedStatement = connection.prepareStatement(sql);
+        if (busca.length() != 0) {
 
-        // Insercoes.
-        preparedStatement.setString(1, busca);
-        preparedStatement.setString(2, busca);
-        preparedStatement.setString(3, busca);
-        preparedStatement.setString(4, busca);
-        int n1 = 0;
-        try {
-            n1 = Integer.parseInt(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
+            sql = "SELECT * FROM voo WHERE"
+                    + " (data_volta = ?"
+                    + " OR data_ida = ?"
+                    + " OR destino = ?"
+                    + " OR origem = ?"
+                    + " OR quantidade_passagens = ?"
+                    + " OR preco = ?)"
+                    + " AND ativo = true";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Insercoes.
+            preparedStatement.setString(1, busca);
+            preparedStatement.setString(2, busca);
+            preparedStatement.setString(3, busca);
+            preparedStatement.setString(4, busca);
+            int n1 = 0;
+            try {
+                n1 = Integer.parseInt(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            float n2 = 0;
+            try {
+                n2 = Float.parseFloat(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            preparedStatement.setInt(5, n1);
+            preparedStatement.setFloat(6, n2);
+
+        } else {
+
+            sql = "SELECT * FROM voo WHERE ativo = true ";
+
+            preparedStatement = connection.prepareStatement(sql);
+
         }
-        float n2 = 0;
-        try {
-            n2 = Float.parseFloat(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
-        }
-        preparedStatement.setInt(5, n1);
-        preparedStatement.setFloat(6, n2);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {

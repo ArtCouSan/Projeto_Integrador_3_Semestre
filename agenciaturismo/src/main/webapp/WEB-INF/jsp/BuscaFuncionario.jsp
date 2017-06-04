@@ -9,7 +9,7 @@
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
-        <title>Buscar Funcionario</title>
+        <title>Buscar Funcionário</title>
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
@@ -17,27 +17,27 @@
             <div class="col-md-6 col-md-offset-3">
                 <form role="form" action="BuscaFuncionario" method="post">
                     <div class="row">
-                        <h1 class="text-center"> Digite o campo pela informação que gostaria de buscar do funcionario...</h1>
+                        <h1 class="text-center"> Digite o campo pela informação que gostaria de buscar do funcionário...</h1>
                         <ul>
-                            <li class="list-unstyled">Dicas:</li>
-                            <li class="list-unstyled"><span class="fa fa-id-card"></span> | Nome do funcionario</li>
-                            <li class="list-unstyled"><span class="fa fa-rss"></span> | Filial do funcionario</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-inbox"></span> | Departamento do funcionario</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-lock"></span> | Cargo do funcionario</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-book"></span> | CPF do funcionario - Com pontuação</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-heart"></span> | Sexo do funcionario - Siglas</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-baby-formula"></span> | Data de nascimento do funcionario - Com pontuação</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-globe"></span> | Estado do funcionario - Siglas</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-globe"></span> | Cidade do funcionario</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-road"></span> | Rua da casa do funcionario</li>
-                            <li class="list-unstyled"><span class="fa fa-sort-numeric-desc"></span>   | Numero da casa do funcionario</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-map-marker"></span> | CEP da casa do funcionario - Com pontuação</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-earphone"></span> | Telefone ou Celular do funcionario - Com pontuação</li>
-                            <li class="list-unstyled"><span class="glyphicon glyphicon-envelope"></span> | Email do funcionario</li>
+                            <li class="list-unstyled">Dicas: (Campo vazio = todos)</li>
+                            <li class="list-unstyled"><span class="fa fa-id-card"></span> | Nome do funcionário</li>
+                            <li class="list-unstyled"><span class="fa fa-rss"></span> | Filial do funcionário</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-inbox"></span> | Departamento do funcionário</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-lock"></span> | Cargo do funcionário</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-book"></span> | CPF do funcionário - Com pontuação</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-heart"></span> | Sexo do funcionário - Siglas</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-baby-formula"></span> | Data de nascimento do funcionário - Com pontuação</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-globe"></span> | Estado do funcionário - Siglas</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-globe"></span> | Cidade do funcionário</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-road"></span> | Rua da casa do funcionário</li>
+                            <li class="list-unstyled"><span class="fa fa-sort-numeric-desc"></span>   | Numero da casa do funcionário</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-map-marker"></span> | CEP da casa do funcionário - Com pontuação</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-earphone"></span> | Telefone ou Celular do funcionário - Com pontuação</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-envelope"></span> | Email do funcionário</li>
                         </ul>
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" type="text" name="pesquisa" required/>
+                                <input class="form-control" type="text" name="pesquisa"/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;">Pesquisar</span></button>
                                 </span>                           

@@ -29,7 +29,7 @@
                         </ul>
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" type="text" name="pesquisa" required/>
+                                <input class="form-control" type="text" name="pesquisa"/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;">Pesquisar</span></button>
                                 </span>                           

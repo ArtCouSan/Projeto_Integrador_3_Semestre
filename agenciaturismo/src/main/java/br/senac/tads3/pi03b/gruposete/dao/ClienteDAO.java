@@ -274,7 +274,7 @@ public class ClienteDAO {
 
         } else {
 
-            sql = "SELECT * FROM cliente";
+            sql = "SELECT * FROM cliente WHERE ativo = true";
 
             preparedStatement = connection.prepareStatement(sql);
 

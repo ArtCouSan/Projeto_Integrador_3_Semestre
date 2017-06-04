@@ -128,9 +128,12 @@ function listarHotel(evt) {
         var type = document.createAttribute("type");
         var max = document.createAttribute("max");
         var min = document.createAttribute("min");
+        var value = document.createAttribute("value");
         type.value = "number";
         max.value = obj[item].quantidade_quartos;
         min.value = 1;
+        value.value = 1;
+        inputQ.setAttributeNode(value);
         inputQ.setAttributeNode(max);
         inputQ.setAttributeNode(min);
         inputQ.setAttributeNode(type);
@@ -266,9 +269,12 @@ function listarVoo(evt) {
         var type = document.createAttribute("type");
         var max = document.createAttribute("max");
         var min = document.createAttribute("min");
+        var value = document.createAttribute("value");
         type.value = "number";
         max.value = obj[item].quantidade_passagens;
         min.value = 1;
+        value.value = 1;
+        inputQ.setAttributeNode(value);
         inputQ.setAttributeNode(max);
         inputQ.setAttributeNode(min);
         inputQ.setAttributeNode(type);
@@ -371,12 +377,24 @@ function addCarrinhoHotel(id) {
         var type = document.createAttribute("type");
         var max = document.createAttribute("max");
         var min = document.createAttribute("min");
+        var idH = document.createAttribute("id");
         var actionPreco = document.createAttribute("onclick");
+        var actionPreco2 = document.createAttribute("onkeyup");
+        var actionPreco3 = document.createAttribute("onkeypress");
+        var actionPreco4 = document.createAttribute("onkeydown");
+        actionPreco2.value = "manterPreco_Hotel(" + id + "," + qtd_quartos + ")";
+        actionPreco3.value = "manterPreco_Hotel(" + id + "," + qtd_quartos + ")";
+        actionPreco4.value = "manterPreco_Hotel(" + id + "," + qtd_quartos + ")";
+        idH.value = id + "inputH";
+        inputQ.setAttributeNode(idH);
         actionPreco.value = "atualizarPreco_Hotel(" + id + "," + qtd_quartos + ")";
         type.value = "number";
         max.value = document.getElementById("qtd_quartos" + id).max;
         min.value = 1;
         inputQ.setAttributeNode(actionPreco);
+        inputQ.setAttributeNode(actionPreco2);
+        inputQ.setAttributeNode(actionPreco3);
+        inputQ.setAttributeNode(actionPreco4);
         inputQ.setAttributeNode(max);
         inputQ.setAttributeNode(min);
         inputQ.setAttributeNode(type);
@@ -477,12 +495,24 @@ function addCarrinhoVoo(id) {
         var type = document.createAttribute("type");
         var max = document.createAttribute("max");
         var min = document.createAttribute("min");
+        var idV = document.createAttribute("id");
         var actionPreco = document.createAttribute("onclick");
+        var actionPreco2 = document.createAttribute("onkeyup");
+        var actionPreco3 = document.createAttribute("onkeypress");
+        var actionPreco4 = document.createAttribute("onkeydown");
         actionPreco.value = "atualizarPreco_Voo(" + id + "," + quantidade_passagens + ")";
+        actionPreco2.value = "manterPreco_Voo(" + id + "," + quantidade_passagens + ")";
+        actionPreco3.value = "manterPreco_Voo(" + id + "," + quantidade_passagens + ")";
+        actionPreco4.value = "manterPreco_Voo(" + id + "," + quantidade_passagens + ")";
         type.value = "number";
         max.value = document.getElementById("qtd_p" + id).firstChild.max;
         min.value = 1;
+        idV.value = id + "inputV";
+        inputQ.setAttributeNode(idV);
         inputQ.setAttributeNode(actionPreco);
+        inputQ.setAttributeNode(actionPreco2);
+        inputQ.setAttributeNode(actionPreco3);
+        inputQ.setAttributeNode(actionPreco4);
         inputQ.setAttributeNode(max);
         inputQ.setAttributeNode(min);
         inputQ.setAttributeNode(type);
@@ -517,6 +547,20 @@ function addCarrinhoVoo(id) {
         carrinho.appendChild(tr);
 
     }
+
+}
+
+function manterPreco_Voo(id, quantidade) {
+
+    var input = document.getElementById(id + "inputV");
+    input.value = quantidade;
+
+}
+
+function manterPreco_Hotel(id, quantidade) {
+
+    var input = document.getElementById(id + "inputH");
+    input.value = quantidade;
 
 }
 
@@ -659,7 +703,20 @@ function atualizarPreco_Hotel(id, quantidade) {
             type.value = "number";
             max.value = maximo;
             min.value = 1;
+            var idH = document.createAttribute("id");
+            var actionPreco = document.createAttribute("onclick");
+            var actionPreco2 = document.createAttribute("onkeyup");
+            var actionPreco3 = document.createAttribute("onkeypress");
+            var actionPreco4 = document.createAttribute("onkeydown");
+            actionPreco2.value = "manterPreco_Hotel(" + id + "," + quantidadeAtualizada + ")";
+            actionPreco3.value = "manterPreco_Hotel(" + id + "," + quantidadeAtualizada + ")";
+            actionPreco4.value = "manterPreco_Hotel(" + id + "," + quantidadeAtualizada + ")";
+            idH.value = id + "inputH";
+            inputQ.setAttributeNode(idH);
             inputQ.setAttributeNode(actionPreco);
+            inputQ.setAttributeNode(actionPreco2);
+            inputQ.setAttributeNode(actionPreco3);
+            inputQ.setAttributeNode(actionPreco4);
             inputQ.setAttributeNode(max);
             inputQ.setAttributeNode(min);
             inputQ.setAttributeNode(type);
@@ -708,11 +765,23 @@ function atualizarPreco_Voo(id, quantidade) {
             var type = document.createAttribute("type");
             var max = document.createAttribute("max");
             var min = document.createAttribute("min");
+            var idV = document.createAttribute("id");
             var actionPreco = document.createAttribute("onclick");
             actionPreco.value = "atualizarPreco_Voo(" + id + "," + quantidadeAtualizada + ")";
             type.value = "number";
             max.value = maximo;
             min.value = 1;
+            var actionPreco2 = document.createAttribute("onkeyup");
+            var actionPreco3 = document.createAttribute("onkeypress");
+            var actionPreco4 = document.createAttribute("onkeydown");
+            actionPreco2.value = "manterPreco_Voo(" + id + "," + quantidadeAtualizada + ")";
+            actionPreco3.value = "manterPreco_Voo(" + id + "," + quantidadeAtualizada + ")";
+            actionPreco4.value = "manterPreco_Voo(" + id + "," + quantidadeAtualizada + ")";
+            idV.value = id + "inputV";
+            inputQ.setAttributeNode(idV);
+            inputQ.setAttributeNode(actionPreco4);
+            inputQ.setAttributeNode(actionPreco3);
+            inputQ.setAttributeNode(actionPreco2);
             inputQ.setAttributeNode(actionPreco);
             inputQ.setAttributeNode(max);
             inputQ.setAttributeNode(min);

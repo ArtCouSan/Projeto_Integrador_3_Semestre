@@ -141,46 +141,61 @@ public class HotelDAO {
     }
 
     public List<Hotel> procurarHotel(String busca) throws ClassNotFoundException, SQLException {
+
         List<Hotel> listaResultado = new ArrayList<>();
 
-        String sql = "SELECT * FROM hotel WHERE"
-                + " (nome_hotel = ?"
-                + " OR data_entrada = ?"
-                + " OR data_saida = ?"
-                + " OR preco = ?"
-                + " OR quantidade_quartos = ?"
-                + " OR quantidade_hospedes = ?)"
-                + " AND ativo = true";
+        String sql;
 
-        connection = DbUtil.getConnection();
+        if (busca.length() != 0) {
 
-        preparedStatement = connection.prepareStatement(sql);
+            sql = "SELECT * FROM hotel WHERE"
+                    + " (nome_hotel = ?"
+                    + " OR data_entrada = ?"
+                    + " OR data_saida = ?"
+                    + " OR preco = ?"
+                    + " OR quantidade_quartos = ?"
+                    + " OR quantidade_hospedes = ?)"
+                    + " AND ativo = true";
 
-        // Insercoes.
-        preparedStatement.setString(1, busca);
-        preparedStatement.setString(2, busca);
-        preparedStatement.setString(3, busca);
-        double n1 = 0;
-        try {
-            Double.parseDouble(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
+            connection = DbUtil.getConnection();
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Insercoes.
+            preparedStatement.setString(1, busca);
+            preparedStatement.setString(2, busca);
+            preparedStatement.setString(3, busca);
+            double n1 = 0;
+            try {
+                Double.parseDouble(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            int n2 = 0;
+            try {
+                n2 = Integer.parseInt(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            int n3 = 0;
+            try {
+                n3 = Integer.parseInt(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            preparedStatement.setDouble(4, n1);
+            preparedStatement.setInt(5, n2);
+            preparedStatement.setInt(6, n3);
+
+        } else {
+
+            sql = "SELECT * FROM hotel WHERE ativo = true";
+
+            connection = DbUtil.getConnection();
+
+            preparedStatement = connection.prepareStatement(sql);
+
         }
-        int n2 = 0;
-        try {
-            n2 = Integer.parseInt(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
-        }
-        int n3 = 0;
-        try {
-            n3 = Integer.parseInt(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
-        }
-        preparedStatement.setDouble(4, n1);
-        preparedStatement.setInt(5, n2);
-        preparedStatement.setInt(6, n3);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {

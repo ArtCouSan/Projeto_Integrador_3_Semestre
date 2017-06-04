@@ -91,14 +91,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="container-page">
-                    <div id="wrap" class="container">
-                        <div class="row">
-                            <div class="controls col-md-5">
-                                <button onclick="venda()" class="btn">Vender</button>                    
-                            </div>                        
-                        </div>
-                    </div>
+                <div class="col-lg-offset-4">
+                    <button type="submit" onclick="venda()" style="width: 450px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-shopping-cart"> Vender</span></button>
                 </div>
             </section>
         </div>
