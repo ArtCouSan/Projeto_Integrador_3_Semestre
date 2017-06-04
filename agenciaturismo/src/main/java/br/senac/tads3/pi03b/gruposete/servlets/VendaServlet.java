@@ -11,6 +11,7 @@ import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -53,7 +54,7 @@ public class VendaServlet extends HttpServlet {
 
                 vendaData.inserir(venda);
 
-            } catch (SQLException | ClassNotFoundException ex) {
+            } catch (SQLException | ClassNotFoundException | ParseException ex) {
 
                 Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
 
