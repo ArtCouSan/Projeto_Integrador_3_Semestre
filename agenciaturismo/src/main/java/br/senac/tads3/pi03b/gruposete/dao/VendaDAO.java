@@ -354,18 +354,16 @@ public class VendaDAO {
                 + " OR data_entrada LIKE ?"
                 + " OR data_saida LIKE ?"
                 + " OR preco LIKE  ?"
-                + " OR quantidade_quartos LIKE ?"
-                + " OR quantidade_hospedes LIKE ?) LIMIT 5";
+                + " OR quantidade_hospedes LIKE ?) AND quantidade_quartos > 0 LIMIT 5";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
 
         // Insercoes.
-        stmt.setString(1, busca);
-        stmt.setString(2, busca);
-        stmt.setString(3, busca);
-        stmt.setString(4, busca);
-        stmt.setString(5, busca);
-        stmt.setString(6, busca);
+        stmt.setString(1, "%" + busca + "%");
+        stmt.setString(2, "%" + busca + "%");
+        stmt.setString(3, "%" + busca + "%");
+        stmt.setString(4, "%" + busca + "%");
+        stmt.setString(5, "%" + busca + "%");
 
         // Executa e recebe resultado.
         ResultSet result = stmt.executeQuery();
@@ -423,27 +421,21 @@ public class VendaDAO {
 
         // Comando SQL.
         String slq = "SELECT * FROM voo WHERE ativo = true"
-                + " AND (data_volta LIKE  ?"
+                + " AND (data_volta LIKE ?"
                 + " OR data_ida LIKE ?"
                 + " OR destino LIKE ?"
                 + " OR origem LIKE  ?"
                 + " OR preco LIKE ?"
-                + " OR quantidade_passagens LIKE ?) LIMIT 5";
+                + " ) AND quantidade_passagens > 0 LIMIT 5";
 
         PreparedStatement stmt = connection.prepareStatement(slq);
 
         // Insercoes.
-        stmt.setString(1, busca);
-        stmt.setString(2, busca);
-        stmt.setString(3, busca);
-        stmt.setString(4, busca);
-        try {
-            float buscaN = Float.parseFloat(busca);
-            stmt.setFloat(5, buscaN);
-        } catch (NumberFormatException e) {
-            stmt.setString(5, busca);
-        }
-        stmt.setString(6, busca);
+        stmt.setString(1, "%" + busca + "%");
+        stmt.setString(2, "%" + busca + "%");
+        stmt.setString(3, "%" + busca + "%");
+        stmt.setString(4, "%" + busca + "%");
+        stmt.setString(5, "%" + busca + "%");
 
         // Executa e recebe resultado.
         ResultSet result = stmt.executeQuery();

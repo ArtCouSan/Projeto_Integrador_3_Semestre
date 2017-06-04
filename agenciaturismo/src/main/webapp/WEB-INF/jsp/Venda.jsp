@@ -36,18 +36,16 @@
                         <label name="cpf" id="cpf" class="form-control">${cpf}</label>
                     </div>		
                 </div>
-                <div class="container-page">
-                    <div class="form-group col-sm-4 col-lg-push-">
-                        <input name="pesquisaVoo" id="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaVoo">
-                        <button onclick="pesquisaVoo()" type="submit" class="btn ">Pesquisar Voo</button>
-                    </div>
-                </div>
-                <div class="container-page">
-                    <div class="form-group col-sm-4 col-lg-push-3">
-                        <div class="form-group">
-                            <input name="pesquisaHotel" id="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaHotel">
-                            <button onclick="pesquisaHotel()" type="submit" class="btn">Pesquisar Hotel</button>                    
-                        </div>
+                <div class="container-page form-group">
+                    <div class="input-group">
+                        <input name="pesquisaVoo" id="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="form-control pesquisaVoo">
+                        <span class="input-group-btn">
+                            <button onclick="pesquisaVoo()" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;"> Pesquisar Voo</span></button>
+                        </span>                           
+                        <input name="pesquisaHotel" id="pesquisahotel" type="text" placeholder="Insira pesquisa" class="form-control pesquisaHotel">
+                        <span class="input-group-btn">
+                            <button onclick="pesquisaHotel()" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;"> Pesquisar Hotel</span></button>
+                        </span>                           
                     </div>
                 </div>
                 <div class="container-page" >

@@ -187,7 +187,7 @@ public class ClienteDAO {
     }
 
     public Cliente getClienteByCPF(String cpf) throws SQLException, ClassNotFoundException {
-        
+
         Cliente cliente = new Cliente();
 
         connection = DbUtil.getConnection();
@@ -228,45 +228,57 @@ public class ClienteDAO {
 
         connection = DbUtil.getConnection();
 
-        String sql = "SELECT * FROM cliente WHERE"
-                + " (estado = ?"
-                + " OR celular = ?"
-                + " OR cep = ?"
-                + " OR complemento = ?"
-                + " OR cpf = ?"
-                + " OR data_nasc = ?"
-                + " OR email = ?"
-                + " OR nome = ?"
-                + " OR numero = ?"
-                + " OR rua = ?"
-                + " OR sexo = ?"
-                + " OR telefone = ?"
-                + " OR cidade = ?)"
-                + " AND ativo = true";
+        String sql;
 
-        preparedStatement = connection.prepareStatement(sql);
+        if (busca.length() != 0) {
 
-        // Insercoes.
-        preparedStatement.setString(1, busca);
-        preparedStatement.setString(2, busca);
-        preparedStatement.setString(3, busca);
-        preparedStatement.setString(4, busca);
-        preparedStatement.setString(5, busca);
-        preparedStatement.setString(6, busca);
-        preparedStatement.setString(7, busca);
-        preparedStatement.setString(8, busca);
-        preparedStatement.setString(10, busca);
+            sql = "SELECT * FROM cliente WHERE"
+                    + " (estado = ?"
+                    + " OR celular = ?"
+                    + " OR cep = ?"
+                    + " OR complemento = ?"
+                    + " OR cpf = ?"
+                    + " OR data_nasc = ?"
+                    + " OR email = ?"
+                    + " OR nome = ?"
+                    + " OR numero = ?"
+                    + " OR rua = ?"
+                    + " OR sexo = ?"
+                    + " OR telefone = ?"
+                    + " OR cidade = ?)"
+                    + " AND ativo = true";
 
-        int buscaN = 0;
-        try {
-            buscaN = Integer.parseInt(busca);
-        } catch (NumberFormatException w) {
-            System.out.println("Erro");
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Insercoes.
+            preparedStatement.setString(1, busca);
+            preparedStatement.setString(2, busca);
+            preparedStatement.setString(3, busca);
+            preparedStatement.setString(4, busca);
+            preparedStatement.setString(5, busca);
+            preparedStatement.setString(6, busca);
+            preparedStatement.setString(7, busca);
+            preparedStatement.setString(8, busca);
+            preparedStatement.setString(10, busca);
+
+            int buscaN = 0;
+            try {
+                buscaN = Integer.parseInt(busca);
+            } catch (NumberFormatException w) {
+                System.out.println("Erro");
+            }
+            preparedStatement.setInt(9, buscaN);
+            preparedStatement.setString(11, busca);
+            preparedStatement.setString(12, busca);
+            preparedStatement.setString(13, busca);
+
+        } else {
+
+            sql = "SELECT * FROM cliente";
+
+            preparedStatement = connection.prepareStatement(sql);
+
         }
-        preparedStatement.setInt(9, buscaN);
-        preparedStatement.setString(11, busca);
-        preparedStatement.setString(12, busca);
-        preparedStatement.setString(13, busca);
 
         // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
@@ -312,7 +324,7 @@ public class ClienteDAO {
     public void excluir(int id) throws SQLException, ClassNotFoundException {
         // Comando SQL.
         String slq = "UPDATE cliente SET ativo = ? WHERE id_cliente = ?";
-        
+
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
@@ -334,7 +346,7 @@ public class ClienteDAO {
 
     public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
 
-         // Comando SQL.
+        // Comando SQL.
         String slq = "SELECT COUNT(*) FROM cliente WHERE cpf = ? AND ativo = true";
 
         connection = DbUtil.getConnection();
