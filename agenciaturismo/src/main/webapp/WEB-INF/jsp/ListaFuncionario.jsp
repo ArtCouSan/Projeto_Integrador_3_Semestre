@@ -44,8 +44,8 @@
                         <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
                         <td name="login"><c:out value="${funcionarios.getLogin()}"/></td>
                         <td name="acesso"><c:out value="${funcionarios.getAcesso()}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiFuncionarioServlet?action=delete&cpf=<c:out value="${funcionarios.getCpf()}"/>&pesquisa=<c:out value="${pesquisa}"/>"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
-                        <td><a class="btn btn-info" href="EditarFuncionario?action=edit&cpf=<c:out value="${funcionarios.getCpf()}"/>"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
+                        <td><a class="btn btn-danger" style="width: 100px" href="ExcluiFuncionarioServlet?action=delete&cpf=<c:out value="${funcionarios.getCpf()}"/>&pesquisa=<c:out value="${pesquisa}"/>"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-info" style="width: 100px" href="EditarFuncionario?action=edit&cpf=<c:out value="${funcionarios.getCpf()}"/>"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>

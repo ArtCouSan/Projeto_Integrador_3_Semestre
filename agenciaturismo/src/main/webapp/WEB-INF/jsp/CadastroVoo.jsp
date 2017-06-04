@@ -58,13 +58,13 @@
                     <c:if test="${erroPreco}">
                         <div class="erro">Digite o preço</div>
                     </c:if>
-                    <label for="example-number-input" class="control-label col-md-4">* Preco <span class="glyphicon glyphicon-usd"></span> :</label>
+                    <label for="example-number-input" class="control-label col-md-4">* Preço <span class="glyphicon glyphicon-usd"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="number" name="preco" placeholder="Insira o preço" id="example-number-input" required>
                     </div>
                 </div>
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
+                <div class="col-lg-offset-4">
+                    <button type="submit" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                 </div>
             </form>
         </div>

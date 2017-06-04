@@ -151,7 +151,7 @@
             <div class="col-lg-offset-4">
                 <div class="aab controls col-md-4">
                     <div class="controls col-md-8" >
-                        <button type="submit" value="Alterar" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Alterar</span></button>
+                        <button type="submit" value="Alterar" class="btn btn-danger botao_g"><span class="glyphicon glyphicon-floppy-saved"> Alterar</span></button>
                     </div>
                 </div>
             </div>
