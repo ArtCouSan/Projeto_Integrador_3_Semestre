@@ -56,6 +56,7 @@ public class CadastroClienteServlet extends HttpServlet {
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
         
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> cadastra cliente servler " + service.validaCliente(nome, numero, rua, cidade, cep, cpf));
         if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
             dispatcher.forward(request, response);

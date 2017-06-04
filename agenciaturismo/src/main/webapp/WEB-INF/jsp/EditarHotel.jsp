@@ -14,7 +14,7 @@
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form name="editah" action="EditarHotel" method="post" class="form-horizontal">
-                <input type="hidden" name="identificacao" value="${hoteis.getId_hotel()}"/>
+                <input type="hidden" name="identificacao" value="${hoteis.getId()}"/>
                 <div class="form-group ">
                     <c:if test="${erroNome_hotel}">
                         <div class="erro">O nome é obrigatório</div>

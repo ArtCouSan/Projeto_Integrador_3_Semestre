@@ -68,6 +68,8 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                 numero, cep, rua, estado, cidade, complemento,
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> cadastra funcionario servler " + service.validaFuncionario(nome, numero, rua, cidade, cep, 
+                cpf, cargo, filial, departamento, login, senha, acesso));
         if (service.validaFuncionario(nome, numero, rua, cidade, cep, 
                 cpf, cargo, filial, departamento, login, senha, acesso)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");

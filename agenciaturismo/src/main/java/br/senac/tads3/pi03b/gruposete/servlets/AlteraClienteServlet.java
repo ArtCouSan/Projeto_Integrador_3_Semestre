@@ -68,8 +68,9 @@ public class AlteraClienteServlet extends HttpServlet {
         Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
-        cliente.setId_cliente(id);
+        cliente.setId(id);
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> altera cliente servler " + service.validaCliente(nome, numero, rua, cidade, cep, cpf));
         if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
             try {
                 Cliente clientes = dao.getClienteById(id);

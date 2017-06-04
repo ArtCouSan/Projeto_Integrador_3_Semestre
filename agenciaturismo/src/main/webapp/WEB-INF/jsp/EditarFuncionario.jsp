@@ -15,7 +15,7 @@
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form name="editaf" action="EditarFuncionario" method="post" class="form-horizontal">
-                <input type="hidden" name="identificacao" value="${funcionarios.getId_funcionario()}"/>
+                <input type="hidden" name="identificacao" value="${funcionarios.getId()}"/>
                 <input type="hidden" name="login" value="${funcionarios.getLogin()}"/>
                 <input type="hidden" name="senha" value="${funcionarios.getSenha()}"/>
 

@@ -24,7 +24,7 @@ login VARCHAR(20) NOT NULL,
 senha VARCHAR(20) NOT NULL,
 acesso VARCHAR(100) NOT NULL,
 PRIMARY KEY (id_funcionario),
-UNIQUE KEY id_funcionario (id_funcionario)  
+UNIQUE KEY id_funcionario (id_funcionario)
 );
 
 CREATE TABLE Cliente(

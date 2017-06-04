@@ -46,6 +46,7 @@ public class CadastroVooServlet extends HttpServlet {
         Voo voo = new Voo(data_ida, data_volta, destino,
                 origem, quantidade_passagens, preco, true);
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> cadastra voo servler " + service.validaVoo(origem, destino, quantidade_passagens, preco));
         if (service.validaVoo(origem, destino, quantidade_passagens, preco)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroVoo.jsp");
             dispatcher.forward(request, response);

@@ -46,7 +46,7 @@ public class VendaServlet extends HttpServlet {
 
             }
 
-            Venda venda = new Venda(cliente.getId_cliente(), 2, totalP);
+            Venda venda = new Venda(cliente.getId(), 2, totalP);
 
             VendaDAO vendaData = new VendaDAO();
 

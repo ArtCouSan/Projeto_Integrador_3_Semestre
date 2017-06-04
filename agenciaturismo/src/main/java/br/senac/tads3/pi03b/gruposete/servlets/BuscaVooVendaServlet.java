@@ -34,7 +34,7 @@ public class BuscaVooVendaServlet extends HttpServlet {
 
                 JSONObject json = new JSONObject();
 
-                json.put("id_voo", voos.getId_voo());
+                json.put("id_voo", voos.getId());
                 json.put("data_volta", voos.getData_volta());
                 json.put("data_ida", voos.getData_ida());
                 json.put("origem", voos.getOrigem());

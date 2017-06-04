@@ -2,7 +2,7 @@ package br.senac.tads3.pi03b.gruposete.models;
 
 public class Voo {
 
-    private int id_voo;
+    private int id;
     private String data_ida;
     private String data_volta;
     private String destino;
@@ -25,12 +25,12 @@ public class Voo {
         this.ativo = ativo;
     }
 
-    public int getId_voo() {
-        return id_voo;
+    public int getId() {
+        return id;
     }
 
-    public void setId_voo(int id_voo) {
-        this.id_voo = id_voo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getData_ida() {

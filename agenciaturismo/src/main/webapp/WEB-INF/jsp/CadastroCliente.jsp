@@ -150,7 +150,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="example-email-input" class="control-label col-md-4">Email:</label>
                     <c:if test="${erroEmail}">
                         <div class="erro">Digite um email válido</div>
                     </c:if>

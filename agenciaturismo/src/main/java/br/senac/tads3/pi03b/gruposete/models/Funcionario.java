@@ -2,7 +2,7 @@ package br.senac.tads3.pi03b.gruposete.models;
 
 public final class Funcionario extends Pessoa {
 
-    private int id_funcionario;
+    private int id;
     private String cargo;
     private String filial;
     private String departamento;
@@ -30,12 +30,12 @@ public final class Funcionario extends Pessoa {
         
     }
 
-    public int getId_funcionario() {
-        return id_funcionario;
+    public int getId() {
+        return id;
     }
 
-    public void setId_funcionario(int id_funcionario) {
-        this.id_funcionario = id_funcionario;
+    public void setId(int id) {
+        this.id = id;
     }
     
 

@@ -46,6 +46,7 @@ public class CadastroHotelServlet extends HttpServlet {
         Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida,
                 quantidade_quartos, quantidade_hospedes, preco, true);
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> cadastra hotel servler " + service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco));
         if (service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroHotel.jsp");
             dispatcher.forward(request, response);

@@ -26,6 +26,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         String action = request.getParameter("action");
         if ("edit".equalsIgnoreCase(action)) {
             try {
+
                 Funcionario funcionarios = dao.getFuncionarioById(id);
                 request.setAttribute("funcionarios", funcionarios);
             } catch (SQLException | ClassNotFoundException ex) {
@@ -78,8 +79,10 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                 numero, cep, rua, estado, cidade, complemento,
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
-        func.setId_funcionario(id);
+        func.setId(id);
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> altera funcionario servler " + service.validaFuncionario(nome, numero, rua, cidade, cep, cpf,
+                cargo, filial, departamento, login, senha, acesso));
         if (service.validaFuncionario(nome, numero, rua, cidade, cep, cpf,
                 cargo, filial, departamento, login, senha, acesso)) {
             try {
@@ -97,7 +100,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }
 }
