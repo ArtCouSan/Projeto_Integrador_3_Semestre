@@ -777,71 +777,80 @@ function venda() {
 
     var carrinho_hotel = document.getElementById("carrinho");
     var carrinho_voo = document.getElementById("carrinho2");
-    var cpf = document.getElementById("cpf").innerText;
-    var total = document.getElementById("total").innerText;
 
-    var tamanho_hotel = carrinho_hotel.rows.length;
-    var tamanho_voo = carrinho_voo.rows.length;
+    if (carrinho_hotel.children.length == 0 && carrinho_voo.children.length == 0) {
 
-    var precoV = "";
-    var precoH = "";
-    var quantidadeVoo = "";
-    var quantidadeHotel = "";
-    var idsVoo = "";
-    var idsHotel = "";
+        alert("Sem conteudo nos carrinhos");
 
-    for (var i = 0; i < tamanho_hotel; i++) {
+    } else {
 
-        if (i + 1 != tamanho_hotel) {
+        var cpf = document.getElementById("cpf").innerText;
+        var total = document.getElementById("total").innerText;
 
-            idsHotel += carrinho_hotel.rows[i].id + ",";
-            precoH += carrinho_hotel.rows[i].children[3].innerText + ",";
-            quantidadeHotel += carrinho_hotel.rows[i].children[4].firstChild.value + ",";
+        var tamanho_hotel = carrinho_hotel.rows.length;
+        var tamanho_voo = carrinho_voo.rows.length;
 
-        } else {
+        var precoV = "";
+        var precoH = "";
+        var quantidadeVoo = "";
+        var quantidadeHotel = "";
+        var idsVoo = "";
+        var idsHotel = "";
 
-            idsHotel += carrinho_hotel.rows[i].id;
-            precoH += carrinho_hotel.rows[i].children[3].innerText;
-            quantidadeHotel += carrinho_hotel.rows[i].children[4].firstChild.value;
+        for (var i = 0; i < tamanho_hotel; i++) {
 
-        }
+            if (i + 1 != tamanho_hotel) {
 
-    }
+                idsHotel += carrinho_hotel.rows[i].id + ",";
+                precoH += carrinho_hotel.rows[i].children[3].innerText + ",";
+                quantidadeHotel += carrinho_hotel.rows[i].children[4].firstChild.value + ",";
 
-    for (var i = 0; i < tamanho_voo; i++) {
+            } else {
 
-        if (i + 1 != tamanho_voo) {
+                idsHotel += carrinho_hotel.rows[i].id;
+                precoH += carrinho_hotel.rows[i].children[3].innerText;
+                quantidadeHotel += carrinho_hotel.rows[i].children[4].firstChild.value;
 
-            idsVoo += carrinho_voo.rows[i].id + ",";
-            precoV += carrinho_voo.rows[i].children[5].innerText + ",";
-            quantidadeVoo += carrinho_voo.rows[i].children[4].firstChild.value + ",";
-
-        } else {
-
-            idsVoo += carrinho_voo.rows[i].id;
-            precoV += carrinho_voo.rows[i].children[5].innerText;
-            quantidadeVoo += carrinho_voo.rows[i].children[4].firstChild.value;
+            }
 
         }
 
-    }
+        for (var i = 0; i < tamanho_voo; i++) {
 
-    window.location.href = "VendaServlet?"
-            + "idsVoos="
-            + idsVoo
-            + "&idsHoteis="
-            + idsHotel
-            + "&precosVoos="
-            + precoV
-            + "&precosHoteis="
-            + precoH
-            + "&quantidadeVoos="
-            + quantidadeVoo
-            + "&quantidadeHoteis="
-            + quantidadeHotel
-            + "&cpf="
-            + cpf
-            + "&totalP="
-            + total;
+            if (i + 1 != tamanho_voo) {
+
+                idsVoo += carrinho_voo.rows[i].id + ",";
+                precoV += carrinho_voo.rows[i].children[5].innerText + ",";
+                quantidadeVoo += carrinho_voo.rows[i].children[4].firstChild.value + ",";
+
+            } else {
+
+                idsVoo += carrinho_voo.rows[i].id;
+                precoV += carrinho_voo.rows[i].children[5].innerText;
+                quantidadeVoo += carrinho_voo.rows[i].children[4].firstChild.value;
+
+            }
+
+        }
+
+        window.location.href = "VendaServlet?"
+                + "idsVoos="
+                + idsVoo
+                + "&idsHoteis="
+                + idsHotel
+                + "&precosVoos="
+                + precoV
+                + "&precosHoteis="
+                + precoH
+                + "&quantidadeVoos="
+                + quantidadeVoo
+                + "&quantidadeHoteis="
+                + quantidadeHotel
+                + "&cpf="
+                + cpf
+                + "&totalP="
+                + total;
+
+    }
 
 }
