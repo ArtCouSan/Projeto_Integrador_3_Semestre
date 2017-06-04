@@ -21,6 +21,8 @@
                     <th>Celular</th>
                     <th>Telefone</th>
                     <th>Email</th>
+                    <th>Remover</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>

@@ -12,6 +12,7 @@
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
+        
         <h1 class="text-center"> Digite os campos pela data da venda</h1>
         <div class="controls col-md-5">
             <input name="inicio" type="text" id="inicio" placeholder="Insira o inicio" class="input-medium search-query">
@@ -19,6 +20,22 @@
             <button onclick="pesquisar()" class="btn">Pesquisar</button>
             <button type="reset" class="btn">Apagar</button>
         </div>
+        <br />
+        <br />
+        <table class="table table-striped">
+            <thead>
+                <tr class="info">
+                    <th>Data</th>
+                    <th>Filial</th>
+                    <th>Cliente</th>
+                    <th>Funcionario</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="resultado">
+
+            </tbody>
+        </table>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
     </body>

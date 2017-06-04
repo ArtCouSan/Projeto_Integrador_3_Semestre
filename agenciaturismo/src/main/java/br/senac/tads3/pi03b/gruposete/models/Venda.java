@@ -6,6 +6,7 @@ public class Venda {
     private int id_cliente;
     private int id_func;
     private double preco;
+    private String data;
 
     public Venda() {
 
@@ -17,6 +18,14 @@ public class Venda {
         this.preco = preco;
     }
 
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    } 
+    
     public int getId_venda() {
         return id_venda;
     }
@@ -40,7 +49,7 @@ public class Venda {
     public void setId_func(int id_func) {
         this.id_func = id_func;
     }
-    
+
     public double getPreco() {
         return preco;
     }
@@ -48,5 +57,5 @@ public class Venda {
     public void setPreco(double preco) {
         this.preco = preco;
     }
-    
+
 }

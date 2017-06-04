@@ -21,8 +21,8 @@
                     <th>Preco</th>
                     <th>Quantidade de quartos</th>
                     <th>Quantidade de hospedes</th>
-                    <th></th>
-                    <th></th>
+                    <th>Remover</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>

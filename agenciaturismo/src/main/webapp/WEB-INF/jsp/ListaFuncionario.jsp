@@ -26,6 +26,8 @@
                     <th>Departamento</th>
                     <th>Login</th>
                     <th>Acesso</th>
+                    <th>Remover</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
