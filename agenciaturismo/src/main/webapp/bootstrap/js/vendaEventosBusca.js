@@ -692,7 +692,6 @@ function atualizarPreco_Hotel(id, quantidade) {
             max.value = maximo;
             min.value = 1;
             var idH = document.createAttribute("id");
-            var actionPreco = document.createAttribute("onclick");
             var actionPreco2 = document.createAttribute("onkeyup");
             actionPreco2.value = "manterPreco_Hotel(" + id + "," + quantidadeAtualizada + ")";
             idH.value = id + "inputH";
