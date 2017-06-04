@@ -12,14 +12,23 @@
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
-        <form action="BuscaCliente" method="post" class="form-horizontal"> 
-            <h1 class="text-center"> Digite o campo(s) pela informação que gostaria de buscar</h1>
-            <div class="controls col-md-5">
-                <input name="pesquisa" type="text" placeholder="Insira pesquisa" class="input-medium search-query">
-                <button type="submit" class="btn">Pesquisar</button>
-                <button type="reset" class="btn">Apagar</button>
+        <div class="container" style="margin-top: 5%;">
+            <div class="col-md-6 col-md-offset-3">
+                <form role="form" action="BuscaCliente" method="post">
+                    <div class="row">
+                        <h1 class="text-center"> Digite o campo(s) pela informação que gostaria de buscar</h1>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="pesquisa" required/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;">Pesquisar</span></button>
+                                </span>                           
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
         <script src="./bootstrap/js/validator.min.js"></script>
