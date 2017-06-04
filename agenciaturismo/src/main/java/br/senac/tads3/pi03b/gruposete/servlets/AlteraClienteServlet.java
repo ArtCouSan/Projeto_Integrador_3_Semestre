@@ -43,8 +43,6 @@ public class AlteraClienteServlet extends HttpServlet {
         ClienteService service = new ClienteService();
         ClienteDAO dao = new ClienteDAO();
         
-        System.out.println("1");
-        
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
