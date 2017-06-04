@@ -21,12 +21,12 @@ public class AlteraFuncionarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cpf = request.getParameter("cpf");
+        int id = Integer.parseInt(request.getParameter("id"));
         FuncionarioDAO dao = new FuncionarioDAO();
         String action = request.getParameter("action");
         if ("edit".equalsIgnoreCase(action)) {
             try {
-                Funcionario funcionarios = dao.getFuncionarioByCPF(cpf);
+                Funcionario funcionarios = dao.getFuncionarioById(id);
                 request.setAttribute("funcionarios", funcionarios);
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,6 +62,7 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         String acesso = request.getParameter("acesso");
+        int id = Integer.parseInt(request.getParameter("identificacao"));
 
         request.setAttribute("erroNome", service.validaNome(nome));
         request.setAttribute("erroNumero", service.validaNumero(numero));
@@ -72,15 +73,17 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         request.setAttribute("erroFilial", service.validaFilial(filial));
         request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
         request.setAttribute("erroAcesso", service.validaAcesso(acesso));
+        request.setAttribute("erroCpf", service.validaCpf(cpf));
 
         Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                 numero, cep, rua, estado, cidade, complemento,
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
+        func.setId_funcionario(id);
 
-        if (service.validaFuncionarioAlteracao(nome, numero, rua, cidade, cep,
+        if (service.validaFuncionario(nome, numero, rua, cidade, cep, cpf,
                 cargo, filial, departamento, login, senha, acesso)) {
             try {
-                Funcionario funcionarios = dao.getFuncionarioByCPF(cpf);
+                Funcionario funcionarios = dao.getFuncionarioById(id);
                 request.setAttribute("funcionarios", funcionarios);
             } catch (ClassNotFoundException | SQLException e) {
             }

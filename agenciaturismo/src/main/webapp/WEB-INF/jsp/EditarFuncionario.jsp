@@ -15,8 +15,8 @@
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             <form name="editaf" action="EditarFuncionario" method="post" class="form-horizontal">
+                <input type="hidden" name="identificacao" value="${funcionarios.getId_funcionario()}"/>
                 <input type="hidden" name="login" value="${funcionarios.getLogin()}"/>
-                <input type="hidden" name="cpf" value="${funcionarios.getCpf()}"/>
                 <input type="hidden" name="senha" value="${funcionarios.getSenha()}"/>
 
                 <div class="form-group ">
@@ -26,6 +26,16 @@
                     <label for="example-text-input" class="control-label col-md-4">Nome:</label>
                     <div class="controls col-md-5">
                         <input value="${funcionarios.getNome()}" maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <c:if test="${erroCpf}">
+                        <div class="erro">Digite um cpf válido</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Nome:</label>
+                    <div class="controls col-md-5">
+                        <input value="${funcionarios.getCpf()}" maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
                     </div>
                 </div>
 

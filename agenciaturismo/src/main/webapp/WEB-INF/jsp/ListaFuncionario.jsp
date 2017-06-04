@@ -40,8 +40,8 @@
                         <td name="cargo"><c:out value="${funcionarios.getCargo()}"/></td>
                         <td name="filial"><c:out value="${funcionarios.getFilial()}"/></td>
                         <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiFuncionarioServlet?action=delete&cpf=${funcionarios.getCpf()}&pesquisa=${pesquisa}"/><i class="glyphicon glyphicon-trash">Remover</i></a></td>
-                        <td><a class="btn btn-info" href="EditarFuncionario?action=edit&cpf=${funcionarios.getCpf()}"/><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
+                        <td><a class="btn btn-danger" href="ExcluiFuncionarioServlet?action=delete&id=${funcionarios.getId_funcionario()}&pesquisa=${pesquisa}"/><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-info" href="EditarFuncionario?action=edit&id=${funcionarios.getId_funcionario()}"/><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>

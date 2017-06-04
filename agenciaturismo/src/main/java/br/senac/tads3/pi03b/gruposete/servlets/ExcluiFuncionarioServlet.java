@@ -22,9 +22,9 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
         String action = request.getParameter("action");
         FuncionarioDAO query = new FuncionarioDAO();
         if ("delete".equalsIgnoreCase(action)) {
-            String cpf = request.getParameter("cpf");
+            int id = Integer.parseInt(request.getParameter("id"));
             try {
-                query.excluir(cpf);
+                query.excluir(id);
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

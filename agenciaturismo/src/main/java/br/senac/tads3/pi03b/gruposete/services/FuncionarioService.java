@@ -5,7 +5,7 @@ public class FuncionarioService {
     public FuncionarioService() {
     }
 
-    public boolean validaFuncionarioCadastro(String nome, int numero, String rua,
+    public boolean validaFuncionario(String nome, int numero, String rua,
             String cidade, String cep, String cpf, String cargo, 
             String filial, String departamento, String login, String senha, String acesso) {
         return validaNome(nome)
@@ -22,22 +22,6 @@ public class FuncionarioService {
                 && validaAcesso(acesso);
     }
     
-    public boolean validaFuncionarioAlteracao(String nome, int numero, String rua,
-            String cidade, String cep, String cargo, String filial, 
-            String departamento, String login, String senha, String acesso) {
-        return validaNome(nome)
-                && validaNumero(numero)
-                && validaRua(rua)
-                && validaCidade(cidade)
-                && validaCep(cep)
-                && validaCargo(cargo)
-                && validaFilial(filial)
-                && validaDepartamento(departamento)
-                && validaLogin(login)
-                && validaSenha(senha)
-                && validaAcesso(acesso);
-    }
-
     public boolean validaNome(String nome) {
         return "".equals(nome);
     }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "InicioServlet", urlPatterns = {"/inicio"})
 public class InicioServlet extends HttpServlet {
 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(request, response);

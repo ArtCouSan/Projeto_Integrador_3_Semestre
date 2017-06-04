@@ -61,6 +61,7 @@ public class FuncionarioDAO {
                 + "numero = ?, "
                 + "cep = ?, "
                 + "rua = ?, "
+                + "cpf = ?, "
                 + "estado = ?, "
                 + "cidade = ?, "
                 + "complemento = ?, "
@@ -71,30 +72,30 @@ public class FuncionarioDAO {
                 + "filial = ?, "
                 + "departamento = ?, "
                 + "acesso = ? "
-                + "WHERE cpf = ?";
+                + "WHERE id_funcionario = ?";
 
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, func.getNome());
-
             preparedStatement.setString(2, func.getSexo());
             preparedStatement.setString(3, func.getData_nasc());
             preparedStatement.setInt(4, func.getNumero());
             preparedStatement.setString(5, func.getCep());
             preparedStatement.setString(6, func.getRua());
-            preparedStatement.setString(7, func.getEstado());
-            preparedStatement.setString(8, func.getCidade());
-            preparedStatement.setString(9, func.getComplemento());
-            preparedStatement.setString(10, func.getCelular());
-            preparedStatement.setString(11, func.getTelefone());
-            preparedStatement.setString(12, func.getEmail());
-            preparedStatement.setString(13, func.getCargo());
-            preparedStatement.setString(14, func.getFilial());
-            preparedStatement.setString(15, func.getDepartamento());
-            preparedStatement.setString(16, func.getAcesso());
-            preparedStatement.setString(17, func.getCpf());
+            preparedStatement.setString(7, func.getCpf());
+            preparedStatement.setString(8, func.getEstado());
+            preparedStatement.setString(9, func.getCidade());
+            preparedStatement.setString(10, func.getComplemento());
+            preparedStatement.setString(11, func.getCelular());
+            preparedStatement.setString(12, func.getTelefone());
+            preparedStatement.setString(13, func.getEmail());
+            preparedStatement.setString(14, func.getCargo());
+            preparedStatement.setString(15, func.getFilial());
+            preparedStatement.setString(16, func.getDepartamento());
+            preparedStatement.setString(17, func.getAcesso());
+            preparedStatement.setInt(18, func.getId_funcionario());
 
             preparedStatement.executeUpdate();
 
@@ -109,9 +110,7 @@ public class FuncionarioDAO {
     }
 
     public Funcionario getFuncionarioById(int id) throws SQLException, ClassNotFoundException {
-
         Funcionario func = new Funcionario();
-
         String query = "SELECT * FROM funcionario WHERE id_funcionario = ?";
 
         try {
@@ -139,29 +138,18 @@ public class FuncionarioDAO {
                 func.setFilial(resultSet.getString("filial"));
                 func.setDepartamento(resultSet.getString("departamento"));
                 func.setLogin(resultSet.getString("login"));
-                
             }
-            
+
         } catch (SQLException e) {
-
         } finally {
-
             if (preparedStatement != null && !preparedStatement.isClosed()) {
-                
                 preparedStatement.close();
-                
             }
-            
             if (connection != null && !connection.isClosed()) {
-                
                 connection.close();
-                
             }
-            
         }
-
         return func;
-
     }
 
     public List<Funcionario> ListaFuncionario() throws SQLException, ClassNotFoundException {
@@ -209,54 +197,8 @@ public class FuncionarioDAO {
         return listaFuncionario;
     }
 
-    public Funcionario getFuncionarioByCPF(String cpf) throws SQLException, ClassNotFoundException {
-        Funcionario func = new Funcionario();
-
-        String query = "SELECT * FROM Funcionario WHERE cpf = ?";
-
-        try {
-            connection = DbUtil.getConnection();
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, cpf);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                func.setNome(resultSet.getString("nome"));
-                func.setCpf(resultSet.getString("cpf"));
-                func.setSexo(resultSet.getString("sexo"));
-                func.setData_nasc(resultSet.getString("data_nasc"));
-                func.setNumero(resultSet.getInt("numero"));
-                func.setCep(resultSet.getString("cep"));
-                func.setRua(resultSet.getString("rua"));
-                func.setEstado(resultSet.getString("estado"));
-                func.setCidade(resultSet.getString("cidade"));
-                func.setComplemento(resultSet.getString("complemento"));
-                func.setCelular(resultSet.getString("celular"));
-                func.setTelefone(resultSet.getString("telefone"));
-                func.setEmail(resultSet.getString("email"));
-                func.setCargo(resultSet.getString("cargo"));
-                func.setFilial(resultSet.getString("filial"));
-                func.setDepartamento(resultSet.getString("departamento"));
-            }
-
-        } catch (SQLException e) {
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-
-        return func;
-    }
-
     public List<Funcionario> procurarFuncionario(String busca) throws SQLException, ClassNotFoundException {
-        // Cria lista de clientes.
         List<Funcionario> listaResultado = new ArrayList<>();
-
-        connection = DbUtil.getConnection();
 
         String sql = "SELECT * FROM funcionario WHERE"
                 + " (estado = ?"
@@ -277,6 +219,7 @@ public class FuncionarioDAO {
                 + " OR departamento = ?)"
                 + " AND ativo = true";
 
+        connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
@@ -304,16 +247,12 @@ public class FuncionarioDAO {
         preparedStatement.setString(15, busca);
         preparedStatement.setString(16, busca);
 
-        // Recebe e executa pergunta.
         try (ResultSet result = preparedStatement.executeQuery()) {
 
-            // Loop com resultados.
             while (result.next()) {
 
-                // Cria cliente.
                 Funcionario func = new Funcionario();
 
-                // Insere informacoes.
                 func.setEstado(result.getString("estado"));
                 func.setCelular(result.getString("celular"));
                 func.setCep(result.getString("cep"));
@@ -331,11 +270,8 @@ public class FuncionarioDAO {
                 func.setFilial(result.getString("filial"));
                 func.setDepartamento(result.getString("departamento"));
 
-                // Insere na lista.
                 listaResultado.add(func);
             }
-            // Retorna lista.
-            return listaResultado;
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -344,18 +280,18 @@ public class FuncionarioDAO {
                 connection.close();
             }
         }
+        return listaResultado;
     }
 
-    public void excluir(String cpf) throws SQLException, ClassNotFoundException {
-        // Comando SQL.
-        String slq = "UPDATE funcionario SET ativo = ? WHERE cpf = ?";
+    public void excluir(int id) throws SQLException, ClassNotFoundException {
+        String slq = "UPDATE funcionario SET ativo = ? WHERE id_funcionario = ?";
 
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
             // Insercoes.
             preparedStatement.setBoolean(1, false);
-            preparedStatement.setString(2, cpf);
+            preparedStatement.setInt(2, id);
 
             // Executa.
             preparedStatement.execute();
@@ -372,17 +308,13 @@ public class FuncionarioDAO {
 
     public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
 
-        connection = DbUtil.getConnection();
-
-        // Comando SQL.
         String slq = "SELECT COUNT(*) FROM funcionario WHERE cpf = ?";
 
+        connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(slq);
 
-        // Insercoes.
         preparedStatement.setString(1, cpf);
 
-        // Executa.
         resultSet = preparedStatement.executeQuery();
 
         int numeroDeCounts = 0;
@@ -390,13 +322,9 @@ public class FuncionarioDAO {
         while (resultSet.next()) {
             numeroDeCounts = resultSet.getInt("COUNT(*)");
         }
-
         connection.close();
 
-        if (numeroDeCounts < 1) {
-            return true;
-        }
-        return false;
+        return numeroDeCounts < 1;
     }
 
     public Funcionario obterFuncionario(String userLogin, String passwordLogin) throws SQLException {
