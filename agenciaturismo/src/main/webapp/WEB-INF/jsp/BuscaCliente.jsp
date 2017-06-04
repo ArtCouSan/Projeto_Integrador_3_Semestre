@@ -19,7 +19,7 @@
                     <div class="row">
                         <h1 class="text-center">Digite o campo pela informação que gostaria de buscar clientes...</h1>
                         <ul>
-                            <li class="list-unstyled">Dicas:</li>
+                            <li class="list-unstyled">Dicas: (Campo vazio =  todos)</li>
                             <li class="list-unstyled"><span class="fa fa-id-card"></span> | Nome do cliente</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-book"></span> | CPF do cliente - Com pontuação</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-heart"></span> | Sexo do cliente - Siglas</li>
