@@ -8,6 +8,9 @@ import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class VendaDAO {
@@ -17,22 +20,27 @@ public class VendaDAO {
     private static Statement statement;
     private static ResultSet resultSet;
 
-    public void inserir(Venda venda) throws SQLException, FileNotFoundException, ClassNotFoundException {
+    public void inserir(Venda venda) throws SQLException, FileNotFoundException, ClassNotFoundException, ParseException {
 
         connection = DbUtil.getConnection();
 
         // Comando SQL.
         String slq = "INSERT INTO venda "
-                + "(id_cliente, id_funcionario, total_preco, ativo) "
-                + "VALUES (?, ?, ?, ?)";
+                + "(id_cliente, id_funcionario, total_preco, ativo, data_venda) "
+                + "VALUES (?, ?, ?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(slq);
+
+        Date data = new Date(System.currentTimeMillis());
+        SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd");
+        String formatado = formatarDate.format(data);
 
         // Insercoes.
         preparedStatement.setInt(1, venda.getId_cliente());
         preparedStatement.setInt(2, venda.getId_func());
         preparedStatement.setDouble(3, venda.getPreco());
         preparedStatement.setBoolean(4, true);
+        preparedStatement.setString(5, formatado);
 
         // Executa.
         preparedStatement.execute();
@@ -133,7 +141,7 @@ public class VendaDAO {
             venda.setId_func(resultSet.getInt("id_funcionario"));
             venda.setPreco(resultSet.getFloat("total_preco"));
             venda.setData(resultSet.getString("data_venda"));
-            
+
             // Adiciona a lista.
             listaResultado.add(venda);
 
