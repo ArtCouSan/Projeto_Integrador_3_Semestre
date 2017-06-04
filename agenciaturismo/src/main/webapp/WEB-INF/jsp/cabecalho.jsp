@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
-        <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/foundation.min.css" />
         <title>Bem Vindo</title>
     </head>
     <body>
@@ -12,9 +12,9 @@
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
                         <ul class="nav navbar-nav">
-                            <li ><i class="glyphicon glyphicon-user"><p style="color: white">${funcionario.nome}</p></i></li>
+                            <li ><i ><p style="color: white">${funcionario.nome}</p></i></li>
                             <li ><a href="CadastroCliente"><i class="glyphicon glyphicon-user"> Cadastrar Cliente</i></a></li>
-                            <li ><a href="CadastroFuncionario"><i class="glyphicon glyphicon-user"> Cadastrar Funcionario</i></a></li>
+                            <li ><a href="CadastroFuncionario"><i class="">Cadastrar Funcionario</i></a></li>
                             <li ><a href="CadastroHotel"><i class="glyphicon glyphicon-header"> Cadastrar Hotel</i></a></li>
                             <li ><a href="CadastroVoo" ><i class="glyphicon glyphicon-plane"> Cadastrar Voo</i></a></li>
                             <li ><a href="BuscaCliente"><i class="glyphicon glyphicon-cog"> Busca Cliente</i></a></li>
