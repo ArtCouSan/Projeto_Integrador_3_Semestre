@@ -1,7 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.HotelDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.services.HotelService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,21 +44,36 @@ public class CadastroHotelServlet extends HttpServlet {
                 quantidade_quartos, quantidade_hospedes, preco, true);
 
         if (service.validaHotel(hotel)) {
+            
             try {
+                
                 dao.inserir(hotel);
+                RelatorioDAO relatorioDAO = new RelatorioDAO();
+                RelatorioMudancas relatorio = new RelatorioMudancas();
+                relatorio.setId_funcionario(1);
+                relatorio.setMudanca("Cadastro de hotel efetuado!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
+                
             } catch (Exception ex) {
+                
                 Logger.getLogger(CadastroHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
             
         } else {
+            
             request.setAttribute("erroNome_hotel", service.validaNome_hotel(nome_hotel));
             request.setAttribute("erroQuantidade_quartos", service.validaQuantidade_quartos(quantidade_quartos));
             request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
             request.setAttribute("erroPreco", service.validaPreco(preco));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Cadastrar/CadastroHotel.jsp");
             dispatcher.forward(request, response);
+            
         }
+        
     }
+    
 }
+

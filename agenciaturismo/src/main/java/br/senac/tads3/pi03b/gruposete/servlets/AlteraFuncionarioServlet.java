@@ -1,7 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.services.FuncionarioService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -68,15 +70,27 @@ public class AlteraFuncionarioServlet extends HttpServlet {
                     celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
 
         if (service.validaFuncionarioAlteracao(func)) {
+            
             try {
+                
                 dao.alterar(func);
+                RelatorioDAO relatorioDAO = new RelatorioDAO();
+                RelatorioMudancas relatorio = new RelatorioMudancas();
+                relatorio.setId_funcionario(1);
+                relatorio.setMudanca("Alteração de funcionario efetuado!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+                
                 dispatcher.forward(request, response);
+                
             } catch (Exception ex) {
+                
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
             
         } else {
+            
             request.setAttribute("erroNome", service.validaNome(nome));
             request.setAttribute("erroNumero", service.validaNumero(numero));
             request.setAttribute("erroRua", service.validaRua(rua));
@@ -91,6 +105,8 @@ public class AlteraFuncionarioServlet extends HttpServlet {
             request.setAttribute("erroAcesso", service.validaAcesso(acesso));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarFuncionario.jsp");
             dispatcher.forward(request, response);
-        }
+            
+        } 
+        
     }
 }

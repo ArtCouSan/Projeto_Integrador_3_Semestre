@@ -54,7 +54,7 @@
 
                     </table>
                 </div>
-                <label class="h3">Carrinho - Hotel <span class="fa fa-shopping-basket"> :</label>
+                <label class="h3">Carrinho - Hotel <span class="fa fa-shopping-basket"></span> :</label>
                 <div class="container-page">
                     <table class="table table-striped" >
                         <thead>
@@ -73,7 +73,7 @@
                         </tbody>
                     </table>
                 </div>
-                <label class="h3">Carrinho - Vôo <span class="fa fa-shopping-basket"> :</span></label>
+                <label class="h3">Carrinho - Vôo <span class="fa fa-shopping-basket"></span> :</label>
                 <div class="container-page">
                     <table class="table table-striped">
                         <thead>

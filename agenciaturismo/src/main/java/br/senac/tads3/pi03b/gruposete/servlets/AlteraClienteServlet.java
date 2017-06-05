@@ -1,7 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.services.ClienteService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -64,15 +66,26 @@ public class AlteraClienteServlet extends HttpServlet {
             cliente.setId_cliente(id);
 
         if (service.validaCliente(cliente)) {
+            
             try {
+                
                 dao.alterar(cliente);
+                RelatorioDAO relatorioDAO = new RelatorioDAO();
+                RelatorioMudancas relatorio = new RelatorioMudancas();
+                relatorio.setId_funcionario(1);
+                relatorio.setMudanca("Alteração de cliente efetuada!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
+                
             } catch (Exception ex) {
+                
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
 
         } else {
+            
             request.setAttribute("erroNome", service.validaNome(nome));
             request.setAttribute("erroNumero", service.validaNumero(numero));
             request.setAttribute("erroRua", service.validaRua(rua));
@@ -82,6 +95,7 @@ public class AlteraClienteServlet extends HttpServlet {
             request.setAttribute("erroEmail", service.validaEmail(email));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
             dispatcher.forward(request, response);
+            
         }
     }
 }

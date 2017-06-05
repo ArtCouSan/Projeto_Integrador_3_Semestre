@@ -1,6 +1,8 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +27,11 @@ public class ExcluiVooServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 query.excluirVoo(id);
+                RelatorioDAO relatorioDAO = new RelatorioDAO();
+                RelatorioMudancas relatorio = new RelatorioMudancas();
+                relatorio.setId_funcionario(1);
+                relatorio.setMudanca("Exclusão de vôo efetuada!");
+                relatorioDAO.inserir(relatorio);
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ExcluiVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

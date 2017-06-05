@@ -1,6 +1,8 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,15 +23,27 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
         
         String action = request.getParameter("action");
         FuncionarioDAO query = new FuncionarioDAO();
+        
         if ("delete".equalsIgnoreCase(action)) {
             String cpf = request.getParameter("cpf");
             try {
+                
                 query.excluir(cpf);
+                RelatorioDAO relatorioDAO = new RelatorioDAO();
+                RelatorioMudancas relatorio = new RelatorioMudancas();
+                relatorio.setId_funcionario(1);
+                relatorio.setMudanca("Exclusão de funcionario efetuada!");
+                relatorioDAO.inserir(relatorio);
+                
             } catch (ClassNotFoundException | SQLException ex) {
+                
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
+            
         }
     }
 }

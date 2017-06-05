@@ -1,6 +1,8 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import br.senac.tads3.pi03b.gruposete.services.VooService;
 import javax.servlet.RequestDispatcher;
@@ -42,20 +44,33 @@ public class CadastroVooServlet extends HttpServlet {
                 origem, quantidade_passagens, preco, true);
 
         if (service.validaVoo(voo)) {
+            
             try {
+                
                 dao.inserir(voo);
+                RelatorioDAO relatorioDAO = new RelatorioDAO();
+                RelatorioMudancas relatorio = new RelatorioMudancas();
+                relatorio.setId_funcionario(1);
+                relatorio.setMudanca("Cadastro de vôo efetuado!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
+                
             } catch (Exception ex) {
+                
                 Logger.getLogger(CadastroVooServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
+            
         } else {
+            
             request.setAttribute("erroOrigem", service.validaOrigem(origem));
             request.setAttribute("erroDestino", service.validaDestino(destino));
             request.setAttribute("erroQuantidade_passagens", service.validaQuantidade_passagens(quantidade_passagens));
             request.setAttribute("erroPreco", service.validaPreco(preco));
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroVoo.jsp");
             dispatcher.forward(request, response);
+            
         }
     }
 }
