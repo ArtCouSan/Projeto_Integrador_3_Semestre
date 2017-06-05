@@ -221,64 +221,55 @@ public class FuncionarioDAO {
 
     public List<Funcionario> procurarFuncionario(String busca) throws SQLException, ClassNotFoundException {
         List<Funcionario> listaResultado = new ArrayList<>();
-        String sql;
+        String sql = "SELECT * FROM funcionario WHERE"
+                + " (estado = ?"
+                + " OR celular = ?"
+                + " OR cep = ?"
+                + " OR complemento = ?"
+                + " OR cpf = ?"
+                + " OR data_nasc = ?"
+                + " OR email = ?"
+                + " OR nome = ?"
+                + " OR numero = ?"
+                + " OR rua = ?"
+                + " OR sexo = ?"
+                + " OR telefone = ?"
+                + " OR cidade = ?"
+                + " OR cargo = ?"
+                + " OR filial = ?"
+                + " OR departamento = ?"
+                + " OR login = ?"
+                + " OR acesso = ?)"
+                + " AND ativo = true";
 
-        if (busca.length() != 0) {
+        preparedStatement = connection.prepareStatement(sql);
 
-            sql = "SELECT * FROM funcionario WHERE"
-                    + " (estado = ?"
-                    + " OR celular = ?"
-                    + " OR cep = ?"
-                    + " OR complemento = ?"
-                    + " OR cpf = ?"
-                    + " OR data_nasc = ?"
-                    + " OR email = ?"
-                    + " OR nome = ?"
-                    + " OR numero = ?"
-                    + " OR rua = ?"
-                    + " OR sexo = ?"
-                    + " OR telefone = ?"
-                    + " OR cidade = ?"
-                    + " OR cargo = ?"
-                    + " OR filial = ?"
-                    + " OR departamento = ?"
-                    + " OR login = ?"
-                    + " OR acesso = ?)"
-                    + " AND ativo = true";
+        // Insercoes.
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        preparedStatement.setString(5, busca);
+        preparedStatement.setString(6, busca);
+        preparedStatement.setString(7, busca);
+        preparedStatement.setString(8, busca);
+        preparedStatement.setString(9, busca);
 
-            preparedStatement = connection.prepareStatement(sql);
-
-            // Insercoes.
-            preparedStatement.setString(1, busca);
-            preparedStatement.setString(2, busca);
-            preparedStatement.setString(3, busca);
-            preparedStatement.setString(4, busca);
-            preparedStatement.setString(5, busca);
-            preparedStatement.setString(6, busca);
-            preparedStatement.setString(7, busca);
-            preparedStatement.setString(8, busca);
-            preparedStatement.setString(9, busca);
-
-            int n1 = 0;
-            try {
-                n1 = Integer.parseInt(busca);
-            } catch (NumberFormatException e) {
-                System.out.println("Erro");
-            }
-            preparedStatement.setInt(10, n1);
-            preparedStatement.setString(11, busca);
-            preparedStatement.setString(12, busca);
-            preparedStatement.setString(13, busca);
-            preparedStatement.setString(14, busca);
-            preparedStatement.setString(15, busca);
-            preparedStatement.setString(16, busca);
-            preparedStatement.setString(17, busca);
-            preparedStatement.setString(18, busca);
-
-        } else {
-            sql = "SELECT * FROM funcionario WHERE ativo = true";
-            preparedStatement = connection.prepareStatement(sql);
+        int n1 = 0;
+        try {
+            n1 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
         }
+        preparedStatement.setInt(10, n1);
+        preparedStatement.setString(11, busca);
+        preparedStatement.setString(12, busca);
+        preparedStatement.setString(13, busca);
+        preparedStatement.setString(14, busca);
+        preparedStatement.setString(15, busca);
+        preparedStatement.setString(16, busca);
+        preparedStatement.setString(17, busca);
+        preparedStatement.setString(18, busca);
 
         try (ResultSet result = preparedStatement.executeQuery()) {
             while (result.next()) {

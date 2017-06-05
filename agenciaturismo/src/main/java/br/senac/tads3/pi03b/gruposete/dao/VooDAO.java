@@ -70,14 +70,14 @@ public class VooDAO {
             }
         }
     }
-    
+
     public void excluir(int id) throws SQLException, ClassNotFoundException {
         String slq = "UPDATE Voo SET ativo = ? WHERE id_voo = ?";
 
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(slq);
-            
+
             preparedStatement.setBoolean(1, false);
             preparedStatement.setInt(2, id);
 
@@ -100,7 +100,7 @@ public class VooDAO {
             connection = DbUtil.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
-            
+
             while (resultSet.next()) {
                 Voo voo = new Voo();
 
@@ -159,45 +159,36 @@ public class VooDAO {
     public List<Voo> procurarVoo(String busca) throws SQLException, IOException, ClassNotFoundException {
         List<Voo> listaResultado = new ArrayList<>();
 
-        String sql;
+        String sql = "SELECT * FROM voo WHERE"
+                + " (data_volta = ?"
+                + " OR data_ida = ?"
+                + " OR destino = ?"
+                + " OR origem = ?"
+                + " OR quantidade_passagens = ?"
+                + " OR preco = ?)"
+                + " AND ativo = true";
 
-        if (busca.length() != 0) {
+        preparedStatement = connection.prepareStatement(sql);
 
-            sql = "SELECT * FROM voo WHERE"
-                    + " (data_volta = ?"
-                    + " OR data_ida = ?"
-                    + " OR destino = ?"
-                    + " OR origem = ?"
-                    + " OR quantidade_passagens = ?"
-                    + " OR preco = ?)"
-                    + " AND ativo = true";
-
-            preparedStatement = connection.prepareStatement(sql);
-
-            // Insercoes.
-            preparedStatement.setString(1, busca);
-            preparedStatement.setString(2, busca);
-            preparedStatement.setString(3, busca);
-            preparedStatement.setString(4, busca);
-            int n1 = 0;
-            try {
-                n1 = Integer.parseInt(busca);
-            } catch (NumberFormatException e) {
-                System.out.println("Erro");
-            }
-            float n2 = 0;
-            try {
-                n2 = Float.parseFloat(busca);
-            } catch (NumberFormatException e) {
-                System.out.println("Erro");
-            }
-            preparedStatement.setInt(5, n1);
-            preparedStatement.setFloat(6, n2);
-
-        } else {
-            sql = "SELECT * FROM voo WHERE ativo = true ";
-            preparedStatement = connection.prepareStatement(sql);
+        // Insercoes.
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        int n1 = 0;
+        try {
+            n1 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
         }
+        float n2 = 0;
+        try {
+            n2 = Float.parseFloat(busca);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setInt(5, n1);
+        preparedStatement.setFloat(6, n2);
 
         try (ResultSet result = preparedStatement.executeQuery()) {
 

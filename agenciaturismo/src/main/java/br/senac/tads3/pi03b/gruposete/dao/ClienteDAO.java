@@ -168,7 +168,7 @@ public class ClienteDAO {
             while (resultSet.next()) {
                 Cliente cliente = new Cliente();
 
-                cliente.setId(resultSet.getInt("id_cliente"));
+                cliente.setId(resultSet.getInt("id"));
                 cliente.setNome(resultSet.getString("nome"));
                 cliente.setCpf(resultSet.getString("cpf"));
                 cliente.setSexo(resultSet.getString("sexo"));
@@ -196,49 +196,10 @@ public class ClienteDAO {
         return listaClientes;
     }
     
-    public Cliente getClienteByCPF(String cpf) throws SQLException, ClassNotFoundException {
-
-        Cliente cliente = new Cliente();
-
-        connection = DbUtil.getConnection();
-
-        String query = "SELECT * FROM cliente WHERE cpf  = ?";
-
-        preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, cpf);
-        resultSet = preparedStatement.executeQuery();
-
-        while (resultSet.next()) {
-
-            cliente.setId(resultSet.getInt("id_cliente"));
-            cliente.setNome(resultSet.getString("nome"));
-            cliente.setCpf(resultSet.getString("cpf"));
-            cliente.setSexo(resultSet.getString("sexo"));
-            cliente.setData_nasc(resultSet.getString("data_nasc"));
-            cliente.setNumero(resultSet.getInt("numero"));
-            cliente.setCep(resultSet.getString("cep"));
-            cliente.setRua(resultSet.getString("rua"));
-            cliente.setEstado(resultSet.getString("estado"));
-            cliente.setCidade(resultSet.getString("cidade"));
-            cliente.setComplemento(resultSet.getString("complemento"));
-            cliente.setCelular(resultSet.getString("celular"));
-            cliente.setTelefone(resultSet.getString("telefone"));
-            cliente.setEmail(resultSet.getString("email"));
-        }
-
-        preparedStatement.close();
-        connection.close();
-        return cliente;
-    }
-
     public List<Cliente> procurarCliente(String busca) throws SQLException, ClassNotFoundException {
         List<Cliente> listaResultado = new ArrayList<>();
 
-        String sql;
-
-        if (busca.length() != 0) {
-
-            sql = "SELECT * FROM cliente WHERE"
+        String sql = "SELECT * FROM cliente WHERE"
                     + " (estado = ?"
                     + " OR celular = ?"
                     + " OR cep = ?"
@@ -278,16 +239,12 @@ public class ClienteDAO {
             preparedStatement.setString(12, busca);
             preparedStatement.setString(13, busca);
 
-        } else {
-            sql = "SELECT * FROM cliente WHERE ativo = true";
-            preparedStatement = connection.prepareStatement(sql);
-        }
 
         try (ResultSet result = preparedStatement.executeQuery()) {
             while (result.next()) {
                 Cliente clientes = new Cliente();
 
-                clientes.setId(result.getInt("id_cliente"));
+                clientes.setId(result.getInt("id"));
                 clientes.setEstado(result.getString("estado"));
                 clientes.setCelular(result.getString("celular"));
                 clientes.setCep(result.getString("cep"));
@@ -313,6 +270,41 @@ public class ClienteDAO {
             }
         }
         return listaResultado;
+    }
+    
+    public Cliente getClienteByCPF(String cpf) throws SQLException, ClassNotFoundException {
+
+        Cliente cliente = new Cliente();
+
+        connection = DbUtil.getConnection();
+
+        String query = "SELECT * FROM cliente WHERE cpf  = ?";
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, cpf);
+        resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+
+            cliente.setId(resultSet.getInt("id_cliente"));
+            cliente.setNome(resultSet.getString("nome"));
+            cliente.setCpf(resultSet.getString("cpf"));
+            cliente.setSexo(resultSet.getString("sexo"));
+            cliente.setData_nasc(resultSet.getString("data_nasc"));
+            cliente.setNumero(resultSet.getInt("numero"));
+            cliente.setCep(resultSet.getString("cep"));
+            cliente.setRua(resultSet.getString("rua"));
+            cliente.setEstado(resultSet.getString("estado"));
+            cliente.setCidade(resultSet.getString("cidade"));
+            cliente.setComplemento(resultSet.getString("complemento"));
+            cliente.setCelular(resultSet.getString("celular"));
+            cliente.setTelefone(resultSet.getString("telefone"));
+            cliente.setEmail(resultSet.getString("email"));
+        }
+
+        preparedStatement.close();
+        connection.close();
+        return cliente;
     }
 
     public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {

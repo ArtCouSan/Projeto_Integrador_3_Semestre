@@ -31,7 +31,6 @@ public class BuscaFuncionarioServlet extends HttpServlet {
 
         FuncionarioDAO dao = new FuncionarioDAO();
         String pesquisa = request.getParameter("pesquisa");
-
         try {
             List<Funcionario> encontrados = dao.procurarFuncionario(pesquisa);
             request.setAttribute("encontrados", encontrados);

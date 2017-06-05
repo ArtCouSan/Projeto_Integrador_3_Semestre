@@ -20,7 +20,6 @@ public class BuscaClienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscaCliente.jsp");
         dispatcher.forward(request, response);
     }
@@ -33,11 +32,19 @@ public class BuscaClienteServlet extends HttpServlet {
         String pesquisa = request.getParameter("pesquisa");
 
         try {
-            List<Cliente> encontrados = dao.procurarCliente(pesquisa);
-            request.setAttribute("encontrados", encontrados);
-            request.setAttribute("pesquisa", pesquisa);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>vai fazer pesquisa");
+            if ("".equals(pesquisa.trim())) {
+                List<Cliente> encontrados = dao.ListaCliente();
+                request.setAttribute("encontrados", encontrados);
+                request.setAttribute("pesquisa", pesquisa);
+            }else{
+                List<Cliente> encontrados = dao.procurarCliente(pesquisa);
+                request.setAttribute("encontrados", encontrados);
+                request.setAttribute("pesquisa", pesquisa);
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaCliente.jsp");
             dispatcher.forward(request, response);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> fez pesquisa");
 
         } catch (IOException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BuscaClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
