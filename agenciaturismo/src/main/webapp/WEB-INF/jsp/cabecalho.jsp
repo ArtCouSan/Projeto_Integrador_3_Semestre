@@ -23,6 +23,7 @@
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
+                            <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-shopping-cart"> Buscar Alterações</i></a></li>                            
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>

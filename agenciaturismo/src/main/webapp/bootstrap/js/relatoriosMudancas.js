@@ -29,16 +29,21 @@ function listar(evt) {
         var mudancaD = document.createTextNode(obj[item].mudanca);
         tdM.appendChild(mudancaD);
 
+        var tdN = document.createElement("td");
+        var nomeD = document.createTextNode(obj[item].nome);
+        tdN.appendChild(nomeD);
+
         var tdC = document.createElement("td");
         var cargoD = document.createTextNode(obj[item].cargo);
         tdC.appendChild(cargoD);
 
         var tdD = document.createElement("td");
-        var data_D = document.createTextNode(obj[item].data);
+        var data_D = document.createTextNode(obj[item].data_m);
         tdD.appendChild(data_D);
 
         tr2.appendChild(tdF);
         tr2.appendChild(tdM);
+        tr2.appendChild(tdN);
         tr2.appendChild(tdC);
         tr2.appendChild(tdD);
 

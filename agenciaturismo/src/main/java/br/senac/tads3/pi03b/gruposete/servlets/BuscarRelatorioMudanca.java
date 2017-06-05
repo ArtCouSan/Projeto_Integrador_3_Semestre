@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ import org.json.simple.JSONObject;
 
 @WebServlet(name = "BuscarRelatorioMudanca", urlPatterns = {"/BuscarRelatorioMudanca"})
 public class BuscarRelatorioMudanca extends HttpServlet {
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,7 +40,8 @@ public class BuscarRelatorioMudanca extends HttpServlet {
                 json.put("data_m", procurarVenda.getData());
                 json.put("nome", procurarVenda.getFuncionario());
                 json.put("cargo", procurarVenda.getCargo());
-
+                json.put("filial", procurarVenda.getFilial());
+                
                 jsonArray.add(json);
 
             }
