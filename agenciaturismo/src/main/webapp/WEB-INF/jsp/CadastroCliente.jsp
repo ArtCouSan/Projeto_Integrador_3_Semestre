@@ -4,17 +4,18 @@
 <html>
     <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-        <title>Cadastro de Cliente</title>
+        <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
         <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
+        <title>Cadastro de Cliente</title>
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
+            
             <form action="CadastroCliente" onsubmit="return confirmar('cadastrar')" method="post" class="form-horizontal">
 
                 <div class="form-group ">
@@ -165,6 +166,7 @@
                 </div>
 
             </form>
+            
         </div>
         <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

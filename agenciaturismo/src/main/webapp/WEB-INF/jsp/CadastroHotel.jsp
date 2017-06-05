@@ -13,6 +13,7 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
+            
             <form onsubmit="return confirmar('cadastrar')" name="cadastroh" action="CadastroHotel" method="post" class="form-horizontal">
                 
                 <div class="form-group ">
@@ -74,6 +75,7 @@
                 </div>
                 
             </form>
+            
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
