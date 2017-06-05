@@ -35,7 +35,7 @@
                         <td name="data_volta"><c:out value="${voos.getData_volta()}"/></td>
                         <td name="quantidade_passagens"><c:out value="${voos.getQuantidade_passagens()}"/></td>
                         <td name="preco"><c:out value="${voos.getPreco()}"/></td>
-                        <td><a class="btn btn-danger" style="width: 100px" href="ExcluiVooServlet?action=delete&id=${voos.getId()}&pesquisa=${pesquisa}"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-danger" style="width: 100px" onclick="exclusao(${voos.getId()}, 'Voo')"/><i class="glyphicon glyphicon-trash"> Remover </i></a></td>
                         <td><a class="btn btn-info" style="width: 100px" href="EditarVoo?action=edit&id=${voos.getId()}"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>

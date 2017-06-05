@@ -35,7 +35,7 @@
                         <td name="preco"><c:out value="${hoteis.getPreco()}"/></td>
                         <td name="quantidade_quartos"><c:out value="${hoteis.getQuantidade_quartos()}"/></td>
                         <td name="quantidade_hospedes"><c:out value="${hoteis.getQuantidade_hospedes()}"/></td>
-                        <td><a class="btn btn-danger" style="width: 100px" href="ExcluiHotelServlet?action=delete&id=${hoteis.getId()}&pesquisa=${pesquisa}"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-danger" style="width: 100px" onclick="exclusao(${hoteis.getId()}, 'Hotel')"/><i class="glyphicon glyphicon-trash"> Remover </i></a></td>
                         <td><a class="btn btn-info" style="width: 100px" href="EditarHotel?action=edit&id=${hoteis.getId()}"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>
