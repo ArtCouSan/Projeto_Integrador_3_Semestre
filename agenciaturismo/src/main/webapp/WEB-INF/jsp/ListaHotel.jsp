@@ -7,6 +7,7 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+        <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
         <title>Listar Hotel</title>
     </head>
