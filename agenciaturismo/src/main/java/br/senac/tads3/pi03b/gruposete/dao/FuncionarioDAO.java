@@ -177,9 +177,9 @@ public class FuncionarioDAO {
         return func;
     }
 
-    public List<Funcionario> ListaFuncionario() throws SQLException, ClassNotFoundException {
+    public List<Funcionario> ListarFuncionario() throws SQLException, ClassNotFoundException {
         List<Funcionario> listaFuncionario = new ArrayList<>();
-        String query = "SELECT * FROM Funcionario ORDER BY nome WHERE ativo = true";
+        String query = "SELECT * FROM Funcionario WHERE ativo = true";
 
         try {
             connection = DbUtil.getConnection();
@@ -189,6 +189,7 @@ public class FuncionarioDAO {
             while (resultSet.next()) {
                 Funcionario func = new Funcionario();
 
+                func.setId(resultSet.getInt("id_funcionario"));
                 func.setCpf(resultSet.getString("cpf"));
                 func.setNome(resultSet.getString("nome"));
                 func.setSexo(resultSet.getString("sexo"));
@@ -230,18 +231,17 @@ public class FuncionarioDAO {
                 + " OR data_nasc = ?"
                 + " OR email = ?"
                 + " OR nome = ?"
-                + " OR numero = ?"
                 + " OR rua = ?"
+                + " OR numero = ?"
                 + " OR sexo = ?"
                 + " OR telefone = ?"
                 + " OR cidade = ?"
                 + " OR cargo = ?"
                 + " OR filial = ?"
-                + " OR departamento = ?"
-                + " OR login = ?"
-                + " OR acesso = ?)"
+                + " OR departamento = ?)"
                 + " AND ativo = true";
 
+        connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
@@ -262,14 +262,13 @@ public class FuncionarioDAO {
             System.out.println("Erro");
         }
         preparedStatement.setInt(10, n1);
+        
         preparedStatement.setString(11, busca);
         preparedStatement.setString(12, busca);
         preparedStatement.setString(13, busca);
         preparedStatement.setString(14, busca);
         preparedStatement.setString(15, busca);
         preparedStatement.setString(16, busca);
-        preparedStatement.setString(17, busca);
-        preparedStatement.setString(18, busca);
 
         try (ResultSet result = preparedStatement.executeQuery()) {
             while (result.next()) {

@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.dao;
 
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,9 +91,9 @@ public class VooDAO {
         }
     }
 
-    public List<Voo> ListaVoo() throws SQLException, ClassNotFoundException {
+    public List<Voo> ListarVoo() throws SQLException, ClassNotFoundException {
         List<Voo> ListaVoo = new ArrayList<>();
-        String query = "SELECT * FROM Voo ORDER BY origem WHERE ativo=true";
+        String query = "SELECT * FROM Voo WHERE ativo = true";
 
         try {
             connection = DbUtil.getConnection();
@@ -124,39 +123,8 @@ public class VooDAO {
         }
         return ListaVoo;
     }
-
-    public Voo getVooById(int id) throws SQLException, ClassNotFoundException {
-        Voo voo = new Voo();
-        String query = "SELECT * FROM Voo WHERE id_voo = ? ";
-
-        try {
-            connection = DbUtil.getConnection();
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                voo.setId(resultSet.getInt("id_voo"));
-                voo.setData_ida(resultSet.getString("data_ida"));
-                voo.setData_volta(resultSet.getString("data_volta"));
-                voo.setDestino(resultSet.getString("destino"));
-                voo.setOrigem(resultSet.getString("origem"));
-                voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
-                voo.setPreco(resultSet.getFloat("preco"));
-            }
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-        return voo;
-    }
-
-    public List<Voo> procurarVoo(String busca) throws SQLException, IOException, ClassNotFoundException {
+    
+    public List<Voo> procurarVoo(String busca) throws SQLException, ClassNotFoundException {
         List<Voo> listaResultado = new ArrayList<>();
 
         String sql = "SELECT * FROM voo WHERE"
@@ -168,6 +136,7 @@ public class VooDAO {
                 + " OR preco = ?)"
                 + " AND ativo = true";
 
+        connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(sql);
 
         // Insercoes.
@@ -216,4 +185,36 @@ public class VooDAO {
         }
         return listaResultado;
     }
+
+    public Voo getVooById(int id) throws SQLException, ClassNotFoundException {
+        Voo voo = new Voo();
+        String query = "SELECT * FROM Voo WHERE id_voo = ? ";
+
+        try {
+            connection = DbUtil.getConnection();
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                voo.setId(resultSet.getInt("id_voo"));
+                voo.setData_ida(resultSet.getString("data_ida"));
+                voo.setData_volta(resultSet.getString("data_volta"));
+                voo.setDestino(resultSet.getString("destino"));
+                voo.setOrigem(resultSet.getString("origem"));
+                voo.setQuantidade_passagens(resultSet.getInt("quantidade_passagens"));
+                voo.setPreco(resultSet.getFloat("preco"));
+            }
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return voo;
+    }
 }
+    

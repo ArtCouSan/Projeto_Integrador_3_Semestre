@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.dao;
 
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,9 +91,9 @@ public class HotelDAO {
         }
     }
 
-    public List<Hotel> ListaHotel() throws SQLException, ClassNotFoundException {
+    public List<Hotel> ListarHotel() throws SQLException, ClassNotFoundException {
         List<Hotel> ListaHotel = new ArrayList<>();
-        String query = "SELECT * FROM Hotel ORDER BY nome_hotel WHERE ativo=true";
+        String query = "SELECT * FROM Hotel WHERE ativo = true";
 
         try {
             connection = DbUtil.getConnection();
@@ -124,38 +123,7 @@ public class HotelDAO {
         }
         return ListaHotel;
     }
-
-    public Hotel getHotelById(int id) throws SQLException, ClassNotFoundException {
-        Hotel hotel = new Hotel();
-        String query = "SELECT * FROM Hotel WHERE id_hotel = ?";
-
-        try {
-            connection = DbUtil.getConnection();
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                hotel.setId(resultSet.getInt("id_hotel"));
-                hotel.setNome(resultSet.getString("nome_hotel"));
-                hotel.setData_entrada(resultSet.getString("data_entrada"));
-                hotel.setData_saida(resultSet.getString("data_saida"));
-                hotel.setQuantidade_quartos(resultSet.getInt("quantidade_quartos"));
-                hotel.setQuantidade_hospedes(resultSet.getInt("quantidade_hospedes"));
-                hotel.setPreco(resultSet.getFloat("preco"));
-            }
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-        return hotel;
-    }
-
+    
     public List<Hotel> procurarHotel(String busca) throws ClassNotFoundException, SQLException {
         List<Hotel> listaResultado = new ArrayList<>();
 
@@ -169,7 +137,6 @@ public class HotelDAO {
                 + " AND ativo = true";
 
         connection = DbUtil.getConnection();
-
         preparedStatement = connection.prepareStatement(sql);
 
         preparedStatement.setString(1, busca);
@@ -223,4 +190,36 @@ public class HotelDAO {
         }
         return listaResultado;
     }
+
+    public Hotel getHotelById(int id) throws SQLException, ClassNotFoundException {
+        Hotel hotel = new Hotel();
+        String query = "SELECT * FROM Hotel WHERE id_hotel = ?";
+
+        try {
+            connection = DbUtil.getConnection();
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                hotel.setId(resultSet.getInt("id_hotel"));
+                hotel.setNome(resultSet.getString("nome_hotel"));
+                hotel.setData_entrada(resultSet.getString("data_entrada"));
+                hotel.setData_saida(resultSet.getString("data_saida"));
+                hotel.setQuantidade_quartos(resultSet.getInt("quantidade_quartos"));
+                hotel.setQuantidade_hospedes(resultSet.getInt("quantidade_hospedes"));
+                hotel.setPreco(resultSet.getFloat("preco"));
+            }
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return hotel;
+    }
+
 }

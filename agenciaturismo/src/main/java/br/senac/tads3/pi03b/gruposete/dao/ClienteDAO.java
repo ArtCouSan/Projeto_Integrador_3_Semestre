@@ -156,9 +156,9 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public List<Cliente> ListaCliente() throws SQLException, ClassNotFoundException {
+    public List<Cliente> ListarCliente() throws SQLException, ClassNotFoundException {
         List<Cliente> listaClientes = new ArrayList<>();
-        String query = "SELECT * FROM Cliente ORDER BY nome WHERE ativo = true";
+        String query = "SELECT * FROM Cliente WHERE ativo = true";
 
         try {
             connection = DbUtil.getConnection();
@@ -168,7 +168,7 @@ public class ClienteDAO {
             while (resultSet.next()) {
                 Cliente cliente = new Cliente();
 
-                cliente.setId(resultSet.getInt("id"));
+                cliente.setId(resultSet.getInt("id_cliente"));
                 cliente.setNome(resultSet.getString("nome"));
                 cliente.setCpf(resultSet.getString("cpf"));
                 cliente.setSexo(resultSet.getString("sexo"));
@@ -195,56 +195,57 @@ public class ClienteDAO {
         }
         return listaClientes;
     }
-    
+
     public List<Cliente> procurarCliente(String busca) throws SQLException, ClassNotFoundException {
         List<Cliente> listaResultado = new ArrayList<>();
 
         String sql = "SELECT * FROM cliente WHERE"
-                    + " (estado = ?"
-                    + " OR celular = ?"
-                    + " OR cep = ?"
-                    + " OR complemento = ?"
-                    + " OR cpf = ?"
-                    + " OR data_nasc = ?"
-                    + " OR email = ?"
-                    + " OR nome = ?"
-                    + " OR numero = ?"
-                    + " OR rua = ?"
-                    + " OR sexo = ?"
-                    + " OR telefone = ?"
-                    + " OR cidade = ?)"
-                    + " AND ativo = true";
+                + " (estado = ?"
+                + " OR celular = ?"
+                + " OR cep = ?"
+                + " OR complemento = ?"
+                + " OR cpf = ?"
+                + " OR data_nasc = ?"
+                + " OR email = ?"
+                + " OR nome = ?"
+                + " OR numero = ?"
+                + " OR rua = ?"
+                + " OR sexo = ?"
+                + " OR telefone = ?"
+                + " OR cidade = ?)"
+                + " AND ativo = true";
 
-            preparedStatement = connection.prepareStatement(sql);
+        connection = DbUtil.getConnection();
+        preparedStatement = connection.prepareStatement(sql);
 
-            // Insercoes.
-            preparedStatement.setString(1, busca);
-            preparedStatement.setString(2, busca);
-            preparedStatement.setString(3, busca);
-            preparedStatement.setString(4, busca);
-            preparedStatement.setString(5, busca);
-            preparedStatement.setString(6, busca);
-            preparedStatement.setString(7, busca);
-            preparedStatement.setString(8, busca);
-            preparedStatement.setString(10, busca);
-
-            int buscaN = 0;
-            try {
-                buscaN = Integer.parseInt(busca);
-            } catch (NumberFormatException w) {
-                System.out.println("Erro");
-            }
-            preparedStatement.setInt(9, buscaN);
-            preparedStatement.setString(11, busca);
-            preparedStatement.setString(12, busca);
-            preparedStatement.setString(13, busca);
-
+        // Insercoes.
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        preparedStatement.setString(5, busca);
+        preparedStatement.setString(6, busca);
+        preparedStatement.setString(7, busca);
+        preparedStatement.setString(8, busca);
+        
+        int buscaN = 0;
+        try {
+            buscaN = Integer.parseInt(busca);
+        } catch (NumberFormatException w) {
+            System.out.println("Erro");
+        }
+        preparedStatement.setInt(9, buscaN);
+        
+        preparedStatement.setString(10, busca);
+        preparedStatement.setString(11, busca);
+        preparedStatement.setString(12, busca);
+        preparedStatement.setString(13, busca);
 
         try (ResultSet result = preparedStatement.executeQuery()) {
             while (result.next()) {
                 Cliente clientes = new Cliente();
 
-                clientes.setId(result.getInt("id"));
+                clientes.setId(result.getInt("id_cliente"));
                 clientes.setEstado(result.getString("estado"));
                 clientes.setCelular(result.getString("celular"));
                 clientes.setCep(result.getString("cep"));
@@ -271,7 +272,7 @@ public class ClienteDAO {
         }
         return listaResultado;
     }
-    
+
     public Cliente getClienteByCPF(String cpf) throws SQLException, ClassNotFoundException {
 
         Cliente cliente = new Cliente();
