@@ -42,6 +42,8 @@ public class ExcluiHotelServlet extends HttpServlet {
                 
                 Logger.getLogger(ExcluiHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
                 
+            } catch (Exception ex) {
+                Logger.getLogger(ExcluiHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaHotel.jsp");

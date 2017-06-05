@@ -65,6 +65,8 @@ public class VendaServlet extends HttpServlet {
 
                 Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
 
+            } catch (Exception ex) {
+                Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             int idLista = 0;
