@@ -1,7 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.services.FuncionarioService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,7 +28,6 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         String action = request.getParameter("action");
         if ("edit".equalsIgnoreCase(action)) {
             try {
-
                 Funcionario funcionarios = dao.getFuncionarioById(id);
                 request.setAttribute("funcionarios", funcionarios);
             } catch (SQLException | ClassNotFoundException ex) {
@@ -43,6 +44,9 @@ public class AlteraFuncionarioServlet extends HttpServlet {
 
         FuncionarioService service = new FuncionarioService();
         FuncionarioDAO dao = new FuncionarioDAO();
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
@@ -81,8 +85,6 @@ public class AlteraFuncionarioServlet extends HttpServlet {
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
         func.setId(id);
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> altera funcionario servler " + service.validaFuncionario(nome, numero, rua, cidade, cep, cpf,
-                cargo, filial, departamento, login, senha, acesso));
         if (service.validaFuncionario(nome, numero, rua, cidade, cep, cpf,
                 cargo, filial, departamento, login, senha, acesso)) {
             try {
@@ -95,12 +97,14 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         } else {
             try {
                 dao.alterar(func);
+                relatorio.setId_func(1);
+                relatorio.setMudanca("Alteração de funcionario efetuado!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }
 }

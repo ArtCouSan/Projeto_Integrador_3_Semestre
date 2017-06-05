@@ -338,6 +338,7 @@ public class FuncionarioDAO {
             while (resultSet.next()) {
                 func = new Funcionario();
                 
+                func.setId(resultSet.getInt("id_funcionario"));
                 func.setFilial(resultSet.getString("filial"));
                 func.setNome(resultSet.getString("nome"));
                 func.setLogin(resultSet.getString("login"));

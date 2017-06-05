@@ -1,7 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.services.ClienteService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,6 +44,9 @@ public class AlteraClienteServlet extends HttpServlet {
 
         ClienteService service = new ClienteService();
         ClienteDAO dao = new ClienteDAO();
+        
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
@@ -70,7 +75,6 @@ public class AlteraClienteServlet extends HttpServlet {
                 telefone, email, true);
         cliente.setId(id);
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> altera cliente servler " + service.validaCliente(nome, numero, rua, cidade, cep, cpf));
         if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
             try {
                 Cliente clientes = dao.getClienteById(id);
@@ -82,12 +86,14 @@ public class AlteraClienteServlet extends HttpServlet {
         } else {
             try {
                 dao.alterar(cliente);
+                relatorio.setId_func(1);
+                relatorio.setMudanca("Alteração de cliente efetuada!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }
     }
 }

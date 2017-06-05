@@ -94,6 +94,13 @@ preco FLOAT(3.2) NOT NULL,
 PRIMARY KEY  (id_lista)
 );
 
+CREATE TABLE relatorioMudancas (
+mudanca VARCHAR(100) NOT NULL,
+id_funcionario INT(5) NOT NULL,
+data_m VARCHAR(10), 
+FOREIGN KEY id_funcionario (id_funcionario) REFERENCES Funcionario(id_funcionario)
+);
+
 INSERT INTO Voo (data_ida, data_volta, destino, origem, preco, ativo) 
 VALUES ('10/10/1010', '10/10/1111', 'são paulo', 'chile', 123.45, true);
 

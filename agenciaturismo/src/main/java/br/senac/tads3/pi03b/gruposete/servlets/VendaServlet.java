@@ -2,10 +2,12 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
 import br.senac.tads3.pi03b.gruposete.dao.HotelDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.dao.VendaDAO;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.models.Venda;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import java.io.FileNotFoundException;
@@ -53,11 +55,18 @@ public class VendaServlet extends HttpServlet {
             try {
 
                 vendaData.inserir(venda);
+                RelatorioDAO relatorioDAO = new RelatorioDAO();
+                RelatorioMudancas relatorio = new RelatorioMudancas();
+                relatorio.setId_func(1);
+                relatorio.setMudanca("Venda efetuada!");
+                relatorioDAO.inserir(relatorio);
 
             } catch (SQLException | ClassNotFoundException | ParseException ex) {
 
                 Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
 
+            } catch (Exception ex) {
+                Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             int idLista = 0;
@@ -157,7 +166,7 @@ public class VendaServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
             dispatcher.forward(request, response);
-            
+
         }
 
     }

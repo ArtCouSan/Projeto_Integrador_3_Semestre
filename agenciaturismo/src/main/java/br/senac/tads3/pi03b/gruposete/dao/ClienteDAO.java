@@ -14,6 +14,7 @@ public class ClienteDAO {
     private static ResultSet resultSet;
 
     public void inserir(Cliente cliente) throws SQLException, Exception {
+
         String sql = "INSERT INTO Cliente (nome, cpf, sexo, data_nasc, numero, cep, rua, estado, cidade, complemento, celular, telefone, email, ativo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -37,14 +38,20 @@ public class ClienteDAO {
             preparedStatement.setBoolean(14, true);
 
             preparedStatement.executeUpdate();
-
         } finally {
+
             if (preparedStatement != null && !preparedStatement.isClosed()) {
+
                 preparedStatement.close();
+
             }
+
             if (connection != null && !connection.isClosed()) {
+
                 connection.close();
+
             }
+
         }
     }
 

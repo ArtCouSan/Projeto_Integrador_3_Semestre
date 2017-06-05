@@ -1,7 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Cliente;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.services.ClienteService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +21,7 @@ public class CadastroClienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
         dispatcher.forward(request, response);
     }
@@ -30,6 +32,9 @@ public class CadastroClienteServlet extends HttpServlet {
 
         ClienteService service = new ClienteService();
         ClienteDAO dao = new ClienteDAO();
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
@@ -55,18 +60,25 @@ public class CadastroClienteServlet extends HttpServlet {
         Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
-        
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> cadastra cliente servler " + service.validaCliente(nome, numero, rua, cidade, cep, cpf));
+
         if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
             dispatcher.forward(request, response);
         } else {
             try {
+
                 dao.inserir(cliente);
+
+                relatorio.setId_func(1);
+                relatorio.setMudanca("Cadastro de cliente efetuado!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
+
             } catch (Exception ex) {
+
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
     }

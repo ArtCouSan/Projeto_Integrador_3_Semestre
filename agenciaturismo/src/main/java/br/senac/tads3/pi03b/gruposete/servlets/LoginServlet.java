@@ -39,13 +39,11 @@ public class LoginServlet extends HttpServlet {
         try {
             Funcionario func = funcDAO.obterFuncionario(usuario, senha);
             if (func != null) {
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> achou usuario");
                 sessao = request.getSession(true);
                 sessao.setAttribute("funcionario", func);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } else {
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> nao achou");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/erroLogin.jsp");
                 dispatcher.forward(request, response);
             }

@@ -1,6 +1,8 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.models.Voo;
 import br.senac.tads3.pi03b.gruposete.services.VooService;
 import javax.servlet.RequestDispatcher;
@@ -43,6 +45,9 @@ public class AlteraVooServlet extends HttpServlet {
         VooService service = new VooService();
         VooDAO dao = new VooDAO();
 
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
+
         String origem = request.getParameter("origem");
         String destino = request.getParameter("destino");
         String data_ida = request.getParameter("data_ida");
@@ -60,7 +65,6 @@ public class AlteraVooServlet extends HttpServlet {
                 quantidade_passagens, preco, true);
         voo.setId(id);
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> altera voo servler " + service.validaVoo(origem, destino, quantidade_passagens, preco));
         if (service.validaVoo(origem, destino, quantidade_passagens, preco)) {
             try {
                 Voo voos = dao.getVooById(id);
@@ -72,6 +76,9 @@ public class AlteraVooServlet extends HttpServlet {
         } else {
             try {
                 dao.alterar(voo);
+                relatorio.setId_func(1);
+                relatorio.setMudanca("Alteração de vôo efetuado!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {

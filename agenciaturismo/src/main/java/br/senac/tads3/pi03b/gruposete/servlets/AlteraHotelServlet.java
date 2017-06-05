@@ -1,7 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.HotelDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Hotel;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.services.HotelService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,6 +45,9 @@ public class AlteraHotelServlet extends HttpServlet {
         HotelService service = new HotelService();
         HotelDAO dao = new HotelDAO();
 
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
+
         String nome_hotel = request.getParameter("nome_hotel");
         String data_entrada = request.getParameter("data_entrada");
         String data_saida = request.getParameter("data_saida");
@@ -59,7 +64,6 @@ public class AlteraHotelServlet extends HttpServlet {
         Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
         hotel.setId(id);
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> altera hotel servler " + service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco));
         if (service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco)) {
             try {
                 Hotel hoteis = dao.getHotelById(id);
@@ -71,12 +75,14 @@ public class AlteraHotelServlet extends HttpServlet {
         } else {
             try {
                 dao.alterar(hotel);
+                relatorio.setId_func(1);
+                relatorio.setMudanca("Alteração de hotel efetuado!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(AlteraHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }
     }
 }

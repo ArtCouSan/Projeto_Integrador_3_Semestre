@@ -1,7 +1,9 @@
 package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
+import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.services.FuncionarioService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,6 +32,9 @@ public class CadastroFuncionarioServlet extends HttpServlet {
 
         FuncionarioService service = new FuncionarioService();
         FuncionarioDAO dao = new FuncionarioDAO();
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
@@ -68,19 +73,25 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                 numero, cep, rua, estado, cidade, complemento,
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> cadastra funcionario servler " + service.validaFuncionario(nome, numero, rua, cidade, cep, 
-                cpf, cargo, filial, departamento, login, senha, acesso));
-        if (service.validaFuncionario(nome, numero, rua, cidade, cep, 
+        if (service.validaFuncionario(nome, numero, rua, cidade, cep,
                 cpf, cargo, filial, departamento, login, senha, acesso)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
             dispatcher.forward(request, response);
         } else {
             try {
+
                 dao.inserir(func);
+
+                relatorio.setId_func(1);
+                relatorio.setMudanca("Cadastro de funcionario efetuado!");
+                relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
+
             } catch (Exception ex) {
+
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
     }
