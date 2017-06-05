@@ -48,7 +48,7 @@ public class VendaServlet extends HttpServlet {
 
             }
 
-            Venda venda = new Venda(cliente.getId_cliente(), 2, totalP);
+            Venda venda = new Venda(cliente.getId(), 2, totalP);
 
             VendaDAO vendaData = new VendaDAO();
 
@@ -57,7 +57,7 @@ public class VendaServlet extends HttpServlet {
                 vendaData.inserir(venda);
                 RelatorioDAO relatorioDAO = new RelatorioDAO();
                 RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Venda efetuada!");
                 relatorioDAO.inserir(relatorio);
 

@@ -20,20 +20,22 @@ public class ExcluiClienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("action");
         ClienteDAO daoCliente = new ClienteDAO();
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
         if ("delete".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 daoCliente.excluir(id);
-                RelatorioDAO relatorioDAO = new RelatorioDAO();
-                RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Exclusão de cliente efetuada!");
                 relatorioDAO.inserir(relatorio);
             } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex); 
+                Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

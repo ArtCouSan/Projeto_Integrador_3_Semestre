@@ -1,24 +1,22 @@
 package br.senac.tads3.pi03b.gruposete.services;
 
-import br.senac.tads3.pi03b.gruposete.models.Cliente;
-
 public class ClienteService {
 
     public ClienteService() {
     }
 
-    public boolean validaCliente(Cliente cliente) {
-        return !(validaNome(cliente.getNome())
-                && validaNumero(cliente.getNumero())
-                && validaRua(cliente.getRua())
-                && validaCidade(cliente.getCidade())
-                && validaCep(cliente.getCep())
-                && validaCpf(cliente.getCpf())
-                && validaEmail(cliente.getEmail()));
+    public boolean validaCliente(String nome, int numero, String rua, 
+            String cidade, String cep, String cpf) {
+        return validaNome(nome)
+                && validaNumero(numero)
+                && validaRua(rua)
+                && validaCidade(cidade)
+                && validaCep(cep)
+                && validaCpf(cpf);
     }
 
     public boolean validaNome(String nome) {
-        return nome == null || nome.length() < 1;
+        return "".equals(nome);
     }
 
     public boolean validaNumero(int numero) {
@@ -26,28 +24,18 @@ public class ClienteService {
     }
 
     public boolean validaRua(String rua) {
-        return rua == null || rua.length() < 1;
+        return "".equals(rua);
     }
 
     public boolean validaCidade(String cidade) {
-        return cidade == null || cidade.length() < 1;
+        return "".equals(cidade);
     }
 
     public boolean validaCep(String cep) {
-        return cep == null || cep.length() < 1;
+        return "".equals(cep);
     }
 
     public boolean validaCpf(String cpf) {
-        return false;
-    }
-
-    public boolean validaEmail(String email) {
-        if (email != null) {
-            if (!email.contains("@") && !email.contains(".com")
-                    || !email.contains(".com.br")) {
-                return true;
-            }
-        }
         return false;
     }
 

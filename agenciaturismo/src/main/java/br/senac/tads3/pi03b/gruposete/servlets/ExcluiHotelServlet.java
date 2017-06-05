@@ -22,33 +22,35 @@ public class ExcluiHotelServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        
+
         HotelDAO query = new HotelDAO();
-        
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
+
         if ("".equalsIgnoreCase(action)) {
-            
+
             int id = Integer.parseInt(request.getParameter("id"));
-            
+
             try {
-                
+
                 query.excluir(id);
-                RelatorioDAO relatorioDAO = new RelatorioDAO();
-                RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Exclusão de hotel efetuada!");
                 relatorioDAO.inserir(relatorio);
-                
+
             } catch (SQLException | ClassNotFoundException ex) {
-                
+
                 Logger.getLogger(ExcluiHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
-                
+
             } catch (Exception ex) {
                 Logger.getLogger(ExcluiHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaHotel.jsp");
             dispatcher.forward(request, response);
         }
-        
+
     }
 }

@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.dao;
 
 import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.models.RelatorioValores;
-import br.senac.tads3.pi03b.gruposete.models.Venda;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
 import java.sql.Connection;
 import java.sql.Date;
@@ -127,7 +126,7 @@ public class RelatorioDAO {
             String formatado = formatarDate.format(data);
 
             preparedStatement.setString(1, relatorios.getMudanca());
-            preparedStatement.setInt(2, relatorios.getId_funcionario());
+            preparedStatement.setInt(2, relatorios.getId_func());
             preparedStatement.setString(3, formatado);
 
             preparedStatement.executeUpdate();

@@ -20,32 +20,33 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("action");
         FuncionarioDAO query = new FuncionarioDAO();
-        
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
+
         if ("delete".equalsIgnoreCase(action)) {
-            String cpf = request.getParameter("cpf");
+            int id = Integer.parseInt(request.getParameter("id"));
             try {
-                
-                query.excluir(cpf);
-                RelatorioDAO relatorioDAO = new RelatorioDAO();
-                RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+                query.excluir(id);
+
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Exclusão de funcionario efetuada!");
                 relatorioDAO.inserir(relatorio);
-                
+
             } catch (ClassNotFoundException | SQLException ex) {
-                
+
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-                
+
             } catch (Exception ex) {
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
-            
+
         }
     }
 }

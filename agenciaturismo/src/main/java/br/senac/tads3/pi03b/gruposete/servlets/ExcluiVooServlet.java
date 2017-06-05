@@ -23,13 +23,15 @@ public class ExcluiVooServlet extends HttpServlet {
 
         String action = request.getParameter("action");
         VooDAO query = new VooDAO();
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
         if ("delete".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
-                query.excluirVoo(id);
-                RelatorioDAO relatorioDAO = new RelatorioDAO();
-                RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+                query.excluir(id);
+
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Exclusão de vôo efetuada!");
                 relatorioDAO.inserir(relatorio);
             } catch (SQLException | ClassNotFoundException ex) {

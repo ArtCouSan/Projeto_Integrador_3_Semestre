@@ -2,7 +2,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 
 import br.senac.tads3.pi03b.gruposete.models.Funcionario;
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession sessao = request.getSession(false);
         if (sessao != null && sessao.getAttribute("usuario") != null) {
-            response.sendRedirect(request.getContextPath() + "/index");
+            response.sendRedirect(request.getContextPath() + "/inicio");
             return;
         }
 
@@ -32,29 +31,24 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login = request.getParameter("usuario");
+        String usuario = request.getParameter("usuario");
         String senha = request.getParameter("senha");
         FuncionarioDAO funcDAO = new FuncionarioDAO();
 
-        Funcionario func = null;
+        HttpSession sessao;
         try {
-            func = funcDAO.obterFuncionario(login, senha);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if (func != null) {
-            HttpSession sessao = request.getSession(false);
-            if (sessao != null) {
-                sessao.invalidate();
+            Funcionario func = funcDAO.obterFuncionario(usuario, senha);
+            if (func != null) {
+                sessao = request.getSession(true);
+                sessao.setAttribute("funcionario", func);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/erroLogin.jsp");
+                dispatcher.forward(request, response);
             }
-            
-            sessao = request.getSession(true);
-            sessao.setAttribute("funcionario", func);
-
-            response.sendRedirect(request.getContextPath() + "/inicio");
-        } else {
-            response.sendRedirect(request.getContextPath() + "/errologin");
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

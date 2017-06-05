@@ -4,19 +4,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
-        <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
         <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
+        <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
         <title>Editar Funcionario</title>
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
+            
             <form name="editaf" onsubmit="return confirmar('alterar')" action="EditarFuncionario" method="post" class="form-horizontal">
-                <input type="hidden" name="cpf" value="${funcionarios.getCpf()}"/>
+                
+                <input type="hidden" name="identificacao" value="${funcionarios.getId()}"/>
+                <input type="hidden" name="login" value="${funcionarios.getLogin()}"/>
+                <input type="hidden" name="senha" value="${funcionarios.getSenha()}"/>
 
                 <div class="form-group ">
                     <c:if test="${erroNome}">
@@ -25,6 +29,16 @@
                     <label for="example-text-input" class="control-label col-md-4">* Nome <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
                         <input value="${funcionarios.getNome()}" maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <c:if test="${erroCpf}">
+                        <div class="erro">Digite um cpf válido</div>
+                    </c:if>
+                    <label for="example-text-input" class="control-label col-md-4">Nome:</label>
+                    <div class="controls col-md-5">
+                        <input value="${funcionarios.getCpf()}" maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
                     </div>
                 </div>
 
@@ -218,7 +232,9 @@
                 <div class="col-lg-offset-4">
                     <button type="submit" style="width: 555px" class="btn btn-danger botao_g"><span class="glyphicon glyphicon-floppy-saved"> Alterar</span></button>
                 </div>
+
             </form>
+                            
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>

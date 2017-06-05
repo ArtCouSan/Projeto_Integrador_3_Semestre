@@ -33,8 +33,16 @@ public class BuscaVooServlet extends HttpServlet {
         String pesquisa = request.getParameter("pesquisa");
 
         try {
-            List<Voo> encontrados = dao.procurarVoo(pesquisa);
-            request.setAttribute("encontrados", encontrados);
+            if ("".equals(pesquisa.trim())) {
+                List<Voo> encontrados = dao.ListarVoo();
+                request.setAttribute("encontrados", encontrados);
+                request.setAttribute("pesquisa", pesquisa);
+            } else {
+                List<Voo> encontrados = dao.procurarVoo(pesquisa);
+                request.setAttribute("encontrados", encontrados);
+                request.setAttribute("pesquisa", pesquisa);
+            }
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaVoo.jsp");
             dispatcher.forward(request, response);
 

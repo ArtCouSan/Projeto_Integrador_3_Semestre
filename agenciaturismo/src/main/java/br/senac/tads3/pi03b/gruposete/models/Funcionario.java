@@ -2,13 +2,13 @@ package br.senac.tads3.pi03b.gruposete.models;
 
 public final class Funcionario extends Pessoa {
 
+    private int id;
     private String cargo;
     private String filial;
     private String departamento;
     private String login;
     private String senha;
     private String acesso;
-    private int id_func;
 
     public Funcionario(String nome, String cpf, String sexo, String data_nasc,
             int numero, String cep, String rua, String bairro, String cidade,
@@ -30,14 +30,15 @@ public final class Funcionario extends Pessoa {
 
     }
 
-    public int getId_func() {
-        return id_func;
+    public int getId() {
+        return id;
     }
 
-    public void setId_func(int id_func) {
-        this.id_func = id_func;
+    public void setId(int id) {
+        this.id = id;
+
     }
-    
+
     public String getCargo() {
         return cargo;
     }

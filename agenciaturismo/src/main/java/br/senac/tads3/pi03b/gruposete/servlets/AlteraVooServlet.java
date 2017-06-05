@@ -45,6 +45,9 @@ public class AlteraVooServlet extends HttpServlet {
         VooService service = new VooService();
         VooDAO dao = new VooDAO();
 
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
+
         String origem = request.getParameter("origem");
         String destino = request.getParameter("destino");
         String data_ida = request.getParameter("data_ida");
@@ -53,38 +56,34 @@ public class AlteraVooServlet extends HttpServlet {
         float preco = Float.parseFloat(request.getParameter("preco"));
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
-        Voo voo = new Voo(data_ida, data_volta, destino, origem, 
-                quantidade_passagens, preco, true);
-        voo.setId_voo(id);
+        request.setAttribute("erroOrigem", service.validaOrigem(origem));
+        request.setAttribute("erroDestino", service.validaDestino(destino));
+        request.setAttribute("erroQuantidade_passagens", service.validaQuantidade_passagens(quantidade_passagens));
+        request.setAttribute("erroPreco", service.validaPreco(preco));
 
-        if (service.validaVoo(voo)) {
-            
+        Voo voo = new Voo(data_ida, data_volta, destino, origem,
+                quantidade_passagens, preco, true);
+        voo.setId(id);
+
+        if (service.validaVoo(origem, destino, quantidade_passagens, preco)) {
             try {
-                
+                Voo voos = dao.getVooById(id);
+                request.setAttribute("voos", voos);
+            } catch (ClassNotFoundException | SQLException e) {
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarVoo.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            try {
                 dao.alterar(voo);
-                RelatorioDAO relatorioDAO = new RelatorioDAO();
-                RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Alteração de vôo efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
-                
             } catch (Exception ex) {
-                
                 Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
-                
             }
-
-        } else {
-            
-            request.setAttribute("erroOrigem", service.validaOrigem(origem));
-            request.setAttribute("erroDestino", service.validaDestino(destino));
-            request.setAttribute("erroQuantidade_passagens", service.validaQuantidade_passagens(quantidade_passagens));
-            request.setAttribute("erroPreco", service.validaPreco(preco));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarVoo.jsp");
-            dispatcher.forward(request, response);
-            
         }
     }
 }

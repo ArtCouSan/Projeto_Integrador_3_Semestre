@@ -1,32 +1,31 @@
 package br.senac.tads3.pi03b.gruposete.services;
 
-import br.senac.tads3.pi03b.gruposete.models.Voo;
-
 public class VooService {
 
     public VooService() {
     }
-    
-    public boolean validaVoo(Voo voo){
-        return !(validaOrigem(voo.getOrigem())
-                && validaDestino(voo.getDestino())
-                && validaQuantidade_passagens(voo.getQuantidade_passagens())
-                && validaPreco(voo.getPreco()));
+
+    public boolean validaVoo(String origem, String destino, 
+            int quantidade_passagens, float preco) {
+        return validaOrigem(origem)
+                && validaDestino(destino)
+                && validaQuantidade_passagens(quantidade_passagens)
+                && validaPreco(preco);
     }
-    
-    public boolean validaOrigem(String origem){
-        return origem == null || origem.length() < 1;
+
+    public boolean validaOrigem(String origem) {
+        return "".equals(origem);
     }
-    
-    public boolean validaDestino (String destino){
-        return destino == null || destino.length() < 1;
+
+    public boolean validaDestino(String destino) {
+        return "".equals(destino);
     }
-    
-    public boolean validaQuantidade_passagens (int quantidade_passagens){
-        return quantidade_passagens < 1;
+
+    public boolean validaQuantidade_passagens(int quantidade_passagens) {
+        return quantidade_passagens <= 0;
     }
-    
-    public boolean validaPreco (float preco){
-        return preco < 0;
+
+    public boolean validaPreco(float preco) {
+        return preco <= 0;
     }
 }

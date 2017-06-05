@@ -2,7 +2,7 @@ package br.senac.tads3.pi03b.gruposete.models;
 
 public class Hotel {
 
-    private int id_hotel;
+    private int id;
     private String nome_hotel;
     private String data_entrada;
     private String data_saida;
@@ -26,12 +26,12 @@ public class Hotel {
         this.ativo = ativo;
     }
 
-    public int getId_hotel() {
-        return id_hotel;
+    public int getId() {
+        return id;
     }
 
-    public void setId_hotel(int id_hotel) {
-        this.id_hotel = id_hotel;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

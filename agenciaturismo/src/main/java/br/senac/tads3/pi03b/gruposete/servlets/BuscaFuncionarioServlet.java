@@ -31,10 +31,16 @@ public class BuscaFuncionarioServlet extends HttpServlet {
 
         FuncionarioDAO dao = new FuncionarioDAO();
         String pesquisa = request.getParameter("pesquisa");
-
         try {
-            List<Funcionario> encontrados = dao.procurarFuncionario(pesquisa);
-            request.setAttribute("encontrados", encontrados);
+            if ("".equals(pesquisa.trim())) {
+                List<Funcionario> encontrados = dao.ListarFuncionario();
+                request.setAttribute("encontrados", encontrados);
+                request.setAttribute("pesquisa", pesquisa);
+            } else {
+                List<Funcionario> encontrados = dao.procurarFuncionario(pesquisa);
+                request.setAttribute("encontrados", encontrados);
+                request.setAttribute("pesquisa", pesquisa);
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaFuncionario.jsp");
             dispatcher.forward(request, response);
 

@@ -17,21 +17,25 @@ import java.util.logging.Logger;
 
 @WebServlet(name = "CadastroClienteServlet", urlPatterns = {"/CadastroCliente"})
 public class CadastroClienteServlet extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
         dispatcher.forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         ClienteService service = new ClienteService();
         ClienteDAO dao = new ClienteDAO();
-        
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
+
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
@@ -45,42 +49,37 @@ public class CadastroClienteServlet extends HttpServlet {
         String estado = request.getParameter("estado");
         String cidade = request.getParameter("cidade");
         String complemento = request.getParameter("complemento");
-        
+
+        request.setAttribute("erroNome", service.validaNome(nome));
+        request.setAttribute("erroNumero", service.validaNumero(numero));
+        request.setAttribute("erroRua", service.validaRua(rua));
+        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroCep", service.validaCep(cep));
+        request.setAttribute("erroCpf", service.validaCpf(cpf));
+
         Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
-        
-        if (service.validaCliente(cliente)) {
-            
+
+        if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
+            dispatcher.forward(request, response);
+        } else {
             try {
-                
+
                 dao.inserir(cliente);
-                RelatorioDAO relatorioDAO = new RelatorioDAO();
-                RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Cadastro de cliente efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
-                
+
             } catch (Exception ex) {
-                
+
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-                
+
             }
-            
-        } else {
-            
-            request.setAttribute("erroNome", service.validaNome(nome));
-            request.setAttribute("erroNumero", service.validaNumero(numero));
-            request.setAttribute("erroRua", service.validaRua(rua));
-            request.setAttribute("erroCidade", service.validaCidade(cidade));
-            request.setAttribute("erroCep", service.validaCep(cep));
-            request.setAttribute("erroCpf", service.validaCpf(cpf));
-            request.setAttribute("erroEmail", service.validaEmail(email));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
-            dispatcher.forward(request, response);
-            
         }
     }
 }
