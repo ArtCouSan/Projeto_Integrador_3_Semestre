@@ -38,7 +38,7 @@ public class BuscaHotelVendaServlet extends HttpServlet {
                 JSONObject json = new JSONObject();
                 
                 json.put("nome_hotel", object.getNome());
-                json.put("id_hotel", object.getId_hotel());
+                json.put("id_hotel", object.getId());
                 json.put("data_entrada", object.getData_entrada());
                 json.put("data_saida", object.getData_saida());
                 json.put("preco", object.getPreco());

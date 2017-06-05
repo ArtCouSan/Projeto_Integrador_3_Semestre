@@ -2,7 +2,7 @@ package br.senac.tads3.pi03b.gruposete.models;
 
 public final class Cliente extends Pessoa {
 
-    private int id_cliente;
+    private int id;
 
     public Cliente(String nome, String cpf, String sexo, String data_nasc, int numero, 
             String cep, String rua, String bairro, String cidade, 
@@ -16,12 +16,12 @@ public final class Cliente extends Pessoa {
 
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public int getId() {
+        return id;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

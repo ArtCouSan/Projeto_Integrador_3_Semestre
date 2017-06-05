@@ -397,7 +397,7 @@ public class VendaDAO {
                     preco,
                     true);
 
-            hotel.setId_hotel(id_hotel);
+            hotel.setId(id_hotel);
 
             listaResultado.add(hotel);
 
@@ -468,7 +468,7 @@ public class VendaDAO {
                     preco,
                     true);
 
-            voo.setId_voo(id_voo);
+            voo.setId(id_voo);
 
             listaResultado.add(voo);
 

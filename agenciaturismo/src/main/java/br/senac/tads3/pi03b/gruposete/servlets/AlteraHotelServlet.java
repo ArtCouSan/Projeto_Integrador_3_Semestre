@@ -45,6 +45,9 @@ public class AlteraHotelServlet extends HttpServlet {
         HotelService service = new HotelService();
         HotelDAO dao = new HotelDAO();
 
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
+
         String nome_hotel = request.getParameter("nome_hotel");
         String data_entrada = request.getParameter("data_entrada");
         String data_saida = request.getParameter("data_saida");
@@ -52,37 +55,34 @@ public class AlteraHotelServlet extends HttpServlet {
         int quantidade_hospedes = Integer.parseInt(request.getParameter("quantidade_hospedes"));
         float preco = Float.parseFloat(request.getParameter("preco"));
         int id = Integer.parseInt(request.getParameter("identificacao"));
-        
-        Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
-            hotel.setId_hotel(id);
 
-        if (service.validaHotel(hotel)) {
+        request.setAttribute("erroNome_hotel", service.validaNome(nome_hotel));
+        request.setAttribute("erroQuantidade_quartos", service.validaQuantidade_quartos(quantidade_quartos));
+        request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
+        request.setAttribute("erroPreco", service.validaPreco(preco));
+
+        Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
+        hotel.setId(id);
+
+        if (service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco)) {
             try {
-                
+                Hotel hoteis = dao.getHotelById(id);
+                request.setAttribute("hoteis", hoteis);
+            } catch (ClassNotFoundException | SQLException e) {
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarHotel.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            try {
                 dao.alterar(hotel);
-                RelatorioDAO relatorioDAO = new RelatorioDAO();
-                RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Alteração de hotel efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
-                
             } catch (Exception ex) {
-                
                 Logger.getLogger(AlteraHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
-                
             }
-
-        } else {
-            
-            request.setAttribute("erroNome_hotel", service.validaNome_hotel(nome_hotel));
-            request.setAttribute("erroQuantidade_quartos", service.validaQuantidade_quartos(quantidade_quartos));
-            request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
-            request.setAttribute("erroPreco", service.validaPreco(preco));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarHotel.jsp");
-            dispatcher.forward(request, response);
-            
         }
     }
 }

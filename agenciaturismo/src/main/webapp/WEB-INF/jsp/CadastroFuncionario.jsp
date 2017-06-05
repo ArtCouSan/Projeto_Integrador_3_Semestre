@@ -3,18 +3,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
+        <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
         <title>Cadastro de Funcionario</title>
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            <form name="cadastrof" onsubmit="return confirmar('cadastrar')" action="CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
+            
+            <form action="CadastroFuncionario" onsubmit="return confirmar('cadastrar')"  method="post" class="form-horizontal" >
 
                 <div class="form-group ">
                     <c:if test="${erroNome}">
@@ -222,10 +224,13 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="col-lg-offset-4">
                     <button type="submit" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                 </div>
+                
             </form>
+            
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>

@@ -7,11 +7,11 @@ public class RelatorioMudancas {
     private String funcionario;
     private String cargo;
     private String data;
-    private int id_funcionario;
+    private int id_func;
 
-    public RelatorioMudancas(String mudanca, int id_funcionario, String data) {
+    public RelatorioMudancas(String mudanca, int id_func, String data) {
         this.mudanca = mudanca;
-        this.id_funcionario = id_funcionario;
+        this.id_func = id_func;
         this.data = data;
     }
     
@@ -19,12 +19,12 @@ public class RelatorioMudancas {
 
     }
 
-    public int getId_funcionario() {
-        return id_funcionario;
+    public int getId_func() {
+        return id_func;
     }
 
-    public void setId_funcionario(int id_funcionario) {
-        this.id_funcionario = id_funcionario;
+    public void setId_func(int id_func) {
+        this.id_func = id_func;
     }
 
     public String getFilial() {

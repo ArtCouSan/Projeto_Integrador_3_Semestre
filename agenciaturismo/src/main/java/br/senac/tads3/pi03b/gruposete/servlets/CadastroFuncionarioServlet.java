@@ -21,9 +21,9 @@ public class CadastroFuncionarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
         dispatcher.forward(request, response);
-
     }
 
     @Override
@@ -32,6 +32,9 @@ public class CadastroFuncionarioServlet extends HttpServlet {
 
         FuncionarioService service = new FuncionarioService();
         FuncionarioDAO dao = new FuncionarioDAO();
+
+        RelatorioDAO relatorioDAO = new RelatorioDAO();
+        RelatorioMudancas relatorio = new RelatorioMudancas();
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
@@ -53,18 +56,33 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String acesso = request.getParameter("acesso");
 
+        request.setAttribute("erroNome", service.validaNome(nome));
+        request.setAttribute("erroNumero", service.validaNumero(numero));
+        request.setAttribute("erroRua", service.validaRua(rua));
+        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroCep", service.validaCep(cep));
+        request.setAttribute("erroCpf", service.validaCpf(cpf));
+        request.setAttribute("erroCargo", service.validaCargo(cargo));
+        request.setAttribute("erroFilial", service.validaFilial(filial));
+        request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
+        request.setAttribute("erroLogin", service.validaLogin(login));
+        request.setAttribute("erroSenha", service.validaSenha(senha));
+        request.setAttribute("erroAcesso", service.validaAcesso(acesso));
+
         Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                 numero, cep, rua, estado, cidade, complemento,
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
 
-        if (service.validaFuncionarioCadastro(func)) {
-
+        if (service.validaFuncionario(nome, numero, rua, cidade, cep,
+                cpf, cargo, filial, departamento, login, senha, acesso)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
+            dispatcher.forward(request, response);
+        } else {
             try {
 
                 dao.inserir(func);
-                RelatorioDAO relatorioDAO = new RelatorioDAO();
-                RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_funcionario(1);
+
+                relatorio.setId_func(1);
                 relatorio.setMudanca("Cadastro de funcionario efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
@@ -75,25 +93,6 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
 
             }
-
-        } else {
-
-            request.setAttribute("erroNome", service.validaNome(nome));
-            request.setAttribute("erroNumero", service.validaNumero(numero));
-            request.setAttribute("erroRua", service.validaRua(rua));
-            request.setAttribute("erroCidade", service.validaCidade(cidade));
-            request.setAttribute("erroCep", service.validaCep(cep));
-            request.setAttribute("erroCpf", service.validaCpf(cpf));
-            request.setAttribute("erroEmail", service.validaEmail(email));
-            request.setAttribute("erroCargo", service.validaCargo(cargo));
-            request.setAttribute("erroFilial", service.validaFilial(filial));
-            request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
-            request.setAttribute("erroLogin", service.validaLogin(login));
-            request.setAttribute("erroSenha", service.validaSenha(senha));
-            request.setAttribute("erroAcesso", service.validaAcesso(acesso));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
-            dispatcher.forward(request, response);
-
         }
     }
 }

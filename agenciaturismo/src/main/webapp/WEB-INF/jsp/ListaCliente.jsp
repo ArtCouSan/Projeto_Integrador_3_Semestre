@@ -35,8 +35,8 @@
                         <td><c:out value="${clientes.getCelular()}"/></td>
                         <td><c:out value="${clientes.getTelefone()}"/></td>
                         <td><c:out value="${clientes.getEmail()}"/></td>
-                        <td><a class="btn btn-danger" style="width: 100px" onclick="exclusao(${clientes.getId_cliente()}, 'Cliente')"/><i class="glyphicon glyphicon-trash"> Remover </i></a></td>
-                        <td><a class="btn btn-info" style="width: 100px" href="EditarCliente?action=edit&id=${clientes.getId_cliente()}"><i class="glyphicon glyphicon-pencil"> Alterar </i></a></td>
+                        <td><a class="btn btn-danger" style="width: 100px" onclick="exclusao(${clientes.getId()}, 'Cliente')"/><i class="glyphicon glyphicon-trash"> Remover </i></a></td>
+                        <td><a class="btn btn-info" style="width: 100px" href="EditarCliente?action=edit&id=${clientes.getId()}"><i class="glyphicon glyphicon-pencil"> Alterar </i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>
