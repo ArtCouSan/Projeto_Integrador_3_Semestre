@@ -1,7 +1,7 @@
 # Loja: Agência De Viagens
-- Venda - Okay (falta testes)
+- Venda - Okay 
 - Verificacoes (Rafael e Daniel)
-- Relatorios 
+- Relatorios - Okay
 --------------------------------------------
 Projeto do 3° Semestre da Universidade Senac
 Integrantes:
