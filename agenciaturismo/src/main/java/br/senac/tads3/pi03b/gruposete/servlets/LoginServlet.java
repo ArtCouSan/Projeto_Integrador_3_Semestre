@@ -31,25 +31,26 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login = request.getParameter("usuario");
+        String usuario = request.getParameter("usuario");
         String senha = request.getParameter("senha");
         FuncionarioDAO funcDAO = new FuncionarioDAO();
 
         HttpSession sessao;
-        
-        Funcionario func = null;
-        if (func == null) {
-            try {
-                func = funcDAO.obterFuncionario(login, senha);
+        try {
+            Funcionario func = funcDAO.obterFuncionario(usuario, senha);
+            if (func != null) {
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> achou usuario");
                 sessao = request.getSession(true);
                 sessao.setAttribute("funcionario", func);
-                response.sendRedirect(request.getContextPath() + "/inicio");
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> nao achou");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/erroLogin.jsp");
+                dispatcher.forward(request, response);
             }
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/erroLogin.jsp");
-            dispatcher.forward(request, response);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
