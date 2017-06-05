@@ -7,6 +7,7 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+        <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
         <title>Listar Voos</title>
     </head>
@@ -34,8 +35,8 @@
                         <td name="data_volta"><c:out value="${voos.getData_volta()}"/></td>
                         <td name="quantidade_passagens"><c:out value="${voos.getQuantidade_passagens()}"/></td>
                         <td name="preco"><c:out value="${voos.getPreco()}"/></td>
-                        <td><a class="btn btn-danger" href="ExcluiVooServlet?action=delete&id=${voos.getId()}&pesquisa=${pesquisa}"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
-                        <td><a class="btn btn-info" href="EditarVoo?action=edit&id=${voos.getId()}"/> <i class="glyphicon glyphicon-pencil"> Alterar</i></a></td>
+                        <td><a class="btn btn-danger" style="width: 100px" href="ExcluiVooServlet?action=delete&id=${voos.getId()}&pesquisa=${pesquisa}"><i class="glyphicon glyphicon-trash">Remover</i></a></td>
+                        <td><a class="btn btn-info" style="width: 100px" href="EditarVoo?action=edit&id=${voos.getId()}"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>

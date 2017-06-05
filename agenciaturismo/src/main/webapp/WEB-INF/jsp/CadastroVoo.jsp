@@ -13,7 +13,8 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            <form name="cadastrov" action="CadastroVoo" method="post" class="form-horizontal">
+            <form onsubmit="return confirmar('cadastrar')" name="cadastrov" action="CadastroVoo" method="post" class="form-horizontal">
+                
                 <div class="form-group ">
                     <c:if test="${erroOrigem}">
                         <div class="erro">Digite a origem</div>
@@ -23,6 +24,7 @@
                         <input class="form-control" name="origem" placeholder="Insira a origem" type="text" id="example-text-input" required> 
                     </div>
                 </div>
+                
                 <div class="form-group ">
                     <c:if test="${erroDestino}">
                         <div class="erro">Digite o destino</div>
@@ -32,6 +34,7 @@
                         <input class="form-control" name="destino" placeholder="Insira o destino" type="text" id="example-text-input" required>
                     </div>
                 </div>
+                
                 <div class="form-group ">
 
                     <c:if test="${erroQuantidade_passagens}">
@@ -42,30 +45,33 @@
                         <input class="form-control" type="number" name="quantidade_passagens" placeholder="Insira quantidade de passagens" id="example-text-input" required>
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="example-date-input" class="control-label col-md-4">* Data de ida <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_ida" placeholder="Insira data de ida" type="date" id="example-date-input" required>
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="example-date-input" class="control-label col-md-4">* Data de volta <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_volta" placeholder="Insira data de volta" type="date" id="example-date-input" required>
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <c:if test="${erroPreco}">
                         <div class="erro">Digite o preço</div>
                     </c:if>
-                    <label for="example-number-input" class="control-label col-md-4">* Preco <span class="glyphicon glyphicon-usd"></span> :</label>
+                    <label for="example-number-input" class="control-label col-md-4">* Preço <span class="glyphicon glyphicon-usd"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="number" name="preco" placeholder="Insira o preço" id="example-number-input" required>
                     </div>
                 </div>
-
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
+                
+                <div class="col-lg-offset-4">
+                    <button type="submit" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                 </div>
 
             </form>

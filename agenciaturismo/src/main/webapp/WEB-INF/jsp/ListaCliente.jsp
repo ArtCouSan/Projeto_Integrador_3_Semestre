@@ -7,6 +7,7 @@
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Listar Cliente</title>
     </head>

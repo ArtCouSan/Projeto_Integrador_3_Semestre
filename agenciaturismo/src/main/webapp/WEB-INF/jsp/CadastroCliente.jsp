@@ -10,11 +10,12 @@
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
+        <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            <form action="CadastroCliente" method="post" class="form-horizontal">
+            <form action="CadastroCliente" onsubmit="return confirmar('cadastrar')" method="post" class="form-horizontal">
 
                 <div class="form-group ">
                     <c:if test="${erroNome}">
@@ -160,7 +161,7 @@
                 </div>
 
                 <div class="col-lg-offset-4">
-                    <button type="submit" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
+                    <button type="submit" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                 </div>
 
             </form>

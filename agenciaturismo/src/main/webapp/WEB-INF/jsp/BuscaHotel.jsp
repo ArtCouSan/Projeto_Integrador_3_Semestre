@@ -7,8 +7,8 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
-
         <title>Buscar Hotel</title>
     </head>
     <body>
@@ -17,10 +17,19 @@
             <div class="col-md-6 col-md-offset-3">
                 <form role="form" action="BuscaHotel" method="post">
                     <div class="row">
-                        <h1 class="text-center"> Digite o campo(s) pela informação que gostaria de buscar</h1>
+                        <h1 class="text-center"> Digite o campo pela informação que gostaria de buscar hotel...</h1>
+                        <ul>
+                            <li class="list-unstyled">Dicas:</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-home"></span> | Nome do hotel</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-calendar"></span> | Data de entrada no hotel</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-calendar"></span> | Data de saida do hotel</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-bed"></span> | Quantidade de quartos</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-user"></span> | Quantidade de hospedes</li>
+                            <li class="list-unstyled"><span class="glyphicon glyphicon-usd"></span> | Preço</li>               
+                        </ul>
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" type="text" name="pesquisa" required/>
+                                <input class="form-control" type="text" name="pesquisa"/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;">Pesquisar</span></button>
                                 </span>                           

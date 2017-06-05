@@ -193,103 +193,9 @@ public class ClienteDAO {
                 connection.close();
             }
         }
-
         return listaClientes;
     }
-
-    public List<Cliente> procurarCliente(String busca) throws SQLException, ClassNotFoundException {
-        List<Cliente> listaResultado = new ArrayList<>();
-
-        String sql = "SELECT * FROM cliente WHERE"
-                + " (estado = ?"
-                + " OR celular = ?"
-                + " OR cep = ?"
-                + " OR complemento = ?"
-                + " OR cpf = ?"
-                + " OR data_nasc = ?"
-                + " OR email = ?"
-                + " OR nome = ?"
-                + " OR numero = ?"
-                + " OR rua = ?"
-                + " OR sexo = ?"
-                + " OR telefone = ?"
-                + " OR cidade = ?)"
-                + " AND ativo = true";
-
-        connection = DbUtil.getConnection();
-        preparedStatement = connection.prepareStatement(sql);
-
-        preparedStatement.setString(1, busca);
-        preparedStatement.setString(2, busca);
-        preparedStatement.setString(3, busca);
-        preparedStatement.setString(4, busca);
-        preparedStatement.setString(5, busca);
-        preparedStatement.setString(6, busca);
-        preparedStatement.setString(7, busca);
-        preparedStatement.setString(8, busca);
-        preparedStatement.setString(10, busca);
-
-        int buscaN = 0;
-        try {
-            buscaN = Integer.parseInt(busca);
-        } catch (NumberFormatException w) {
-            System.out.println("Erro");
-        }
-        preparedStatement.setInt(9, buscaN);
-        preparedStatement.setString(11, busca);
-        preparedStatement.setString(12, busca);
-        preparedStatement.setString(13, busca);
-
-        try (ResultSet result = preparedStatement.executeQuery()) {
-            while (result.next()) {
-                Cliente clientes = new Cliente();
-
-                clientes.setId(result.getInt("id_cliente"));
-                clientes.setEstado(result.getString("estado"));
-                clientes.setCelular(result.getString("celular"));
-                clientes.setCep(result.getString("cep"));
-                clientes.setComplemento(result.getString("complemento"));
-                clientes.setCpf(result.getString("cpf"));
-                clientes.setData_nasc(result.getString("data_nasc"));
-                clientes.setEmail(result.getString("email"));
-                clientes.setNome(result.getString("nome"));
-                clientes.setNumero(result.getInt("numero"));
-                clientes.setRua(result.getString("rua"));
-                clientes.setSexo(result.getString("sexo"));
-                clientes.setTelefone(result.getString("telefone"));
-                clientes.setCidade(result.getString("cidade"));
-
-                listaResultado.add(clientes);
-            }
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-        return listaResultado;
-    }
-
-    public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
-        String slq = "SELECT COUNT(*) FROM cliente WHERE cpf = ? AND ativo = true";
-
-        connection = DbUtil.getConnection();
-        preparedStatement = connection.prepareStatement(slq);
-        preparedStatement.setString(1, cpf);
-        resultSet = preparedStatement.executeQuery();
-
-        int numeroDeCounts = 0;
-
-        while (resultSet.next()) {
-            numeroDeCounts = resultSet.getInt("COUNT(*)");
-        }
-        connection.close();
-
-        return numeroDeCounts == 1;
-    }
-
+    
     public Cliente getClienteByCPF(String cpf) throws SQLException, ClassNotFoundException {
 
         Cliente cliente = new Cliente();
@@ -324,4 +230,109 @@ public class ClienteDAO {
         connection.close();
         return cliente;
     }
+
+    public List<Cliente> procurarCliente(String busca) throws SQLException, ClassNotFoundException {
+        List<Cliente> listaResultado = new ArrayList<>();
+
+        String sql;
+
+        if (busca.length() != 0) {
+
+            sql = "SELECT * FROM cliente WHERE"
+                    + " (estado = ?"
+                    + " OR celular = ?"
+                    + " OR cep = ?"
+                    + " OR complemento = ?"
+                    + " OR cpf = ?"
+                    + " OR data_nasc = ?"
+                    + " OR email = ?"
+                    + " OR nome = ?"
+                    + " OR numero = ?"
+                    + " OR rua = ?"
+                    + " OR sexo = ?"
+                    + " OR telefone = ?"
+                    + " OR cidade = ?)"
+                    + " AND ativo = true";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Insercoes.
+            preparedStatement.setString(1, busca);
+            preparedStatement.setString(2, busca);
+            preparedStatement.setString(3, busca);
+            preparedStatement.setString(4, busca);
+            preparedStatement.setString(5, busca);
+            preparedStatement.setString(6, busca);
+            preparedStatement.setString(7, busca);
+            preparedStatement.setString(8, busca);
+            preparedStatement.setString(10, busca);
+
+            int buscaN = 0;
+            try {
+                buscaN = Integer.parseInt(busca);
+            } catch (NumberFormatException w) {
+                System.out.println("Erro");
+            }
+            preparedStatement.setInt(9, buscaN);
+            preparedStatement.setString(11, busca);
+            preparedStatement.setString(12, busca);
+            preparedStatement.setString(13, busca);
+
+        } else {
+            sql = "SELECT * FROM cliente WHERE ativo = true";
+            preparedStatement = connection.prepareStatement(sql);
+        }
+
+        try (ResultSet result = preparedStatement.executeQuery()) {
+            while (result.next()) {
+                Cliente clientes = new Cliente();
+
+                clientes.setId(result.getInt("id_cliente"));
+                clientes.setEstado(result.getString("estado"));
+                clientes.setCelular(result.getString("celular"));
+                clientes.setCep(result.getString("cep"));
+                clientes.setComplemento(result.getString("complemento"));
+                clientes.setCpf(result.getString("cpf"));
+                clientes.setData_nasc(result.getString("data_nasc"));
+                clientes.setEmail(result.getString("email"));
+                clientes.setNome(result.getString("nome"));
+                clientes.setNumero(result.getInt("numero"));
+                clientes.setRua(result.getString("rua"));
+                clientes.setSexo(result.getString("sexo"));
+                clientes.setTelefone(result.getString("telefone"));
+                clientes.setCidade(result.getString("cidade"));
+
+                listaResultado.add(clientes);
+            }
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return listaResultado;
+    }
+
+    public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
+
+        // Comando SQL.
+        String slq = "SELECT COUNT(*) FROM cliente WHERE cpf = ? AND ativo = true";
+
+        connection = DbUtil.getConnection();
+        preparedStatement = connection.prepareStatement(slq);
+        preparedStatement.setString(1, cpf);
+        resultSet = preparedStatement.executeQuery();
+
+        int numeroDeCounts = 0;
+
+        while (resultSet.next()) {
+            numeroDeCounts = resultSet.getInt("COUNT(*)");
+        }
+        connection.close();
+
+        return numeroDeCounts == 1;
+    }
+
 }

@@ -70,6 +70,27 @@ public class HotelDAO {
             }
         }
     }
+    
+    public void excluir(int id) throws SQLException, ClassNotFoundException {
+        String slq = "UPDATE Hotel SET ativo = ? WHERE id_hotel = ?";
+
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(slq);
+            
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+    }
 
     public List<Hotel> ListaHotel() throws SQLException, ClassNotFoundException {
         List<Hotel> ListaHotel = new ArrayList<>();
@@ -138,42 +159,53 @@ public class HotelDAO {
     public List<Hotel> procurarHotel(String busca) throws ClassNotFoundException, SQLException {
         List<Hotel> listaResultado = new ArrayList<>();
 
-        String sql = "SELECT * FROM hotel WHERE"
-                + " (nome_hotel = ?"
-                + " OR data_entrada = ?"
-                + " OR data_saida = ?"
-                + " OR preco = ?"
-                + " OR quantidade_quartos = ?"
-                + " OR quantidade_hospedes = ?)"
-                + " AND ativo = true";
+        String sql;
+        
+        if (busca.length() != 0) {
 
-        connection = DbUtil.getConnection();
-        preparedStatement = connection.prepareStatement(sql);
+            sql = "SELECT * FROM hotel WHERE"
+                    + " (nome_hotel = ?"
+                    + " OR data_entrada = ?"
+                    + " OR data_saida = ?"
+                    + " OR preco = ?"
+                    + " OR quantidade_quartos = ?"
+                    + " OR quantidade_hospedes = ?)"
+                    + " AND ativo = true";
 
-        preparedStatement.setString(1, busca);
-        preparedStatement.setString(2, busca);
-        preparedStatement.setString(3, busca);
-        double n1 = 0;
-        try {
-            Double.parseDouble(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
+            connection = DbUtil.getConnection();
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, busca);
+            preparedStatement.setString(2, busca);
+            preparedStatement.setString(3, busca);
+            double n1 = 0;
+            try {
+                Double.parseDouble(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            int n2 = 0;
+            try {
+                n2 = Integer.parseInt(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            int n3 = 0;
+            try {
+                n3 = Integer.parseInt(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            preparedStatement.setDouble(4, n1);
+            preparedStatement.setInt(5, n2);
+            preparedStatement.setInt(6, n3);
+
+        } else {
+            sql = "SELECT * FROM hotel WHERE ativo = true";
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
         }
-        int n2 = 0;
-        try {
-            n2 = Integer.parseInt(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
-        }
-        int n3 = 0;
-        try {
-            n3 = Integer.parseInt(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
-        }
-        preparedStatement.setDouble(4, n1);
-        preparedStatement.setInt(5, n2);
-        preparedStatement.setInt(6, n3);
 
         try (ResultSet result = preparedStatement.executeQuery()) {
 
@@ -200,26 +232,5 @@ public class HotelDAO {
             }
         }
         return listaResultado;
-    }
-
-    public void excluir(int id) throws SQLException, ClassNotFoundException {
-        String slq = "UPDATE Hotel SET ativo = ? WHERE id_hotel = ?";
-
-        try {
-            connection = DbUtil.getConnection();
-            preparedStatement = connection.prepareStatement(slq);
-            
-            preparedStatement.setBoolean(1, false);
-            preparedStatement.setInt(2, id);
-
-            preparedStatement.execute();
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
     }
 }

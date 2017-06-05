@@ -13,14 +13,15 @@
     <body>
         <div class="panel-body">
             <c:import url="./cabecalho.jsp"/>
-            <form name="editav" action="EditarVoo" method="post" class="form-horizontal">
+                
+            <form name="editav" onsubmit="return confirmar('alterar')" action="EditarVoo" method="post" class="form-horizontal">
                 <input type="hidden" name="identificacao" value="${voos.getId()}"/>
                 
                 <div class="form-group ">
                     <c:if test="${erroOrigem}">
                         <div class="erro">Digite a origem</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Origem:</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Origem <span class="glyphicon glyphicon-home"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="origem" value="${voos.getOrigem()}"type="text" id="example-text-input" required> 
                     </div>
@@ -30,7 +31,7 @@
                     <c:if test="${erroDestino}">
                         <div class="erro">Digite o destino</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Destino:</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Destino <span class="glyphicon glyphicon-pushpin"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="destino" value="${voos.getDestino()}" type="text" id="example-text-input" required>
                     </div>
@@ -40,17 +41,14 @@
                     <c:if test="${erroQuantidade_passagens}">
                         <div class="erro">Digite a quantidade de passagens</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Quantidade de passagens:</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Quantidade de passagens <span class="glyphicon glyphicon-plane"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="number" name="quantidade_passagens" value="${voos.getQuantidade_passagens()}" id="example-text-input" required>
                     </div>
                 </div>
                     
                 <div class="form-group">
-                    <c:if test="${erroData_ida}">
-                        <div class="erro">O nome é obrigatório</div>
-                    </c:if>
-                    <label for="example-date-input" class="control-label col-md-4">Data de ida:</label>
+                    <label for="example-date-input" class="control-label col-md-4">* Data de ida <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_ida" value="${voos.getData_ida()}" type="date" id="example-date-input" required>
                     </div>
@@ -60,7 +58,7 @@
                     <c:if test="${erroData_volta}">
                         <div class="erro">O nome é obrigatório</div>
                     </c:if>
-                    <label for="example-date-input" class="control-label col-md-4">Data de volta:</label>
+                    <label for="example-date-input" class="control-label col-md-4">* Data de volta <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_volta" value="${voos.getData_volta()}" type="date" id="example-date-input" required>
                     </div>
@@ -70,14 +68,14 @@
                     <c:if test="${erroPreco}">
                         <div class="erro">Digite um valor</div>
                     </c:if>
-                    <label for="example-number-input" class="control-label col-md-4">Preco:</label>
+                    <label for="example-number-input" class="control-label col-md-4">* Preço <span class="glyphicon glyphicon-usd"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="number" name="preco" value="${voos.getPreco()}" id="example-number-input" required>
                     </div>
                 </div>
                     
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary botao_g"><span class="">Alterar</span></button>
+                <div class="col-lg-offset-4">
+                    <button type="submit" style="width: 555px" class="btn btn-danger botao_g"><span class="glyphicon glyphicon-floppy-saved"> Alterar</span></button>
                 </div>
             </form>
         </div>

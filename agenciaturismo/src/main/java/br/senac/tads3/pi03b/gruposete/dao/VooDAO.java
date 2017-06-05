@@ -70,6 +70,27 @@ public class VooDAO {
             }
         }
     }
+    
+    public void excluir(int id) throws SQLException, ClassNotFoundException {
+        String slq = "UPDATE Voo SET ativo = ? WHERE id_voo = ?";
+
+        try {
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(slq);
+            
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+    }
 
     public List<Voo> ListaVoo() throws SQLException, ClassNotFoundException {
         List<Voo> ListaVoo = new ArrayList<>();
@@ -138,36 +159,45 @@ public class VooDAO {
     public List<Voo> procurarVoo(String busca) throws SQLException, IOException, ClassNotFoundException {
         List<Voo> listaResultado = new ArrayList<>();
 
-        String sql = "SELECT * FROM voo WHERE"
-                + " (data_volta = ?"
-                + " OR data_ida = ?"
-                + " OR destino = ?"
-                + " OR origem = ?"
-                + " OR quantidade_passagens = ?"
-                + " OR preco = ?)"
-                + " AND ativo = true";
-        
-        connection = DbUtil.getConnection();
-        preparedStatement = connection.prepareStatement(sql);
+        String sql;
 
-        preparedStatement.setString(1, busca);
-        preparedStatement.setString(2, busca);
-        preparedStatement.setString(3, busca);
-        preparedStatement.setString(4, busca);
-        int n1 = 0;
-        try {
-            n1 = Integer.parseInt(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
+        if (busca.length() != 0) {
+
+            sql = "SELECT * FROM voo WHERE"
+                    + " (data_volta = ?"
+                    + " OR data_ida = ?"
+                    + " OR destino = ?"
+                    + " OR origem = ?"
+                    + " OR quantidade_passagens = ?"
+                    + " OR preco = ?)"
+                    + " AND ativo = true";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Insercoes.
+            preparedStatement.setString(1, busca);
+            preparedStatement.setString(2, busca);
+            preparedStatement.setString(3, busca);
+            preparedStatement.setString(4, busca);
+            int n1 = 0;
+            try {
+                n1 = Integer.parseInt(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            float n2 = 0;
+            try {
+                n2 = Float.parseFloat(busca);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro");
+            }
+            preparedStatement.setInt(5, n1);
+            preparedStatement.setFloat(6, n2);
+
+        } else {
+            sql = "SELECT * FROM voo WHERE ativo = true ";
+            preparedStatement = connection.prepareStatement(sql);
         }
-        float n2 = 0;
-        try {
-            n2 = Float.parseFloat(busca);
-        } catch (NumberFormatException e) {
-            System.out.println("Erro");
-        }
-        preparedStatement.setInt(5, n1);
-        preparedStatement.setFloat(6, n2);
 
         try (ResultSet result = preparedStatement.executeQuery()) {
 
@@ -194,26 +224,5 @@ public class VooDAO {
             }
         }
         return listaResultado;
-    }
-
-    public void excluirVoo(int id) throws SQLException, ClassNotFoundException {
-        String slq = "UPDATE Voo SET ativo = ? WHERE id_voo = ?";
-
-        try {
-            connection = DbUtil.getConnection();
-            preparedStatement = connection.prepareStatement(slq);
-            
-            preparedStatement.setBoolean(1, false);
-            preparedStatement.setInt(2, id);
-
-            preparedStatement.execute();
-        } finally {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
     }
 }

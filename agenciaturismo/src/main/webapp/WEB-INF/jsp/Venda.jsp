@@ -4,6 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html">
+        <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
@@ -17,37 +18,35 @@
                 <div class="container-page">				
                     <div class="col-md-6">
                         <div class="form-group col-lg-10">
-                            <label>Total</label>
+                            <label>Total <span class="glyphicon glyphicon-usd"></span> :</label>
                             <label id="total" name="totalP" class="form-control">0</label>
                         </div>
                         <div class="form-group col-lg-10">
-                            <label>Filial</label>
+                            <label>Filial <span class="fa fa-rss"></span> :</label>
                             <label  name="filial" class="form-control">${funcionario.filial}</label>
                         </div>
                     </div>
                 </div>
                 <div class="container-page ">	
                     <div class="form-group col-sm-4 col-lg-push-1">
-                        <label>Usuário:</label>
+                        <label>Usuário <span class="fa fa-id-card"></span> :</label>
                         <label  name="usuario" class="form-control">${funcionario.nome}</label>
                     </div>
                     <div class="form-group col-sm-4 col-lg-push-1">
-                        <label>CPF:</label>
+                        <label>CPF <span class="glyphicon glyphicon-book"></span> :</label>
                         <label name="cpf" id="cpf" class="form-control">${cpf}</label>
                     </div>		
                 </div>
-                <div class="container-page">
-                    <div class="form-group col-sm-4 col-lg-push-">
-                        <input name="pesquisaVoo" id="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaVoo">
-                        <button onclick="pesquisaVoo()" type="submit" class="btn ">Pesquisar Voo</button>
-                    </div>
-                </div>
-                <div class="container-page">
-                    <div class="form-group col-sm-4 col-lg-push-3">
-                        <div class="form-group">
-                            <input name="pesquisaHotel" id="pesquisaHotel" type="text" placeholder="Insira pesquisa" class="input-medium search-query pesquisaHotel">
-                            <button onclick="pesquisaHotel()" type="submit" class="btn">Pesquisar Hotel</button>                    
-                        </div>
+                <div class="container-page form-group">
+                    <div class="input-group">
+                        <input name="pesquisaVoo" id="pesquisaVoo" type="text" placeholder="Insira pesquisa" class="form-control pesquisaVoo">
+                        <span class="input-group-btn">
+                            <button onclick="pesquisaVoo()" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;"> Pesquisar Voo</span></button>
+                        </span>                           
+                        <input name="pesquisaHotel" id="pesquisahotel" type="text" placeholder="Insira pesquisa" class="form-control pesquisaHotel">
+                        <span class="input-group-btn">
+                            <button onclick="pesquisaHotel()" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;"> Pesquisar Hotel</span></button>
+                        </span>                           
                     </div>
                 </div>
                 <div class="container-page" >
@@ -55,7 +54,7 @@
 
                     </table>
                 </div>
-                <label class="h3">Carrinho - Hotel</label>
+                <label class="h3">Carrinho - Hotel <span class="fa fa-shopping-basket"> :</label>
                 <div class="container-page">
                     <table class="table table-striped" >
                         <thead>
@@ -74,7 +73,7 @@
                         </tbody>
                     </table>
                 </div>
-                <label class="h3">Carrinho - Vôo</label>
+                <label class="h3">Carrinho - Vôo <span class="fa fa-shopping-basket"> :</span></label>
                 <div class="container-page">
                     <table class="table table-striped">
                         <thead>
@@ -93,14 +92,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="container-page">
-                    <div id="wrap" class="container">
-                        <div class="row">
-                            <div class="controls col-md-5">
-                                <button onclick="venda()" class="btn">Vender</button>                    
-                            </div>                        
-                        </div>
-                    </div>
+                <div class="col-lg-offset-4">
+                    <button type="submit" onclick="venda()" style="width: 450px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-shopping-cart"> Vender</span></button>
                 </div>
             </section>
         </div>

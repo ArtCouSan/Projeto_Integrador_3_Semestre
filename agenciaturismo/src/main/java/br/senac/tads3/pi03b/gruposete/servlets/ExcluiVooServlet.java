@@ -24,7 +24,7 @@ public class ExcluiVooServlet extends HttpServlet {
         if ("delete".equalsIgnoreCase(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
-                query.excluirVoo(id);
+                query.excluir(id);
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ExcluiVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

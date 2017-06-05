@@ -14,7 +14,7 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            <form name="cadastrof" action="CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
+            <form name="cadastrof" onsubmit="return confirmar('cadastrar')" action="CadastroFuncionario" method="post" class="form-horizontal" data-toggle="validator">
 
                 <div class="form-group ">
                     <c:if test="${erroNome}">
@@ -224,7 +224,7 @@
                 </div>
 
                 <div class="col-lg-offset-4">
-                    <button type="submit" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
+                    <button type="submit" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                 </div>
                 
             </form>
