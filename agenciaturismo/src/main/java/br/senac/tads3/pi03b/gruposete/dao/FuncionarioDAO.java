@@ -264,8 +264,14 @@ public class FuncionarioDAO {
 
         String sql;
 
+        System.out.println(">>>>>>>>>" + busca.length());
+
         if (busca.length() != 0) {
 
+            System.out.println("hsauiahsoahsashioa");
+            System.out.println(busca);
+            
+            
             sql = "SELECT * FROM funcionario WHERE"
                     + " (estado = ?"
                     + " OR celular = ?"
@@ -304,7 +310,7 @@ public class FuncionarioDAO {
             try {
                 n1 = Integer.parseInt(busca);
             } catch (NumberFormatException e) {
-                System.out.println("Erro");
+
             }
             preparedStatement.setInt(10, n1);
             preparedStatement.setString(11, busca);
@@ -434,13 +440,16 @@ public class FuncionarioDAO {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+
                 String nome = resultSet.getString("nome");
                 String filial = resultSet.getString("filial");
                 String login = resultSet.getString("login");
                 String senha = resultSet.getString("senha");
                 String acesso = resultSet.getString("acesso");
                 String cpf = resultSet.getString("cpf");
+                int id_func = resultSet.getInt("id_funcionario");
 
+                func.setId_func(id_func);
                 func.setFilial(filial);
                 func.setNome(nome);
                 func.setLogin(login);

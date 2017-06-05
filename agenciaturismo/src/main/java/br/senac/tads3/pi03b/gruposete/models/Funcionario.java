@@ -8,14 +8,15 @@ public final class Funcionario extends Pessoa {
     private String login;
     private String senha;
     private String acesso;
+    private int id_func;
 
-    public Funcionario(String nome, String cpf, String sexo, String data_nasc, 
-            int numero, String cep, String rua, String bairro, String cidade, 
-            String complemento, String celular, String telefone, 
-            String email, boolean ativo,String cargo, String filial, 
+    public Funcionario(String nome, String cpf, String sexo, String data_nasc,
+            int numero, String cep, String rua, String bairro, String cidade,
+            String complemento, String celular, String telefone,
+            String email, boolean ativo, String cargo, String filial,
             String departamento, String login, String senha, String acesso) {
-        
-        super(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, 
+
+        super(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade,
                 complemento, celular, telefone, email, ativo);
         this.cargo = cargo;
         this.filial = filial;
@@ -26,9 +27,17 @@ public final class Funcionario extends Pessoa {
     }
 
     public Funcionario() {
-        
+
     }
 
+    public int getId_func() {
+        return id_func;
+    }
+
+    public void setId_func(int id_func) {
+        this.id_func = id_func;
+    }
+    
     public String getCargo() {
         return cargo;
     }
@@ -76,7 +85,7 @@ public final class Funcionario extends Pessoa {
     public void setAcesso(String acesso) {
         this.acesso = acesso;
     }
-    
+
     public boolean temPapel(String papel) {
         return (this.acesso.equalsIgnoreCase(papel));
     }
