@@ -9,6 +9,7 @@ public final class Funcionario extends Pessoa {
     private String login;
     private String senha;
     private String acesso;
+    private int id_func;
 
     public Funcionario(String nome, String cpf, String sexo, String data_nasc,
             int numero, String cep, String rua, String bairro, String cidade,
@@ -27,6 +28,7 @@ public final class Funcionario extends Pessoa {
     }
 
     public Funcionario() {
+
     }
 
     public int getId() {
@@ -35,8 +37,14 @@ public final class Funcionario extends Pessoa {
 
     public void setId(int id) {
         this.id = id;
+
     }
 
+    
+  
+
+    
+    
     public String getCargo() {
         return cargo;
     }

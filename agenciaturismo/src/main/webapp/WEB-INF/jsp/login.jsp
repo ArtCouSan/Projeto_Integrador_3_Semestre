@@ -27,7 +27,6 @@
                 </form>
             </div>
         </div>
-    <c:import url="./Layout/rodape.jsp"/>
-</body>
+    </body>
 </html>
 

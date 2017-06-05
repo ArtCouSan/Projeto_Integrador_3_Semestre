@@ -244,6 +244,7 @@ public class FuncionarioDAO {
         connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(sql);
 
+
         // Insercoes.
         preparedStatement.setString(1, busca);
         preparedStatement.setString(2, busca);
@@ -259,7 +260,7 @@ public class FuncionarioDAO {
         try {
             n1 = Integer.parseInt(busca);
         } catch (NumberFormatException e) {
-            System.out.println("Erro");
+
         }
         preparedStatement.setInt(10, n1);
         
@@ -345,6 +346,7 @@ public class FuncionarioDAO {
                 func.setSenha(resultSet.getString("senha"));
                 func.setAcesso(resultSet.getString("acesso"));
                 func.setCpf(resultSet.getString("cpf"));
+
             }
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
