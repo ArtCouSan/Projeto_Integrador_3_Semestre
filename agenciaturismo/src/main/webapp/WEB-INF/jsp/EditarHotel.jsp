@@ -13,7 +13,9 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
+            
             <form name="editah" onsubmit="return confirmar('alterar')" action="EditarHotel" method="post" class="form-horizontal">
+                
                 <input type="hidden" name="identificacao" value="${hoteis.getId()}"/>
                 
                 <div class="form-group ">
@@ -73,7 +75,9 @@
                 <div class="col-lg-offset-4">
                     <button type="submit" style="width: 555px" class="btn btn-danger botao_g"><span class="glyphicon glyphicon-floppy-saved"> Alterar</span></button>
                 </div>
+                    
             </form>
+                    
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
