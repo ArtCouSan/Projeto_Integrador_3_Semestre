@@ -16,7 +16,7 @@
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             
-            <form name="editac" onsubmit="return confirmar('alterar')" action="EditarCliente" method="post" class="form-horizontal">
+            <form name="editac" action="EditarCliente" method="post" class="form-horizontal">
                 
                 <input type="hidden" name="identificacao" value="${clientes.getId()}"/>
                 

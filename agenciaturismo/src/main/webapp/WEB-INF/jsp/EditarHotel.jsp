@@ -15,7 +15,7 @@
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
             
-            <form name="editav" onsubmit="return confirmar('alterar')" action="EditarVoo" method="post" class="form-horizontal">
+            <form name="editav" action="EditarVoo" method="post" class="form-horizontal">
                 
                 <input type="hidden" name="identificacao" value="${hoteis.getId()}"/>
                 
