@@ -24,9 +24,9 @@
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
-                            <li ><a href="ApresentaBusca3"><i class="fa fa-archive"> Buscar Alterações</i></a></li>
-                            <li ><a href="FeedbackServlet"><i class="fa fa-telegram"> Mandar feedback</i></a></li>
-                            <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
+                            <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>
+                            <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope">  Mandar  feedback</i></a></li>
+                            <li ><a href="logout"><i class="glyphicon glyphicon-off">  Sair</i></a></li>
                         </ul>
                     </div>
                 </nav>
@@ -41,7 +41,7 @@
                             <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li> 
-                            <li ><a href="FeedbackServlet"><i class="fa fa-telegram"> Mandar feedback</i></a></li>
+                            <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope"> Mandar feedback</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
@@ -60,7 +60,7 @@
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
-                            <li ><a href="ApresentaBusca3"><i class="fa fa-archive"> Buscar Alterações</i></a></li>                            
+                            <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>                            
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
@@ -85,7 +85,7 @@
                             <li ><i class="glyphicon glyphicon-user"><p style="color: white">${funcionario.nome}</p></i></li>
                             <li ><a href="CadastroFuncionario"><i class="glyphicon glyphicon-briefcase"> Cadastrar Funcionario</i></a></li>
                             <li ><a href="BuscaFuncionario"><i class="glyphicon glyphicon-cog"> Busca Funcionario</i></a></li>
-                            <li ><a href="ApresentaBusca3"><i class="fa fa-archive"> Buscar Alterações</i></a></li>                            
+                            <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>                            
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
@@ -100,7 +100,7 @@
                             <li ><a href="CadastroVoo" ><i class="glyphicon glyphicon-plane"> Cadastrar Voo</i></a></li>
                             <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
-                            <li ><a href="FeedbackServlet"><i class="fa fa-telegram"> Mandar feedback</i></a></li>
+                            <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope"> Mandar feedback</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
@@ -115,7 +115,7 @@
                             <li ><a href="CadastroVoo" ><i class="glyphicon glyphicon-plane"> Cadastrar Voo</i></a></li>
                             <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
-                            <li ><a href="ApresentaBusca3"><i class="fa fa-archive"> Buscar Alterações</i></a></li>                            
+                            <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>                            
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
