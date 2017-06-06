@@ -16,7 +16,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <form role="form"action="PreVenda" method="post">
                     <div class="row">
-                        <h1 class="text-center"> Validação do cliente</h1>
+                        <h1 class="text-center"><span class="fa fa-handshake-o"></span> Validação do cliente</h1>
                         <div class="form-group">
                             <div class="input-group">
                                 <input class="form-control" type="text" placeholder="000.000.000-00" name="cpf" required/>
