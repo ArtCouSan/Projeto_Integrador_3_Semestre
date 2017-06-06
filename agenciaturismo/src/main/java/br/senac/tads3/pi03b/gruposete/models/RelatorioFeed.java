@@ -3,11 +3,20 @@ package br.senac.tads3.pi03b.gruposete.models;
 public class RelatorioFeed {
 
     private String filial;
+    private int id_feed;
     private String mensagem;
     private String funcionario;
     private String cargo;
     private String data;
     private int id_func;
+
+    public int getId_feed() {
+        return id_feed;
+    }
+
+    public void setId_feed(int id_feed) {
+        this.id_feed = id_feed;
+    }
 
     public String getFilial() {
         return filial;

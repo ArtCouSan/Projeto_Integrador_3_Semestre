@@ -102,9 +102,11 @@ FOREIGN KEY id_funcionario (id_funcionario) REFERENCES Funcionario(id_funcionari
 );
 
 CREATE TABLE feedback (
+id_feed INT(5) NOT NULL AUTO_INCREMENT,
 mensagem VARCHAR(1000) NOT NULL,
 id_funcionario INT(5) NOT NULL,
-data_m VARCHAR(10)
+data_m VARCHAR(10),
+PRIMARY KEY  (id_feed)
 );
 
 INSERT INTO Voo (data_ida, data_volta, destino, origem, preco, ativo) 

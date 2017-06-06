@@ -26,6 +26,7 @@
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
                             <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>
                             <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope">  Mandar  feedback</i></a></li>
+                            <li ><a href="ApresentaBuscaFeedback"><i class="glyphicon glyphicon-warning-sign"> Feedbacks</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off">  Sair</i></a></li>
                         </ul>
                     </div>
