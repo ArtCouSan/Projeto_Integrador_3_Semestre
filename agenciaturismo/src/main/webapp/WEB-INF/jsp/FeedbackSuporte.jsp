@@ -15,7 +15,7 @@
         <c:import url="./cabecalho.jsp"/>      
         <div class="report">
             <h2 class="text-center"><span class="glyphicon glyphicon-wrench"></span> Reportar Problema com aplicação ou infraestrutura</h2>
-            <form class="doo" method="post" >
+            <form class="doo" method="post" action="FeedbackServlet" >
                 <div class="col-sm-12">
                     <textarea maxlength="1000" minlength="0" onkeypress="feedback()" onkeydown="feedback()" style="height: 300px" id="mensagem" name="mensagem" class="form-control" ></textarea>
                 </div>

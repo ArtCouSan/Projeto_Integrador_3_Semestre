@@ -1,5 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
+import br.senac.tads3.pi03b.gruposete.models.RelatorioFeed;
 import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.models.RelatorioValores;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
@@ -126,6 +127,41 @@ public class RelatorioDAO {
             String formatado = formatarDate.format(data);
 
             preparedStatement.setString(1, relatorios.getMudanca());
+            preparedStatement.setInt(2, relatorios.getId_func());
+            preparedStatement.setString(3, formatado);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+        } finally {
+
+            if (connection != null && !connection.isClosed()) {
+
+                connection.close();
+
+            }
+
+        }
+
+    }
+
+    public void feed(RelatorioFeed relatorios) throws SQLException, Exception {
+
+        String sql = "INSERT INTO `feedback`"
+                + "(`mensagem`, `id_funcionario`, `data_m`) "
+                + "VALUES (?, ?, ?)";
+
+        try {
+
+            connection = DbUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            Date data = new Date(System.currentTimeMillis());
+            SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd");
+            String formatado = formatarDate.format(data);
+            
+            preparedStatement.setString(1, relatorios.getMensagem());
             preparedStatement.setInt(2, relatorios.getId_func());
             preparedStatement.setString(3, formatado);
 

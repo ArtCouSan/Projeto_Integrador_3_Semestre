@@ -12,7 +12,7 @@
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
-        <div class="container" style="margin-top: 5%;">
+        <div class="container" >
             <div class="col-md-6 col-md-offset-3">
                 <form role="form" action="BuscaHotel" method="post">
                     <div class="row">
