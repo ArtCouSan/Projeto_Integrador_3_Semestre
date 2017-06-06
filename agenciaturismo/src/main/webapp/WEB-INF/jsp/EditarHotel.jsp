@@ -9,7 +9,7 @@
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
         <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
-        <title>Editar Voo</title>
+        <title>Editar Hotel</title>
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
@@ -34,6 +34,12 @@
                         <div class="erro">Digite o destino</div>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Destino <span class="glyphicon glyphicon-pushpin"></span> :</label>
+                        <input class="form-control" name="nome_hotel" value="${hoteis.getNome()}" type="text" id="example-text-input" required> 
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label for="example-date-input" class="control-label col-md-4">* Data de entrada <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="destino" value="${voos.getDestino()}" type="text" id="example-text-input" required>
                     </div>
