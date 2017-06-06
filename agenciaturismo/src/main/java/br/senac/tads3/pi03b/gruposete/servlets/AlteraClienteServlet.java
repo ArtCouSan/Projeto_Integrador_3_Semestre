@@ -96,8 +96,7 @@ public class AlteraClienteServlet extends HttpServlet {
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Alteração de cliente efetuada!");
                 relatorioDAO.inserir(relatorio);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/inicio");
             } catch (Exception ex) {
                 Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

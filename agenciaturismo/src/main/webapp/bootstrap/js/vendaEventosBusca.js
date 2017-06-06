@@ -443,7 +443,7 @@ function addCarrinhoVoo(id) {
 
         var totalConvertido = parseFloat(totalPreco.innerText);
 
-        totalPreco.innerText = totalConvertido + parseFloat(preco);
+        totalPreco.innerText = totalConvertido + parseFloat(preco * quantidade_passagens);
 
         var carrinho = document.getElementById("carrinho2");
 

@@ -15,9 +15,9 @@
         <c:import url="./cabecalho.jsp"/>      
         <div class="report">
             <h2 class="text-center"><span class="glyphicon glyphicon-wrench"></span> Reportar Problema com aplicação ou infraestrutura</h2>
-            <form class="doo" method="post" action="FeedbackServlet" >
+            <form class="doo" method="post" action="artcousan@gmail.com" >
                 <div class="col-sm-12">
-                    <textarea maxlength="1000" minlength="0" onkeypress="feedback()" onkeydown="feedback()" style="height: 300px" id="mensagem" name="mensagem" class="form-control" ></textarea>
+                    <textarea cols="70" rows="5" wrap="soft" maxlength="1000" minlength="0" onkeypress="feedback()" onkeydown="feedback()" style="height: 300px" id="mensagem" name="mensagem" class="form-control" ></textarea>
                 </div>
                 <br/>
                 <h4 class="col-lg-offset-6" id="texto"> Maximo 1000 caracteres - 1000 </h4>

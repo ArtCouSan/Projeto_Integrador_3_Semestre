@@ -64,7 +64,7 @@ public class RelatorioDAO {
         return listaResultado;
 
     }
-    
+
     public ArrayList<RelatorioFeed> procurarRelatorioFeed() throws SQLException, ClassNotFoundException {
 
         // Conecta.
@@ -111,6 +111,82 @@ public class RelatorioDAO {
 
     }
 
+    public ArrayList<RelatorioFeed> procurarRelatorioFeed(String filial) throws SQLException, ClassNotFoundException {
+
+        // Conecta.
+        connection = DbUtil.getConnection();
+
+        // Lista que ira receber vendas.
+        ArrayList<RelatorioFeed> listaResultado = new ArrayList<>();
+
+        // Comando SQL.
+        String slq = "SELECT * FROM `feedback` "
+                + "INNER JOIN funcionario "
+                + "ON feedback.id_funcionario = funcionario.id_funcionario "
+                + "WHERE funcionario.filial = ?"
+                + "ORDER BY data_m DESC LIMIT 50";
+
+        preparedStatement.setString(1, filial);
+        
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Executa e recebe resultado.
+        resultSet = preparedStatement.executeQuery();
+
+        // Loop com resultados.
+        while (resultSet.next()) {
+
+            // Declara objeto.
+            RelatorioFeed relatorio = new RelatorioFeed();
+
+            // Prenche.
+            relatorio.setId_feed(resultSet.getInt("id_feed"));
+            relatorio.setMensagem(resultSet.getString("mensagem"));
+            relatorio.setData(resultSet.getString("data_m"));
+            relatorio.setFuncionario(resultSet.getString("nome"));
+            relatorio.setFilial(resultSet.getString("filial"));
+            relatorio.setCargo(resultSet.getString("cargo"));
+
+            // Adiciona a lista.
+            listaResultado.add(relatorio);
+
+        }
+
+        // Fecha conexao.
+        connection.close();
+
+        // Retorna lista.
+        return listaResultado;
+
+    }
+
+    public void excluirFeed(int id) throws SQLException, ClassNotFoundException {
+        
+        String slq = "DELETE FROM feedback WHERE id_feed = ?";
+
+        try {
+            
+            connection = DbUtil.getConnection();
+            
+            preparedStatement = connection.prepareStatement(slq);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            
+        } finally {
+            
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+            
+        }
+
+    }
+    
+    
     public ArrayList<RelatorioValores> procurarRelatorioAno() throws SQLException, ClassNotFoundException {
 
         // Conecta.
@@ -206,7 +282,7 @@ public class RelatorioDAO {
             Date data = new Date(System.currentTimeMillis());
             SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd");
             String formatado = formatarDate.format(data);
-            
+
             preparedStatement.setString(1, relatorios.getMensagem());
             preparedStatement.setInt(2, relatorios.getId_func());
             preparedStatement.setString(3, formatado);
