@@ -66,8 +66,7 @@ public class CadastroHotelServlet extends HttpServlet {
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de hotel efetuado!");
                 relatorioDAO.inserir(relatorio);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/inicio");
 
             } catch (Exception ex) {
 

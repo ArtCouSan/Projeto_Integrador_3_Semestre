@@ -3,7 +3,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.dao.VooDAO;
 import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,8 +40,7 @@ public class ExcluiVooServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(ExcluiVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaVoo.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/inicio");
         }
     }
 }

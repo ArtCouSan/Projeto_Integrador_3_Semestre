@@ -84,8 +84,7 @@ public class AlteraVooServlet extends HttpServlet {
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Alteração de vôo efetuado!");
                 relatorioDAO.inserir(relatorio);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/inicio");
             } catch (Exception ex) {
                 Logger.getLogger(AlteraVooServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

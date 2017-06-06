@@ -80,8 +80,7 @@ public class CadastroClienteServlet extends HttpServlet {
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de cliente efetuado!");
                 relatorioDAO.inserir(relatorio);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/inicio");
             } catch (Exception ex) {
 
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
