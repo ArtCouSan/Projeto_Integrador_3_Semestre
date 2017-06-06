@@ -83,7 +83,7 @@
                         </div>
                     </fieldset>
                 </div>
-                <div class="clearfix col-lg-offset-3">
+                <div class="clearfix col-lg-offset-4">
                     <button style="width: 700px" class="btn btn-primary btn-block">Enviar <span class="glyphicon glyphicon-send"></span></button>
                 </div>
             </form>
