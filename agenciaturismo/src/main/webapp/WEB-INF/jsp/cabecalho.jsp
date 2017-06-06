@@ -26,8 +26,7 @@
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
                             <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>
-                            <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope">  Mandar  feedback</i></a></li>
-                            <li ><a href="ApresentaBuscaFeedback"><i class="glyphicon glyphicon-warning-sign"> Feedbacks</i></a></li>
+                            <li ><a href="ApresentaFeedback"><i class="glyphicon glyphicon-envelope">  Mandar  feedback</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off">  Sair</i></a></li>
                         </ul>
                     </div>
@@ -44,7 +43,7 @@
                             <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-search"> Busca Hotel</i></a></li>
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-search"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li> 
-                            <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope"> Mandar feedback</i></a></li>
+                            <li ><a href="ApresentaFeedback"><i class="glyphicon glyphicon-envelope"> Mandar feedback</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
@@ -107,7 +106,7 @@
                             <li ><a href="CadastroVoo" ><i class="glyphicon glyphicon-plane"> Cadastrar Voo</i></a></li>
                             <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-search"> Busca Hotel</i></a></li>
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-search"> Busca Voo</i></a></li>
-                            <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope"> Mandar feedback</i></a></li>
+                            <li ><a href="ApresentaFeedback"><i class="glyphicon glyphicon-envelope"> Mandar feedback</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
