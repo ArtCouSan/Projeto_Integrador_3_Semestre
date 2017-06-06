@@ -23,7 +23,7 @@
                         <thead>
                             <tr class="info">
                                 <th>Filial</th>
-                                <th>Mensagem</th>
+                                <th>Problema</th>
                                 <th>Funcionario</th>
                                 <th>Cargo</th>
                                 <th>Data</th>

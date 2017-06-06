@@ -8,13 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ApresentaFeedback", urlPatterns = {"/ApresentaFeedback"})
-public class ApresentaFeedback extends HttpServlet {
+@WebServlet(name = "ApresentaBuscaSLAServlet", urlPatterns = {"/ApresentaBuscaSLA"})
+public class ApresentaBuscaSLAServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/FeedbackDesenvolvedor.jsp");
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarFeedback.jsp");
         dispatcher.forward(request, response);
+
     }
 
     @Override
@@ -28,5 +30,10 @@ public class ApresentaFeedback extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }
