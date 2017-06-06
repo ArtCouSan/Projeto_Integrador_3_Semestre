@@ -1,6 +1,6 @@
 package br.senac.tads3.pi03b.gruposete.dao;
 
-import br.senac.tads3.pi03b.gruposete.models.RelatorioFeed;
+import br.senac.tads3.pi03b.gruposete.models.RelatorioSLA;
 import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
 import br.senac.tads3.pi03b.gruposete.models.RelatorioValores;
 import br.senac.tads3.pi03b.gruposete.utils.DbUtil;
@@ -65,18 +65,18 @@ public class RelatorioDAO {
 
     }
 
-    public ArrayList<RelatorioFeed> procurarRelatorioFeed() throws SQLException, ClassNotFoundException {
+    public ArrayList<RelatorioSLA> procurarRelatorioSLA() throws SQLException, ClassNotFoundException {
 
         // Conecta.
         connection = DbUtil.getConnection();
 
         // Lista que ira receber vendas.
-        ArrayList<RelatorioFeed> listaResultado = new ArrayList<>();
+        ArrayList<RelatorioSLA> listaResultado = new ArrayList<>();
 
         // Comando SQL.
-        String slq = "SELECT * FROM `feedback` "
+        String slq = "SELECT * FROM `sla` "
                 + "INNER JOIN funcionario "
-                + "ON feedback.id_funcionario = funcionario.id_funcionario "
+                + "ON sla.id_funcionario = funcionario.id_funcionario "
                 + "ORDER BY data_m DESC LIMIT 50";
 
         preparedStatement = connection.prepareStatement(slq);
@@ -88,10 +88,10 @@ public class RelatorioDAO {
         while (resultSet.next()) {
 
             // Declara objeto.
-            RelatorioFeed relatorio = new RelatorioFeed();
+            RelatorioSLA relatorio = new RelatorioSLA();
 
             // Prenche.
-            relatorio.setId_feed(resultSet.getInt("id_feed"));
+            relatorio.setId_sla(resultSet.getInt("id_sla"));
             relatorio.setMensagem(resultSet.getString("mensagem"));
             relatorio.setData(resultSet.getString("data_m"));
             relatorio.setFuncionario(resultSet.getString("nome"));
@@ -111,23 +111,23 @@ public class RelatorioDAO {
 
     }
 
-    public ArrayList<RelatorioFeed> procurarRelatorioFeed(String filial) throws SQLException, ClassNotFoundException {
+    public ArrayList<RelatorioSLA> procurarRelatorioSLA(String filial) throws SQLException, ClassNotFoundException {
 
         // Conecta.
         connection = DbUtil.getConnection();
 
         // Lista que ira receber vendas.
-        ArrayList<RelatorioFeed> listaResultado = new ArrayList<>();
+        ArrayList<RelatorioSLA> listaResultado = new ArrayList<>();
 
         // Comando SQL.
-        String slq = "SELECT * FROM `feedback` "
+        String slq = "SELECT * FROM `sla` "
                 + "INNER JOIN funcionario "
-                + "ON feedback.id_funcionario = funcionario.id_funcionario "
+                + "ON sla.id_funcionario = funcionario.id_funcionario "
                 + "WHERE funcionario.filial = ?"
                 + "ORDER BY data_m DESC LIMIT 50";
 
         preparedStatement.setString(1, filial);
-        
+
         preparedStatement = connection.prepareStatement(slq);
 
         // Executa e recebe resultado.
@@ -137,10 +137,10 @@ public class RelatorioDAO {
         while (resultSet.next()) {
 
             // Declara objeto.
-            RelatorioFeed relatorio = new RelatorioFeed();
+            RelatorioSLA relatorio = new RelatorioSLA();
 
             // Prenche.
-            relatorio.setId_feed(resultSet.getInt("id_feed"));
+            relatorio.setId_sla(resultSet.getInt("id_sla"));
             relatorio.setMensagem(resultSet.getString("mensagem"));
             relatorio.setData(resultSet.getString("data_m"));
             relatorio.setFuncionario(resultSet.getString("nome"));
@@ -160,33 +160,32 @@ public class RelatorioDAO {
 
     }
 
-    public void excluirFeed(int id) throws SQLException, ClassNotFoundException {
-        
+    public void excluirSLA(int id) throws SQLException, ClassNotFoundException {
+
         String slq = "DELETE FROM feedback WHERE id_feed = ?";
 
         try {
-            
+
             connection = DbUtil.getConnection();
-            
+
             preparedStatement = connection.prepareStatement(slq);
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
-            
+
         } finally {
-            
+
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
             }
-            
+
             if (connection != null && !connection.isClosed()) {
                 connection.close();
             }
-            
+
         }
 
     }
-    
-    
+
     public ArrayList<RelatorioValores> procurarRelatorioAno() throws SQLException, ClassNotFoundException {
 
         // Conecta.
@@ -268,9 +267,9 @@ public class RelatorioDAO {
 
     }
 
-    public void feed(RelatorioFeed relatorios) throws SQLException, Exception {
+    public void sla(RelatorioSLA relatorios) throws SQLException, Exception {
 
-        String sql = "INSERT INTO `feedback`"
+        String sql = "INSERT INTO `sla`"
                 + "(`mensagem`, `id_funcionario`, `data_m`) "
                 + "VALUES (?, ?, ?)";
 

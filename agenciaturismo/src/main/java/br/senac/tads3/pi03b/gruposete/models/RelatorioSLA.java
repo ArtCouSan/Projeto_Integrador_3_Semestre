@@ -1,21 +1,21 @@
 package br.senac.tads3.pi03b.gruposete.models;
 
-public class RelatorioFeed {
+public class RelatorioSLA {
 
     private String filial;
-    private int id_feed;
+    private int id_sla;
     private String mensagem;
     private String funcionario;
     private String cargo;
     private String data;
     private int id_func;
 
-    public int getId_feed() {
-        return id_feed;
+    public int getId_SLA() {
+        return id_sla;
     }
 
-    public void setId_feed(int id_feed) {
-        this.id_feed = id_feed;
+    public void setId_sla(int id_sla) {
+        this.id_sla = id_sla;
     }
 
     public String getFilial() {
@@ -66,7 +66,7 @@ public class RelatorioFeed {
         this.id_func = id_func;
     }
 
-    public RelatorioFeed() {
+    public RelatorioSLA() {
     }
 
 }
