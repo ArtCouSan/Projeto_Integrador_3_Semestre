@@ -175,9 +175,12 @@
                     </div>
                 </div>
                 <div id="aceitacao" class="aceitacao">
-
-                    <p>sjpaosjapojs</p>
-
+                    <div class="col-lg-offset-2">
+                        <button type="submit" style="width: 190px; top: 20%; position: absolute" class="btn btn-primary btn-block btn-huge">Confirmar</button>
+                    </div>
+                    <div class="col-lg-offset-2">
+                        <button style="width: 190px; top: 50%; position: absolute" class="btn btn-danger btn-block btn-huge">Cancelar</button>
+                    </div>
                 </div>
             </form>
         </div>
