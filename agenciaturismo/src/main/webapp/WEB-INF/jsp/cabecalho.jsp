@@ -13,7 +13,7 @@
                     <div class="container-fluid">
                         <ul class="nav navbar-nav">
 
-                            <li ><i class="glyphicon glyphicon-user"><p id="${funcionario.id_func}" name="identificacao" style="color: white">${funcionario.nome}</p></i></li>
+                            <li ><i class="glyphicon glyphicon-user"><p id="${funcionario.id}" name="identificacao" style="color: white">${funcionario.nome}</p></i></li>
                             <li ><a href="CadastroCliente"><i class="glyphicon glyphicon-user"> Cadastrar Cliente</i></a></li>
                             <li ><a href="CadastroFuncionario"><i class="glyphicon glyphicon-briefcase"> Cadastrar Funcionario</i></a></li>
                             <li ><a href="CadastroHotel"><i class="glyphicon glyphicon-header"> Cadastrar Hotel</i></a></li>
