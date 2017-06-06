@@ -80,19 +80,14 @@ public class CadastroFuncionarioServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             try {
-
                 dao.inserir(func);
-
-                 HttpSession sessao = request.getSession();
-
+                HttpSession sessao = request.getSession();
                 int identificacaoF = (int) sessao.getAttribute("id_func");
-                
-                relatorio.setId_func(identificacaoF );
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de funcionario efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
-
             } catch (Exception ex) {
 
                 Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);

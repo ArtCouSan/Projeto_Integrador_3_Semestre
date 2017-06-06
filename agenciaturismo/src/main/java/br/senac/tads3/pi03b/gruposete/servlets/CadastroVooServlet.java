@@ -58,9 +58,7 @@ public class CadastroVooServlet extends HttpServlet {
         } else {
             try {
                 dao.inserir(voo);
-
                 HttpSession sessao = request.getSession();
-
                 int identificacaoF = (int) sessao.getAttribute("id_func");
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de vôo efetuado!");

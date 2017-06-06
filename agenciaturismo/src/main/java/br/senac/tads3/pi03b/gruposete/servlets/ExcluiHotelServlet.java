@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/ExcluiHotelServlet")
 public class ExcluiHotelServlet extends HttpServlet {
@@ -35,8 +36,9 @@ public class ExcluiHotelServlet extends HttpServlet {
             try {
 
                 query.excluir(id);
-
-                relatorio.setId_func(1);
+                HttpSession sessao = request.getSession();
+                int identificacaoF = (int) sessao.getAttribute("id_func");
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Exclusão de hotel efetuada!");
                 relatorioDAO.inserir(relatorio);
 

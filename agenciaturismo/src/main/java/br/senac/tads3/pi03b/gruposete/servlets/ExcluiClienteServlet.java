@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/ExcluiClienteServlet")
 public class ExcluiClienteServlet extends HttpServlet {
@@ -30,8 +31,9 @@ public class ExcluiClienteServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 daoCliente.excluir(id);
-
-                relatorio.setId_func(1);
+                HttpSession sessao = request.getSession();
+                int identificacaoF = (int) sessao.getAttribute("id_func");
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Exclusão de cliente efetuada!");
                 relatorioDAO.inserir(relatorio);
             } catch (SQLException | ClassNotFoundException ex) {

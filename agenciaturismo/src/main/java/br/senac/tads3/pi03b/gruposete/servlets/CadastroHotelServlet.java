@@ -59,12 +59,8 @@ public class CadastroHotelServlet extends HttpServlet {
             try {
 
                 dao.inserir(hotel);
-                
                 HttpSession sessao = request.getSession();
-
                 int identificacaoF = (int) sessao.getAttribute("id_func");
-
-
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de hotel efetuado!");
                 relatorioDAO.inserir(relatorio);

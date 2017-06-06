@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "AlteraHotelServlet", urlPatterns = {"/EditarHotel"})
 public class AlteraHotelServlet extends HttpServlet {
@@ -75,7 +76,9 @@ public class AlteraHotelServlet extends HttpServlet {
         } else {
             try {
                 dao.alterar(hotel);
-                relatorio.setId_func(1);
+                HttpSession sessao = request.getSession();
+                int identificacaoF = (int) sessao.getAttribute("id_func");
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Alteração de hotel efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");

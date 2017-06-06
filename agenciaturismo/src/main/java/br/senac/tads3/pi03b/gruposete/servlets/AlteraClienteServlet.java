@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "AlteraClienteServlet", urlPatterns = {"/EditarCliente"})
 public class AlteraClienteServlet extends HttpServlet {
@@ -86,7 +87,9 @@ public class AlteraClienteServlet extends HttpServlet {
         } else {
             try {
                 dao.alterar(cliente);
-                relatorio.setId_func(1);
+                HttpSession sessao = request.getSession();
+                int identificacaoF = (int) sessao.getAttribute("id_func");
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Alteração de cliente efetuada!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");

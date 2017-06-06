@@ -72,11 +72,8 @@ public class CadastroClienteServlet extends HttpServlet {
             try {
 
                 HttpSession sessao = request.getSession();
-
                 int identificacaoF = (int) sessao.getAttribute("id_func");
-
                 dao.inserir(cliente);
-
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de cliente efetuado!");
                 relatorioDAO.inserir(relatorio);
