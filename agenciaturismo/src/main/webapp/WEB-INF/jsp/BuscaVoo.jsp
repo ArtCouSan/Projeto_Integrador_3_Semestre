@@ -18,7 +18,6 @@
                     <div class="row">
                         <h1 class="text-center"> Digite o campo pela informação que gostaria de buscar do vôo...</h1>
                         <ul>
-                            <li class="list-unstyled">Dicas:</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-home"></span> | Origem do vôo</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-pushpin"></span> | Destino do vôo</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-plane"></span> | Quantidade de passagens do vôo</li>

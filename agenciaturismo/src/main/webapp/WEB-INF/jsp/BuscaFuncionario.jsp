@@ -18,7 +18,6 @@
                     <div class="row">
                         <h1 class="text-center"> Digite o campo pela informação que gostaria de buscar do funcionário...</h1>
                         <ul>
-                            <li class="list-unstyled">Dicas: (Campo vazio = todos)</li>
                             <li class="list-unstyled"><span class="fa fa-id-card"></span> | Nome do funcionário</li>
                             <li class="list-unstyled"><span class="fa fa-rss"></span> | Filial do funcionário</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-inbox"></span> | Departamento do funcionário</li>

@@ -18,7 +18,6 @@
                     <div class="row">
                         <h1 class="text-center"> Digite o campo pela informação que gostaria de buscar hotel...</h1>
                         <ul>
-                            <li class="list-unstyled">Dicas:</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-home"></span> | Nome do hotel</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-calendar"></span> | Data de entrada no hotel</li>
                             <li class="list-unstyled"><span class="glyphicon glyphicon-calendar"></span> | Data de saida do hotel</li>

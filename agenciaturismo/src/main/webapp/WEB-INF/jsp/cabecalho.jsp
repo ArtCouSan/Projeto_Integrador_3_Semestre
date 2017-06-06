@@ -18,10 +18,10 @@
                             <li ><a href="CadastroFuncionario"><i class="glyphicon glyphicon-briefcase"> Cadastrar Funcionario</i></a></li>
                             <li ><a href="CadastroHotel"><i class="glyphicon glyphicon-header"> Cadastrar Hotel</i></a></li>
                             <li ><a href="CadastroVoo" ><i class="glyphicon glyphicon-plane"> Cadastrar Voo</i></a></li>
-                            <li ><a href="BuscaCliente"><i class="glyphicon glyphicon-cog"> Busca Cliente</i></a></li>
-                            <li ><a href="BuscaFuncionario"><i class="glyphicon glyphicon-cog"> Busca Funcionario</i></a></li>
-                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
-                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
+                            <li ><a href="BuscaCliente"><i class="glyphicon glyphicon-search"> Busca Cliente</i></a></li>
+                            <li ><a href="BuscaFuncionario"><i class="glyphicon glyphicon-search"> Busca Funcionario</i></a></li>
+                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-search"> Busca Hotel</i></a></li>
+                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-search"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
                             <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>
@@ -37,9 +37,9 @@
                         <ul class="nav navbar-nav">
                             <li ><i class="glyphicon glyphicon-user"><p style="color: white">${funcionario.nome}</p></i></li>
                             <li ><a href="CadastroCliente"><i class="glyphicon glyphicon-user"> Cadastrar Cliente</i></a></li>
-                            <li ><a href="BuscaCliente"><i class="glyphicon glyphicon-cog"> Busca Cliente</i></a></li>
-                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
-                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
+                            <li ><a href="BuscaCliente"><i class="glyphicon glyphicon-search"> Busca Cliente</i></a></li>
+                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-search"> Busca Hotel</i></a></li>
+                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-search"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li> 
                             <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope"> Mandar feedback</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
@@ -55,9 +55,9 @@
                             <li ><a href="CadastroCliente"><i class="glyphicon glyphicon-user"> Cadastrar Cliente</i></a></li>
                             <li ><a href="CadastroHotel"><i class="glyphicon glyphicon-header"> Cadastrar Hotel</i></a></li>
                             <li ><a href="CadastroVoo" ><i class="glyphicon glyphicon-plane"> Cadastrar Voo</i></a></li>
-                            <li ><a href="BuscaCliente"><i class="glyphicon glyphicon-cog"> Busca Cliente</i></a></li>
-                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
-                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
+                            <li ><a href="BuscaCliente"><i class="glyphicon glyphicon-search"> Busca Cliente</i></a></li>
+                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-search"> Busca Hotel</i></a></li>
+                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-search"> Busca Voo</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Venda</i></a></li>
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
                             <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>                            
@@ -72,7 +72,7 @@
                         <ul class="nav navbar-nav">
                             <li ><i class="glyphicon glyphicon-user"><p style="color: white">${funcionario.nome}</p></i></li>
                             <li ><a href="CadastroFuncionario"><i class="glyphicon glyphicon-briefcase"> Cadastrar Funcionario</i></a></li>
-                            <li ><a href="BuscaFuncionario"><i class="glyphicon glyphicon-cog"> Busca Funcionario</i></a></li>                          
+                            <li ><a href="BuscaFuncionario"><i class="glyphicon glyphicon-search"> Busca Funcionario</i></a></li>                          
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
@@ -84,8 +84,8 @@
                         <ul class="nav navbar-nav">
                             <li ><i class="glyphicon glyphicon-user"><p style="color: white">${funcionario.nome}</p></i></li>
                             <li ><a href="CadastroFuncionario"><i class="glyphicon glyphicon-briefcase"> Cadastrar Funcionario</i></a></li>
-                            <li ><a href="BuscaFuncionario"><i class="glyphicon glyphicon-cog"> Busca Funcionario</i></a></li>
-                            <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>                            
+                            <li ><a href="BuscaFuncionario"><i class="glyphicon glyphicon-search"> Busca Funcionario</i></a></li>
+                            <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-search"> Buscar Alterações</i></a></li>                            
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
                     </div>
@@ -98,8 +98,8 @@
                             <li ><i class="glyphicon glyphicon-user"><p style="color: white">${funcionario.nome}</p></i></li>
                             <li ><a href="CadastroHotel"><i class="glyphicon glyphicon-header"> Cadastrar Hotel</i></a></li>
                             <li ><a href="CadastroVoo" ><i class="glyphicon glyphicon-plane"> Cadastrar Voo</i></a></li>
-                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
-                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
+                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-search"> Busca Hotel</i></a></li>
+                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-search"> Busca Voo</i></a></li>
                             <li ><a href="FeedbackServlet"><i class="glyphicon glyphicon-envelope"> Mandar feedback</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
@@ -113,8 +113,8 @@
                             <li ><i class="glyphicon glyphicon-user"><p style="color: white">${funcionario.nome}</p></i></li>
                             <li ><a href="CadastroHotel"><i class="glyphicon glyphicon-header"> Cadastrar Hotel</i></a></li>
                             <li ><a href="CadastroVoo" ><i class="glyphicon glyphicon-plane"> Cadastrar Voo</i></a></li>
-                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-cog"> Busca Hotel</i></a></li>
-                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-cog"> Busca Voo</i></a></li>
+                            <li ><a href="BuscaHotel"><i class="glyphicon glyphicon-search"> Busca Hotel</i></a></li>
+                            <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-search"> Busca Voo</i></a></li>
                             <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>                            
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
                         </ul>
