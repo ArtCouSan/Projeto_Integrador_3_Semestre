@@ -46,13 +46,11 @@ public class LoginServlet extends HttpServlet {
                 sessao.setAttribute("funcionario", func);
                 sessao.setAttribute("id_func", func.getId());
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-                dispatcher.forward(request, response);
+                   response.sendRedirect(request.getContextPath() + "/inicio");
                 
             } else {
                 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/erroLogin.jsp");
-                dispatcher.forward(request, response);
+                   response.sendRedirect(request.getContextPath() + "/erroLogin");
             }
             
         } catch (SQLException | ClassNotFoundException ex) {

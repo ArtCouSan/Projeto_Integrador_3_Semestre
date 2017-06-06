@@ -3,7 +3,6 @@ package br.senac.tads3.pi03b.gruposete.servlets;
 import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
 import br.senac.tads3.pi03b.gruposete.dao.RelatorioDAO;
 import br.senac.tads3.pi03b.gruposete.models.RelatorioMudancas;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,8 +45,7 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ListaFuncionario.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/inicio");
 
         }
     }
