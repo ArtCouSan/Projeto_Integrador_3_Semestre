@@ -1,19 +1,22 @@
 package br.senac.tads3.pi03b.gruposete.services;
 
+import br.senac.tads3.pi03b.gruposete.dao.FuncionarioDAO;
+import java.sql.SQLException;
+
 public class FuncionarioService {
 
     public FuncionarioService() {
     }
 
     public boolean validaFuncionario(String nome, int numero, String rua,
-            String cidade, String cep, String cpf, String cargo, 
-            String filial, String departamento, String login, String senha, String acesso) {
-        return validaNome(nome)
+            String cidade, String cep, String cpf, String cargo,
+            String filial, String departamento, String login, String senha, String acesso) throws SQLException, ClassNotFoundException {
+        return validaCpf(cpf)
+                && validaNome(nome)
                 && validaNumero(numero)
                 && validaRua(rua)
                 && validaCidade(cidade)
                 && validaCep(cep)
-                && validaCpf(cpf)
                 && validaCargo(cargo)
                 && validaFilial(filial)
                 && validaDepartamento(departamento)
@@ -21,7 +24,7 @@ public class FuncionarioService {
                 && validaSenha(senha)
                 && validaAcesso(acesso);
     }
-    
+
     public boolean validaNome(String nome) {
         return "".equals(nome);
     }
@@ -42,8 +45,9 @@ public class FuncionarioService {
         return "".equals(cep);
     }
 
-    public boolean validaCpf(String cpf) {
-        return false;
+    public boolean validaCpf(String cpf) throws SQLException, ClassNotFoundException {
+        FuncionarioDAO func = new FuncionarioDAO();
+        return func.verificarCPF(cpf);
     }
 
     public boolean validaCargo(String cargo) {
