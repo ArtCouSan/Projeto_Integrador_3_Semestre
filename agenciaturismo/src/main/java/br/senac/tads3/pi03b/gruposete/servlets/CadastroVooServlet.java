@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "CadastroVooServlet", urlPatterns = {"/CadastroVoo"})
 public class CadastroVooServlet extends HttpServlet {
@@ -57,7 +58,11 @@ public class CadastroVooServlet extends HttpServlet {
         } else {
             try {
                 dao.inserir(voo);
-                relatorio.setId_func(1);
+
+                HttpSession sessao = request.getSession();
+
+                int identificacaoF = (int) sessao.getAttribute("id_func");
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de vôo efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");

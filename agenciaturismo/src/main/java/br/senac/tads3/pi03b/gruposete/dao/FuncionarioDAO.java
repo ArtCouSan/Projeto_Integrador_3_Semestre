@@ -244,7 +244,6 @@ public class FuncionarioDAO {
         connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(sql);
 
-
         // Insercoes.
         preparedStatement.setString(1, busca);
         preparedStatement.setString(2, busca);
@@ -263,7 +262,7 @@ public class FuncionarioDAO {
 
         }
         preparedStatement.setInt(10, n1);
-        
+
         preparedStatement.setString(11, busca);
         preparedStatement.setString(12, busca);
         preparedStatement.setString(13, busca);
@@ -330,7 +329,7 @@ public class FuncionarioDAO {
         try {
             connection = DbUtil.getConnection();
             preparedStatement = connection.prepareStatement(query);
-            
+
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, senha);
 
@@ -338,7 +337,7 @@ public class FuncionarioDAO {
 
             while (resultSet.next()) {
                 func = new Funcionario();
-                
+
                 func.setId(resultSet.getInt("id_funcionario"));
                 func.setFilial(resultSet.getString("filial"));
                 func.setNome(resultSet.getString("nome"));

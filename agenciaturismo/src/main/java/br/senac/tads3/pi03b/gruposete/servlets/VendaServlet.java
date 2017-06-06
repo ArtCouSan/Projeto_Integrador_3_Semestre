@@ -22,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/VendaServlet")
 public class VendaServlet extends HttpServlet {
@@ -48,7 +49,11 @@ public class VendaServlet extends HttpServlet {
 
             }
 
-            Venda venda = new Venda(cliente.getId(), 2, totalP);
+            HttpSession sessao = request.getSession();
+
+            int identificacaoF = (int) sessao.getAttribute("id_func");
+
+            Venda venda = new Venda(cliente.getId(), identificacaoF, totalP);
 
             VendaDAO vendaData = new VendaDAO();
 
@@ -57,7 +62,7 @@ public class VendaServlet extends HttpServlet {
                 vendaData.inserir(venda);
                 RelatorioDAO relatorioDAO = new RelatorioDAO();
                 RelatorioMudancas relatorio = new RelatorioMudancas();
-                relatorio.setId_func(1);
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Venda efetuada!");
                 relatorioDAO.inserir(relatorio);
 
@@ -66,7 +71,9 @@ public class VendaServlet extends HttpServlet {
                 Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
 
             } catch (Exception ex) {
+
                 Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
             int idLista = 0;

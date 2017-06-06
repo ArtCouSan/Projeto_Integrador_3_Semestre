@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "CadastroClienteServlet", urlPatterns = {"/CadastroCliente"})
 public class CadastroClienteServlet extends HttpServlet {
@@ -62,14 +63,21 @@ public class CadastroClienteServlet extends HttpServlet {
                 telefone, email, true);
 
         if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
             dispatcher.forward(request, response);
+
         } else {
+
             try {
+
+                HttpSession sessao = request.getSession();
+
+                int identificacaoF = (int) sessao.getAttribute("id_func");
 
                 dao.inserir(cliente);
 
-                relatorio.setId_func(1);
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de cliente efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");

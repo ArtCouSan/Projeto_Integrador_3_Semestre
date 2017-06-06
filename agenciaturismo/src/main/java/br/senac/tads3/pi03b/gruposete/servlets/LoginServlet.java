@@ -35,18 +35,26 @@ public class LoginServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         FuncionarioDAO funcDAO = new FuncionarioDAO();
 
-        HttpSession sessao;
+        HttpSession sessao = request.getSession();
+        
         try {
+            
             Funcionario func = funcDAO.obterFuncionario(usuario, senha);
+            
             if (func != null) {
-                sessao = request.getSession(true);
+
                 sessao.setAttribute("funcionario", func);
+                sessao.setAttribute("id_func", func.getId());
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
+                
             } else {
+                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/erroLogin.jsp");
                 dispatcher.forward(request, response);
             }
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

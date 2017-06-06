@@ -30,7 +30,7 @@ public class ExcluiVooServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 query.excluir(id);
-
+                
                 relatorio.setId_func(1);
                 relatorio.setMudanca("Exclusão de vôo efetuada!");
                 relatorioDAO.inserir(relatorio);

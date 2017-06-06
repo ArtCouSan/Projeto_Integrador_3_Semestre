@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "CadastroHotelServlet", urlPatterns = {"/CadastroHotel"})
 public class CadastroHotelServlet extends HttpServlet {
@@ -58,8 +59,13 @@ public class CadastroHotelServlet extends HttpServlet {
             try {
 
                 dao.inserir(hotel);
+                
+                HttpSession sessao = request.getSession();
 
-                relatorio.setId_func(1);
+                int identificacaoF = (int) sessao.getAttribute("id_func");
+
+
+                relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Cadastro de hotel efetuado!");
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");

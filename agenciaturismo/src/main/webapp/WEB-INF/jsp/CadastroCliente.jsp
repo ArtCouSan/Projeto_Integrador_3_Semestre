@@ -14,10 +14,8 @@
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
-        <div class="panel-body">
-            
+        <div class="panel-body">  
             <form action="CadastroCliente" onsubmit="return confirmar('cadastrar')" method="post" class="form-horizontal">
-
                 <div class="form-group ">
                     <c:if test="${erroNome}">
                         <div class="erro">Digite seu nome completo</div>
@@ -164,9 +162,7 @@
                 <div class="col-lg-offset-4">
                     <button type="submit" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                 </div>
-
             </form>
-            
         </div>
         <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
