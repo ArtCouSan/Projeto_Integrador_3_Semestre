@@ -129,10 +129,13 @@ function listarHotel(evt) {
         var max = document.createAttribute("max");
         var min = document.createAttribute("min");
         var value = document.createAttribute("value");
+        var action = document.createAttribute("onkeydown");
+        action.value = "return false";
         type.value = "number";
         max.value = obj[item].quantidade_quartos;
         min.value = 1;
         value.value = 1;
+        inputQ.setAttributeNode(action);
         inputQ.setAttributeNode(value);
         inputQ.setAttributeNode(max);
         inputQ.setAttributeNode(min);
@@ -270,10 +273,13 @@ function listarVoo(evt) {
         var max = document.createAttribute("max");
         var min = document.createAttribute("min");
         var value = document.createAttribute("value");
+        var action = document.createAttribute("onkeydown");
         type.value = "number";
         max.value = obj[item].quantidade_passagens;
         min.value = 1;
         value.value = 1;
+        action.value = "return false";
+        inputQ.setAttributeNode(action);
         inputQ.setAttributeNode(value);
         inputQ.setAttributeNode(max);
         inputQ.setAttributeNode(min);
@@ -387,6 +393,9 @@ function addCarrinhoHotel(id) {
         type.value = "number";
         max.value = document.getElementById("qtd_quartos" + id).max;
         min.value = 1;
+        var actionPreco3 = document.createAttribute("onkeydown");
+        actionPreco3.value = "return false";
+        inputQ.setAttributeNode(actionPreco3);
         inputQ.setAttributeNode(actionPreco);
         inputQ.setAttributeNode(actionPreco2);
         inputQ.setAttributeNode(max);
@@ -492,12 +501,15 @@ function addCarrinhoVoo(id) {
         var idV = document.createAttribute("id");
         var actionPreco = document.createAttribute("onclick");
         var actionPreco2 = document.createAttribute("onkeyup");
+        var actionPreco3 = document.createAttribute("onkeydown");
         actionPreco.value = "atualizarPreco_Voo(" + id + "," + quantidade_passagens + ")";
         actionPreco2.value = "manterPreco_Voo(" + id + "," + quantidade_passagens + ")";
         type.value = "number";
         max.value = document.getElementById("qtd_p" + id).firstChild.max;
         min.value = 1;
         idV.value = id + "inputV";
+        actionPreco3.value = "return false";
+        inputQ.setAttributeNode(actionPreco3);
         inputQ.setAttributeNode(idV);
         inputQ.setAttributeNode(actionPreco);
         inputQ.setAttributeNode(actionPreco2);
@@ -687,7 +699,10 @@ function atualizarPreco_Hotel(id, quantidade) {
             var max = document.createAttribute("max");
             var min = document.createAttribute("min");
             var actionPreco = document.createAttribute("onclick");
+            var actionPreco3 = document.createAttribute("onkeydown");
             actionPreco.value = "atualizarPreco_Hotel(" + id + "," + quantidadeAtualizada + ")";
+            actionPreco3.value = "return false";
+            inputQ.setAttributeNode(actionPreco3);
             type.value = "number";
             max.value = maximo;
             min.value = 1;
@@ -748,10 +763,13 @@ function atualizarPreco_Voo(id, quantidade) {
             var min = document.createAttribute("min");
             var idV = document.createAttribute("id");
             var actionPreco = document.createAttribute("onclick");
+            var actionPreco3 = document.createAttribute("onkeydown");
             actionPreco.value = "atualizarPreco_Voo(" + id + "," + quantidadeAtualizada + ")";
+            actionPreco3.value = "return false"
             type.value = "number";
             max.value = maximo;
             min.value = 1;
+            inputQ.setAttributeNode(actionPreco3);
             var actionPreco2 = document.createAttribute("onkeyup");
             actionPreco2.value = "manterPreco_Voo(" + id + "," + quantidadeAtualizada + ")";
             idV.value = id + "inputV";
