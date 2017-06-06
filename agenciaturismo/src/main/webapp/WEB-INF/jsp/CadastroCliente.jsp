@@ -171,18 +171,10 @@
                     </div>
 
                     <div class="col-lg-offset-4">
-                        <button type="button" onclick="confirmar()" style="width: 800px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
+                        <button type="button" style="width: 800px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                     </div>
                 </div>  
             </form>
-            <div id="aceitacao" class="aceitacao">
-                <div class="col-lg-offset-2">
-                    <button type="submit" style="width: 190px; top: 20%; position: absolute" class="btn btn-primary btn-block btn-huge">Continuar</button>
-                </div>
-                <div class="col-lg-offset-2">
-                    <button onclick="cancelar()" style="width: 190px; top: 50%; position: absolute" class="btn btn-danger btn-block btn-huge">Cancelar</button>
-                </div>
-            </div>
         </div>
         <script src="./bootstrap/js/campos_Cliente.js" type="text/javascript" ></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
