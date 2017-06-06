@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/ExcluiClienteServlet")
@@ -35,12 +36,19 @@ public class ExcluiClienteServlet extends HttpServlet {
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Exclusão de cliente efetuada!");
                 relatorioDAO.inserir(relatorio);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarCliente.jsp");
+                dispatcher.forward(request, response);
+
             } catch (SQLException | ClassNotFoundException ex) {
+
                 Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             } catch (Exception ex) {
+
                 Logger.getLogger(ExcluiClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
-            response.sendRedirect(request.getContextPath() + "/inicio");
         }
     }
 }

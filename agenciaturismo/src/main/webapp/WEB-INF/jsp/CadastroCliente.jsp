@@ -15,162 +15,169 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">  
-            <form action="CadastroCliente" onsubmit="return confirmar('cadastrar')" method="post" class="form-horizontal">
-                <div class="form-group ">
-                    <c:if test="${erroNome}">
-                        <div class="erro">Digite seu nome completo</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Nome <span class="fa fa-id-card"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
+            <form action="CadastroCliente" method="post" class="form-horizontal">
+                <div id="formulario">
+                    <div class="form-group ">
+                        <c:if test="${erroNome}">
+                            <div class="erro">Digite seu nome completo</div>
+                        </c:if>
+                        <label for="example-text-input" class="control-label col-md-4">* Nome <span class="fa fa-id-card"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <c:if test="${erroCpf}">
-                        <div class="erro">Digite o CPF</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* CPF <span class="glyphicon glyphicon-book"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="14" class="form-control" name="cpf" type="text" id="cpf" required>
+                    <div class="form-group">
+                        <c:if test="${erroCpf}">
+                            <div class="erro">Digite o CPF</div>
+                        </c:if>
+                        <label for="example-text-input" class="control-label col-md-4">* CPF <span class="glyphicon glyphicon-book"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="14" class="form-control" name="cpf" type="text" id="cpf" required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <c:if test="${erroSexo}">
-                        <div class="erro">Selecione uma opcao</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Sexo <span class="glyphicon glyphicon-heart"></span> :</label>
-                    <div class="controls col-md-5">
-                        <select name="sexo">
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
-                            <option value="O">Outros</option>
-                        </select>
+                    <div class="form-group">
+                        <c:if test="${erroSexo}">
+                            <div class="erro">Selecione uma opcao</div>
+                        </c:if>
+                        <label for="example-text-input" class="control-label col-md-4">* Sexo <span class="glyphicon glyphicon-heart"></span> :</label>
+                        <div class="controls col-md-5">
+                            <select name="sexo">
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                                <option value="O">Outros</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <c:if test="${erroNascimento}">
-                        <div class="erro">Selecione uma data</div>
-                    </c:if>
-                    <label for="example-date-input" class="control-label col-md-4">* Nascimento <span class="glyphicon glyphicon-baby-formula" ></span> :</label>
-                    <div class="controls col-md-5">
-                        <input class="form-control" type="date" name="nascimento" id="datanasc" required>
+                    <div class="form-group">
+                        <c:if test="${erroNascimento}">
+                            <div class="erro">Selecione uma data</div>
+                        </c:if>
+                        <label for="example-date-input" class="control-label col-md-4">* Nascimento <span class="glyphicon glyphicon-baby-formula" ></span> :</label>
+                        <div class="controls col-md-5">
+                            <input class="form-control" type="date" name="nascimento" id="datanasc" required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <c:if test="${erroRua}">
-                        <div class="erro">Digite sua rua</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Rua <span class="glyphicon glyphicon-road"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="50" class="form-control" name="rua" placeholder="Insira rua" type="text" id="rua" required>
+                    <div class="form-group">
+                        <c:if test="${erroRua}">
+                            <div class="erro">Digite sua rua</div>
+                        </c:if>
+                        <label for="example-text-input" class="control-label col-md-4">* Rua <span class="glyphicon glyphicon-road"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="50" class="form-control" name="rua" placeholder="Insira rua" type="text" id="rua" required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <c:if test="${erroNumero}">
-                        <div class="erro">Digite o número da sua casa</div>
-                    </c:if>
-                    <label for="example-number-input" class="control-label col-md-4">* Numero <span class="fa fa-sort-numeric-desc"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
+                    <div class="form-group">
+                        <c:if test="${erroNumero}">
+                            <div class="erro">Digite o número da sua casa</div>
+                        </c:if>
+                        <label for="example-number-input" class="control-label col-md-4">* Numero <span class="fa fa-sort-numeric-desc"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="example-text-input" class="control-label col-md-4">Complemento <span class="fa fa-flag"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input  maxlength="20" class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="complemento">
+                    <div class="form-group">
+                        <label for="example-text-input" class="control-label col-md-4">Complemento <span class="fa fa-flag"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input  maxlength="20" class="form-control" name="complemento" placeholder="Insira complemento"  type="text" id="complemento">
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <c:if test="${erroCep}">
-                        <div class="erro">Digite seu CEP</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* CEP <span class="glyphicon glyphicon-map-marker"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="9" required class="form-control" name="cep"  type="text" id="cep" required>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <c:if test="${erroCidade}">
-                        <div class="erro">Digite sua cidade</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Cidade <span class="glyphicon glyphicon-globe"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="100" class="form-control" name="cidade" placeholder="Insira cidade" type="text" id="cidade" required>
+                    <div class="form-group">
+                        <c:if test="${erroCep}">
+                            <div class="erro">Digite seu CEP</div>
+                        </c:if>
+                        <label for="example-text-input" class="control-label col-md-4">* CEP <span class="glyphicon glyphicon-map-marker"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="9" required class="form-control" name="cep"  type="text" id="cep" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <c:if test="${erroCidade}">
+                            <div class="erro">Digite sua cidade</div>
+                        </c:if>
+                        <label for="example-text-input" class="control-label col-md-4">* Cidade <span class="glyphicon glyphicon-globe"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="100" class="form-control" name="cidade" placeholder="Insira cidade" type="text" id="cidade" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <c:if test="${erroEstado}">
+                            <div class="erro">Selecione uma opção</div>
+                        </c:if>
+                        <label for="example-text-input" class="control-label col-md-4">* Estado <span class="glyphicon glyphicon-globe"></span> :</label>
+                        <div class="controls col-md-5">
+                            <select name="estado">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="example-text-input" class="control-label col-md-4">Celular <span class="glyphicon glyphicon-phone"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="14" class="form-control" name="celular" type="text" id="celular">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="example-text-input" class="control-label col-md-4">Telefone <span class="glyphicon glyphicon-earphone"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="13" class="form-control" name="telefone" type="text" id="telefone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <c:if test="${erroEmail}">
+                            <div class="erro">Digite um email válido</div>
+                        </c:if>
+                        <label for="example-email-input" class="control-label col-md-4">* Email <span class="glyphicon glyphicon-envelope"></span> :</label>
+                        <div class="controls col-md-5">
+                            <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-offset-4">
+                        <button type="button" onclick="confirmar()" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                     </div>
                 </div>
+                <div id="aceitacao" class="aceitacao">
 
-                <div class="form-group">
-                    <c:if test="${erroEstado}">
-                        <div class="erro">Selecione uma opção</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Estado <span class="glyphicon glyphicon-globe"></span> :</label>
-                    <div class="controls col-md-5">
-                        <select name="estado">
-                            <option value="AC">AC</option>
-                            <option value="AL">AL</option>
-                            <option value="AP">AP</option>
-                            <option value="AM">AM</option>
-                            <option value="BA">BA</option>
-                            <option value="CE">CE</option>
-                            <option value="DF">DF</option>
-                            <option value="ES">ES</option>
-                            <option value="GO">GO</option>
-                            <option value="MA">MA</option>
-                            <option value="MT">MT</option>
-                            <option value="MS">MS</option>
-                            <option value="MG">MG</option>
-                            <option value="PA">PA</option>
-                            <option value="PB">PB</option>
-                            <option value="PR">PR</option>
-                            <option value="PE">PE</option>
-                            <option value="PI">PI</option>
-                            <option value="RJ">RJ</option>
-                            <option value="RN">RN</option>
-                            <option value="RS">RS</option>
-                            <option value="RO">RO</option>
-                            <option value="RR">RR</option>
-                            <option value="SC">SC</option>
-                            <option value="SP">SP</option>
-                            <option value="SE">SE</option>
-                            <option value="TO">TO</option>
-                        </select>
-                    </div>
-                </div>
+                    <p>sjpaosjapojs</p>
 
-                <div class="form-group">
-                    <label for="example-text-input" class="control-label col-md-4">Celular <span class="glyphicon glyphicon-phone"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="14" class="form-control" name="celular" type="text" id="celular">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="example-text-input" class="control-label col-md-4">Telefone <span class="glyphicon glyphicon-earphone"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="13" class="form-control" name="telefone" type="text" id="telefone">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroEmail}">
-                        <div class="erro">Digite um email válido</div>
-                    </c:if>
-                    <label for="example-email-input" class="control-label col-md-4">* Email <span class="glyphicon glyphicon-envelope"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
-                    </div>
-                </div>
-
-                <div class="col-lg-offset-4">
-                    <button type="submit" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                 </div>
             </form>
         </div>

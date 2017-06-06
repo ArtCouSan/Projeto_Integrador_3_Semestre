@@ -7,7 +7,6 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <script src="./bootstrap/js/aceitacoes.js" type="text/javascript" ></script>
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script> 
         <title>Listar Funcionários</title>
     </head>
@@ -41,7 +40,7 @@
                         <td name="cargo"><c:out value="${funcionarios.getCargo()}"/></td>
                         <td name="filial"><c:out value="${funcionarios.getFilial()}"/></td>
                         <td name="departamento"><c:out value="${funcionarios.getDepartamento()}"/></td>
-                        <td><a class="btn btn-danger" style="width: 100px" onclick="exclusao(${funcionarios.getId()}, 'Funcionario')"/><i class="glyphicon glyphicon-trash"> Remover </i></a></td>
+                        <td><a class="btn btn-danger" style="width: 100px" href="ExcluiFuncionarioServlet?action=delete&id=${funcionarios.getId()}" /><i class="glyphicon glyphicon-trash"> Remover </i></a></td>
                         <td><a class="btn btn-info" style="width: 100px" href="EditarFuncionario?action=edit&id=${funcionarios.getId()}"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
                     </tr>
                 </c:forEach>

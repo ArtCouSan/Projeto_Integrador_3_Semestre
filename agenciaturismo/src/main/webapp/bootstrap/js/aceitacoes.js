@@ -1,9 +1,8 @@
-function confirmar(pergunta) {
+function confirmar() {
 
-    var result = confirm("Deseja " + pergunta + " mesmo?");
-
-    return result;
-
+    document.getElementById('aceitacao').style.display = 'block';
+    document.getElementById('formulario').style.display = 'none';
+    
 }
 
 function exclusao(id, x) {

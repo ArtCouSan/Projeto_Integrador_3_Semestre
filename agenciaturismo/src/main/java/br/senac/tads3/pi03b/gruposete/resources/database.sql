@@ -1,4 +1,4 @@
-CREATE DATABASE Agencia;
+CREATE DATABASE Agencia DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;;
 USE Agencia;
 
 CREATE TABLE Funcionario(

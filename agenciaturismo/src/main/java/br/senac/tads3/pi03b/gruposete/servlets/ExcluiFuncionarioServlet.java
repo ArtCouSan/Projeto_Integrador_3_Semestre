@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/ExcluiFuncionarioServlet")
@@ -37,6 +38,9 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
                 relatorio.setMudanca("Exclusão de funcionario efetuada!");
                 relatorioDAO.inserir(relatorio);
 
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarFuncionario.jsp");
+                dispatcher.forward(request, response);
+
             } catch (ClassNotFoundException | SQLException ex) {
 
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,8 +48,6 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(ExcluiFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            response.sendRedirect(request.getContextPath() + "/inicio");
 
         }
     }
