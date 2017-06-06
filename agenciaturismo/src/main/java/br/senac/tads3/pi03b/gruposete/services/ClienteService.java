@@ -1,15 +1,12 @@
 package br.senac.tads3.pi03b.gruposete.services;
 
-import br.senac.tads3.pi03b.gruposete.dao.ClienteDAO;
-import java.sql.SQLException;
-
 public class ClienteService {
 
     public ClienteService() {
     }
 
     public boolean validaCliente(String nome, int numero, String rua,
-            String cidade, String cep, String cpf) throws SQLException, ClassNotFoundException {
+            String cidade, String cep, String cpf) {
         return validaNome(nome)
                 && validaNumero(numero)
                 && validaRua(rua)
@@ -38,9 +35,8 @@ public class ClienteService {
         return "".equals(cep);
     }
 
-    public boolean validaCpf(String cpf) throws SQLException, ClassNotFoundException {
-        ClienteDAO cliente = new ClienteDAO();
-        return cliente.verificarCPF(cpf);
+    public boolean validaCpf(String cpf) {
+        return false;
     }
 
 }

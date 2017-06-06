@@ -220,7 +220,12 @@
                     <div class="controls col-md-5">
                         <select name="acesso">
                             <option value="MASTER">MASTER</option>
-                            <option value="BASICO">BASICO</option>
+                            <option value="Vendedor">Vendedor</option>
+                            <option value="Gerente_Venda">Gerente Venda</option>
+                            <option value="Suporte_Informatica">Suporte Informatica</option>
+                            <option value="Gerente_Informatica">Gerente Informatica</option>
+                            <option value="Retaguarda">Retaguarda</option>
+                            <option value="Gerente_Retaguarda">Gerente Retaguarda</option>                        
                         </select>
                     </div>
                 </div>

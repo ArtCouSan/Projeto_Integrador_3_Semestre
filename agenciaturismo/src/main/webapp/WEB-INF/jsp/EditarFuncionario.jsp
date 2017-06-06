@@ -15,9 +15,9 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            
+
             <form name="editaf" onsubmit="return confirmar('alterar')" action="EditarFuncionario" method="post" class="form-horizontal">
-                
+
                 <input type="hidden" name="identificacao" value="${funcionarios.getId()}"/>
                 <input type="hidden" name="login" value="${funcionarios.getLogin()}"/>
                 <input type="hidden" name="senha" value="${funcionarios.getSenha()}"/>
@@ -224,17 +224,19 @@
                     <div class="controls col-md-5">
                         <select name="acesso" value="${funcionarios.getAcesso()}" >
                             <option value="MASTER">MASTER</option>
-                            <option value="BASICO">BASICO</option>
+                            <option value="Vendedor">Vendedor</option>
+                            <option value="Gerente_Venda">Gerente Venda</option>
+                            <option value="Suporte_Informatica">Suporte Informatica</option>
+                            <option value="Gerente_Informatica">Gerente Informatica</option>
+                            <option value="Retaguarda">Retaguarda</option>
+                            <option value="Gerente_Retaguarda">Gerente Retaguarda</option> 
                         </select>
                     </div>
                 </div>
-
                 <div class="col-lg-offset-4">
                     <button type="submit" style="width: 555px" class="btn btn-danger botao_g"><span class="glyphicon glyphicon-floppy-saved"> Alterar</span></button>
                 </div>
-
             </form>
-                            
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
