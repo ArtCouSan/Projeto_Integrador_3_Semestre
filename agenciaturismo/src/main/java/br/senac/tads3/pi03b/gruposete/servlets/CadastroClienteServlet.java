@@ -52,17 +52,21 @@ public class CadastroClienteServlet extends HttpServlet {
         String complemento = request.getParameter("complemento");
 
         request.setAttribute("erroNome", service.validaNome(nome));
-        request.setAttribute("erroNumero", service.validaNumero(numero));
-        request.setAttribute("erroRua", service.validaRua(rua));
-        request.setAttribute("erroCidade", service.validaCidade(cidade));
-        request.setAttribute("erroCep", service.validaCep(cep));
         request.setAttribute("erroCpf", service.validaCpf(cpf));
+        request.setAttribute("erroSexo", service.validaSexo(sexo));
+        request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
+        request.setAttribute("erroRua", service.validaRua(rua));
+        request.setAttribute("erroNumero", service.validaNumero(numero));
+        request.setAttribute("erroCep", service.validaCep(cep));
+        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroEstado", service.validaEstado(estado));
+        request.setAttribute("erroEmail", service.validaEmail(email));
 
         Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
 
-        if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
+        if (service.validaCliente(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email)) {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
             dispatcher.forward(request, response);
@@ -70,7 +74,6 @@ public class CadastroClienteServlet extends HttpServlet {
         } else {
 
             try {
-
                 HttpSession sessao = request.getSession();
                 int identificacaoF = (int) sessao.getAttribute("id_func");
                 dao.inserir(cliente);
@@ -79,7 +82,6 @@ public class CadastroClienteServlet extends HttpServlet {
                 relatorioDAO.inserir(relatorio);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
                 dispatcher.forward(request, response);
-
             } catch (Exception ex) {
 
                 Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);

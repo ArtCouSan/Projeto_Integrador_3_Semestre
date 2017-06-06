@@ -41,6 +41,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroSexo}">
+                        <div class="erro">Selecione uma opcao</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Sexo <span class="glyphicon glyphicon-heart"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="sexo" value="${clientes.getSexo()}" >
@@ -52,6 +55,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroNascimento}">
+                        <div class="erro">Selecione uma data</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Nascimento <span class="glyphicon glyphicon-baby-formula" ></span> :</label>
                     <div class="controls col-md-5">
                         <input value="${clientes.getData_nasc()}" class="form-control" type="date" name="nascimento" id="datanasc" required>
@@ -106,6 +112,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroEstado}">
+                        <div class="erro">Selecione uma opção</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Estado <span class="glyphicon glyphicon-globe"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="estado" value="${clientes.getEstado()}" >

@@ -36,13 +36,16 @@
                     <c:if test="${erroCpf}">
                         <div class="erro">Digite um cpf válido</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">Nome:</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Cpf <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
                         <input value="${funcionarios.getCpf()}" maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
                     </div>
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroSexo}">
+                        <div class="erro">Selecione uma opcao</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Sexo <span class="glyphicon glyphicon-heart"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="sexo" value="${funcionarios.getSexo()}" >
@@ -54,6 +57,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroNascimento}">
+                        <div class="erro">Selecione uma data</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Nascimento <span class="glyphicon glyphicon-baby-formula" ></span> :</label>
                     <div class="controls col-md-5">
                         <input value="${funcionarios.getData_nasc()}" class="form-control" type="date" name="nascimento" id="datanasc" required>
@@ -108,6 +114,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroEstado}">
+                        <div class="erro">Selecione uma opção</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Estado <span class="glyphicon glyphicon-globe"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="estado" value="${funcionarios.getEstado()}" >
@@ -223,7 +232,7 @@
                     <label for="example-text-input" class="control-label col-md-4">* Acesso <span class="glyphicon glyphicon-eye-open"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="acesso" value="${funcionarios.getAcesso()}" >
-                            <option value="MASTER">MASTER</option>
+                            <option value="Master">Master</option>
                             <option value="Vendedor">Vendedor</option>
                             <option value="Gerente_Venda">Gerente Venda</option>
                             <option value="Suporte_Informatica">Suporte Informatica</option>

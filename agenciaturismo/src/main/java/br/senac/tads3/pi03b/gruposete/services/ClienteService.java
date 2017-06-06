@@ -5,38 +5,58 @@ public class ClienteService {
     public ClienteService() {
     }
 
-    public boolean validaCliente(String nome, int numero, String rua,
-            String cidade, String cep, String cpf) {
+    public boolean validaCliente(String nome, String cpf, String sexo, String nascimento,
+            String rua, int numero, String cep, String cidade, String estado, String email) {
         return validaNome(nome)
-                && validaNumero(numero)
+                && validaCpf(cpf)
+                && validaSexo(sexo)
+                && validaNascimento(nascimento)
                 && validaRua(rua)
-                && validaCidade(cidade)
+                && validaNumero(numero)
                 && validaCep(cep)
-                && validaCpf(cpf);
+                && validaCidade(cidade)
+                && validaEstado(estado)
+                && validaEmail(email);
     }
 
     public boolean validaNome(String nome) {
         return "".equals(nome);
     }
-
-    public boolean validaNumero(int numero) {
-        return numero <= 0;
+    
+    public boolean validaCpf(String cpf) {
+        return false;
     }
-
+    
+    public boolean validaSexo(String sexo){
+        return "".equals(sexo);
+    }
+    
+    public boolean validaNascimento(String nascimento){
+        return "".equals(nascimento);
+    }
+    
     public boolean validaRua(String rua) {
         return "".equals(rua);
     }
-
-    public boolean validaCidade(String cidade) {
-        return "".equals(cidade);
+    
+    public boolean validaNumero(int numero) {
+        return numero <= 0;
     }
 
     public boolean validaCep(String cep) {
         return "".equals(cep);
     }
 
-    public boolean validaCpf(String cpf) {
-        return false;
+    public boolean validaCidade(String cidade) {
+        return "".equals(cidade);
+    }
+    
+    public boolean validaEstado(String estado){
+        return "".equals(estado);
+    }
+    
+    public boolean validaEmail(String email){
+        return "".equals(email);
     }
 
 }

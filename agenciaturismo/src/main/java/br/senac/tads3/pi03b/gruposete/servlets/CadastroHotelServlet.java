@@ -45,6 +45,8 @@ public class CadastroHotelServlet extends HttpServlet {
         float preco = Float.parseFloat(request.getParameter("preco"));
 
         request.setAttribute("erroNome_hotel", service.validaNome(nome_hotel));
+        request.setAttribute("erroData_entrada", service.validaEntrada(data_entrada));
+        request.setAttribute("erroData_saida", service.validaSaida(data_saida));
         request.setAttribute("erroQuantidade_quartos", service.validaQuantidade_quartos(quantidade_quartos));
         request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
         request.setAttribute("erroPreco", service.validaPreco(preco));
@@ -52,7 +54,7 @@ public class CadastroHotelServlet extends HttpServlet {
         Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida,
                 quantidade_quartos, quantidade_hospedes, preco, true);
 
-        if (service.validaHotel(nome_hotel, quantidade_quartos, quantidade_hospedes, preco)) {
+        if (service.validaHotel(nome_hotel, quantidade_quartos, data_entrada, data_saida, quantidade_hospedes, preco)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroHotel.jsp");
             dispatcher.forward(request, response);
         } else {

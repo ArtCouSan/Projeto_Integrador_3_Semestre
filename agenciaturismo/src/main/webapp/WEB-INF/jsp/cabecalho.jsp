@@ -9,7 +9,8 @@
     </head>
     <body>
         <c:choose>
-            <c:when test="${funcionario.acesso == 'MASTER'}">
+            
+            <c:when test="${funcionario.acesso == 'Master'}">
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
                         <ul class="nav navbar-nav">
@@ -32,6 +33,7 @@
                     </div>
                 </nav>
             </c:when>
+            
             <c:when test="${funcionario.acesso == 'Vendedor'}">
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
@@ -48,6 +50,7 @@
                     </div>
                 </nav>
             </c:when>
+            
             <c:when test="${funcionario.acesso == 'Gerente_Venda'}">
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
@@ -67,6 +70,7 @@
                     </div>
                 </nav>
             </c:when>
+            
             <c:when test="${funcionario.acesso == 'Suporte_Informatica'}">
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
@@ -79,6 +83,7 @@
                     </div>
                 </nav>
             </c:when>
+            
             <c:when test="${funcionario.acesso == 'Gerente_Informatica'}">
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
@@ -92,6 +97,7 @@
                     </div>
                 </nav>
             </c:when>
+            
             <c:when test="${funcionario.acesso == 'Retaguarda'}">
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
@@ -107,6 +113,7 @@
                     </div>
                 </nav>
             </c:when>
+            
             <c:when test="${funcionario.acesso == 'Gerente_Retaguarda'}">
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
@@ -122,6 +129,7 @@
                     </div>
                 </nav>
             </c:when>
+            
         </c:choose>
     </body>
 </html>

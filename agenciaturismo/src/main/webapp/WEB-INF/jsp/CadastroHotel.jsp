@@ -28,6 +28,9 @@
                 </div>
                 
                 <div class="form-group">
+                    <c:if test="${erroData_entrada}">
+                        <div class="erro">Selecione uma data</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Data de entrada <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_entrada" placeholder="Insira a data de entrada" type="date" id="example-date-input" required>
@@ -35,6 +38,9 @@
                 </div>
                 
                 <div class="form-group">
+                    <c:if test="${erroData_saida}">
+                        <div class="erro">Selecione uma data</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Data de saida <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_saida" placeholder="Insira a data de saida" type="date" id="example-date-input" required>

@@ -46,13 +46,15 @@ public class CadastroVooServlet extends HttpServlet {
 
         request.setAttribute("erroOrigem", service.validaOrigem(origem));
         request.setAttribute("erroDestino", service.validaDestino(destino));
+        request.setAttribute("erroData_ida", service.validaIda(data_ida));
+        request.setAttribute("erroData_volta", service.validaVolta(data_volta));
         request.setAttribute("erroQuantidade_passagens", service.validaQuantidade_passagens(quantidade_passagens));
         request.setAttribute("erroPreco", service.validaPreco(preco));
 
         Voo voo = new Voo(data_ida, data_volta, destino,
                 origem, quantidade_passagens, preco, true);
 
-        if (service.validaVoo(origem, destino, quantidade_passagens, preco)) {
+        if (service.validaVoo(origem, destino, data_ida, data_volta, quantidade_passagens, preco)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroVoo.jsp");
             dispatcher.forward(request, response);
         } else {

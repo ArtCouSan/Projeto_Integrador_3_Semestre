@@ -71,23 +71,28 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
         request.setAttribute("erroNome", service.validaNome(nome));
-        request.setAttribute("erroNumero", service.validaNumero(numero));
+        request.setAttribute("erroCpf", service.validaCpf(cpf));
+        request.setAttribute("erroSexo", service.validaSexo(sexo));
+        request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
         request.setAttribute("erroRua", service.validaRua(rua));
-        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroNumero", service.validaNumero(numero));
         request.setAttribute("erroCep", service.validaCep(cep));
+        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroEstado", service.validaEstado(estado));
+        request.setAttribute("erroEmail", service.validaEmail(email));
+        request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
         request.setAttribute("erroCargo", service.validaCargo(cargo));
         request.setAttribute("erroFilial", service.validaFilial(filial));
-        request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
+        request.setAttribute("erroLogin", service.validaLogin(login));
+        request.setAttribute("erroSenha", service.validaSenha(senha));
         request.setAttribute("erroAcesso", service.validaAcesso(acesso));
-        request.setAttribute("erroCpf", service.validaCpf(cpf));
 
         Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                 numero, cep, rua, estado, cidade, complemento,
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
         func.setId(id);
 
-        if (service.validaFuncionario(nome, numero, rua, cidade, cep, cpf,
-                cargo, filial, departamento, login, senha, acesso)) {
+        if (service.validaFuncionario(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email, departamento, cargo, filial, login, senha, acesso)) {
             try {
                 Funcionario funcionarios = dao.getFuncionarioById(id);
                 request.setAttribute("funcionarios", funcionarios);

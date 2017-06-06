@@ -17,70 +17,68 @@
             
             <form name="editav" onsubmit="return confirmar('alterar')" action="EditarVoo" method="post" class="form-horizontal">
                 
-                <input type="hidden" name="identificacao" value="${voos.getId()}"/>
+                <input type="hidden" name="identificacao" value="${hoteis.getId()}"/>
                 
                 <div class="form-group ">
-                    <c:if test="${erroOrigem}">
-                        <div class="erro">Digite a origem</div>
+                    <c:if test="${erroNome_hotel}">
+                        <div class="erro">Digite o nome do hotel</div>
                     </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Origem <span class="glyphicon glyphicon-home"></span> :</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Nome do Hotel <span class="glyphicon glyphicon-home"></span> :</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="origem" value="${voos.getOrigem()}"type="text" id="example-text-input" required> 
+                        <input value="${hoteis.getNome()}" class="form-control" name="nome_hotel" placeholder="Insira o nome do hotel" type="text" id="example-text-input" required> 
                     </div>
                 </div>
-                    
-                <div class="form-group ">
-                    <c:if test="${erroDestino}">
-                        <div class="erro">Digite o destino</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Destino <span class="glyphicon glyphicon-pushpin"></span> :</label>
-                        <input class="form-control" name="nome_hotel" value="${hoteis.getNome()}" type="text" id="example-text-input" required> 
-                    </div>
-                </div>
-                    
+                
                 <div class="form-group">
+                    <c:if test="${erroData_entrada}">
+                        <div class="erro">Selecione uma data</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Data de entrada <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="destino" value="${voos.getDestino()}" type="text" id="example-text-input" required>
+                        <input value="${hoteis.getData_entrada()}" class="form-control" name="data_entrada" placeholder="Insira a data de entrada" type="date" id="example-date-input" required>
                     </div>
                 </div>
-                    
-                <div class="form-group ">
-                    <c:if test="${erroQuantidade_passagens}">
-                        <div class="erro">Digite a quantidade de passagens</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Quantidade de passagens <span class="glyphicon glyphicon-plane"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input class="form-control" type="number" name="quantidade_passagens" value="${voos.getQuantidade_passagens()}" id="example-text-input" required>
-                    </div>
-                </div>
-                    
+                
                 <div class="form-group">
-                    <label for="example-date-input" class="control-label col-md-4">* Data de ida <span class="glyphicon glyphicon-calendar"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input class="form-control" name="data_ida" value="${voos.getData_ida()}" type="date" id="example-date-input" required>
-                    </div>
-                </div>
-                    
-                <div class="form-group">
-                    <c:if test="${erroData_volta}">
-                        <div class="erro">O nome é obrigatório</div>
+                    <c:if test="${erroData_saida}">
+                        <div class="erro">Selecione uma data</div>
                     </c:if>
-                    <label for="example-date-input" class="control-label col-md-4">* Data de volta <span class="glyphicon glyphicon-calendar"></span> :</label>
+                    <label for="example-date-input" class="control-label col-md-4">* Data de saida <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" name="data_volta" value="${voos.getData_volta()}" type="date" id="example-date-input" required>
+                        <input value="${hoteis.getData_saida()}" class="form-control" name="data_saida" placeholder="Insira a data de saida" type="date" id="example-date-input" required>
                     </div>
                 </div>
-                    
+                
+                <div class="form-group">
+                    <c:if test="${erroQuantidade_quartos}">
+                        <div class="erro">Digite a quantidade de quartos</div>
+                    </c:if>
+                    <label for="example-number-input" class="control-label col-md-4">* Quantidade de Quartos <span class="glyphicon glyphicon-bed"></span> :</label>
+                    <div class="controls col-md-5">
+                        <input value="${hoteis.getQuantidade_quartos()}"class="form-control" type="number" name="quantidade_quartos" placeholder="Insira a quantidade de quartos" id="example-number-input" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <c:if test="${erroQuantidade_hospedes}">
+                        <div class="erro">Digite a quantidade de hospedes</div>
+                    </c:if>
+                    <label for="example-number-input" class="control-label col-md-4">* Quantidade de Hospedes <span class="glyphicon glyphicon-user"></span> :</label>
+                    <div class="controls col-md-5">
+                        <input value="${hoteis.getQuantidade_hospedes()}" class="form-control" type="number" name="quantidade_hospedes" placeholder="Insira a quantidade de hospedes" id="example-number-input" required>
+                    </div>
+                </div>
+                
                 <div class="form-group">
                     <c:if test="${erroPreco}">
-                        <div class="erro">Digite um valor</div>
+                        <div class="erro">Digite o valor</div>
                     </c:if>
-                    <label for="example-number-input" class="control-label col-md-4">* Preço <span class="glyphicon glyphicon-usd"></span> :</label>
+                    <label for="example-number-input" class="control-label col-md-4">* Preço <span class="glyphicon glyphicon-usd"></span>  :</label>
                     <div class="controls col-md-5">
-                        <input class="form-control" type="number" name="preco" value="${voos.getPreco()}" id="example-number-input" required>
+                        <input value="${hoteis.getPreco()}" class="form-control" type="number" name="preco" placeholder="Insira o preço" id="example-number-input" required>
                     </div>
                 </div>
+                
                     
                 <div class="col-lg-offset-4">
                     <button type="submit" style="width: 555px" class="btn btn-danger botao_g"><span class="glyphicon glyphicon-floppy-saved"> Alterar</span></button>

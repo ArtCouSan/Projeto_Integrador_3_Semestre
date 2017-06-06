@@ -15,7 +15,7 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            
+
             <form action="CadastroFuncionario" onsubmit="return confirmar('cadastrar')"  method="post" class="form-horizontal" >
 
                 <div class="form-group ">
@@ -39,6 +39,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroSexo}">
+                        <div class="erro">Selecione uma opcao</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Sexo <span class="glyphicon glyphicon-heart"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="sexo">
@@ -50,6 +53,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroNascimento}">
+                        <div class="erro">Selecione uma data</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Nascimento <span class="glyphicon glyphicon-baby-formula" ></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" type="date" name="nascimento" id="datanasc" required>
@@ -104,6 +110,9 @@
                 </div>
 
                 <div class="form-group">
+                    <c:if test="${erroEstado}">
+                        <div class="erro">Selecione uma opção</div>
+                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Estado <span class="glyphicon glyphicon-globe"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="estado">
@@ -186,7 +195,7 @@
                     <c:if test="${erroFilial}">
                         <div class="erro">Digite a filial</div>
                     </c:if>
-                        <label for="example-text-input" class="control-label col-md-4">* Filial <span class="fa fa-rss"></span> :</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Filial <span class="fa fa-rss"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="100" class="form-control" placeholder="Insira filial" name="filial" id="filial" required>
                     </div>
@@ -196,7 +205,7 @@
                     <c:if test="${erroLogin}">
                         <div class="erro">Digite o login</div>
                     </c:if>
-                        <label for="example-text-input" class="control-label col-md-4">* Login <span class="fa fa-sign-in"></span> :</label>
+                    <label for="example-text-input" class="control-label col-md-4">* Login <span class="fa fa-sign-in"></span> :</label>
                     <div class="controls col-md-5">
                         <input maxlength="100" class="form-control" placeholder="login" name="login" id="login" value="" required>
                     </div>
@@ -219,7 +228,7 @@
                     <label for="example-text-input" class="control-label col-md-4">* Acesso <span class="glyphicon glyphicon-eye-open"></span> :</label>
                     <div class="controls col-md-5">
                         <select name="acesso">
-                            <option value="MASTER">MASTER</option>
+                            <option value="Master">Master</option>
                             <option value="Vendedor">Vendedor</option>
                             <option value="Gerente_Venda">Gerente Venda</option>
                             <option value="Suporte_Informatica">Suporte Informatica</option>
@@ -233,9 +242,9 @@
                 <div class="col-lg-offset-4">
                     <button type="submit" style="width: 555px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                 </div>
-                
+
             </form>
-            
+
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>

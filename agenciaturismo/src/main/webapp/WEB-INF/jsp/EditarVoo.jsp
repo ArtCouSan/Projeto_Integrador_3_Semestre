@@ -50,6 +50,9 @@
                 </div>
                     
                 <div class="form-group">
+                    <c:if test="${erroData_ida}">
+                        <div class="erro">Selecione uma data</div>
+                    </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Data de ida <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">
                         <input class="form-control" name="data_ida" value="${voos.getData_ida()}" type="date" id="example-date-input" required>
@@ -58,7 +61,7 @@
                     
                 <div class="form-group">
                     <c:if test="${erroData_volta}">
-                        <div class="erro">O nome é obrigatório</div>
+                        <div class="erro">Selecione uma data</div>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Data de volta <span class="glyphicon glyphicon-calendar"></span> :</label>
                     <div class="controls col-md-5">

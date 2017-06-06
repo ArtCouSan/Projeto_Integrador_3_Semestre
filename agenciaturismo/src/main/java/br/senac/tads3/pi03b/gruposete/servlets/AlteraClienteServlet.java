@@ -65,18 +65,22 @@ public class AlteraClienteServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
         request.setAttribute("erroNome", service.validaNome(nome));
-        request.setAttribute("erroNumero", service.validaNumero(numero));
-        request.setAttribute("erroRua", service.validaRua(rua));
-        request.setAttribute("erroCidade", service.validaCidade(cidade));
-        request.setAttribute("erroCep", service.validaCep(cep));
         request.setAttribute("erroCpf", service.validaCpf(cpf));
+        request.setAttribute("erroSexo", service.validaSexo(sexo));
+        request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
+        request.setAttribute("erroRua", service.validaRua(rua));
+        request.setAttribute("erroNumero", service.validaNumero(numero));
+        request.setAttribute("erroCep", service.validaCep(cep));
+        request.setAttribute("erroCidade", service.validaCidade(cidade));
+        request.setAttribute("erroEstado", service.validaEstado(estado));
+        request.setAttribute("erroEmail", service.validaEmail(email));
 
         Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
         cliente.setId(id);
 
-        if (service.validaCliente(nome, numero, rua, cidade, cep, cpf)) {
+        if (service.validaCliente(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email)) {
             try {
                 Cliente clientes = dao.getClienteById(id);
                 request.setAttribute("clientes", clientes);

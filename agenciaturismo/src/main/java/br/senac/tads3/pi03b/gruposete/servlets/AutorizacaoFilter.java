@@ -14,23 +14,33 @@ import java.io.IOException;
             "AlteraClienteServlet",
             "AlteraFuncionarioServlet",
             "AlteraHotelServlet",
-            "AlteraUsuarioServlet",
             "AlteraVooServlet",
+            "ApresentaBusca3Servlet",
+            "ApresentaBuscaFeedback",
+            "ApresentaVendaServlet",
             "BuscaClienteServlet",
             "BuscaFuncionarioServlet",
             "BuscaHotelServlet",
-            "BuscaUsuarioServlet",
+            "BuscaHotelVendaServlet",
+            "BuscaVendaServlet",
             "BuscaVooServlet",
+            "BuscaVooVendaServlet",
+            "BuscarFeedback",
+            "BuscarRelatorio",
+            "BuscarRelatorioMudanca",
             "CadastroClienteServlet",
             "CadastroFuncionarioServlet",
             "CadastroHotelServlet",
-            "CadastroUsuarioServlet",
             "CadastroVooServlet",
+            "ErroLoginServlet",
             "ExcluiClienteServlet",
             "ExcluiFuncionarioServlet",
             "ExcluiHotelServlet",
-            "ExcluiUsuarioServlet",
             "ExcluiVooServlet",
+            "FeedbackServlet",
+            "InicioServlet",
+            "LoginServlet",
+            "LogoutServlet",
             "PreVendaServlet",
             "VendaServlet"},
         urlPatterns = {"/protegido/*"}
@@ -56,16 +66,35 @@ public class AutorizacaoFilter implements Filter {
         if (verificarAcesso(func, httpRequest, httpResponse)) {
             chain.doFilter(request, response);
         } else {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "WEB-INF/jsp/erroNaoAutorizado.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/erroNaoAutorizado.jsp");
+            dispatcher.forward(request, response);
         }
     }
 
     private static boolean verificarAcesso(Funcionario func, HttpServletRequest request, HttpServletResponse response) {
         String paginaAcessada = request.getRequestURI();
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
-        if (pagina.endsWith("") && func.temPapel("MASTER")) {
+        if (pagina.endsWith("") && func.temPapel("Master")) {
             return true;
-        } else if (pagina.contains("Cliente") || pagina.contains("BuscaVoo") || pagina.contains("BuscaHotel") && func.temPapel("BASICO")) {
+        } else if (pagina.contains("Cliente") || pagina.contains("BuscaVoo")
+                || pagina.contains("BuscaHotel") || pagina.contains("FeedbackServlet")
+                || pagina.contains("Venda") && func.temPapel("Vendedor")) {
+            return true;
+        } else if (pagina.contains("Cliente") || pagina.contains("Hotel")
+                || pagina.contains("Voo") || pagina.contains("Venda")
+                || pagina.contains("ApresentaBuscarRelatorio") || pagina.contains("ApresentaBuscar3")
+                && func.temPapel("Gerente_Venda")) {
+            return true;
+        } else if (pagina.contains("Funcionario") && func.temPapel("Suporte_Informatica")) {
+            return true;
+        } else if (pagina.contains("Funcionario") || pagina.contains("ApresentaBuscar3")
+                && func.temPapel("Gerente_Informatica")) {
+            return true;
+        } else if(pagina.contains("Hotel") || pagina.contains("Voo")
+                || pagina.contains("FeedbackServlet") && func.temPapel("Retaguarda")){
+            return true;
+        } else if(pagina.contains("Hotel") || pagina.contains("Voo")
+                || pagina.contains("ApresentaBuscar3") && func.temPapel("Gerente_Retaguarda")){
             return true;
         }
         return false;
