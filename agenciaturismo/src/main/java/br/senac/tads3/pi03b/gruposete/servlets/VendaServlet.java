@@ -166,13 +166,11 @@ public class VendaServlet extends HttpServlet {
 
             }
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/inicio");
 
         } else {
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/inicio");
 
         }
 
@@ -181,8 +179,7 @@ public class VendaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/inicio");
     }
 
 }
