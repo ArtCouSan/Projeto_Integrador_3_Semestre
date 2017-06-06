@@ -95,3 +95,15 @@ a.button {
     font-family: geneva;
     color: initial;
 }
+
+
+.aceitacao{
+    display:none;
+    position:absolute;
+    top:25%;
+    left:auto;
+    padding:10px;
+    width:300px;
+    height:200px;
+    border:1px solid #d0d0d0
+}

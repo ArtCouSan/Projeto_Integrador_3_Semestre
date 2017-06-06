@@ -1,14 +1,15 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html">
+        <meta charset="utf-8">
         <link type="text/css"  href="./bootstrap/css/font-awesome.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <script src="./bootstrap/js/relatoriosFeedback.js"></script>
+        <script src="./bootstrap/js/relatoriosSLA.js"></script>
         <title>Relatorio Dados - Uso</title>
     </head>
     <body>

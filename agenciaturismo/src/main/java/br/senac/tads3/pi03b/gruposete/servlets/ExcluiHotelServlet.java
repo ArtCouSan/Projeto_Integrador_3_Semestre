@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/ExcluiHotelServlet")
@@ -40,6 +41,9 @@ public class ExcluiHotelServlet extends HttpServlet {
                 relatorio.setId_func(identificacaoF);
                 relatorio.setMudanca("Exclusão de hotel efetuada!");
                 relatorioDAO.inserir(relatorio);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarHotel.jsp");
+                dispatcher.forward(request, response);
 
             } catch (SQLException | ClassNotFoundException ex) {
 

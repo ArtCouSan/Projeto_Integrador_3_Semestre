@@ -36,23 +36,25 @@ public class LoginServlet extends HttpServlet {
         FuncionarioDAO funcDAO = new FuncionarioDAO();
 
         HttpSession sessao = request.getSession();
-        
+
         try {
-            
+
             Funcionario func = funcDAO.obterFuncionario(usuario, senha);
-            
+
             if (func != null) {
 
                 sessao.setAttribute("funcionario", func);
                 sessao.setAttribute("id_func", func.getId());
+                sessao.setAttribute("filial", func.getFilial());
+                sessao.setAttribute("tipo", func.getAcesso());
 
-                   response.sendRedirect(request.getContextPath() + "/inicio");
-                
+                response.sendRedirect(request.getContextPath() + "/inicio");
+
             } else {
-                
-                   response.sendRedirect(request.getContextPath() + "/erroLogin");
+
+                response.sendRedirect(request.getContextPath() + "/erroLogin");
             }
-            
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -14,7 +14,7 @@ public class ApresentaBuscaSLAServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarFeedback.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarSLA.jsp");
         dispatcher.forward(request, response);
 
     }

@@ -27,7 +27,7 @@
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Venda</i></a></li>
                             <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>
                             <li ><a href="CadastrarSLA"><i class="glyphicon glyphicon-envelope">  Chamado para TI</i></a></li>
-                            <li ><a href="ApresentaBuscaSLA"><i class="glyphicon glyphicon-envelope">  Chamados TI</i></a></li>
+                            <li ><a href="ApresentaBuscaSLA"><i class="glyphicon glyphicon-copy">  Chamados TI</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off">  Sair</i></a></li>
                         </ul>
                     </div>

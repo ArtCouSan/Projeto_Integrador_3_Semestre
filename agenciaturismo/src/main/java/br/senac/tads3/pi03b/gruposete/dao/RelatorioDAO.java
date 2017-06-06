@@ -162,7 +162,7 @@ public class RelatorioDAO {
 
     public void excluirSLA(int id) throws SQLException, ClassNotFoundException {
 
-        String slq = "DELETE FROM feedback WHERE id_feed = ?";
+        String slq = "DELETE FROM sla WHERE id_sla = ?";
 
         try {
 

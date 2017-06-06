@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -29,9 +30,24 @@ public class BuscarSLAServlet extends HttpServlet {
 
             JSONArray jsonArray = new JSONArray();
 
-            ArrayList<RelatorioSLA> procurar = relatorio.procurarRelatorioSLA();
+            ArrayList<RelatorioSLA> procurar = null;
 
-            for (RelatorioSLA procuraras: procurar) {
+            HttpSession sessao = request.getSession();
+            String identificacaoF = (String) sessao.getAttribute("tipo");
+
+            if (identificacaoF.equalsIgnoreCase("Master") || identificacaoF.equalsIgnoreCase("Gerente_Informatica")) {
+
+                procurar = relatorio.procurarRelatorioSLA();
+
+            } else {
+
+                String filial = (String) sessao.getAttribute("filial");
+
+                procurar = relatorio.procurarRelatorioSLA(filial);
+
+            }
+
+            for (RelatorioSLA procuraras : procurar) {
 
                 JSONObject json = new JSONObject();
 
