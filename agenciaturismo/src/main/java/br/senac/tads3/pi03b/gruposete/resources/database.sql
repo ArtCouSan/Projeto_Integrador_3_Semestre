@@ -154,4 +154,4 @@ VALUES ('Gerente', 'Produtos', 'RJ', '(11)13213-4654', '(11)1323-4654', 'aohfa@a
 INSERT INTO Cliente (celular, telefone, email, numero, cep, rua, 
 estado, cidade, complemento, nome, cpf, sexo, ativo, data_nasc) 
 VALUES ('(11)15715-7157', '(11)1571-5715', 'pirulito@paodoce.com', 654, '23132-312', 
-'Churrascaria', 'SP', 'SP', '-', 'Temer', '437.931.688-24', 'F', true, '0000-00-00');
+'Churrascaria', 'SP', 'SP', '-', 'Temer', '437.931.688-24', 'F', true, '1111-12-13');
