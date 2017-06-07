@@ -204,27 +204,6 @@ s<%@page contentType="text/html" pageEncoding="UTF-8"%>
                         <input value="${funcionarios.getFilial()}" maxlength="100" class="form-control" placeholder="Insira filial" name="filial" id="filial" required>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <c:if test="${erroLogin}">
-                        <div class="erro">Digite o login</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Login <span class="fa fa-sign-in"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input value="${funcionarios.getLogin()}" maxlength="100" class="form-control" placeholder="login" name="login" id="login" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <c:if test="${erroSenha}">
-                        <div class="erro">Digite sua senha</div>
-                    </c:if>
-                    <label for="example-text-input" class="control-label col-md-4">* Senha <span class="glyphicon glyphicon-th"></span> :</label>
-                    <div class="controls col-md-5">
-                        <input value="${funcionarios.getSenha()}" type="password" maxlength="100" class="form-control" placeholder="senha" name="senha" id="senha" required>
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <c:if test="${erroAcesso}">
                         <div class="erro">Acesso invalido</div>
