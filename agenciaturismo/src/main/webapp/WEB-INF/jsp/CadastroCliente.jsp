@@ -169,7 +169,7 @@
                             <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
                         </div>
                     </div>
-
+d
                     <div class="col-lg-offset-4">
                         <button type="submit" style="width: 800px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                     </div>
