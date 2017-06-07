@@ -34,14 +34,13 @@ public class BuscarSLAServlet extends HttpServlet {
 
             HttpSession sessao = request.getSession();
             String identificacaoF = (String) sessao.getAttribute("tipo");
+            String filial = (String) sessao.getAttribute("filial");
 
             if (identificacaoF.equalsIgnoreCase("Master") || identificacaoF.equalsIgnoreCase("Gerente_Informatica")) {
 
                 procurar = relatorio.procurarRelatorioSLA();
 
             } else {
-
-                String filial = (String) sessao.getAttribute("filial");
 
                 procurar = relatorio.procurarRelatorioSLA(filial);
 
@@ -61,9 +60,9 @@ public class BuscarSLAServlet extends HttpServlet {
                 jsonArray.add(json);
 
             }
-            
+
             response.setCharacterEncoding("UTF-8");
-            
+
             try (PrintWriter out = response.getWriter()) {
 
                 out.println(jsonArray.toJSONString());

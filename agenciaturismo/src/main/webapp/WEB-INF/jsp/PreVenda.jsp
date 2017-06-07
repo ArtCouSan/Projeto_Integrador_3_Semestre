@@ -13,6 +13,9 @@
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
+        <c:if test="${erroCpf}">
+            <script>alert("Erro no CPF!")</script>
+        </c:if>
         <div class="container" style="margin-top: 5%;">
             <div class="col-md-6 col-md-offset-3">
                 <form role="form"action="PreVenda" method="post">

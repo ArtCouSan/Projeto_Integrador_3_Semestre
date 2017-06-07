@@ -314,7 +314,7 @@ public class FuncionarioDAO {
     }
 
     public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
-        String slq = "SELECT COUNT(*) FROM funcionario WHERE cpf = ?";
+        String slq = "SELECT COUNT(*) FROM funcionario WHERE cpf = ? AND ativo = true";
 
         connection = DbUtil.getConnection();
         preparedStatement = connection.prepareStatement(slq);
@@ -328,7 +328,7 @@ public class FuncionarioDAO {
         }
         connection.close();
 
-        return numeroDeCounts < 1;
+        return numeroDeCounts != 0;
     }
 
     public Funcionario obterFuncionario(String login, String senha) throws SQLException, ClassNotFoundException {

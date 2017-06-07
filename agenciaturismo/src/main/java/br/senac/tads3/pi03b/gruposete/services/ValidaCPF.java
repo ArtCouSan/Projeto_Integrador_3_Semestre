@@ -15,7 +15,7 @@ public class ValidaCPF {
         String parte4 = x.substring(12, 14);
 
         String CPF = (parte1) + (parte2) + (parte3) + (parte4);
-                
+
         if (CPF.equals("00000000000") || CPF.equals("11111111111")
                 || CPF.equals("22222222222") || CPF.equals("33333333333")
                 || CPF.equals("44444444444") || CPF.equals("55555555555")
@@ -65,7 +65,6 @@ public class ValidaCPF {
 
             if ((dig10 == CPF.charAt(9)) && (dig11 == CPF.charAt(10))) {
 
-                
                 return (false);
 
             } else {

@@ -47,19 +47,23 @@ public class PreVendaServlet extends HttpServlet {
         }
 
         if (verificaCPF) {
+            
             erro = true;
+            
         } else {
+            
             request.setAttribute("erroCpf", true);
         }
 
         if (erro) {
+            
             request.setAttribute("cpf", cpf);
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Venda.jsp");
             dispatcher.forward(request, response);
 
         } else {
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/PreVenda.jsp");
             dispatcher.forward(request, response);
 
         }
