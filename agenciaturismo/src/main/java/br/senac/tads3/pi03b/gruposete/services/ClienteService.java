@@ -1,4 +1,4 @@
-package br.senac.tads3.pi03b.gruposete.services;
+ package br.senac.tads3.pi03b.gruposete.services;
 
 public class ClienteService {
 

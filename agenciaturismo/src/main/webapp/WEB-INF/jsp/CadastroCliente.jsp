@@ -171,7 +171,7 @@
                     </div>
 
                     <div class="col-lg-offset-4">
-                        <button type="button" style="width: 800px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
+                        <button type="submit" style="width: 800px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                     </div>
                 </div>  
             </form>
