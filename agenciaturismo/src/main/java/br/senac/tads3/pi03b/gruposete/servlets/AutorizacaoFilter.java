@@ -98,7 +98,7 @@ public class AutorizacaoFilter implements Filter {
         } 
         //Gerente Informatica
         else if (pagina.contains("inicio") || pagina.contains("Funcionario")
-                || pagina.contains("ApresentaBuscar3") || pagina.contains("ApresentaBuscaSLA")
+                ||  pagina.contains("ApresentaBuscaSLA")
                 || pagina.contains("ApresentaBusca3") && func.temPapel("Gerente_Informatica")) {
             return true;
         } 
