@@ -93,81 +93,87 @@ function listarHotel(evt) {
 
     for (var item in obj) {
 
-        var tr2 = document.createElement("tr");
+        var encontrado = percorrerCarrinhoHotel(obj[item].id_hotel);
 
-        var tdN = document.createElement("td");
-        var nomeD = document.createTextNode(obj[item].nome_hotel);
-        tdN.appendChild(nomeD);
-        var id1 = document.createAttribute("id");
-        id1.value = "nome" + obj[item].id_hotel;
-        tdN.setAttributeNode(id1);
+        if (encontrado == true) {
 
-        var tdDe = document.createElement("td");
-        var data_eD = document.createTextNode(obj[item].data_entrada);
-        tdDe.appendChild(data_eD);
-        var id2 = document.createAttribute("id");
-        id2.value = "data_entrada" + obj[item].id_hotel;
-        tdDe.setAttributeNode(id2);
+            var tr2 = document.createElement("tr");
 
-        var tdDs = document.createElement("td");
-        var data_sD = document.createTextNode(obj[item].data_saida);
-        tdDs.appendChild(data_sD);
-        var id3 = document.createAttribute("id");
-        id3.value = "data_saida" + obj[item].id_hotel;
-        tdDs.setAttributeNode(id3);
+            var tdN = document.createElement("td");
+            var nomeD = document.createTextNode(obj[item].nome_hotel);
+            tdN.appendChild(nomeD);
+            var id1 = document.createAttribute("id");
+            id1.value = "nome" + obj[item].id_hotel;
+            tdN.setAttributeNode(id1);
 
-        var tdP = document.createElement("td");
-        var precoD = document.createTextNode(obj[item].preco);
-        tdP.appendChild(precoD);
-        var id4 = document.createAttribute("id");
-        id4.value = "preco" + obj[item].id_hotel;
-        tdP.setAttributeNode(id4);
+            var tdDe = document.createElement("td");
+            var data_eD = document.createTextNode(obj[item].data_entrada);
+            tdDe.appendChild(data_eD);
+            var id2 = document.createAttribute("id");
+            id2.value = "data_entrada" + obj[item].id_hotel;
+            tdDe.setAttributeNode(id2);
 
-        var tdQq = document.createElement("td");
-        var inputQ = document.createElement("input");
-        var type = document.createAttribute("type");
-        var max = document.createAttribute("max");
-        var min = document.createAttribute("min");
-        var value = document.createAttribute("value");
-        var action = document.createAttribute("onkeydown");
-        action.value = "return false";
-        type.value = "number";
-        max.value = obj[item].quantidade_quartos;
-        min.value = 1;
-        value.value = 1;
-        inputQ.setAttributeNode(action);
-        inputQ.setAttributeNode(value);
-        inputQ.setAttributeNode(max);
-        inputQ.setAttributeNode(min);
-        inputQ.setAttributeNode(type);
-        tdQq.appendChild(inputQ);
-        var id5 = document.createAttribute("id");
-        id5.value = "qtd_quartos" + obj[item].id_hotel;
-        inputQ.setAttributeNode(id5);
+            var tdDs = document.createElement("td");
+            var data_sD = document.createTextNode(obj[item].data_saida);
+            tdDs.appendChild(data_sD);
+            var id3 = document.createAttribute("id");
+            id3.value = "data_saida" + obj[item].id_hotel;
+            tdDs.setAttributeNode(id3);
 
-        var tdQh = document.createElement("td");
-        var qtd_hD = document.createTextNode(obj[item].quantidade_hospedes);
-        tdQh.appendChild(qtd_hD);
-        var id6 = document.createAttribute("id");
-        id6.value = "qtd_hospedes" + obj[item].id_hotel;
-        tdQh.setAttributeNode(id6);
+            var tdP = document.createElement("td");
+            var precoD = document.createTextNode(obj[item].preco);
+            tdP.appendChild(precoD);
+            var id4 = document.createAttribute("id");
+            id4.value = "preco" + obj[item].id_hotel;
+            tdP.setAttributeNode(id4);
 
-        var buttonAd = document.createElement("button");
-        var adicionar = document.createTextNode("Adicionar");
-        var action = document.createAttribute("onclick");
-        action.value = "addCarrinhoHotel(" + obj[item].id_hotel + ")";
-        buttonAd.setAttributeNode(action);
-        buttonAd.appendChild(adicionar);
+            var tdQq = document.createElement("td");
+            var inputQ = document.createElement("input");
+            var type = document.createAttribute("type");
+            var max = document.createAttribute("max");
+            var min = document.createAttribute("min");
+            var value = document.createAttribute("value");
+            var action = document.createAttribute("onkeydown");
+            action.value = "return false";
+            type.value = "number";
+            max.value = obj[item].quantidade_quartos;
+            min.value = 1;
+            value.value = 1;
+            inputQ.setAttributeNode(action);
+            inputQ.setAttributeNode(value);
+            inputQ.setAttributeNode(max);
+            inputQ.setAttributeNode(min);
+            inputQ.setAttributeNode(type);
+            tdQq.appendChild(inputQ);
+            var id5 = document.createAttribute("id");
+            id5.value = "qtd_quartos" + obj[item].id_hotel;
+            inputQ.setAttributeNode(id5);
 
-        tr2.appendChild(tdN);
-        tr2.appendChild(tdDe);
-        tr2.appendChild(tdDs);
-        tr2.appendChild(tdP);
-        tr2.appendChild(tdQq);
-        tr2.appendChild(tdQh);
-        tr2.appendChild(buttonAd);
+            var tdQh = document.createElement("td");
+            var qtd_hD = document.createTextNode(obj[item].quantidade_hospedes);
+            tdQh.appendChild(qtd_hD);
+            var id6 = document.createAttribute("id");
+            id6.value = "qtd_hospedes" + obj[item].id_hotel;
+            tdQh.setAttributeNode(id6);
 
-        tbody.appendChild(tr2);
+            var buttonAd = document.createElement("button");
+            var adicionar = document.createTextNode("Adicionar");
+            var action = document.createAttribute("onclick");
+            action.value = "addCarrinhoHotel(" + obj[item].id_hotel + ")";
+            buttonAd.setAttributeNode(action);
+            buttonAd.appendChild(adicionar);
+
+            tr2.appendChild(tdN);
+            tr2.appendChild(tdDe);
+            tr2.appendChild(tdDs);
+            tr2.appendChild(tdP);
+            tr2.appendChild(tdQq);
+            tr2.appendChild(tdQh);
+            tr2.appendChild(buttonAd);
+
+            tbody.appendChild(tr2);
+
+        }
 
     }
 
@@ -237,82 +243,87 @@ function listarVoo(evt) {
 
     for (var item in obj) {
 
-        var tr2 = document.createElement("tr");
+        var encontrado = percorrerCarrinhoVoo(obj[item].id_voo);
 
-        var tdO = document.createElement("td");
-        var origemD = document.createTextNode(obj[item].origem);
-        tdO.appendChild(origemD);
-        var id1 = document.createAttribute("id");
-        id1.value = "origem" + obj[item].id_voo;
-        tdO.setAttributeNode(id1);
+        if (encontrado == true) {
 
-        var tdD = document.createElement("td");
-        var destinoD = document.createTextNode(obj[item].destino);
-        tdD.appendChild(destinoD);
-        var id2 = document.createAttribute("id");
-        id2.value = "destino" + obj[item].id_voo;
-        tdD.setAttributeNode(id2);
+            var tr2 = document.createElement("tr");
 
-        var tdDi = document.createElement("td");
-        var data_iD = document.createTextNode(obj[item].data_ida);
-        tdDi.appendChild(data_iD);
-        var id3 = document.createAttribute("id");
-        id3.value = "data_i" + obj[item].id_voo;
-        tdDi.setAttributeNode(id3);
+            var tdO = document.createElement("td");
+            var origemD = document.createTextNode(obj[item].origem);
+            tdO.appendChild(origemD);
+            var id1 = document.createAttribute("id");
+            id1.value = "origem" + obj[item].id_voo;
+            tdO.setAttributeNode(id1);
 
-        var tdDv = document.createElement("td");
-        var data_vD = document.createTextNode(obj[item].data_volta);
-        tdDv.appendChild(data_vD);
-        var id4 = document.createAttribute("id");
-        id4.value = "data_v" + obj[item].id_voo;
-        tdDv.setAttributeNode(id4);
+            var tdD = document.createElement("td");
+            var destinoD = document.createTextNode(obj[item].destino);
+            tdD.appendChild(destinoD);
+            var id2 = document.createAttribute("id");
+            id2.value = "destino" + obj[item].id_voo;
+            tdD.setAttributeNode(id2);
 
-        var tdQp = document.createElement("td");
-        var inputQ = document.createElement("input");
-        var type = document.createAttribute("type");
-        var max = document.createAttribute("max");
-        var min = document.createAttribute("min");
-        var value = document.createAttribute("value");
-        var action = document.createAttribute("onkeydown");
-        type.value = "number";
-        max.value = obj[item].quantidade_passagens;
-        min.value = 1;
-        value.value = 1;
-        action.value = "return false";
-        inputQ.setAttributeNode(action);
-        inputQ.setAttributeNode(value);
-        inputQ.setAttributeNode(max);
-        inputQ.setAttributeNode(min);
-        inputQ.setAttributeNode(type);
-        tdQp.appendChild(inputQ);
-        var id5 = document.createAttribute("id");
-        id5.value = "qtd_p" + obj[item].id_voo;
-        tdQp.setAttributeNode(id5);
+            var tdDi = document.createElement("td");
+            var data_iD = document.createTextNode(obj[item].data_ida);
+            tdDi.appendChild(data_iD);
+            var id3 = document.createAttribute("id");
+            id3.value = "data_i" + obj[item].id_voo;
+            tdDi.setAttributeNode(id3);
 
-        var tdP = document.createElement("td");
-        var precoD = document.createTextNode(obj[item].preco);
-        tdP.appendChild(precoD);
-        var id6 = document.createAttribute("id");
-        id6.value = "preco" + obj[item].id_voo;
-        tdP.setAttributeNode(id6);
+            var tdDv = document.createElement("td");
+            var data_vD = document.createTextNode(obj[item].data_volta);
+            tdDv.appendChild(data_vD);
+            var id4 = document.createAttribute("id");
+            id4.value = "data_v" + obj[item].id_voo;
+            tdDv.setAttributeNode(id4);
 
-        var buttonAd = document.createElement("button");
-        var adicionar = document.createTextNode("Adicionar");
-        var action = document.createAttribute("onclick");
-        action.value = "addCarrinhoVoo(" + obj[item].id_voo + ")";
-        buttonAd.setAttributeNode(action);
-        buttonAd.appendChild(adicionar);
+            var tdQp = document.createElement("td");
+            var inputQ = document.createElement("input");
+            var type = document.createAttribute("type");
+            var max = document.createAttribute("max");
+            var min = document.createAttribute("min");
+            var value = document.createAttribute("value");
+            var action = document.createAttribute("onkeydown");
+            type.value = "number";
+            max.value = obj[item].quantidade_passagens;
+            min.value = 1;
+            value.value = 1;
+            action.value = "return false";
+            inputQ.setAttributeNode(action);
+            inputQ.setAttributeNode(value);
+            inputQ.setAttributeNode(max);
+            inputQ.setAttributeNode(min);
+            inputQ.setAttributeNode(type);
+            tdQp.appendChild(inputQ);
+            var id5 = document.createAttribute("id");
+            id5.value = "qtd_p" + obj[item].id_voo;
+            tdQp.setAttributeNode(id5);
 
-        tr2.appendChild(tdO);
-        tr2.appendChild(tdD);
-        tr2.appendChild(tdDi);
-        tr2.appendChild(tdDv);
-        tr2.appendChild(tdQp);
-        tr2.appendChild(tdP);
-        tr2.appendChild(buttonAd);
+            var tdP = document.createElement("td");
+            var precoD = document.createTextNode(obj[item].preco);
+            tdP.appendChild(precoD);
+            var id6 = document.createAttribute("id");
+            id6.value = "preco" + obj[item].id_voo;
+            tdP.setAttributeNode(id6);
 
-        tbody.appendChild(tr2);
+            var buttonAd = document.createElement("button");
+            var adicionar = document.createTextNode("Adicionar");
+            var action = document.createAttribute("onclick");
+            action.value = "addCarrinhoVoo(" + obj[item].id_voo + ")";
+            buttonAd.setAttributeNode(action);
+            buttonAd.appendChild(adicionar);
 
+            tr2.appendChild(tdO);
+            tr2.appendChild(tdD);
+            tr2.appendChild(tdDi);
+            tr2.appendChild(tdDv);
+            tr2.appendChild(tdQp);
+            tr2.appendChild(tdP);
+            tr2.appendChild(buttonAd);
+
+            tbody.appendChild(tr2);
+
+        }
 
     }
 
