@@ -77,39 +77,33 @@ public class AutorizacaoFilter implements Filter {
         //master
         if (pagina.endsWith("") && func.temPapel("Master")) {
             return true;
-        } 
-        //Vendedor
+        } //Vendedor
         else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("BuscaVoo")
                 || pagina.contains("BuscaHotel") || pagina.contains("CadastrarSLA")
                 || pagina.contains("Venda") && func.temPapel("Vendedor")) {
             return true;
-        } 
-        //Gerente Venda
+        } //Gerente Venda
         else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("BuscaHotel")
                 || pagina.contains("BuscaVoo") || pagina.contains("Venda") || pagina.contains("CadastrarSLA")
                 || pagina.contains("ApresentaBuscarRelatorio") || pagina.contains("ApresentaBusca2")
                 || pagina.contains("ApresentaBusca3") && func.temPapel("Gerente_Venda")) {
             return true;
-        } 
-        //Suporte Informatica
+        } //Suporte Informatica
         else if (pagina.contains("inicio") || pagina.contains("Funcionario")
                 || pagina.contains("ApresentaBuscaSLA") && func.temPapel("Suporte_Informatica")) {
             return true;
-        } 
-        //Gerente Informatica
+        } //Gerente Informatica
         else if (pagina.contains("inicio") || pagina.contains("Funcionario")
-                || pagina.contains("ApresentaBuscar3") || pagina.contains("ApresentaBuscaSLA")
+                || pagina.contains("ApresentaBuscaSLA")
                 || pagina.contains("ApresentaBusca3") && func.temPapel("Gerente_Informatica")) {
             return true;
-        } 
-        //Retaguarda
+        } //Retaguarda
         else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
                 || pagina.contains("CadastrarSLA") && func.temPapel("Retaguarda")) {
             return true;
-        } 
-        //Gerente Retaguarda
+        } //Gerente Retaguarda
         else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
-                || pagina.contains("ApresentaBusca3") || pagina.contains("CadastrarSLA") 
+                || pagina.contains("ApresentaBusca3") || pagina.contains("CadastrarSLA")
                 && func.temPapel("Gerente_Retaguarda")) {
             return true;
         }

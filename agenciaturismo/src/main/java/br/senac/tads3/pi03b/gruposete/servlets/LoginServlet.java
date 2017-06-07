@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 
             } else {
 
-                response.sendRedirect(request.getContextPath() + "/erroLogin");
+                response.sendRedirect(request.getContextPath() + "/errologin");
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
