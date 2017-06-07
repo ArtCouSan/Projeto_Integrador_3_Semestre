@@ -9,6 +9,7 @@
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
         <script src="./bootstrap/js/event.js" type="text/javascript" ></script>
+        <script src="./bootstrap/js/camposMascara.js" type="text/javascript" ></script>
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
@@ -19,7 +20,7 @@
                         <h1 class="text-center"><span class="fa fa-handshake-o"></span> Validação do cliente</h1>
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="000.000.000-00" name="cpf" required/>
+                                <input class="form-control" type="text" placeholder="000.000.000-00" name="cpf" id="cpf" required/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;">Validar</span></button>
                                 </span>                           

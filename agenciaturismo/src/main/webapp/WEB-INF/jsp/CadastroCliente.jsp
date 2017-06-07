@@ -19,7 +19,7 @@
                 <div id="formulario">
                     <div class="form-group ">
                         <c:if test="${erroNome}">
-                            <div class="erro">Digite seu nome completo</div>
+                            <script>alert("Erro no nome!")</script>
                         </c:if>
                         <label for="example-text-input" class="control-label col-md-4">* Nome <span class="fa fa-id-card"></span> :</label>
                         <div class="controls col-md-5">
@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <c:if test="${erroCpf}">
-                            <div class="erro">Digite o CPF</div>
+                            <script>alert("Erro no CPF!")</script>
                         </c:if>
                         <label for="example-text-input" class="control-label col-md-4">* CPF <span class="glyphicon glyphicon-book"></span> :</label>
                         <div class="controls col-md-5">
@@ -38,12 +38,9 @@
                     </div>
 
                     <div class="form-group">
-                        <c:if test="${erroSexo}">
-                            <div class="erro">Selecione uma opcao</div>
-                        </c:if>
                         <label for="example-text-input" class="control-label col-md-4">* Sexo <span class="glyphicon glyphicon-heart"></span> :</label>
                         <div class="controls col-md-5">
-                            <select name="sexo">
+                            <select name="sexo" required>
                                 <option value="M">Masculino</option>
                                 <option value="F">Feminino</option>
                                 <option value="O">Outros</option>
@@ -53,7 +50,7 @@
 
                     <div class="form-group">
                         <c:if test="${erroNascimento}">
-                            <div class="erro">Selecione uma data</div>
+                            <script>alert("Erro na data de nascimento!")</script>
                         </c:if>
                         <label for="example-date-input" class="control-label col-md-4">* Nascimento <span class="glyphicon glyphicon-baby-formula" ></span> :</label>
                         <div class="controls col-md-5">
@@ -63,7 +60,7 @@
 
                     <div class="form-group">
                         <c:if test="${erroRua}">
-                            <div class="erro">Digite sua rua</div>
+                            <script>alert("Erro na rua!")</script>
                         </c:if>
                         <label for="example-text-input" class="control-label col-md-4">* Rua <span class="glyphicon glyphicon-road"></span> :</label>
                         <div class="controls col-md-5">
@@ -73,11 +70,11 @@
 
                     <div class="form-group">
                         <c:if test="${erroNumero}">
-                            <div class="erro">Digite o número da sua casa</div>
+                            <script>alert("Erro no número da casa!")</script>
                         </c:if>
                         <label for="example-number-input" class="control-label col-md-4">* Numero <span class="fa fa-sort-numeric-desc"></span> :</label>
                         <div class="controls col-md-5">
-                            <input maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
+                            <input maxlength="5" min="0" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
                         </div>
                     </div>
 
@@ -90,7 +87,7 @@
 
                     <div class="form-group">
                         <c:if test="${erroCep}">
-                            <div class="erro">Digite seu CEP</div>
+                            <script>alert("Erro no CEP!")</script>
                         </c:if>
                         <label for="example-text-input" class="control-label col-md-4">* CEP <span class="glyphicon glyphicon-map-marker"></span> :</label>
                         <div class="controls col-md-5">
@@ -100,7 +97,7 @@
 
                     <div class="form-group">
                         <c:if test="${erroCidade}">
-                            <div class="erro">Digite sua cidade</div>
+                            <script>alert("Erro na cidade!")</script>
                         </c:if>
                         <label for="example-text-input" class="control-label col-md-4">* Cidade <span class="glyphicon glyphicon-globe"></span> :</label>
                         <div class="controls col-md-5">
@@ -109,12 +106,9 @@
                     </div>
 
                     <div class="form-group">
-                        <c:if test="${erroEstado}">
-                            <div class="erro">Selecione uma opção</div>
-                        </c:if>
                         <label for="example-text-input" class="control-label col-md-4">* Estado <span class="glyphicon glyphicon-globe"></span> :</label>
                         <div class="controls col-md-5">
-                            <select name="estado">
+                            <select name="estado" required>
                                 <option value="AC">AC</option>
                                 <option value="AL">AL</option>
                                 <option value="AP">AP</option>
@@ -145,7 +139,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="example-text-input" class="control-label col-md-4">Celular <span class="glyphicon glyphicon-phone"></span> :</label>
                         <div class="controls col-md-5">
@@ -162,14 +155,13 @@
 
                     <div class="form-group">
                         <c:if test="${erroEmail}">
-                            <div class="erro">Digite um email válido</div>
+                            <script>alert("Erro no email!")</script>
                         </c:if>
                         <label for="example-email-input" class="control-label col-md-4">* Email <span class="glyphicon glyphicon-envelope"></span> :</label>
                         <div class="controls col-md-5">
                             <input maxlength="50" class="form-control" type="email" name="email" placeholder="Insira email" id="email" data-error="Por favor, informe um e-mail correto." required>
                         </div>
                     </div>
-d
                     <div class="col-lg-offset-4">
                         <button type="submit" style="width: 800px" class="btn btn-primary botao_g"><span class="glyphicon glyphicon-floppy-saved"> Cadastrar</span></button>
                     </div>

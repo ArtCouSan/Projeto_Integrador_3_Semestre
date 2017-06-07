@@ -195,14 +195,14 @@ public class RelatorioDAO {
         ArrayList<RelatorioValores> listaResultado = new ArrayList<>();
 
         // Comando SQL.
-        String slq = "SELECT (SELECT SUBSTRING(venda.data_venda,1,4 )) AS Ano, \n"
-                + "ROUND (SUM(venda.total_preco), 2) AS SOMA, filial \n"
-                + "FROM venda \n"
-                + "INNER JOIN funcionario \n"
-                + "ON funcionario.id_funcionario = venda.id_funcionario \n"
-                + "GROUP BY funcionario.filial, (SELECT SUBSTRING(venda.data_venda,1,4))\n"
-                + "ORDER BY (SELECT SUBSTRING(venda.data_venda,1,4)) \n"
-                + "DESC LIMIT 25";
+        String slq = "SELECT (SELECT SUBSTRING(venda.data_venda,1,4 )) AS Ano, "
+                + "ROUND (SUM(venda.total_preco), 2) AS SOMA, filial "
+                + "FROM venda "
+                + "INNER JOIN funcionario "
+                + "ON funcionario.id_funcionario = venda.id_funcionario "
+                + "GROUP BY funcionario.filial, (SELECT SUBSTRING(venda.data_venda,1,4))"
+                + "ORDER BY (SELECT SUBSTRING(venda.data_venda,1,4)) "
+                + "DESC LIMIT 100";
 
         preparedStatement = connection.prepareStatement(slq);
 
@@ -218,6 +218,53 @@ public class RelatorioDAO {
             // Prenche.
             relatorio.setValor(resultSet.getFloat("SOMA"));
             relatorio.setData(resultSet.getString("Ano"));
+            relatorio.setFilial(resultSet.getString("filial"));
+
+            // Adiciona a lista.
+            listaResultado.add(relatorio);
+
+        }
+
+        // Fecha conexao.
+        connection.close();
+
+        // Retorna lista.
+        return listaResultado;
+
+    }
+
+    public ArrayList<RelatorioValores> procurarRelatorioMes() throws SQLException, ClassNotFoundException {
+
+        // Conecta.
+        connection = DbUtil.getConnection();
+
+        // Lista que ira receber vendas.
+        ArrayList<RelatorioValores> listaResultado = new ArrayList<>();
+
+        // Comando SQL.
+        String slq = "SELECT (SELECT SUBSTRING(venda.data_venda,1,7 )) AS Mes,"
+                + "ROUND (SUM(venda.total_preco), 2) AS SOMA, filial "
+                + "FROM venda "
+                + "INNER JOIN funcionario "
+                + "ON funcionario.id_funcionario = venda.id_funcionario "
+                + "GROUP BY funcionario.filial, (SELECT SUBSTRING(venda.data_venda,1,7)) "
+                + "ORDER BY (SELECT SUBSTRING(venda.data_venda,1,7)) "
+                + "DESC LIMIT 100";
+
+        preparedStatement = connection.prepareStatement(slq);
+
+        // Executa e recebe resultado.
+        resultSet = preparedStatement.executeQuery();
+
+        // Loop com resultados.
+        while (resultSet.next()) {
+
+            // Declara objeto.
+            RelatorioValores relatorio = new RelatorioValores();
+
+            // Prenche.
+            relatorio.setValor(resultSet.getFloat("SOMA"));
+            relatorio.setData(resultSet.getString("Mes"));
             relatorio.setFilial(resultSet.getString("filial"));
 
             // Adiciona a lista.

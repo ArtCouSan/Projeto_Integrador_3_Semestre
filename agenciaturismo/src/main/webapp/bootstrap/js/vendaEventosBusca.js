@@ -862,6 +862,16 @@ function venda() {
 
         }
 
+        while (carrinho_hotel.firstChild) {
+            carrinho_hotel.removeChild(carrinho_hotel.firstChild);
+        }
+
+        while (carrinho_voo.firstChild) {
+            carrinho_voo.removeChild(carrinho_voo.firstChild);
+        }
+
+        document.getElementById("total").innerText = 0;
+
         window.location.href = "VendaServlet?"
                 + "idsVoos="
                 + idsVoo

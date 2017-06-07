@@ -66,35 +66,46 @@ public class AlteraClienteServlet extends HttpServlet {
 
         request.setAttribute("erroNome", service.validaNome(nome));
         try {
+            
             request.setAttribute("erroCpf", service.validaCpf(cpf));
+            
         } catch (SQLException | ClassNotFoundException ex) {
+            
             Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
-        request.setAttribute("erroSexo", service.validaSexo(sexo));
         request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
         request.setAttribute("erroRua", service.validaRua(rua));
         request.setAttribute("erroNumero", service.validaNumero(numero));
         request.setAttribute("erroCep", service.validaCep(cep));
         request.setAttribute("erroCidade", service.validaCidade(cidade));
-        request.setAttribute("erroEstado", service.validaEstado(estado));
         request.setAttribute("erroEmail", service.validaEmail(email));
 
-        Cliente cliente = new Cliente(nome, cpf, sexo, data_nasc, numero,
-                cep, rua, estado, cidade, complemento, celular,
-                telefone, email, true);
+        Cliente cliente = new Cliente(nome.trim(), cpf.trim(), sexo.trim(), data_nasc.trim(), numero,
+                cep.trim(), rua.trim(), estado.trim(), cidade.trim(), complemento.trim(), celular.trim(),
+                telefone.trim(), email.trim(), true);
         cliente.setId(id);
 
         try {
-            if (service.validaCliente(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email)) {
+            if (service.validaCliente(nome, cpf, sexo,rua, numero, cep, cidade,email)) {
+                
                 try {
+                    
                     Cliente clientes = dao.getClienteById(id);
+                    
                     request.setAttribute("clientes", clientes);
+                    
                 } catch (ClassNotFoundException | SQLException e) {
+                    
                 }
+                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarCliente.jsp");
                 dispatcher.forward(request, response);
+                
             } else {
+                
                 try {
+                    
                     dao.alterar(cliente);
                     HttpSession sessao = request.getSession();
                     int identificacaoF = (int) sessao.getAttribute("id_func");
@@ -102,12 +113,18 @@ public class AlteraClienteServlet extends HttpServlet {
                     relatorio.setMudanca("Alteração de cliente efetuada!");
                     relatorioDAO.inserir(relatorio);
                     response.sendRedirect(request.getContextPath() + "/inicio");
+                    
                 } catch (Exception ex) {
+                    
                     Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
             }
+            
         } catch (SQLException | ClassNotFoundException ex) {
+            
             Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 }

@@ -64,13 +64,11 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.setAttribute("erroSexo", service.validaSexo(sexo));
         request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
         request.setAttribute("erroRua", service.validaRua(rua));
         request.setAttribute("erroNumero", service.validaNumero(numero));
         request.setAttribute("erroCep", service.validaCep(cep));
         request.setAttribute("erroCidade", service.validaCidade(cidade));
-        request.setAttribute("erroEstado", service.validaEstado(estado));
         request.setAttribute("erroEmail", service.validaEmail(email));
         request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
         request.setAttribute("erroCargo", service.validaCargo(cargo));
@@ -79,12 +77,12 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         request.setAttribute("erroSenha", service.validaSenha(senha));
         request.setAttribute("erroAcesso", service.validaAcesso(acesso));
 
-        Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
-                numero, cep, rua, estado, cidade, complemento,
-                celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
+        Funcionario func = new Funcionario(nome.trim(), cpf.trim(), sexo.trim(), data_nasc.trim(),
+                numero, cep.trim(), rua.trim(), estado.trim(), cidade.trim(), complemento.trim(),
+                celular.trim(), telefone.trim(), email.trim(), true, cargo.trim(), filial.trim(), departamento.trim(), login.trim(), senha.trim(), acesso.trim());
 
         try {
-            if (service.validaFuncionario(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email, departamento, cargo, filial, login, senha, acesso)) {
+            if (service.validaFuncionario(nome, cpf, data_nasc, rua, numero, cep, cidade, email, departamento, cargo, filial, login, senha, acesso)) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
                 dispatcher.forward(request, response);
             } else {

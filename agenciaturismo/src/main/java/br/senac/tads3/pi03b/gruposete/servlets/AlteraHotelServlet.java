@@ -64,7 +64,7 @@ public class AlteraHotelServlet extends HttpServlet {
         request.setAttribute("erroQuantidade_hospedes", service.validaQuantidade_hospedes(quantidade_hospedes));
         request.setAttribute("erroPreco", service.validaPreco(preco));
 
-        Hotel hotel = new Hotel(nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, true);
+        Hotel hotel = new Hotel(nome_hotel.trim(), data_entrada.trim(), data_saida.trim(), quantidade_quartos, quantidade_hospedes, preco, true);
         hotel.setId(id);
 
         if (service.validaHotel(nome_hotel, quantidade_quartos, data_entrada, data_saida, quantidade_hospedes, preco)) {

@@ -15,9 +15,9 @@
         <h1 class="text-center"> Digite os campos pela data da venda - Campos vazios, todas as vendas</h1>
         <div class="input-group col-lg-offset-4">
             <label>Inicio: </label>
-            <input name="inicio" type="text" id="inicio" placeholder="yyyy-mm-dd" class="search-query">
+            <input name="inicio" type="date" id="inicio" class="search-query">
             <label>Fim: </label>
-            <input name="fim" type="text" id="fim" placeholder="yyyy-mm-dd" class="search-query">
+            <input name="fim" type="date" id="fim" class="search-query">
             <button onclick="pesquisar()" class="btn bg-success">Pesquisar</button>
         </div>
         <br />

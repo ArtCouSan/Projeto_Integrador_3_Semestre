@@ -22,31 +22,28 @@
 
                 <div class="form-group ">
                     <c:if test="${erroNome}">
-                        <div class="erro">Digite seu nome completo</div>
+                        <script>alert("Erro no nome!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Nome <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${funcionarios.getNome()}" maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
+                        <input value="${funcionarios.getNome()}" maxlength="100" class="form-control" minlength="1" name="nome" type="text" placeholder="Insira nome" id="nome" required>
                     </div>
                 </div>
 
                 <div class="form-group ">
                     <c:if test="${erroCpf}">
-                        <div class="erro">Digite um cpf válido</div>
+                        <script>alert("Erro no cpf!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Cpf <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${funcionarios.getCpf()}" maxlength="100" class="form-control" name="cpf" type="text" placeholder="Insira cpf" id="cpf" required>
+                        <input value="${funcionarios.getCpf()}" maxlength="14" class="form-control" name="cpf" type="text" placeholder="Insira cpf" id="cpf" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <c:if test="${erroSexo}">
-                        <div class="erro">Selecione uma opcao</div>
-                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Sexo <span class="glyphicon glyphicon-heart"></span> :</label>
                     <div class="controls col-md-5">
-                        <select name="sexo" value="${funcionarios.getSexo()}" >
+                        <select name="sexo" value="${funcionarios.getSexo()}" required>
                             <option value="Masculino">Masculino</option>
                             <option value="Feminino">Feminino</option>
                             <option value="Outros">Outros</option>
@@ -56,7 +53,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroNascimento}">
-                        <div class="erro">Selecione uma data</div>
+                        <script>alert("Erro na data de nascimento!")</script>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Nascimento <span class="glyphicon glyphicon-baby-formula" ></span> :</label>
                     <div class="controls col-md-5">
@@ -66,7 +63,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroRua}">
-                        <div class="erro">Digite sua rua</div>
+                        <script>alert("Erro na rua!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Rua <span class="glyphicon glyphicon-road"></span> :</label>
                     <div class="controls col-md-5">
@@ -76,11 +73,11 @@
 
                 <div class="form-group">
                     <c:if test="${erroNumero}">
-                        <div class="erro">Digite o número da sua casa</div>
+                        <script>alert("Erro no número!")</script>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">* Numero <span class="fa fa-sort-numeric-desc"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${funcionarios.getNumero()}" maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
+                        <input value="${funcionarios.getNumero()}" maxlength="5" class="form-control" min="1" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
                     </div>
                 </div>
 
@@ -93,17 +90,17 @@
 
                 <div class="form-group">
                     <c:if test="${erroCep}">
-                        <div class="erro">Digite seu CEP</div>
+                        <script>alert("Erro no cep!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* CEP <span class="glyphicon glyphicon-map-marker"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${funcionarios.getCep()}" maxlength="9" required class="form-control" name="cep"  type="text" id="cep" required>
+                        <input value="${funcionarios.getCep()}" maxlength="10" required class="form-control" name="cep"  type="text" id="cep" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <c:if test="${erroCidade}">
-                        <div class="erro">Digite sua cidade</div>
+                        <script>alert("Erro na cidade"</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Cidade <span class="glyphicon glyphicon-globe"></span> :</label>
                     <div class="controls col-md-5">
@@ -112,12 +109,9 @@
                 </div>
 
                 <div class="form-group">
-                    <c:if test="${erroEstado}">
-                        <div class="erro">Selecione uma opção</div>
-                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Estado <span class="glyphicon glyphicon-globe"></span> :</label>
                     <div class="controls col-md-5">
-                        <select name="estado" value="${funcionarios.getEstado()}" >
+                        <select name="estado" value="${funcionarios.getEstado()}" required>
                             <option value="AC">AC</option>
                             <option value="AL">AL</option>
                             <option value="AP">AP</option>
@@ -152,20 +146,20 @@
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Celular <span class="glyphicon glyphicon-phone"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${funcionarios.getCelular()}" maxlength="14" class="form-control" name="celular" type="text" id="celular">
+                        <input value="${funcionarios.getCelular()}" maxlength="15" class="form-control" name="celular" type="text" id="celular">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="example-text-input" class="control-label col-md-4">Telefone <span class="glyphicon glyphicon-earphone"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${funcionarios.getTelefone()}" maxlength="13" class="form-control" name="telefone" type="text" id="telefone">
+                        <input value="${funcionarios.getTelefone()}" maxlength="14" class="form-control" name="telefone" type="text" id="telefone">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <c:if test="${erroEmail}">
-                        <div class="erro">Digite um email válido</div>
+                        <script>alert("Erro no email!")</script>
                     </c:if>
                     <label for="example-email-input" class="control-label col-md-4">* Email <span class="glyphicon glyphicon-envelope"></span> :</label>
                     <div class="controls col-md-5">
@@ -175,7 +169,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroDepartamento}">
-                        <div class="erro">Digite o Departamento</div>
+                        <script>alert("Erro no departamento!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Departamento <span class="glyphicon glyphicon-inbox"></span> :</label>
                     <div class="controls col-md-5">
@@ -185,7 +179,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroCargo}">
-                        <div class="erro">Digite o cargo</div>
+                        <script>alert("Erro no cargo!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Cargo <span class="glyphicon glyphicon-lock"></span> :</label>
                     <div class="controls col-md-5">
@@ -195,7 +189,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroFilial}">
-                        <div class="erro">Digite a filial</div>
+                        <script>alert("Erro na filial !")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Filial <span class="fa fa-rss"></span> :</label>
                     <div class="controls col-md-5">
@@ -204,7 +198,7 @@
                 </div>
                 <div class="form-group">
                     <c:if test="${erroAcesso}">
-                        <div class="erro">Acesso invalido</div>
+                        <script>alert("Erro no acesso!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Acesso <span class="glyphicon glyphicon-eye-open"></span> :</label>
                     <div class="controls col-md-5">

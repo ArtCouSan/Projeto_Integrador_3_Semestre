@@ -8,8 +8,8 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <script src="./bootstrap/js/relatorio.js"></script>
-        <title>Relatorio Dados</title>
+        <script src="./bootstrap/js/relatoriosVendas.js"></script>
+        <title>Relatorio Dados - Vendas</title>
     </head>
     <body>
         <c:import url="./cabecalho.jsp"/>
@@ -20,9 +20,9 @@
                     <table class="table table-striped" >
                         <thead>
                             <tr class="info">
+                                <th>Data</th>
                                 <th>Filial</th>
                                 <th>Total de vendas no ano</th>
-                                <th>Data</th>
                             </tr>
                         </thead>
                         <tbody id="resultado1">
@@ -35,9 +35,9 @@
                     <table class="table table-striped" >
                         <thead>
                             <tr class="info">
+                                <th>Data</th>
                                 <th>Filial</th>
                                 <th>Total de vendas no mês</th>
-                                <th>Data</th>
                             </tr>
                         </thead>
                         <tbody id="resultado2">

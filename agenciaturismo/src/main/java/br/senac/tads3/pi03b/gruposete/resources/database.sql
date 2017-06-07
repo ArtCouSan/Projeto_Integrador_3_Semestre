@@ -109,49 +109,49 @@ data_m VARCHAR(10),
 PRIMARY KEY  (id_sla)
 );
 
-INSERT INTO Voo (data_ida, data_volta, destino, origem, preco, ativo) 
-VALUES ('1010-10-10', '1111-1010', 'são paulo', 'chile', 123.45, true);
+INSERT INTO Voo (data_ida, data_volta, destino, origem, preco, ativo, quantidade_passagens) 
+VALUES ('2017-09-02', '2017-08-01', 'São paulo', 'Síria', 100.00, true, 10);
 
 INSERT INTO Hotel (nome_hotel, data_entrada, data_saida, quantidade_quartos, quantidade_hospedes, preco, ativo) 
-VALUES ('five stars', '1010-11-09', '1011-10-11', 10, 1, 123.45, true);
+VALUES ('Beto Carrero Palace', '2017-11-01', '2017-12-11', 10, 1, 100.00, true);
 
 INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
 rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
-VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '1212-12-12', 'admin', 'admin', 'Master');
+VALUES ('Administrador', 'Administrador', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal', 'SP', 'SP', '-', 'JeffersonRIP', '818.872.789-07', 'M', true, '1212-12-12', 'admin', 'admin', 'Master');
 
 INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
 rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
-VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '1212-12-12', 'vendedor', 'vendedor', 'Vendedor');
+VALUES ('Vendedor', 'Vendas', 'RJ', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal', 'RJ', 'RJ', '-', 'Carlos', '624.656.819-07', 'M', true, '1212-12-12', 'vendedor', 'vendedor', 'Vendedor');
 
 INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
 rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
-VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '1212-12-12', 'gerentev', 'gerentev', 'Gerente_Venda');
+VALUES ('Gerente', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal', 'SP', 'SP', '-', 'Daniel', '866.701.467-28', 'M', true, '1212-12-12', 'gerentev', 'gerentev', 'Gerente_Venda');
 
 INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
 rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
-VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '1212-12-12', 'suportei', 'suportei', 'Suporte_Informatica');
+VALUES ('Suporte', 'TI', 'RJ', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal', 'RJ', 'RJ', '-', 'Antonio', '202.642.226-52', 'M', true, '1212-12-12', 'suportei', 'suportei', 'Suporte_Informatica');
 
 INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
 rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
-VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '1212-12-12', 'gerentei', 'gerentei', 'Gerente_Informatica');
+VALUES ('Gerente', 'TI', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal', 'TO', 'TO', '-', 'Sergio', '761.756.670-00', 'M', true, '1212-12-12', 'gerentei', 'gerentei', 'Gerente_Informatica');
 
 INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
 rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
-VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '1212-12-12', 'retaguarda', 'retaguarda', 'Retaguarda');
+VALUES ('Retaguarda', 'Produtos', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal', 'TO', 'TO', '-', 'Rafael', '186.858.266-32', 'M', true, '1212-12-12', 'retaguarda', 'retaguarda', 'Retaguarda');
 
 INSERT INTO Funcionario (cargo, departamento, filial, celular, telefone, email, numero, cep, 
 rua, ESTADO, cidade, complemento, nome, cpf, sexo, ativo, data_nasc, login, senha, acesso) 
-VALUES ('Vendedor', 'Vendas', 'SP', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'sp', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '1212-12-12', 'gerenter', 'gerenter', 'Gerente_Retaguarda');
+VALUES ('Gerente', 'Produtos', 'RJ', '(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
+'rua tal', 'RJ', 'RJ', '-', 'Arthur', '872.951.730-30', 'M', true, '1212-12-12', 'gerenter', 'gerenter', 'Gerente_Retaguarda');
 
 
 INSERT INTO Cliente (celular, telefone, email, numero, cep, rua, 
 estado, cidade, complemento, nome, cpf, sexo, ativo, data_nasc) 
-VALUES ('(11)13213-4654', '(11)1323-4654', 'aohfa@aosfi.com', 654, '23132-312', 
-'rua tal de sp', 'SP', 'SP', '-', 'Rafael', '012.123.123-12', 'M', true, '1212-12-12');
+VALUES ('(11)15715-7157', '(11)1571-5715', 'pirulito@paodoce.com', 654, '23132-312', 
+'Churrascaria', 'SP', 'SP', '-', 'Temer', '437.931.688-24', 'F', true, '0000-00-00');

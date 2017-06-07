@@ -68,7 +68,7 @@ public class AlteraVooServlet extends HttpServlet {
                 quantidade_passagens, preco, true);
         voo.setId(id);
 
-        if (service.validaVoo(origem, destino, data_ida, data_volta, quantidade_passagens, preco)) {
+        if (service.validaVoo(origem.trim(), destino.trim(), data_ida.trim(), data_volta.trim(), quantidade_passagens, preco)) {
             try {
                 Voo voos = dao.getVooById(id);
                 request.setAttribute("voos", voos);

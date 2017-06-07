@@ -15,14 +15,14 @@
     <body>
         <c:import url="./cabecalho.jsp"/>
         <div class="panel-body">
-            
+
             <form name="editac" action="EditarCliente" method="post" class="form-horizontal">
-                
+
                 <input type="hidden" name="identificacao" value="${clientes.getId()}"/>
-                
+
                 <div class="form-group ">
                     <c:if test="${erroNome}">
-                        <div class="erro">Digite seu nome completo</div>
+                        <script>alert("Erro no nome!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Nome <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
@@ -32,7 +32,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroCpf}">
-                        <div class="erro">Digite o CPF</div>
+                        <script>alert("Erro no cpf!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* CPF <span class="glyphicon glyphicon-book"></span> :</label>
                     <div class="controls col-md-5">
@@ -41,12 +41,9 @@
                 </div>
 
                 <div class="form-group">
-                    <c:if test="${erroSexo}">
-                        <div class="erro">Selecione uma opcao</div>
-                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Sexo <span class="glyphicon glyphicon-heart"></span> :</label>
                     <div class="controls col-md-5">
-                        <select name="sexo" value="${clientes.getSexo()}" >
+                        <select name="sexo" value="${clientes.getSexo()}" required>
                             <option value="Masculino">Masculino</option>
                             <option value="Feminino">Feminino</option>
                             <option value="Outros">Outros</option>
@@ -56,7 +53,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroNascimento}">
-                        <div class="erro">Selecione uma data</div>
+                        <script>alert("Erro na data de nascimento!")</script>
                     </c:if>
                     <label for="example-date-input" class="control-label col-md-4">* Nascimento <span class="glyphicon glyphicon-baby-formula" ></span> :</label>
                     <div class="controls col-md-5">
@@ -66,7 +63,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroRua}">
-                        <div class="erro">Digite sua rua</div>
+                        <script>alert("Erro na rua!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Rua <span class="glyphicon glyphicon-road"></span> :</label>
                     <div class="controls col-md-5">
@@ -76,11 +73,11 @@
 
                 <div class="form-group">
                     <c:if test="${erroNumero}">
-                        <div class="erro">Digite o número da sua casa</div>
+                        <script>alert("Erro no número!")</script>
                     </c:if>
                     <label for="example-number-input" class="control-label col-md-4">* Numero <span class="fa fa-sort-numeric-desc"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${clientes.getNumero()}" maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
+                        <input value="${clientes.getNumero()}" min="1" maxlength="5" class="form-control" type="number" name="numero" placeholder="Insira numero"  id="numero" required>
                     </div>
                 </div>
 
@@ -93,7 +90,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroCep}">
-                        <div class="erro">Digite seu CEP</div>
+                        <script>alert("Erro no cep!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* CEP <span class="glyphicon glyphicon-map-marker"></span> :</label>
                     <div class="controls col-md-5">
@@ -103,7 +100,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroCidade}">
-                        <div class="erro">Digite sua cidade</div>
+                        <script>alert("Erro na cidade!")</script>
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Cidade <span class="glyphicon glyphicon-globe"></span> :</label>
                     <div class="controls col-md-5">
@@ -112,12 +109,9 @@
                 </div>
 
                 <div class="form-group">
-                    <c:if test="${erroEstado}">
-                        <div class="erro">Selecione uma opção</div>
-                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Estado <span class="glyphicon glyphicon-globe"></span> :</label>
                     <div class="controls col-md-5">
-                        <select name="estado" value="${clientes.getEstado()}" >
+                        <select name="estado" value="${clientes.getEstado()}" required>
                             <option value="AC">AC</option>
                             <option value="AL">AL</option>
                             <option value="AP">AP</option>
@@ -165,7 +159,7 @@
 
                 <div class="form-group">
                     <c:if test="${erroEmail}">
-                        <div class="erro">Digite um email válido</div>
+                        <script>alert("Erro no email!")</script>
                     </c:if>
                     <label for="example-email-input" class="control-label col-md-4">* Email <span class="glyphicon glyphicon-envelope"></span> :</label>
                     <div class="controls col-md-5">
@@ -180,9 +174,7 @@
                         </div>
                     </div>
                 </div>
-
             </form>
-                    
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./bootstrap/js/bootstrap.min.js"></script>
