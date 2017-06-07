@@ -74,27 +74,43 @@ public class AutorizacaoFilter implements Filter {
     private static boolean verificarAcesso(Funcionario func, HttpServletRequest request, HttpServletResponse response) {
         String paginaAcessada = request.getRequestURI();
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
+        //master
         if (pagina.endsWith("") && func.temPapel("Master")) {
             return true;
-        } else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("BuscaVoo")
-                || pagina.contains("BuscaHotel") || pagina.contains("FeedbackServlet")
+        } 
+        //Vendedor
+        else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("BuscaVoo")
+                || pagina.contains("BuscaHotel") || pagina.contains("CadastrarSLA")
                 || pagina.contains("Venda") && func.temPapel("Vendedor")) {
             return true;
-        } else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("Hotel")
-                || pagina.contains("Voo") || pagina.contains("Venda")
-                || pagina.contains("ApresentaBuscarRelatorio") || pagina.contains("ApresentaBuscar3")
-                && func.temPapel("Gerente_Venda")) {
+        } 
+        //Gerente Venda
+        else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("BuscaHotel")
+                || pagina.contains("BuscaVoo") || pagina.contains("Venda") || pagina.contains("CadastrarSLA")
+                || pagina.contains("ApresentaBuscarRelatorio") || pagina.contains("ApresentaBusca2")
+                || pagina.contains("ApresentaBusca3") && func.temPapel("Gerente_Venda")) {
             return true;
-        } else if (pagina.contains("inicio") || pagina.contains("Funcionario") && func.temPapel("Suporte_Informatica")) {
+        } 
+        //Suporte Informatica
+        else if (pagina.contains("inicio") || pagina.contains("Funcionario")
+                || pagina.contains("ApresentaBuscaSLA") && func.temPapel("Suporte_Informatica")) {
             return true;
-        } else if (pagina.contains("inicio") || pagina.contains("Funcionario") || pagina.contains("ApresentaBuscar3")
-                && func.temPapel("Gerente_Informatica")) {
+        } 
+        //Gerente Informatica
+        else if (pagina.contains("inicio") || pagina.contains("Funcionario")
+                || pagina.contains("ApresentaBuscar3") || pagina.contains("ApresentaBuscaSLA")
+                || pagina.contains("ApresentaBusca3") && func.temPapel("Gerente_Informatica")) {
             return true;
-        } else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
-                || pagina.contains("FeedbackServlet") && func.temPapel("Retaguarda")) {
+        } 
+        //Retaguarda
+        else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
+                || pagina.contains("CadastrarSLA") && func.temPapel("Retaguarda")) {
             return true;
-        } else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
-                || pagina.contains("ApresentaBuscar3") && func.temPapel("Gerente_Retaguarda")) {
+        } 
+        //Gerente Retaguarda
+        else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
+                || pagina.contains("ApresentaBusca3") || pagina.contains("CadastrarSLA") 
+                && func.temPapel("Gerente_Retaguarda")) {
             return true;
         }
         return false;
