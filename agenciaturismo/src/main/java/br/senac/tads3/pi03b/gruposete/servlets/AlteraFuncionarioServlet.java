@@ -65,16 +65,19 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         String cargo = request.getParameter("cargo");
         String filial = request.getParameter("filial");
         String departamento = request.getParameter("departamento");
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
         String acesso = request.getParameter("acesso");
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
         request.setAttribute("erroNome", service.validaNome(nome));
+
         try {
+
             request.setAttribute("erroCpf", service.validaCpf(cpf));
+
         } catch (SQLException | ClassNotFoundException ex) {
+
             Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+
         }
         request.setAttribute("erroSexo", service.validaSexo(sexo));
         request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
@@ -87,25 +90,30 @@ public class AlteraFuncionarioServlet extends HttpServlet {
         request.setAttribute("erroDepartamento", service.validaDepartamento(departamento));
         request.setAttribute("erroCargo", service.validaCargo(cargo));
         request.setAttribute("erroFilial", service.validaFilial(filial));
-        request.setAttribute("erroLogin", service.validaLogin(login));
-        request.setAttribute("erroSenha", service.validaSenha(senha));
         request.setAttribute("erroAcesso", service.validaAcesso(acesso));
 
         Funcionario func = new Funcionario(nome, cpf, sexo, data_nasc,
                 numero, cep, rua, estado, cidade, complemento,
-                celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
+                celular, telefone, email, true, cargo, filial, departamento, acesso);
         func.setId(id);
 
         try {
-            if (service.validaFuncionario(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email, departamento, cargo, filial, login, senha, acesso)) {
+            
+            if (service.validaFuncionario(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email, departamento, cargo, filial, acesso)) {
+                
                 try {
+                    
                     Funcionario funcionarios = dao.getFuncionarioById(id);
                     request.setAttribute("funcionarios", funcionarios);
+                    
                 } catch (ClassNotFoundException | SQLException e) {
+                    
                 }
                 RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EditarFuncionario.jsp");
                 dispatcher.forward(request, response);
+                
             } else {
+                
                 try {
                     dao.alterar(func);
                     HttpSession sessao = request.getSession();
@@ -117,8 +125,11 @@ public class AlteraFuncionarioServlet extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
             }
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+            Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(AlteraFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

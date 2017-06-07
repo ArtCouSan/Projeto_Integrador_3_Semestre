@@ -29,6 +29,26 @@ public class FuncionarioService {
                 || validaSenha(senha)
                 || validaAcesso(acesso);
     }
+    
+    public boolean validaFuncionario(String nome, String cpf, String sexo, String nascimento,
+            String rua, int numero, String cep, String cidade, String estado, String email,
+            String departamento, String cargo, String filial,
+            String acesso) throws SQLException, ClassNotFoundException {
+        return validaNome(nome)
+                || validaCpf(cpf)
+                || validaSexo(sexo)
+                || validaNascimento(nascimento)
+                || validaRua(rua)
+                || validaNumero(numero)
+                || validaCep(cep)
+                || validaCidade(cidade)
+                || validaEstado(estado)
+                || validaEmail(email)
+                || validaDepartamento(departamento)
+                || validaCargo(cargo)
+                || validaFilial(filial)
+                || validaAcesso(acesso);
+    }
 
     public boolean validaNome(String nome) {
         return "".equals(nome);
