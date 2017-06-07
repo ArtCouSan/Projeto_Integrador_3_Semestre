@@ -195,12 +195,13 @@ public class RelatorioDAO {
         ArrayList<RelatorioValores> listaResultado = new ArrayList<>();
 
         // Comando SQL.
-        String slq = "SELECT (SELECT SUBSTRING(relatoriomudancas.data_m,1,4 )) as Ano , SUM(valor), filial "
-                + "FROM relatoriomudancas "
-                + "INNER JOIN funcionario "
-                + "ON funcionario.id_funcionario = relatoriomudancas.id_funcionario "
-                + "GROUP BY (SELECT SUBSTRING(relatoriomudancas.data_m,1,4 )) "
-                + "ORDER BY (SELECT SUBSTRING(relatoriomudancas.data_m,1,4 )) "
+        String slq = "SELECT (SELECT SUBSTRING(venda.data_venda,1,4 )) AS Ano, \n"
+                + "ROUND (SUM(venda.total_preco), 2) AS SOMA, filial \n"
+                + "FROM venda \n"
+                + "INNER JOIN funcionario \n"
+                + "ON funcionario.id_funcionario = venda.id_funcionario \n"
+                + "GROUP BY funcionario.filial, (SELECT SUBSTRING(venda.data_venda,1,4))\n"
+                + "ORDER BY (SELECT SUBSTRING(venda.data_venda,1,4)) \n"
                 + "DESC LIMIT 25";
 
         preparedStatement = connection.prepareStatement(slq);
@@ -215,7 +216,7 @@ public class RelatorioDAO {
             RelatorioValores relatorio = new RelatorioValores();
 
             // Prenche.
-            relatorio.setValor(resultSet.getFloat("SUM(valor)"));
+            relatorio.setValor(resultSet.getFloat("SOMA"));
             relatorio.setData(resultSet.getString("Ano"));
             relatorio.setFilial(resultSet.getString("filial"));
 
