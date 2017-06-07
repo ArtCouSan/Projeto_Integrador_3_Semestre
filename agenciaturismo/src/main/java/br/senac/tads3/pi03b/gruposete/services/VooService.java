@@ -8,11 +8,11 @@ public class VooService {
     public boolean validaVoo(String origem, String destino, String data_ida,
             String data_volta, int quantidade_passagens, float preco) {
         return validaOrigem(origem)
-                && validaDestino(destino)
-                && validaIda(data_ida)
-                && validaVolta(data_volta)
-                && validaQuantidade_passagens(quantidade_passagens)
-                && validaPreco(preco);
+                || validaDestino(destino)
+                || validaIda(data_ida)
+                || validaVolta(data_volta)
+                || validaQuantidade_passagens(quantidade_passagens)
+                || validaPreco(preco);
     }
 
     public boolean validaOrigem(String origem) {

@@ -331,8 +331,9 @@ public class ClienteDAO {
             numeroDeCounts = resultSet.getInt("COUNT(*)");
         }
         connection.close();
+        
+        return numeroDeCounts != 0;
 
-        return numeroDeCounts == 1;
     }
 
 }

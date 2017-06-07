@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -52,7 +53,11 @@ public class CadastroClienteServlet extends HttpServlet {
         String complemento = request.getParameter("complemento");
 
         request.setAttribute("erroNome", service.validaNome(nome));
-        request.setAttribute("erroCpf", service.validaCpf(cpf));
+        try {
+            request.setAttribute("erroCpf", service.validaCpf(cpf));
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.setAttribute("erroSexo", service.validaSexo(sexo));
         request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
         request.setAttribute("erroRua", service.validaRua(rua));
@@ -66,26 +71,30 @@ public class CadastroClienteServlet extends HttpServlet {
                 cep, rua, estado, cidade, complemento, celular,
                 telefone, email, true);
 
-        if (service.validaCliente(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email)) {
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
-            dispatcher.forward(request, response);
-
-        } else {
-
-            try {
-                HttpSession sessao = request.getSession();
-                int identificacaoF = (int) sessao.getAttribute("id_func");
-                dao.inserir(cliente);
-                relatorio.setId_func(identificacaoF);
-                relatorio.setMudanca("Cadastro de cliente efetuado!");
-                relatorioDAO.inserir(relatorio);
-                response.sendRedirect(request.getContextPath() + "/inicio");
-            } catch (Exception ex) {
-
-                Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-
+        try {
+            if (service.validaCliente(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email)) {
+                
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroCliente.jsp");
+                dispatcher.forward(request, response);
+                
+            } else {
+                
+                try {
+                    HttpSession sessao = request.getSession();
+                    int identificacaoF = (int) sessao.getAttribute("id_func");
+                    dao.inserir(cliente);
+                    relatorio.setId_func(identificacaoF);
+                    relatorio.setMudanca("Cadastro de cliente efetuado!");
+                    relatorioDAO.inserir(relatorio);
+                    response.sendRedirect(request.getContextPath() + "/inicio");
+                } catch (Exception ex) {
+                    
+                    Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                }
             }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CadastroClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

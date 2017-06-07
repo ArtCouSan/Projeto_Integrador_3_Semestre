@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -58,7 +59,11 @@ public class CadastroFuncionarioServlet extends HttpServlet {
         String acesso = request.getParameter("acesso");
 
         request.setAttribute("erroNome", service.validaNome(nome));
-        request.setAttribute("erroCpf", service.validaCpf(cpf));
+        try {
+            request.setAttribute("erroCpf", service.validaCpf(cpf));
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.setAttribute("erroSexo", service.validaSexo(sexo));
         request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
         request.setAttribute("erroRua", service.validaRua(rua));
@@ -78,23 +83,27 @@ public class CadastroFuncionarioServlet extends HttpServlet {
                 numero, cep, rua, estado, cidade, complemento,
                 celular, telefone, email, true, cargo, filial, departamento, login, senha, acesso);
 
-        if (service.validaFuncionario(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email, departamento, cargo, filial, login, senha, acesso)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            try {
-                dao.inserir(func);
-                HttpSession sessao = request.getSession();
-                int identificacaoF = (int) sessao.getAttribute("id_func");
-                relatorio.setId_func(identificacaoF);
-                relatorio.setMudanca("Cadastro de funcionario efetuado!");
-                relatorioDAO.inserir(relatorio);
-                response.sendRedirect(request.getContextPath() + "/inicio");
-            } catch (Exception ex) {
-
-                Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-
+        try {
+            if (service.validaFuncionario(nome, cpf, sexo, data_nasc, rua, numero, cep, cidade, estado, email, departamento, cargo, filial, login, senha, acesso)) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                try {
+                    dao.inserir(func);
+                    HttpSession sessao = request.getSession();
+                    int identificacaoF = (int) sessao.getAttribute("id_func");
+                    relatorio.setId_func(identificacaoF);
+                    relatorio.setMudanca("Cadastro de funcionario efetuado!");
+                    relatorioDAO.inserir(relatorio);
+                    response.sendRedirect(request.getContextPath() + "/inicio");
+                } catch (Exception ex) {
+                    
+                    Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                }
             }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CadastroFuncionarioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
