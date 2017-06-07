@@ -61,6 +61,7 @@
                             <li ><a href="BuscaVoo"><i class="glyphicon glyphicon-search"> Buscar Vôos</i></a></li>
                             <li ><a href="PreVenda"><i class="glyphicon glyphicon-shopping-cart"> Vender</i></a></li>
                             <li ><a href="ApresentaBuscarRelatorio"><i class="glyphicon glyphicon-shopping-cart"> Buscar Vendas</i></a></li>
+                            <li ><a href="ApresentaBusca2"><i class="glyphicon glyphicon-list-alt"> Relatório de Vendas</i></a></li>
                             <li ><a href="ApresentaBusca3"><i class="glyphicon glyphicon-retweet"> Buscar Alterações</i></a></li>                            
                             <li ><a href="CadastrarSLA"><i class="glyphicon glyphicon-envelope">  Chamar TI</i></a></li>
                             <li ><a href="logout"><i class="glyphicon glyphicon-off"> Sair</i></a></li>
