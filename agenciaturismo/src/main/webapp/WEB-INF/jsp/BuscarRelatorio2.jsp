@@ -15,7 +15,7 @@
         <c:import url="./cabecalho.jsp"/>
         <div class="container-fluid">
             <section class="container"> 
-                <label class="h3">Relatorio Anual<span class="fa fa-line-chart"></span> :</label>
+                <label class="h3">Relatorio Anual <span class="fa fa-line-chart"></span> :</label>
                 <div class="container-page">
                     <table class="table table-striped" >
                         <thead>
@@ -30,7 +30,7 @@
                         </tbody>
                     </table>
                 </div>
-                <label class="h3">Relatorio Mensal<span class="fa fa-line-chart"></span> :</label>
+                <label class="h3">Relatorio Mensal <span class="fa fa-line-chart"></span> :</label>
                 <div class="container-page">
                     <table class="table table-striped" >
                         <thead>

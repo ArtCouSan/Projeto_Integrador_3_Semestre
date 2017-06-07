@@ -19,25 +19,29 @@ function listar(evt) {
 
     for (var item in obj) {
 
-        var tr2 = document.createElement("tr");
+        if (typeof obj[item].data_vendaMES == "undefined") {
 
-        var tdD = document.createElement("td");
-        var data_D = document.createTextNode(obj[item].data_vendaANO);
-        tdD.appendChild(data_D);
+            var tr2 = document.createElement("tr");
 
-        var tdF = document.createElement("td");
-        var filialD = document.createTextNode(obj[item].filialANO);
-        tdF.appendChild(filialD);
+            var tdD = document.createElement("td");
+            var data_D = document.createTextNode(obj[item].data_vendaANO);
+            tdD.appendChild(data_D);
 
-        var tdV = document.createElement("td");
-        var valorD = document.createTextNode(obj[item].valorANO);
-        tdV.appendChild(valorD);
+            var tdF = document.createElement("td");
+            var filialD = document.createTextNode(obj[item].filialANO);
+            tdF.appendChild(filialD);
 
-        tr2.appendChild(tdD);
-        tr2.appendChild(tdF);
-        tr2.appendChild(tdV);
+            var tdV = document.createElement("td");
+            var valorD = document.createTextNode(obj[item].valorANO);
+            tdV.appendChild(valorD);
 
-        resultado1.appendChild(tr2);
+            tr2.appendChild(tdD);
+            tr2.appendChild(tdF);
+            tr2.appendChild(tdV);
+
+            resultado1.appendChild(tr2);
+
+        }
 
     }
 
@@ -49,28 +53,35 @@ function listar(evt) {
 
     for (var item in obj) {
 
-        var tr2 = document.createElement("tr");
+        if (typeof obj[item].data_vendaANO == "undefined") {
 
-        var tdD = document.createElement("td");
-        var data_D = document.createTextNode(obj[item].data_vendaMES);
-        tdD.appendChild(data_D);
+            var tr2 = document.createElement("tr");
 
-        var tdF = document.createElement("td");
-        var filialD = document.createTextNode(obj[item].filialMES);
-        tdF.appendChild(filialD);
+            var tdD = document.createElement("td");
+            var data_D = document.createTextNode(obj[item].data_vendaMES);
+            tdD.appendChild(data_D);
 
-        var tdV = document.createElement("td");
-        var valorD = document.createTextNode(obj[item].valorMES);
-        tdV.appendChild(valorD);
+            var tdF = document.createElement("td");
+            var filialD = document.createTextNode(obj[item].filialMES);
+            tdF.appendChild(filialD);
 
-        tr2.appendChild(tdD);
-        tr2.appendChild(tdF);
-        tr2.appendChild(tdV);
+            var tdV = document.createElement("td");
+            var valorD = document.createTextNode(obj[item].valorMES);
+            tdV.appendChild(valorD);
 
-        resultado2.appendChild(tr2);
+            tr2.appendChild(tdD);
+            tr2.appendChild(tdF);
+            tr2.appendChild(tdV);
+
+            resultado2.appendChild(tr2);
+
+
+        }
 
     }
 
 }
+
+
 
 window.addEventListener("load", pesquisar);

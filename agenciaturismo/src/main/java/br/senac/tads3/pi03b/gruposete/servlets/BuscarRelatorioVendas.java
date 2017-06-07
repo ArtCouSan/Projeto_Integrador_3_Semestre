@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 @WebServlet(name = "BuscarRelatorioVendas", urlPatterns = {"/BuscarRelatorioVendas"})
 public class BuscarRelatorioVendas extends HttpServlet {
@@ -32,9 +34,9 @@ public class BuscarRelatorioVendas extends HttpServlet {
 
                 JSONObject json = new JSONObject();
 
-                json.put("data_vendaANO", procurar.getData());
-                json.put("filialANO", procurar.getFilial());
-                json.put("valorANO", procurar.getValor());
+                json.put("data_vendaANO", procurarR.getData());
+                json.put("filialANO", procurarR.getFilial());
+                json.put("valorANO", procurarR.getValor());
 
                 jsonArray.add(json);
 
@@ -44,9 +46,9 @@ public class BuscarRelatorioVendas extends HttpServlet {
 
                 JSONObject json = new JSONObject();
 
-                json.put("data_vendaMES", procurar.getData());
-                json.put("filialMES", procurar.getFilial());
-                json.put("valorMES", procurar.getValor());
+                json.put("data_vendaMES", procurarR.getData());
+                json.put("filialMES", procurarR.getFilial());
+                json.put("valorMES", procurarR.getValor());
 
                 jsonArray.add(json);
 
