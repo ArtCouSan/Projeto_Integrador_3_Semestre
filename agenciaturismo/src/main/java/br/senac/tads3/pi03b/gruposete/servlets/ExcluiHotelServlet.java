@@ -29,7 +29,7 @@ public class ExcluiHotelServlet extends HttpServlet {
         RelatorioDAO relatorioDAO = new RelatorioDAO();
         RelatorioMudancas relatorio = new RelatorioMudancas();
 
-        if ("".equalsIgnoreCase(action)) {
+        if ("delete".equalsIgnoreCase(action)) {
 
             int id = Integer.parseInt(request.getParameter("id"));
 
@@ -42,8 +42,7 @@ public class ExcluiHotelServlet extends HttpServlet {
                 relatorio.setMudanca("Exclusão de hotel efetuada!");
                 relatorioDAO.inserir(relatorio);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarHotel.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/inicio");
 
             } catch (SQLException | ClassNotFoundException ex) {
 
@@ -53,7 +52,6 @@ public class ExcluiHotelServlet extends HttpServlet {
                 Logger.getLogger(ExcluiHotelServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            response.sendRedirect(request.getContextPath() + "/inicio");
         }
 
     }

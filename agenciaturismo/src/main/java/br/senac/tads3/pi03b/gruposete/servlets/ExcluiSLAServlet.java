@@ -39,8 +39,7 @@ public class ExcluiSLAServlet extends HttpServlet {
 
             relatorioDAO.inserir(relatorio);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarSLA.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/inicio");
 
         } catch (SQLException | ClassNotFoundException ex) {
 

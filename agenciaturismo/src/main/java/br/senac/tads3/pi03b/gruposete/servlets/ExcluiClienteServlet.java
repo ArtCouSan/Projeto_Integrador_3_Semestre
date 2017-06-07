@@ -37,8 +37,7 @@ public class ExcluiClienteServlet extends HttpServlet {
                 relatorio.setMudanca("Exclusão de cliente efetuada!");
                 relatorioDAO.inserir(relatorio);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarCliente.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/inicio");
 
             } catch (SQLException | ClassNotFoundException ex) {
 

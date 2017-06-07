@@ -38,8 +38,7 @@ public class ExcluiFuncionarioServlet extends HttpServlet {
                 relatorio.setMudanca("Exclusão de funcionario efetuada!");
                 relatorioDAO.inserir(relatorio);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscarFuncionario.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/inicio");
 
             } catch (ClassNotFoundException | SQLException ex) {
 
