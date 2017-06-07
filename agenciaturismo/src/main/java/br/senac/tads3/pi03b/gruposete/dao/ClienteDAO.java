@@ -58,7 +58,6 @@ public class ClienteDAO {
     public void alterar(Cliente cliente) throws SQLException, Exception {
         String sql = "UPDATE cliente "
                 + "SET nome = ?, "
-                + "cpf = ?, "
                 + "sexo = ?, "
                 + "data_nasc = ?, "
                 + "numero = ?, "
@@ -77,19 +76,18 @@ public class ClienteDAO {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setString(2, cliente.getCpf());
-            preparedStatement.setString(3, cliente.getSexo());
-            preparedStatement.setString(4, cliente.getData_nasc());
-            preparedStatement.setInt(5, cliente.getNumero());
-            preparedStatement.setString(6, cliente.getCep());
-            preparedStatement.setString(7, cliente.getRua());
-            preparedStatement.setString(8, cliente.getEstado());
-            preparedStatement.setString(9, cliente.getCidade());
-            preparedStatement.setString(10, cliente.getComplemento());
-            preparedStatement.setString(11, cliente.getCelular());
-            preparedStatement.setString(12, cliente.getTelefone());
-            preparedStatement.setString(13, cliente.getEmail());
-            preparedStatement.setInt(14, cliente.getId());
+            preparedStatement.setString(2, cliente.getSexo());
+            preparedStatement.setString(3, cliente.getData_nasc());
+            preparedStatement.setInt(4, cliente.getNumero());
+            preparedStatement.setString(5, cliente.getCep());
+            preparedStatement.setString(6, cliente.getRua());
+            preparedStatement.setString(7, cliente.getEstado());
+            preparedStatement.setString(8, cliente.getCidade());
+            preparedStatement.setString(9, cliente.getComplemento());
+            preparedStatement.setString(10, cliente.getCelular());
+            preparedStatement.setString(11, cliente.getTelefone());
+            preparedStatement.setString(12, cliente.getEmail());
+            preparedStatement.setInt(13, cliente.getId());
 
             preparedStatement.executeUpdate();
         } finally {
@@ -234,7 +232,7 @@ public class ClienteDAO {
         preparedStatement.setString(6, busca);
         preparedStatement.setString(7, busca);
         preparedStatement.setString(8, busca);
-        
+
         int buscaN = 0;
         try {
             buscaN = Integer.parseInt(busca);
@@ -242,7 +240,7 @@ public class ClienteDAO {
             System.out.println("Erro");
         }
         preparedStatement.setInt(9, buscaN);
-        
+
         preparedStatement.setString(10, busca);
         preparedStatement.setString(11, busca);
         preparedStatement.setString(12, busca);
@@ -331,7 +329,7 @@ public class ClienteDAO {
             numeroDeCounts = resultSet.getInt("COUNT(*)");
         }
         connection.close();
-        
+
         return numeroDeCounts != 0;
 
     }

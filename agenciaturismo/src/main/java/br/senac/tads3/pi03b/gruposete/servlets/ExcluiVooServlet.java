@@ -37,7 +37,8 @@ public class ExcluiVooServlet extends HttpServlet {
                 relatorio.setMudanca("Exclusão de vôo efetuada!");
                 relatorioDAO.inserir(relatorio);
 
-               response.sendRedirect(request.getContextPath() + "/inicio");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscaVoo.jsp");
+                dispatcher.forward(request, response);
 
             } catch (SQLException | ClassNotFoundException ex) {
 

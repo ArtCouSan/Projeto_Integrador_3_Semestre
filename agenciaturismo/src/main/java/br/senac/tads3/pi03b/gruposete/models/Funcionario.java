@@ -26,13 +26,13 @@ public final class Funcionario extends Pessoa {
         this.acesso = acesso;
     }
 
-    public Funcionario(String nome, String cpf, String sexo, String data_nasc,
+    public Funcionario(String nome, String sexo, String data_nasc,
             int numero, String cep, String rua, String bairro, String cidade,
             String complemento, String celular, String telefone,
             String email, boolean ativo, String cargo, String filial,
             String departamento, String acesso) {
 
-        super(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade,
+        super(nome, sexo, data_nasc, numero, cep, rua, bairro, cidade,
                 complemento, celular, telefone, email, ativo);
         this.cargo = cargo;
         this.filial = filial;

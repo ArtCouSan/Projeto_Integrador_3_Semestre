@@ -31,12 +31,9 @@
                 </div>
 
                 <div class="form-group ">
-                    <c:if test="${erroCpf}">
-                        <script>alert("Erro no cpf!")</script>
-                    </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Cpf <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${funcionarios.getCpf()}" maxlength="14" class="form-control" name="cpf" type="text" placeholder="Insira cpf" id="cpf" required>
+                        <input value="${funcionarios.getCpf()}" maxlength="14" class="form-control" disabled="true" name="cpf" type="text" placeholder="Insira cpf" id="cpf" required>
                     </div>
                 </div>
 

@@ -50,7 +50,6 @@ public class AlteraClienteServlet extends HttpServlet {
         RelatorioMudancas relatorio = new RelatorioMudancas();
 
         String nome = request.getParameter("nome");
-        String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
         String data_nasc = request.getParameter("nascimento");
         String telefone = request.getParameter("telefone");
@@ -65,15 +64,6 @@ public class AlteraClienteServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("identificacao"));
 
         request.setAttribute("erroNome", service.validaNome(nome));
-        try {
-            
-            request.setAttribute("erroCpf", service.validaCpf(cpf));
-            
-        } catch (SQLException | ClassNotFoundException ex) {
-            
-            Logger.getLogger(AlteraClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
         request.setAttribute("erroNascimento", service.validaNascimento(data_nasc));
         request.setAttribute("erroRua", service.validaRua(rua));
         request.setAttribute("erroNumero", service.validaNumero(numero));
@@ -81,13 +71,13 @@ public class AlteraClienteServlet extends HttpServlet {
         request.setAttribute("erroCidade", service.validaCidade(cidade));
         request.setAttribute("erroEmail", service.validaEmail(email));
 
-        Cliente cliente = new Cliente(nome.trim(), cpf.trim(), sexo.trim(), data_nasc.trim(), numero,
+        Cliente cliente = new Cliente(nome.trim(), sexo.trim(), data_nasc.trim(), numero,
                 cep.trim(), rua.trim(), estado.trim(), cidade.trim(), complemento.trim(), celular.trim(),
                 telefone.trim(), email.trim(), true);
         cliente.setId(id);
 
         try {
-            if (service.validaCliente(nome, cpf, sexo,rua, numero, cep, cidade,email)) {
+            if (service.validaCliente(nome, sexo,rua, numero, cep, cidade,email)) {
                 
                 try {
                     

@@ -17,10 +17,10 @@ public abstract class Pessoa {
     private String email;
     private boolean ativo;
 
-    public Pessoa(String nome, String cpf, String sexo, String data_nasc, int numero, 
-            String cep, String rua, String estado, String cidade, 
+    public Pessoa(String nome, String cpf, String sexo, String data_nasc, int numero,
+            String cep, String rua, String estado, String cidade,
             String complemento, String celular, String telefone, String email, boolean ativo) {
-        
+
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
@@ -37,8 +37,27 @@ public abstract class Pessoa {
         this.ativo = ativo;
     }
 
+    public Pessoa(String nome, String sexo, String data_nasc, int numero,
+            String cep, String rua, String estado, String cidade,
+            String complemento, String celular, String telefone, String email, boolean ativo) {
+
+        this.nome = nome;
+        this.sexo = sexo;
+        this.data_nasc = data_nasc;
+        this.numero = numero;
+        this.cep = cep;
+        this.rua = rua;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.complemento = complemento;
+        this.celular = celular;
+        this.telefone = telefone;
+        this.email = email;
+        this.ativo = ativo;
+    }
+
     public Pessoa() {
-        
+
     }
 
     public String getNome() {

@@ -47,7 +47,7 @@
                     <c:if test="${erroQuantidade_quartos}">
                         <script>alert("Erro na quantidade de quartos!")</script>
                     </c:if>
-                    <label for="example-number-input" min="1" max="999" class="control-label col-md-4">* Quantidade de Quartos <span class="glyphicon glyphicon-bed"></span> :</label>
+                    <label for="example-number-input" class="control-label col-md-4">* Quantidade de Quartos <span class="glyphicon glyphicon-bed"></span> :</label>
                     <div class="controls col-md-5">
                         <input value="${hoteis.getQuantidade_quartos()}"class="form-control" min="1" type="number" name="quantidade_quartos" placeholder="Insira a quantidade de quartos" id="example-number-input" required>
                     </div>

@@ -113,9 +113,6 @@ public class RelatorioDAO {
 
     public ArrayList<RelatorioSLA> procurarRelatorioSLA(String filial) throws SQLException, ClassNotFoundException {
 
-        // Conecta.
-        connection = DbUtil.getConnection();
-
         // Lista que ira receber vendas.
         ArrayList<RelatorioSLA> listaResultado = new ArrayList<>();
 
@@ -126,9 +123,12 @@ public class RelatorioDAO {
                 + "WHERE funcionario.filial = ?"
                 + "ORDER BY data_m DESC LIMIT 50";
 
-        preparedStatement.setString(1, filial);
-
+        // Conecta.
+        connection = DbUtil.getConnection();
+        
         preparedStatement = connection.prepareStatement(slq);
+        
+        preparedStatement.setString(1, filial);
 
         // Executa e recebe resultado.
         resultSet = preparedStatement.executeQuery();

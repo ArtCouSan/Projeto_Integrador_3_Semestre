@@ -11,6 +11,14 @@ public final class Cliente extends Pessoa {
         super(nome, cpf, sexo, data_nasc, numero, cep, rua, bairro, cidade, 
                 complemento, celular, telefone, email, ativo);
     }
+    
+     public Cliente(String nome, String sexo, String data_nasc, int numero, 
+            String cep, String rua, String bairro, String cidade, 
+            String complemento, String celular, String telefone, String email, boolean ativo) {
+        
+        super(nome, sexo, data_nasc, numero, cep, rua, bairro, cidade, 
+                complemento, celular, telefone, email, ativo);
+    }
 
     public Cliente() {
 

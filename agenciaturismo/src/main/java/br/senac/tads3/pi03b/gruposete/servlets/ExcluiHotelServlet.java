@@ -42,7 +42,8 @@ public class ExcluiHotelServlet extends HttpServlet {
                 relatorio.setMudanca("Exclusão de hotel efetuada!");
                 relatorioDAO.inserir(relatorio);
 
-                response.sendRedirect(request.getContextPath() + "/inicio");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/BuscaHotel.jsp");
+                dispatcher.forward(request, response);
 
             } catch (SQLException | ClassNotFoundException ex) {
 

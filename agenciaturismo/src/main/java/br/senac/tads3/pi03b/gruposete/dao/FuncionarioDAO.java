@@ -65,7 +65,6 @@ public class FuncionarioDAO {
                 + "numero = ?, "
                 + "cep = ?, "
                 + "rua = ?, "
-                + "cpf = ?, "
                 + "estado = ?, "
                 + "cidade = ?, "
                 + "complemento = ?, "
@@ -88,18 +87,17 @@ public class FuncionarioDAO {
             preparedStatement.setInt(4, func.getNumero());
             preparedStatement.setString(5, func.getCep());
             preparedStatement.setString(6, func.getRua());
-            preparedStatement.setString(7, func.getCpf());
-            preparedStatement.setString(8, func.getEstado());
-            preparedStatement.setString(9, func.getCidade());
-            preparedStatement.setString(10, func.getComplemento());
-            preparedStatement.setString(11, func.getCelular());
-            preparedStatement.setString(12, func.getTelefone());
-            preparedStatement.setString(13, func.getEmail());
-            preparedStatement.setString(14, func.getCargo());
-            preparedStatement.setString(15, func.getFilial());
-            preparedStatement.setString(16, func.getDepartamento());
-            preparedStatement.setString(17, func.getAcesso());
-            preparedStatement.setInt(18, func.getId());
+            preparedStatement.setString(7, func.getEstado());
+            preparedStatement.setString(8, func.getCidade());
+            preparedStatement.setString(9, func.getComplemento());
+            preparedStatement.setString(10, func.getCelular());
+            preparedStatement.setString(11, func.getTelefone());
+            preparedStatement.setString(12, func.getEmail());
+            preparedStatement.setString(13, func.getCargo());
+            preparedStatement.setString(14, func.getFilial());
+            preparedStatement.setString(15, func.getDepartamento());
+            preparedStatement.setString(16, func.getAcesso());
+            preparedStatement.setInt(17, func.getId());
 
             preparedStatement.executeUpdate();
 
@@ -119,7 +117,7 @@ public class FuncionarioDAO {
     }
 
     public void excluir(int id) throws SQLException, ClassNotFoundException {
-        
+
         String slq = "UPDATE funcionario SET ativo = ? WHERE id_funcionario = ?";
 
         try {
@@ -186,10 +184,13 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> ListarFuncionario() throws SQLException, ClassNotFoundException {
+
         List<Funcionario> listaFuncionario = new ArrayList<>();
+
         String query = "SELECT * FROM Funcionario WHERE ativo = true";
 
         try {
+
             connection = DbUtil.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
@@ -217,15 +218,76 @@ public class FuncionarioDAO {
 
                 listaFuncionario.add(func);
             }
+
         } finally {
+
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
             }
             if (connection != null && !connection.isClosed()) {
                 connection.close();
             }
+
         }
+
         return listaFuncionario;
+
+    }
+
+    public List<Funcionario> ListarFuncionario(String filial) throws SQLException, ClassNotFoundException {
+
+        List<Funcionario> listaFuncionario = new ArrayList<>();
+
+        String query = "SELECT * FROM Funcionario WHERE ativo = true AND filial = ?";
+
+        try {
+
+            connection = DbUtil.getConnection();
+            
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, filial);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                Funcionario func = new Funcionario();
+
+                func.setId(resultSet.getInt("id_funcionario"));
+                func.setCpf(resultSet.getString("cpf"));
+                func.setNome(resultSet.getString("nome"));
+                func.setSexo(resultSet.getString("sexo"));
+                func.setData_nasc(resultSet.getString("data_nasc"));
+                func.setNumero(resultSet.getInt("numero"));
+                func.setCep(resultSet.getString("cep"));
+                func.setRua(resultSet.getString("rua"));
+                func.setEstado(resultSet.getString("estado"));
+                func.setCidade(resultSet.getString("cidade"));
+                func.setComplemento(resultSet.getString("complemento"));
+                func.setCelular(resultSet.getString("celular"));
+                func.setTelefone(resultSet.getString("telefone"));
+                func.setEmail(resultSet.getString("email"));
+                func.setCargo(resultSet.getString("cargo"));
+                func.setFilial(resultSet.getString("filial"));
+                func.setDepartamento(resultSet.getString("departamento"));
+
+                listaFuncionario.add(func);
+            }
+
+        } finally {
+
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+
+        }
+
+        return listaFuncionario;
+
     }
 
     public List<Funcionario> procurarFuncionario(String busca) throws SQLException, ClassNotFoundException {
@@ -311,6 +373,103 @@ public class FuncionarioDAO {
             }
         }
         return listaResultado;
+    }
+
+    public List<Funcionario> procurarFuncionario(String busca, String filial) throws SQLException, ClassNotFoundException {
+
+        List<Funcionario> listaResultado = new ArrayList<>();
+
+        String sql = "SELECT * FROM funcionario WHERE"
+                + " (estado = ?"
+                + " OR celular = ?"
+                + " OR cep = ?"
+                + " OR complemento = ?"
+                + " OR cpf = ?"
+                + " OR data_nasc = ?"
+                + " OR email = ?"
+                + " OR nome = ?"
+                + " OR rua = ?"
+                + " OR numero = ?"
+                + " OR sexo = ?"
+                + " OR telefone = ?"
+                + " OR cidade = ?"
+                + " OR cargo = ?"
+                + " OR filial = ?"
+                + " OR departamento = ?)"
+                + " AND ativo = true AND filial = ?";
+
+        connection = DbUtil.getConnection();
+        preparedStatement = connection.prepareStatement(sql);
+
+        // Insercoes.
+        preparedStatement.setString(1, busca);
+        preparedStatement.setString(2, busca);
+        preparedStatement.setString(3, busca);
+        preparedStatement.setString(4, busca);
+        preparedStatement.setString(5, busca);
+        preparedStatement.setString(6, busca);
+        preparedStatement.setString(7, busca);
+        preparedStatement.setString(8, busca);
+        preparedStatement.setString(9, busca);
+
+        int n1 = 0;
+        try {
+            n1 = Integer.parseInt(busca);
+        } catch (NumberFormatException e) {
+
+        }
+        preparedStatement.setInt(10, n1);
+
+        preparedStatement.setString(11, busca);
+        preparedStatement.setString(12, busca);
+        preparedStatement.setString(13, busca);
+        preparedStatement.setString(14, busca);
+        preparedStatement.setString(15, busca);
+        preparedStatement.setString(16, busca);
+        preparedStatement.setString(17, filial);
+
+        try (ResultSet result = preparedStatement.executeQuery()) {
+
+            while (result.next()) {
+
+                Funcionario func = new Funcionario();
+
+                func.setId(result.getInt("id_funcionario"));
+                func.setEstado(result.getString("estado"));
+                func.setCelular(result.getString("celular"));
+                func.setCep(result.getString("cep"));
+                func.setComplemento(result.getString("complemento"));
+                func.setCpf(result.getString("cpf"));
+                func.setData_nasc(result.getString("data_nasc"));
+                func.setEmail(result.getString("email"));
+                func.setNome(result.getString("nome"));
+                func.setNumero(result.getInt("numero"));
+                func.setRua(result.getString("rua"));
+                func.setSexo(result.getString("sexo"));
+                func.setTelefone(result.getString("telefone"));
+                func.setCidade(result.getString("cidade"));
+                func.setCargo(result.getString("cargo"));
+                func.setFilial(result.getString("filial"));
+                func.setDepartamento(result.getString("departamento"));
+
+                listaResultado.add(func);
+
+            }
+
+        } finally {
+
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+
+        }
+
+        return listaResultado;
+
     }
 
     public boolean verificarCPF(String cpf) throws SQLException, ClassNotFoundException {
