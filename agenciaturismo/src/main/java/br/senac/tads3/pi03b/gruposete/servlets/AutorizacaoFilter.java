@@ -87,8 +87,8 @@ public class AutorizacaoFilter implements Filter {
         //Gerente Venda
         else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("BuscaHotel")
                 || pagina.contains("BuscaVoo") || pagina.contains("Venda") || pagina.contains("CadastrarSLA")
-                || pagina.contains("ApresentaBuscarRelatorio") || pagina.contains("ApresentaBuscar2")
-                || pagina.contains("ApresentaBuscar3") && func.temPapel("Gerente_Venda")) {
+                || pagina.contains("ApresentaBuscarRelatorio") || pagina.contains("ApresentaBusca2")
+                || pagina.contains("ApresentaBusca3") && func.temPapel("Gerente_Venda")) {
             return true;
         } 
         //Suporte Informatica
@@ -109,7 +109,7 @@ public class AutorizacaoFilter implements Filter {
         } 
         //Gerente Retaguarda
         else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
-                || pagina.contains("ApresentaBuscar3") || pagina.contains("CadastrarSLA") 
+                || pagina.contains("ApresentaBusca3") || pagina.contains("CadastrarSLA") 
                 && func.temPapel("Gerente_Retaguarda")) {
             return true;
         }
