@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+s<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,7 @@
                     </c:if>
                     <label for="example-text-input" class="control-label col-md-4">* Cpf <span class="fa fa-id-card"></span> :</label>
                     <div class="controls col-md-5">
-                        <input value="${funcionarios.getCpf()}" maxlength="100" class="form-control" name="nome" type="text" placeholder="Insira nome" id="nome" required>
+                        <input value="${funcionarios.getCpf()}" maxlength="100" class="form-control" name="cpf" type="text" placeholder="Insira cpf" id="cpf" required>
                     </div>
                 </div>
 

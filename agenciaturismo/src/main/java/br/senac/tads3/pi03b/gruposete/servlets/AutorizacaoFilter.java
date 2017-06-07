@@ -76,25 +76,25 @@ public class AutorizacaoFilter implements Filter {
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
         if (pagina.endsWith("") && func.temPapel("Master")) {
             return true;
-        } else if (pagina.contains("Cliente") || pagina.contains("BuscaVoo")
+        } else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("BuscaVoo")
                 || pagina.contains("BuscaHotel") || pagina.contains("FeedbackServlet")
                 || pagina.contains("Venda") && func.temPapel("Vendedor")) {
             return true;
-        } else if (pagina.contains("Cliente") || pagina.contains("Hotel")
+        } else if (pagina.contains("inicio") || pagina.contains("Cliente") || pagina.contains("Hotel")
                 || pagina.contains("Voo") || pagina.contains("Venda")
                 || pagina.contains("ApresentaBuscarRelatorio") || pagina.contains("ApresentaBuscar3")
                 && func.temPapel("Gerente_Venda")) {
             return true;
-        } else if (pagina.contains("Funcionario") && func.temPapel("Suporte_Informatica")) {
+        } else if (pagina.contains("inicio") || pagina.contains("Funcionario") && func.temPapel("Suporte_Informatica")) {
             return true;
-        } else if (pagina.contains("Funcionario") || pagina.contains("ApresentaBuscar3")
+        } else if (pagina.contains("inicio") || pagina.contains("Funcionario") || pagina.contains("ApresentaBuscar3")
                 && func.temPapel("Gerente_Informatica")) {
             return true;
-        } else if(pagina.contains("Hotel") || pagina.contains("Voo")
-                || pagina.contains("FeedbackServlet") && func.temPapel("Retaguarda")){
+        } else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
+                || pagina.contains("FeedbackServlet") && func.temPapel("Retaguarda")) {
             return true;
-        } else if(pagina.contains("Hotel") || pagina.contains("Voo")
-                || pagina.contains("ApresentaBuscar3") && func.temPapel("Gerente_Retaguarda")){
+        } else if (pagina.contains("inicio") || pagina.contains("Hotel") || pagina.contains("Voo")
+                || pagina.contains("ApresentaBuscar3") && func.temPapel("Gerente_Retaguarda")) {
             return true;
         }
         return false;

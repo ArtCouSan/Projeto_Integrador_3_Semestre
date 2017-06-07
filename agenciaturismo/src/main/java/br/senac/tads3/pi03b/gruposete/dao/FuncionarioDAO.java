@@ -57,6 +57,7 @@ public class FuncionarioDAO {
     }
 
     public void alterar(Funcionario func) throws SQLException, Exception {
+
         String sql = "UPDATE funcionario "
                 + "SET nome = ?, "
                 + "sexo = ?, "
@@ -101,17 +102,24 @@ public class FuncionarioDAO {
             preparedStatement.setInt(18, func.getId());
 
             preparedStatement.executeUpdate();
+
         } finally {
+
             if (preparedStatement != null && !preparedStatement.isClosed()) {
+
                 preparedStatement.close();
             }
+
             if (connection != null && !connection.isClosed()) {
+
                 connection.close();
+
             }
         }
     }
 
     public void excluir(int id) throws SQLException, ClassNotFoundException {
+        
         String slq = "UPDATE funcionario SET ativo = ? WHERE id_funcionario = ?";
 
         try {

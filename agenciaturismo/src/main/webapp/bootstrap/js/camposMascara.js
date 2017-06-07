@@ -22,6 +22,7 @@ window.onload = function () {
         format: '_____-___',
         separator: '-'
     });
+    
 };
 
 

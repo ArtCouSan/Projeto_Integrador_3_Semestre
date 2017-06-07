@@ -75,6 +75,8 @@ public class BuscarRelatorio extends HttpServlet {
 
             }
 
+            response.setCharacterEncoding("UTF-8");
+            
             try (PrintWriter out = response.getWriter()) {
 
                 out.println(jsonArray.toJSONString());

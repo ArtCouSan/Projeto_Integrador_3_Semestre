@@ -18,7 +18,7 @@ import org.json.simple.JSONObject;
 
 @WebServlet(name = "BuscarRelatorioMudanca", urlPatterns = {"/BuscarRelatorioMudanca"})
 public class BuscarRelatorioMudanca extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,10 +40,12 @@ public class BuscarRelatorioMudanca extends HttpServlet {
                 json.put("nome", procurarVenda.getFuncionario());
                 json.put("cargo", procurarVenda.getCargo());
                 json.put("filial", procurarVenda.getFilial());
-                
+
                 jsonArray.add(json);
 
             }
+
+            response.setCharacterEncoding("UTF-8");
 
             try (PrintWriter out = response.getWriter()) {
 

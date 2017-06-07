@@ -9,7 +9,7 @@
         <link type="text/css" rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-theme.min.css" />
         <link type="text/css"  href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css"  href="./bootstrap/css/particular.css" rel="stylesheet" />
-        <script src="./bootstrap/js/relatoriosSLA.js"></script>
+        <script src="./bootstrap/js/relatoriosSLA.js" charset="UTF-8"></script>
         <title>Relatorio Dados - Uso</title>
     </head>
     <body>
